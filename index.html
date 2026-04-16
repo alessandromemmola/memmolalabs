@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Memmola Labs® — studio indipendente di Alessandro Memmola. Tool web gratuiti, widget embeddabili e app mobile per il mercato italiano." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://memmolalabs.com/" />
+  <title>Memmola Labs® — Tool & App by Alessandro Memmola</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Memmola Labs® — Tool & App" />
+  <meta property="og:description" content="Studio indipendente di Alessandro Memmola. Tool web gratuiti, widget embeddabili e app mobile." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://memmolalabs.com/" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:        #000508;
+      --surface:   #040d14;
+      --surface2:  #071520;
+      --border:    #0d2a40;
+      --blue:      #0077ff;
+      --cyan:      #00c8ff;
+      --cyan2:     #00eaff;
+      --text:      #e8f4ff;
+      --muted:     #4a7a99;
+      --card-glow: rgba(0,200,255,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(0,5,8,0.85);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 900; font-size: 18px;
+      color: #000;
+      box-shadow: 0 0 16px rgba(0,200,255,0.4);
+    }
+
+    .nav-logo-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--text);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-logo-text span { color: var(--cyan); }
+
+    .nav-links {
+      display: flex; gap: 32px; align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--cyan);
+      color: var(--cyan) !important;
+      padding: 6px 16px;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--cyan); color: #000 !important; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      z-index: 1;
+    }
+
+    /* Glow orb */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,119,255,0.15) 0%, rgba(0,200,255,0.08) 40%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,200,255,0.08);
+      border: 1px solid rgba(0,200,255,0.2);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--cyan);
+      letter-spacing: 0.1em;
+      margin-bottom: 32px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--cyan);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero h1 .accent {
+      background: linear-gradient(90deg, var(--blue), var(--cyan2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 560px;
+      line-height: 1.7;
+      margin-top: 20px;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #000;
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      padding: 14px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+      box-shadow: 0 0 24px rgba(0,200,255,0.3);
+    }
+
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 14px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* Stats strip */
+    .stats-strip {
+      display: flex; gap: 48px; flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 64px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .stat { text-align: center; }
+
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--cyan);
+      font-family: 'JetBrains Mono', monospace;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ── SECTION COMMON ── */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 40px;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1; height: 1px;
+      background: var(--border);
+      max-width: 80px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 56px;
+    }
+
+    /* ── PROJECT CARDS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(0,200,255,0.3);
+      box-shadow: 0 0 40px rgba(0,200,255,0.08);
+      transform: translateY(-4px);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .tag-web { background: rgba(0,119,255,0.12); color: #4da6ff; border: 1px solid rgba(0,119,255,0.25); }
+    .tag-app { background: rgba(0,234,255,0.12); color: var(--cyan2); border: 1px solid rgba(0,234,255,0.25); }
+    .tag-widget { background: rgba(100,180,255,0.1); color: #80c8ff; border: 1px solid rgba(100,180,255,0.2); }
+
+    .project-icon { font-size: 2rem; margin-bottom: 12px; }
+
+    .project-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .project-links {
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+
+    .btn-card {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-card-primary {
+      background: rgba(0,200,255,0.1);
+      border: 1px solid rgba(0,200,255,0.25);
+      color: var(--cyan);
+    }
+
+    .btn-card-primary:hover { background: var(--cyan); color: #000; }
+
+    .btn-card-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .btn-card-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* App badge */
+    .app-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+
+    /* ── SUPPORT SECTION ── */
+    .support-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 56px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .support-section::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0,200,255,0.06) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .support-section h2 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .support-section p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 36px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .support-btns {
+      display: flex; gap: 20px;
+      justify-content: center; flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .support-item { text-align: center; }
+
+    .support-item-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 6px;
+      letter-spacing: 0.08em;
+    }
+
+    .paypal-form { display: inline-flex; align-items: center; }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 48px 40px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 2;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--cyan); }
+
+    .footer-logo {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-logo span {
+      background: linear-gradient(90deg, var(--blue), var(--cyan2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-links {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      justify-content: center;
+      margin: 12px 0;
+    }
+
+    .footer-trademark {
+      font-size: 10px;
+      color: rgba(74,122,153,0.5);
+      margin-top: 16px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      section { padding: 60px 20px; }
+      .support-section { padding: 36px 24px; }
+      .stats-strip { gap: 28px; }
+      footer { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-mark">M</div>
+    <span class="nav-logo-text">Memmola<span>Labs</span>®</span>
+  </a>
+  <div class="nav-links">
+    <a href="#progetti">Progetti</a>
+    <a href="#supporta">Supporta</a>
+    <a href="https://alessandromemmola.com" target="_blank">Chi sono</a>
+    <a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Studio indipendente ·
+  </div>
+  <h1>Memmola<br><span class="accent">Labs®</span></h1>
+  <p class="hero-sub">Tool web gratuiti, widget embeddabili e app mobile costruiti da zero per risolvere problemi reali.</p>
+  <div class="hero-actions">
+    <a href="#progetti" class="btn-primary">Esplora i progetti →</a>
+    <a href="https://alessandromemmola.com" target="_blank" class="btn-outline">Chi sono</a>
+  </div>
+  <div class="stats-strip">
+    <div class="stat"><span class="stat-num">3</span><span class="stat-label">Progetti live</span></div>
+    <div class="stat"><span class="stat-num">2</span><span class="stat-label">Widget gratuiti</span></div>
+    <div class="stat"><span class="stat-num">2</span><span class="stat-label">App su Play Store</span></div>
+    <div class="stat"><span class="stat-num">0</span><span class="stat-label">Dati raccolti</span></div>
+  </div>
+</div>
+
+<!-- PROGETTI -->
+<section id="progetti">
+  <div class="section-label">// Progetti</div>
+  <h2 class="section-title">Cosa costruisce Memmola Labs</h2>
+  <p class="section-sub">Tool pratici, gratuiti e senza tracking. Ogni progetto risolve un problema reale.</p>
+
+  <div class="projects-grid">
+
+    <!-- AskingStars -->
+    <div class="project-card">
+      <span class="project-tag tag-web">Web · Multilingua</span>
+      <div class="project-icon">🌟</div>
+      <div class="project-name">AskingStars</div>
+      <p class="project-desc">Oroscopo interattivo e ironico: chiedi alle stelle o alla cartomante risposte divertenti e personalizzate per il tuo segno zodiacale.</p>
+      <div class="project-links">
+        <a href="https://askingstars.com" target="_blank" class="btn-card btn-card-primary">Visita il sito →</a>
+        <a href="https://askingstars.com/widget-demo.html" target="_blank" class="btn-card btn-card-secondary">Widget demo</a>
+      </div>
+    </div>
+
+    <!-- Reindexme -->
+    <div class="project-card">
+      <span class="project-tag tag-web">Web · SEO Tool</span>
+      <div class="project-icon">⚡</div>
+      <div class="project-name">Reindexme</div>
+      <p class="project-desc">Hai aggiornato il profilo LinkedIn ma Google mostra ancora la vecchia posizione? Invia segnali di re-indicizzazione a Bing, Yandex e Google in un click.</p>
+      <div class="project-links">
+        <a href="https://reindexme.com" target="_blank" class="btn-card btn-card-primary">Visita il sito →</a>
+        <a href="https://reindexme.com/widget-demo.html" target="_blank" class="btn-card btn-card-secondary">Widget demo</a>
+      </div>
+    </div>
+
+    <!-- ImmoBit -->
+    <div class="project-card">
+      <span class="project-tag tag-app">Android App</span>
+      <div class="project-icon">🏠</div>
+      <div class="project-name">ImmoBit</div>
+      <p class="project-desc">App Android per la valutazione immobiliare. Stima rapida e professionale degli immobili, pensata per agenti e privati nel mercato italiano ed estero.</p>
+      <div class="project-links">
+        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" class="btn-card btn-card-primary">Google Play →</a>
+      </div>
+    </div>
+
+    <!-- AutoBit -->
+    <div class="project-card">
+      <span class="project-tag tag-app">Android App</span>
+      <div class="project-icon">🚗</div>
+      <div class="project-name">AutoBit</div>
+      <p class="project-desc">App Android per la valutazione veicoli. Il companion di ImmoBit per chi valuta auto e veicoli nel mercato italiano ed estero.</p>
+      <div class="project-links">
+        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" class="btn-card btn-card-primary">Google Play →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section id="supporta" style="padding-top: 0;">
+  <div class="support-section">
+    <div class="section-label" style="justify-content:center;margin-bottom:20px;">// Supporta</div>
+    <h2>Supporta Memmola Labs</h2>
+    <p>Tutti i tool sono gratuiti e senza tracking. Se ti sono utili, un piccolo supporto mi aiuta a costruirne altri full-time.</p>
+    <div class="support-btns">
+      <div class="support-item">
+        <iframe src="https://github.com/sponsors/alessandromemmola/button" title="Sponsor alessandromemmola" height="32" width="114" style="border:0;border-radius:6px;display:block;"></iframe>
+        <p class="support-item-label">GitHub Sponsors</p>
+      </div>
+      <div class="support-item">
+        <form action="https://www.paypal.com/donate" method="post" target="_top" class="paypal-form">
+          <input type="hidden" name="hosted_button_id" value="BDKSZVWFYY5ZL" />
+          <input type="image" src="https://www.paypalobjects.com/it_IT/IT/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal" alt="Dona con PayPal" style="height:32px;" />
+          <img alt="" border="0" src="https://www.paypal.com/it_IT/i/scr/pixel.gif" width="1" height="1" />
+        </form>
+        <p class="support-item-label">PayPal</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Memmola<span>Labs®</span></div>
+  <div class="footer-links">
+    <a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a>
+    <a href="https://github.com/alessandromemmola" target="_blank">GitHub</a>
+    <a href="https://www.producthunt.com/@alessandromemmola" target="_blank">Product Hunt</a>
+    <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a>
+    <a href="https://x.com/MemmolaLabs" target="_blank">X</a>
+    <a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a>
+  </div>
+  <div>
+    © 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br>
+    Nessun tracciamento personale o cookie di profilazione
+  </div>
+  <div class="footer-trademark">Memmola Labs® è un marchio registrato di Alessandro Memmola</div>
+</footer>
+
+</body>
+</html>
