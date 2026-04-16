@@ -2,7 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://memmolalabs.com/sitemap.xml
-
-# Blocca eventuali cartelle sensibili (opzionale)
-Disallow: /private/
-Disallow: /admin/
