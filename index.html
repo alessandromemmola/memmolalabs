@@ -16,10 +16,6 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
-  <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16">
-  <link rel="apple-touch-icon" href="/favicon-32x32.png" sizes="180x180">
-  
   <style>
     :root {
       --bg:        #000508;
@@ -415,6 +411,54 @@
       margin-bottom: 16px;
     }
 
+
+    /* ── APP STORE VISUALS ── */
+    .app-store-visual {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(0,200,255,0.18);
+      background: linear-gradient(135deg, rgba(0,119,255,0.08), rgba(0,200,255,0.04));
+      margin-bottom: 22px;
+      aspect-ratio: 16 / 9;
+    }
+
+    .app-store-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.92;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    .project-card:hover .app-store-visual img {
+      transform: scale(1.04);
+      opacity: 1;
+    }
+
+    .app-store-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 45%, rgba(0,5,8,0.72) 100%);
+      pointer-events: none;
+    }
+
+    .store-badge-img {
+      display: block;
+      height: 42px;
+      width: auto;
+      margin-top: 12px;
+      opacity: 0.95;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .store-badge-img:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
     /* ── SUPPORT SECTION ── */
     .support-section {
       background: var(--surface);
@@ -547,6 +591,8 @@
   </a>
   <div class="nav-links">
     <a href="#progetti">Progetti</a>
+    <a href="/immobit/">ImmoBit</a>
+    <a href="/autobit/">AutoBit</a>
     <a href="#supporta">Supporta</a>
     <a href="https://alessandromemmola.com" target="_blank">Chi sono</a>
     <a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a>
@@ -557,7 +603,7 @@
 <div class="hero">
   <div class="hero-badge">
     <span class="hero-badge-dot"></span>
-    Studio indipendente ·
+    Studio indipendente · Latina, Italia
   </div>
   <h1>Memmola<br><span class="accent">Labs®</span></h1>
   <p class="hero-sub">Tool web gratuiti, widget embeddabili e app mobile costruiti da zero per risolvere problemi reali.</p>
@@ -607,24 +653,36 @@
 
     <!-- ImmoBit -->
     <div class="project-card">
-      <span class="project-tag tag-app">Android App</span>
-      <div class="project-icon">🏠</div>
-      <div class="project-name">ImmoBit</div>
-      <p class="project-desc">App Android per la valutazione immobiliare. Stima rapida e professionale degli immobili, pensata per agenti e privati nel mercato italiano ed estero.</p>
-      <div class="project-links">
-        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" class="btn-card btn-card-primary">Google Play →</a>
+      <span class="project-tag tag-app">Android App · Serie</span>
+      <div class="app-store-visual">
+        <img src="/playstore_immobit.png" alt="ImmoBit su Google Play" loading="lazy">
       </div>
+      <div class="project-name">ImmoBit</div>
+      <p class="project-desc">App Android per la valutazione immobiliare italiana. Con Elena Moretti, ImmoBit diventa anche una serie editoriale: storie brevi, casi reali e guide pratiche per scegliere casa con più consapevolezza.</p>
+      <div class="project-links">
+        <a href="/immobit/" class="btn-card btn-card-primary">Pagina ImmoBit →</a>
+        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" class="btn-card btn-card-secondary">Google Play</a>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" aria-label="Scarica ImmoBit da Google Play">
+        <img src="/play_ita.png" alt="Disponibile su Google Play" class="store-badge-img" loading="lazy">
+      </a>
     </div>
 
     <!-- AutoBit -->
     <div class="project-card">
-      <span class="project-tag tag-app">Android App</span>
-      <div class="project-icon">🚗</div>
-      <div class="project-name">AutoBit</div>
-      <p class="project-desc">App Android per la valutazione veicoli. Il companion di ImmoBit per chi valuta auto e veicoli nel mercato italiano ed estero.</p>
-      <div class="project-links">
-        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" class="btn-card btn-card-primary">Google Play →</a>
+      <span class="project-tag tag-app">Android App · Serie</span>
+      <div class="app-store-visual">
+        <img src="/playstore_autobit.png" alt="AutoBit su Google Play" loading="lazy">
       </div>
+      <div class="project-name">AutoBit</div>
+      <p class="project-desc">App Android per la valutazione veicoli. Con Luca Romano, AutoBit diventa anche una serie editoriale: storie brevi, controlli intelligenti e segnali da osservare prima di acquistare un’auto usata.</p>
+      <div class="project-links">
+        <a href="/autobit/" class="btn-card btn-card-primary">Pagina AutoBit →</a>
+        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" class="btn-card btn-card-secondary">Google Play</a>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" aria-label="Scarica AutoBit da Google Play">
+        <img src="/play_ita.png" alt="Disponibile su Google Play" class="store-badge-img" loading="lazy">
+      </a>
     </div>
 
   </div>
