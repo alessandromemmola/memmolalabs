@@ -11,10 +11,12 @@
   Include widget embeddabile gratuito → [widget-demo](https://reindexme.com/widget-demo.html)
 
 - **[ImmoBit](https://play.google.com/store/apps/details?id=com.memmolalabs.immobit)**  
-  ImmoBit è l'app definitiva per chi vuole valutare un immobile in modo serio, rapido e professionale, che tu stia cercando casa, affittando un locale commerciale o lavorando come agente immobiliare.
+  ImmoBit è l’app per la valutazione di immobili in modo rapido, professionale e intelligente.
+  Che tu stia cercando casa, verificando un appartamento prima dell’acquisto o lavorando come agente immobiliare, ImmoBit ti aiuta a effettuare un controllo completo dell’immobile con checklist guidate e punteggio finale.
 
-- **[AutoBit]()**  
-  AutoBit.  
+- **[AutoBit](https://play.google.com/store/apps/details?id=com.memmolalabs.autobit)**  
+  AutoBit è l’app per il controllo e la valutazione di auto, moto e veicoli in modo rapido e professionale.
+  Che tu stia acquistando un’auto o verificando un veicolo prima della vendita, AutoBit ti aiuta a effettuare un controllo auto completo dello stato del mezzo, con checklist guidate e punteggio finale.
  
 ## Tecnologie usate
 
