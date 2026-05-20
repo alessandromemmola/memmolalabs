@@ -42,7 +42,7 @@
       overflow-x: hidden;
     }
 
-    /* ── GRID BACKGROUND ── */
+    
     body::before {
       content: '';
       position: fixed; inset: 0;
@@ -54,7 +54,7 @@
       z-index: 0;
     }
 
-    /* ── NAV ── */
+    
     nav {
       position: fixed; top: 0; left: 0; right: 0;
       z-index: 100;
@@ -117,7 +117,7 @@
 
     .nav-cta:hover { background: var(--cyan); color: #000 !important; }
 
-    /* ── HERO ── */
+    
     .hero {
       position: relative;
       min-height: 100vh;
@@ -128,7 +128,7 @@
       z-index: 1;
     }
 
-    /* Glow orb */
+    
     .hero::before {
       content: '';
       position: absolute;
@@ -230,7 +230,7 @@
 
     .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
 
-    /* Stats strip */
+    
     .stats-strip {
       display: flex; gap: 48px; flex-wrap: wrap;
       justify-content: center;
@@ -259,7 +259,7 @@
       margin-top: 4px;
     }
 
-    /* ── SECTION COMMON ── */
+    
     section {
       position: relative;
       z-index: 1;
@@ -302,7 +302,7 @@
       margin-bottom: 56px;
     }
 
-    /* ── PROJECT CARDS ── */
+    
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -399,7 +399,7 @@
 
     .btn-card-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
 
-    /* App badge */
+    
     .app-badge {
       display: inline-flex; align-items: center; gap: 6px;
       font-family: 'JetBrains Mono', monospace;
@@ -412,7 +412,7 @@
     }
 
 
-    /* ── APP STORE VISUALS ── */
+    
     .app-store-visual {
       position: relative;
       border-radius: 14px;
@@ -459,7 +459,7 @@
       transform: translateY(-1px);
     }
 
-    /* ── SUPPORT SECTION ── */
+    
     .support-section {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -516,7 +516,7 @@
 
     .paypal-form { display: inline-flex; align-items: center; }
 
-    /* ── FOOTER ── */
+    
     footer {
       position: relative; z-index: 1;
       border-top: 1px solid var(--border);
@@ -564,13 +564,13 @@
       margin-top: 16px;
     }
 
-    /* ── ANIMATIONS ── */
+    
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── RESPONSIVE ── */
+    
     @media (max-width: 768px) {
       nav { padding: 14px 20px; }
       .nav-links { display: none; }
@@ -583,7 +583,7 @@
 </head>
 <body>
 
-<!-- NAV -->
+
 <nav>
   <a href="/" class="nav-logo">
     <div class="nav-logo-mark">M</div>
@@ -599,7 +599,7 @@
   </div>
 </nav>
 
-<!-- HERO -->
+
 <div class="hero">
   <div class="hero-badge">
     <span class="hero-badge-dot"></span>
@@ -619,7 +619,7 @@
   </div>
 </div>
 
-<!-- PROGETTI -->
+
 <section id="progetti">
   <div class="section-label">// Progetti</div>
   <h2 class="section-title">Cosa costruisce Memmola Labs</h2>
@@ -627,7 +627,7 @@
 
   <div class="projects-grid">
 
-    <!-- AskingStars -->
+    
     <div class="project-card">
       <span class="project-tag tag-web">Web · Multilingua</span>
       <div class="project-icon">🌟</div>
@@ -639,7 +639,7 @@
       </div>
     </div>
 
-    <!-- Reindexme -->
+   
     <div class="project-card">
       <span class="project-tag tag-web">Web · SEO Tool</span>
       <div class="project-icon">⚡</div>
@@ -651,7 +651,7 @@
       </div>
     </div>
 
-    <!-- ImmoBit -->
+    
     <div class="project-card">
       <span class="project-tag tag-app">Android App · Serie</span>
       <div class="app-store-visual">
@@ -661,14 +661,13 @@
       <p class="project-desc">App Android per la valutazione immobiliare italiana. Con Elena Moretti, ImmoBit diventa anche una serie editoriale: storie brevi, casi reali e guide pratiche per scegliere casa con più consapevolezza.</p>
       <div class="project-links">
         <a href="/immobit/" class="btn-card btn-card-primary">Pagina ImmoBit →</a>
-        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" class="btn-card btn-card-secondary">Google Play</a>
       </div>
       <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" aria-label="Scarica ImmoBit da Google Play">
         <img src="image/play_ita.png" alt="Disponibile su Google Play" class="store-badge-img" loading="lazy">
       </a>
     </div>
 
-    <!-- AutoBit -->
+    
     <div class="project-card">
       <span class="project-tag tag-app">Android App · Serie</span>
       <div class="app-store-visual">
@@ -678,7 +677,6 @@
       <p class="project-desc">App Android per la valutazione veicoli. Con Luca Romano, AutoBit diventa anche una serie editoriale: storie brevi, controlli intelligenti e segnali da osservare prima di acquistare un’auto usata.</p>
       <div class="project-links">
         <a href="/autobit/" class="btn-card btn-card-primary">Pagina AutoBit →</a>
-        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" class="btn-card btn-card-secondary">Google Play</a>
       </div>
       <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" aria-label="Scarica AutoBit da Google Play">
         <img src="image/play_ita.png" alt="Disponibile su Google Play" class="store-badge-img" loading="lazy">
@@ -688,7 +686,7 @@
   </div>
 </section>
 
-<!-- SUPPORT -->
+
 <section id="supporta" style="padding-top: 0;">
   <div class="support-section">
     <div class="section-label" style="justify-content:center;margin-bottom:20px;">// Supporta</div>
@@ -711,7 +709,7 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+
 <footer>
   <div class="footer-logo">Memmola<span>Labs®</span></div>
   <div class="footer-links">
