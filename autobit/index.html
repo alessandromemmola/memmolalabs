@@ -6,21 +6,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AutoBit — archivio ufficiale della serie narrativa dedicata al mondo automotive." />
+  <meta name="description" content="AutoBit — archivio ufficiale della serie narrativa automotive di Memmola Labs." />
   <title>AutoBit — Luca Romano</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --bg: #020508;
-      --surface: #07111a;
-      --surface2: #0b1722;
-      --border: #153042;
-      --blue: #008cff;
-      --cyan: #00d5ff;
-      --text: #edf7ff;
-      --muted: #5f7f96;
+      --bg: #000508;
+      --surface: #040d14;
+      --surface2: #071520;
+      --border: #0d2a40;
+      --blue: #0077ff;
+      --cyan: #00c8ff;
+      --cyan2: #00eaff;
+      --text: #e8f4ff;
+      --muted: #4a7a99;
     }
 
     * {
@@ -41,8 +42,8 @@
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(0,213,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,213,255,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
       background-size: 48px 48px;
       pointer-events: none;
       z-index: 0;
@@ -55,12 +56,12 @@
       right: 0;
       z-index: 100;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 18px 40px;
-      background: rgba(2,5,8,0.88);
-      backdrop-filter: blur(14px);
+      justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(0,5,8,0.85);
       border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
     }
 
     .nav-logo {
@@ -77,16 +78,17 @@
 
     .nav-links {
       display: flex;
-      gap: 24px;
+      gap: 28px;
+      align-items: center;
     }
 
     .nav-links a {
       text-decoration: none;
       color: var(--muted);
-      font-size: 0.8rem;
+      font-size: 11px;
       font-family: 'JetBrains Mono', monospace;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       transition: 0.2s;
     }
 
@@ -101,7 +103,7 @@
       align-items: flex-end;
       padding: 140px 60px 80px;
       background:
-        linear-gradient(to top, rgba(2,5,8,1) 5%, rgba(2,5,8,0.2) 55%),
+        linear-gradient(to top, rgba(0,5,8,1) 5%, rgba(0,5,8,0.25) 55%),
         url('banner_autobit.png') center/cover no-repeat;
     }
 
@@ -111,18 +113,19 @@
       z-index: 2;
     }
 
-    .hero-tag {
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,213,255,0.3);
-      background: rgba(0,213,255,0.08);
-      color: var(--cyan);
-      font-size: 11px;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,200,255,0.08);
+      border: 1px solid rgba(0,200,255,0.2);
+      border-radius: 100px;
+      padding: 6px 16px;
       font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--cyan);
       letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
     .hero h1 {
@@ -130,6 +133,12 @@
       line-height: 0.95;
       font-weight: 900;
       margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--blue), var(--cyan2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .hero p {
@@ -149,18 +158,18 @@
 
     .profile-section {
       display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 48px;
+      grid-template-columns: 300px 1fr;
+      gap: 60px;
       align-items: center;
     }
 
     .profile-image {
-      width: 260px;
-      height: 260px;
+      width: 280px;
+      height: 280px;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid rgba(0,213,255,0.25);
-      box-shadow: 0 0 40px rgba(0,213,255,0.12);
+      border: 3px solid rgba(0,200,255,0.25);
+      box-shadow: 0 0 40px rgba(0,200,255,0.12);
     }
 
     .profile-image img {
@@ -171,100 +180,49 @@
 
     .section-label {
       font-family: 'JetBrains Mono', monospace;
-      color: var(--cyan);
       font-size: 11px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.15em;
+      color: var(--cyan);
       text-transform: uppercase;
       margin-bottom: 16px;
     }
 
     .profile-content h2 {
-      font-size: 2.6rem;
-      margin-bottom: 20px;
+      font-size: 3rem;
       font-weight: 900;
+      margin-bottom: 20px;
     }
 
     .profile-content p {
       color: var(--muted);
       line-height: 1.9;
       margin-bottom: 20px;
+      max-width: 760px;
     }
 
-    .play-badge img {
+    .profile-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+      align-items: center;
+    }
+
+    .profile-links img {
       height: 58px;
     }
 
-    .episodes {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-
-    .episode-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 36px;
-      transition: 0.25s;
-    }
-
-    .episode-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(0,213,255,0.3);
-      box-shadow: 0 0 40px rgba(0,213,255,0.06);
-    }
-
-    .episode-number {
-      color: var(--cyan);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-    }
-
-    .episode-title {
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 16px;
-    }
-
-    .episode-desc {
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 28px;
-    }
-
-    .episode-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
+    .btn-secondary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      border: 1px solid var(--border);
+      color: var(--muted);
       padding: 12px 22px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 700;
       transition: 0.2s;
-      font-size: 0.9rem;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--blue), var(--cyan));
-      color: #000;
-    }
-
-    .btn-primary:hover {
-      opacity: 0.88;
-    }
-
-    .btn-secondary {
-      border: 1px solid var(--border);
-      color: var(--muted);
     }
 
     .btn-secondary:hover {
@@ -272,17 +230,125 @@
       color: var(--cyan);
     }
 
+    .episodes-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .episode-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .episode-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,200,255,0.25);
+      box-shadow: 0 0 40px rgba(0,200,255,0.06);
+    }
+
+    .episode-cover {
+      width: 100%;
+      height: 320px;
+      background: linear-gradient(135deg, #08131d, #102536);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.15);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .episode-content {
+      padding: 38px;
+    }
+
+    .episode-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--cyan);
+      letter-spacing: 0.1em;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+
+    .episode-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .episode-desc {
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 28px;
+    }
+
+    .episode-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #000;
+      padding: 12px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.88;
+    }
+
+    .timeline-box {
+      margin-top: 80px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 42px;
+    }
+
+    .timeline-box h3 {
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+
+    .timeline-box p {
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
     footer {
+      position: relative;
+      z-index: 1;
       border-top: 1px solid var(--border);
-      padding: 48px 20px;
+      padding: 50px 20px;
       text-align: center;
       color: var(--muted);
       font-size: 0.85rem;
-      position: relative;
-      z-index: 1;
     }
 
     @media (max-width: 900px) {
+      nav {
+        padding: 16px 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
       .hero {
         padding: 140px 24px 60px;
       }
@@ -300,12 +366,8 @@
         margin: 0 auto;
       }
 
-      nav {
-        padding: 16px 20px;
-      }
-
-      .nav-links {
-        display: none;
+      .episode-cover {
+        height: 220px;
       }
     }
   </style>
@@ -324,11 +386,13 @@
 
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-tag">Automotive Narrative Series</div>
-    <h1>AutoBit</h1>
+    <div class="hero-badge">Automotive Narrative Series</div>
+
+    <h1>Auto<span>Bit</span></h1>
+
     <p>
-      Luca Romano analizza auto, dettagli nascosti e situazioni reali del mercato automotive italiano.
-      Una serie narrativa costruita attorno a controlli, esperienza e osservazione.
+      Una serie narrativa dedicata al mondo automotive italiano.
+      Luca Romano osserva dettagli, errori nascosti e situazioni reali che possono cambiare completamente una trattativa.
     </p>
   </div>
 </section>
@@ -340,23 +404,29 @@
   </div>
 
   <div class="profile-content">
+
     <div class="section-label">// Protagonista</div>
+
     <h2>Luca Romano</h2>
 
     <p>
-      Esperto di valutazione veicoli, controlli e verifiche prima dell’acquisto.
-      Ogni episodio segue situazioni realistiche dove piccoli dettagli possono cambiare completamente una trattativa.
+      Esperto di valutazione veicoli, controlli e verifiche pre-acquisto.
+      Ogni episodio mostra situazioni realistiche dove piccoli dettagli possono rivelare problemi nascosti o evitare errori costosi.
     </p>
 
     <p>
       AutoBit nasce per aiutare utenti, appassionati e professionisti a osservare ogni veicolo in modo più consapevole.
+      La serie accompagna il pubblico dentro controlli reali, dubbi, trattative e decisioni importanti.
     </p>
 
-    <div class="play-badge">
+    <div class="profile-links">
       <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank">
         <img src="/image/playstore_autobit.png" alt="Scarica AutoBit">
       </a>
+
+      <a href="https://www.youtube.com/" target="_blank" class="btn-secondary">Canale YouTube</a>
     </div>
+
   </div>
 
 </section>
@@ -365,30 +435,67 @@
 
   <div class="section-label">// Episodi</div>
 
-  <div class="episodes">
+  <div class="episodes-grid">
 
     <article class="episode-card">
-      <div class="episode-number">Episode 01</div>
-      <h3 class="episode-title">Titolo episodio</h3>
 
-      <p class="episode-desc">
-        Inserisci qui la mini sceneggiatura o il riassunto ufficiale dell’episodio.
-        Questo blocco è già pronto per ospitare PDF, YouTube Shorts e contenuti social.
-      </p>
-
-      <div class="episode-actions">
-        <a href="#" class="btn btn-primary">Guarda lo Short</a>
-        <a href="#" class="btn btn-secondary">Apri PDF</a>
+      <div class="episode-cover">
+        Copertina episodio
       </div>
+
+      <div class="episode-content">
+
+        <div class="episode-number">Episode 01</div>
+
+        <h3 class="episode-title">Titolo episodio</h3>
+
+        <p class="episode-desc">
+          Inserisci qui la mini sceneggiatura ufficiale dell’episodio.
+          Questo spazio è già pronto per ospitare testo, PDF ufficiale, link YouTube Shorts e immagini della puntata.
+        </p>
+
+        <div class="episode-actions">
+          <a href="#" class="btn-primary">Guarda lo Short</a>
+          <a href="#" class="btn-secondary">Apri PDF</a>
+        </div>
+
+      </div>
+
     </article>
 
     <article class="episode-card">
-      <div class="episode-number">Future Episodes</div>
-      <h3 class="episode-title">Nuovi episodi in arrivo</h3>
 
-      <p class="episode-desc">
-      </p>
+      <div class="episode-cover">
+        Future Episode
+      </div>
+
+      <div class="episode-content">
+
+        <div class="episode-number">Next Release</div>
+
+        <h3 class="episode-title">Nuovo episodio in arrivo</h3>
+
+        <p class="episode-desc">
+          Duplica questo blocco per pubblicare ogni nuova puntata della serie.
+          La struttura è già pronta per espandere facilmente l’archivio AutoBit.
+        </p>
+
+      </div>
+
     </article>
+
+  </div>
+
+  <div class="timeline-box">
+
+    <div class="section-label">// Universo Narrativo</div>
+
+    <h3>La serie continua</h3>
+
+    <p>
+      Gli episodi di AutoBit fanno parte di un universo narrativo condiviso con ImmoBit.
+      Alcune storie si incroceranno progressivamente durante la serie.
+    </p>
 
   </div>
 
