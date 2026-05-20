@@ -678,15 +678,6 @@
         </ul>
       </div>
 
-      <div class="glass-card">
-        <h3>Formato consigliato</h3>
-        <p>Per ogni nuovo episodio ti basterà duplicare una card nella sezione episodi, cambiare titolo, testo, link YouTube e percorso del PDF.</p>
-        <span class="code-note">
-          Cartella consigliata:<br>
-          /immobit/episodi/<br>
-          /immobit/pdf/
-        </span>
-      </div>
     </div>
   </section>
 
@@ -696,7 +687,7 @@
     <p class="section-sub">Schema già pronto per i caricamenti futuri. Il primo blocco è un esempio modificabile; il secondo è un placeholder per mantenere chiara la struttura.</p>
 
     <div class="episodes-grid">
-      <!-- EPISODIO TEMPLATE: duplica questa card per ogni nuova puntata -->
+      
       <article class="episode-card">
         <div class="episode-meta">
           <span class="chip">Episodio 01</span>
@@ -716,15 +707,26 @@
         </div>
       </article>
 
-      <article class="empty-card">
-        <h3>Prossimo episodio</h3>
-        <p>Quando pubblicherai una nuova storia, potrai duplicare la card precedente e sostituire solo contenuti, link e PDF.</p>
-        <span class="code-note">
-          Sostituisci # con:<br>
-          link Short YouTube<br>
-          percorso PDF, es. /immobit/pdf/episodio-01.pdf
-        </span>
+      <article class="episode-card">
+        <div class="episode-meta">
+          <span class="chip">Episodio 02</span>
+          <span class="chip">In arrivo</span>
+        </div>
+        <h3>Titolo della puntata</h3>
+        <p>Breve introduzione dell'episodio. Puoi usare questo spazio per raccontare il problema immobiliare affrontato da Elena.</p>
+
+        <div class="script-box">
+          <strong>Sceneggiatura breve</strong>
+          <p>Oggi Elena aiuta una persona a leggere meglio i segnali nascosti di un immobile prima della scelta finale.</p>
+        </div>
+
+        <div class="episode-actions">
+          <a href="#" class="btn-soft" aria-disabled="true">YouTube Shorts</a>
+          <a href="#" class="btn-outline" aria-disabled="true">PDF puntata</a>
+        </div>
       </article>
+
+        
     </div>
   </section>
 
