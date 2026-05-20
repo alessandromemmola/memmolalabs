@@ -1,13 +1,19 @@
-# autobit/index.html
-
-```html
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AutoBit — archivio ufficiale della serie narrativa automotive di Memmola Labs." />
-  <title>AutoBit — Luca Romano</title>
+  <meta name="description" content="AutoBit — Storie, episodi e contenuti ufficiali della serie dedicata alla valutazione veicoli by Memmola Labs." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://memmolalabs.com/autobit/" />
+  <title>AutoBit — Storie automotive by Memmola Labs</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AutoBit — Storie automotive by Memmola Labs" />
+  <meta property="og:description" content="La pagina ufficiale AutoBit: episodi, sceneggiature, PDF e contenuti della serie con Luca Romano." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://memmolalabs.com/autobit/" />
+  <meta property="og:image" content="https://memmolalabs.com/autobit/banner_autobit.png" />
 
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
@@ -22,18 +28,17 @@
       --cyan2: #00eaff;
       --text: #e8f4ff;
       --muted: #4a7a99;
+      --soft: rgba(0,200,255,0.08);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'Exo 2', sans-serif;
+      min-height: 100vh;
       overflow-x: hidden;
     }
 
@@ -49,6 +54,8 @@
       z-index: 0;
     }
 
+    a { color: inherit; }
+
     nav {
       position: fixed;
       top: 0;
@@ -59,22 +66,40 @@
       align-items: center;
       justify-content: space-between;
       padding: 16px 40px;
-      background: rgba(0,5,8,0.85);
+      background: rgba(0,5,8,0.86);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(12px);
     }
 
     .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       text-decoration: none;
-      color: var(--text);
-      font-weight: 900;
-      font-size: 1.1rem;
-      letter-spacing: -0.02em;
     }
 
-    .nav-logo span {
-      color: var(--cyan);
+    .nav-logo-mark {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 18px;
+      color: #000;
+      box-shadow: 0 0 16px rgba(0,200,255,0.4);
     }
+
+    .nav-logo-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--text);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-logo-text span { color: var(--cyan); }
 
     .nav-links {
       display: flex;
@@ -83,37 +108,72 @@
     }
 
     .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 11px;
       font-family: 'JetBrains Mono', monospace;
-      text-transform: uppercase;
+      font-size: 11px;
       letter-spacing: 0.1em;
-      transition: 0.2s;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
     }
 
-    .nav-links a:hover {
-      color: var(--cyan);
+    .nav-links a:hover { color: var(--cyan); }
+
+    .nav-cta {
+      border: 1px solid var(--cyan);
+      color: var(--cyan) !important;
+      padding: 6px 16px;
+      border-radius: 4px;
     }
 
-    .hero {
+    .nav-cta:hover { background: var(--cyan); color: #000 !important; }
+
+    .page-hero {
       position: relative;
-      min-height: 100vh;
+      min-height: 86vh;
       display: flex;
       align-items: flex-end;
-      padding: 140px 60px 80px;
+      z-index: 1;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
       background:
-        linear-gradient(to top, rgba(0,5,8,1) 5%, rgba(0,5,8,0.25) 55%),
-        url('banner_autobit.png') center/cover no-repeat;
+        linear-gradient(180deg, rgba(0,5,8,0.15) 0%, rgba(0,5,8,0.75) 58%, rgba(0,5,8,0.98) 100%),
+        linear-gradient(90deg, rgba(0,5,8,0.92) 0%, rgba(0,5,8,0.45) 48%, rgba(0,5,8,0.88) 100%),
+        url('banner_autobit.png') center / cover no-repeat;
+      z-index: -2;
     }
 
-    .hero-content {
-      max-width: 760px;
-      position: relative;
-      z-index: 2;
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      right: -120px;
+      bottom: -160px;
+      background: radial-gradient(circle, rgba(0,200,255,0.18) 0%, transparent 68%);
+      border-radius: 50%;
+      z-index: -1;
     }
 
-    .hero-badge {
+    .hero-inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 140px 40px 80px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 48px;
+      align-items: end;
+    }
+
+    .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -126,56 +186,144 @@
       color: var(--cyan);
       letter-spacing: 0.1em;
       margin-bottom: 28px;
+      text-transform: uppercase;
     }
 
-    .hero h1 {
-      font-size: clamp(3rem, 7vw, 6rem);
-      line-height: 0.95;
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--cyan);
+    }
+
+    h1 {
+      font-size: clamp(3.5rem, 10vw, 7.5rem);
       font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      color: var(--text);
       margin-bottom: 24px;
     }
 
-    .hero h1 span {
+    h1 span {
       background: linear-gradient(90deg, var(--blue), var(--cyan2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .hero p {
-      max-width: 620px;
-      color: #c6d6e2;
-      line-height: 1.8;
-      font-size: 1rem;
+    .hero-sub {
+      max-width: 660px;
+      color: #a9c9da;
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 34px;
     }
 
-    section {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 100px 40px;
-    }
-
-    .profile-section {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 60px;
+    .hero-actions,
+    .episode-actions,
+    .profile-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
       align-items: center;
     }
 
-    .profile-image {
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 3px solid rgba(0,200,255,0.25);
-      box-shadow: 0 0 40px rgba(0,200,255,0.12);
+    .btn-primary,
+    .btn-outline,
+    .btn-soft {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 12px 22px;
+      border-radius: 7px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      transition: transform 0.16s, opacity 0.2s, border-color 0.2s, color 0.2s, background 0.2s;
     }
 
-    .profile-image img {
-      width: 100%;
-      height: 100%;
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #000;
+      box-shadow: 0 0 24px rgba(0,200,255,0.24);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: #9ec5da;
+      background: rgba(0,5,8,0.3);
+    }
+
+    .btn-soft {
+      border: 1px solid rgba(0,200,255,0.22);
+      color: var(--cyan);
+      background: rgba(0,200,255,0.08);
+    }
+
+    .btn-primary:hover,
+    .btn-outline:hover,
+    .btn-soft:hover { transform: translateY(-2px); }
+    .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
+    .btn-primary:hover { opacity: 0.88; }
+
+    .profile-card {
+      background: rgba(4,13,20,0.78);
+      border: 1px solid rgba(0,200,255,0.22);
+      border-radius: 22px;
+      padding: 28px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 80px rgba(0,0,0,0.35);
+    }
+
+    .profile-img {
+      width: 138px;
+      height: 138px;
+      border-radius: 50%;
       object-fit: cover;
+      display: block;
+      border: 3px solid rgba(0,200,255,0.55);
+      box-shadow: 0 0 34px rgba(0,200,255,0.18);
+      margin-bottom: 20px;
+      background: var(--surface2);
+    }
+
+    .profile-card h2 {
+      font-size: 1.45rem;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .profile-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--cyan);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .profile-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 92px 40px;
     }
 
     .section-label {
@@ -185,326 +333,432 @@
       color: var(--cyan);
       text-transform: uppercase;
       margin-bottom: 16px;
-    }
-
-    .profile-content h2 {
-      font-size: 3rem;
-      font-weight: 900;
-      margin-bottom: 20px;
-    }
-
-    .profile-content p {
-      color: var(--muted);
-      line-height: 1.9;
-      margin-bottom: 20px;
-      max-width: 760px;
-    }
-
-    .profile-links {
       display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-top: 32px;
       align-items: center;
+      gap: 12px;
     }
 
-    .profile-links img {
-      height: 58px;
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 90px;
     }
 
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--border);
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      font-size: 1rem;
       color: var(--muted);
-      padding: 12px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: 0.2s;
+      font-weight: 300;
+      max-width: 620px;
+      line-height: 1.7;
+      margin-bottom: 48px;
     }
 
-    .btn-secondary:hover {
-      border-color: var(--cyan);
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+    }
+
+    .glass-card,
+    .episode-card,
+    .empty-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before,
+    .episode-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan), transparent);
+      opacity: 0.85;
+    }
+
+    .glass-card h3,
+    .empty-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+    }
+
+    .glass-card p,
+    .empty-card p,
+    .episode-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .feature-list li {
+      list-style: none;
+      color: #b7d6e8;
+      font-size: 0.94rem;
+      line-height: 1.45;
+      padding-left: 22px;
+      position: relative;
+    }
+
+    .feature-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
       color: var(--cyan);
     }
 
     .episodes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .episode-meta {
       display: flex;
-      flex-direction: column;
-      gap: 36px;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
     }
 
-    .episode-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      overflow: hidden;
-      transition: 0.3s;
-    }
-
-    .episode-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(0,200,255,0.25);
-      box-shadow: 0 0 40px rgba(0,200,255,0.06);
-    }
-
-    .episode-cover {
-      width: 100%;
-      height: 320px;
-      background: linear-gradient(135deg, #08131d, #102536);
-      display: flex;
+    .chip {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,0.15);
-      font-size: 1.2rem;
-      font-weight: 700;
+      border: 1px solid rgba(0,200,255,0.22);
+      background: rgba(0,200,255,0.07);
+      color: var(--cyan);
+      border-radius: 100px;
+      padding: 5px 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
-    .episode-content {
-      padding: 38px;
+    .episode-card h3 {
+      font-size: 1.45rem;
+      line-height: 1.2;
+      margin-bottom: 12px;
     }
 
-    .episode-number {
+    .script-box {
+      margin: 22px 0;
+      padding: 18px;
+      border-radius: 14px;
+      background: rgba(0,5,8,0.42);
+      border: 1px solid rgba(13,42,64,0.85);
+    }
+
+    .script-box strong {
+      display: block;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
       color: var(--cyan);
-      letter-spacing: 0.1em;
-      margin-bottom: 14px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
+      margin-bottom: 8px;
     }
 
-    .episode-title {
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 18px;
+    .script-box p {
+      color: #b8d6e7;
     }
 
-    .episode-desc {
-      color: var(--muted);
-      line-height: 1.9;
-      margin-bottom: 28px;
-    }
-
-    .episode-actions {
+    .empty-card {
+      border-style: dashed;
+      background: rgba(4,13,20,0.55);
+      min-height: 240px;
       display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      background: linear-gradient(135deg, var(--blue), var(--cyan));
-      color: #000;
-      padding: 12px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: 0.2s;
     }
 
-    .btn-primary:hover {
-      opacity: 0.88;
+    .code-note {
+      margin-top: 18px;
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      color: rgba(74,122,153,0.8);
+      font-size: 11px;
+      line-height: 1.7;
     }
 
-    .timeline-box {
-      margin-top: 80px;
-      background: var(--surface);
-      border: 1px solid var(--border);
+    .app-section {
+      background: linear-gradient(135deg, rgba(0,119,255,0.12), rgba(0,200,255,0.06));
+      border: 1px solid rgba(0,200,255,0.22);
       border-radius: 22px;
-      padding: 42px;
+      padding: 44px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
     }
 
-    .timeline-box h3 {
-      font-size: 2rem;
-      margin-bottom: 18px;
+    .app-section::after {
+      content: '';
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      right: -120px;
+      top: -120px;
+      background: radial-gradient(circle, rgba(0,200,255,0.14) 0%, transparent 68%);
+      border-radius: 50%;
     }
 
-    .timeline-box p {
+    .app-section > * { position: relative; z-index: 1; }
+
+    .app-section h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      margin-bottom: 10px;
+    }
+
+    .app-section p {
       color: var(--muted);
-      line-height: 1.9;
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    .store-badge {
+      display: block;
+      width: min(220px, 100%);
+      height: auto;
+      transition: transform 0.18s, opacity 0.2s;
+    }
+
+    .store-badge:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
     }
 
     footer {
       position: relative;
       z-index: 1;
       border-top: 1px solid var(--border);
-      padding: 50px 20px;
+      padding: 48px 40px;
       text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
       color: var(--muted);
-      font-size: 0.85rem;
+      line-height: 2;
     }
 
-    @media (max-width: 900px) {
-      nav {
-        padding: 16px 20px;
-      }
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
 
-      .nav-links {
-        display: none;
-      }
+    footer a:hover { color: var(--cyan); }
 
-      .hero {
-        padding: 140px 24px 60px;
-      }
+    .footer-logo {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
 
-      section {
-        padding: 70px 24px;
-      }
+    .footer-logo span {
+      background: linear-gradient(90deg, var(--blue), var(--cyan2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-      .profile-section {
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 12px 0;
+    }
+
+    .footer-trademark {
+      font-size: 10px;
+      color: rgba(74,122,153,0.5);
+      margin-top: 16px;
+    }
+
+    @media (max-width: 860px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero-inner,
+      .intro-grid,
+      .app-section {
         grid-template-columns: 1fr;
-        text-align: center;
       }
-
-      .profile-image {
-        margin: 0 auto;
+      .hero-inner {
+        padding: 120px 22px 56px;
       }
-
-      .episode-cover {
-        height: 220px;
+      .profile-card {
+        max-width: 380px;
       }
+      section { padding: 64px 22px; }
+      .app-section { padding: 30px; }
+      footer { padding: 40px 20px; }
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="/" class="nav-logo">Memmola<span>Labs</span>®</a>
-
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-mark">M</div>
+    <span class="nav-logo-text">Memmola<span>Labs</span>®</span>
+  </a>
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="#episodi">Episodi</a>
-    <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank">Google Play</a>
+    <a href="#app">App</a>
+    <a href="/immobit/">ImmoBit</a>
+    <a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">Automotive Narrative Series</div>
-
-    <h1>Auto<span>Bit</span></h1>
-
-    <p>
-      Una serie narrativa dedicata al mondo automotive italiano.
-      Luca Romano osserva dettagli, errori nascosti e situazioni reali che possono cambiare completamente una trattativa.
-    </p>
-  </div>
-</section>
-
-<section class="profile-section">
-
-  <div class="profile-image">
-    <img src="immagine-piccola_autobit.png" alt="Luca Romano">
-  </div>
-
-  <div class="profile-content">
-
-    <div class="section-label">// Protagonista</div>
-
-    <h2>Luca Romano</h2>
-
-    <p>
-      Esperto di valutazione veicoli, controlli e verifiche pre-acquisto.
-      Ogni episodio mostra situazioni realistiche dove piccoli dettagli possono rivelare problemi nascosti o evitare errori costosi.
-    </p>
-
-    <p>
-      AutoBit nasce per aiutare utenti, appassionati e professionisti a osservare ogni veicolo in modo più consapevole.
-      La serie accompagna il pubblico dentro controlli reali, dubbi, trattative e decisioni importanti.
-    </p>
-
-    <div class="profile-links">
-      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank">
-        <img src="/image/playstore_autobit.png" alt="Scarica AutoBit">
-      </a>
-
-      <a href="https://www.youtube.com/" target="_blank" class="btn-secondary">Canale YouTube</a>
+<header class="page-hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-dot"></span> Serie ufficiale Memmola Labs</div>
+      <h1>Auto<span>Bit</span></h1>
+      <p class="hero-sub">Storie brevi, casi automotive e contenuti visuali dedicati a chi vuole capire meglio un veicolo prima di acquistare, vendere o valutare.</p>
+      <div class="hero-actions">
+        <a href="#episodi" class="btn-primary">Guarda gli episodi →</a>
+        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" class="btn-outline">Scarica l'app</a>
+      </div>
     </div>
 
+    <aside class="profile-card" aria-label="Profilo Luca Romano">
+      <img src="immagine-piccola_autobit.png" alt="Luca Romano, protagonista della serie AutoBit" class="profile-img" />
+      <h2>Luca Romano</h2>
+      <div class="profile-role">Vehicle analyst · AutoBit</div>
+      <p>Luca osserva dettagli, condizioni e segnali spesso ignorati. Ogni episodio racconta un piccolo caso automotive con taglio narrativo e pratico.</p>
+      <div class="profile-links">
+        <a href="#episodi" class="btn-soft">Archivio episodi</a>
+      </div>
+    </aside>
   </div>
+</header>
 
-</section>
+<main>
+  <section id="intro">
+    <div class="section-label">// AutoBit Universe</div>
+    <h2 class="section-title">Una pagina ufficiale per ogni storia</h2>
+    <p class="section-sub">Questa sezione nasce come archivio editoriale della serie: ogni nuova puntata potrà avere testo, link social, PDF consultabile e collegamento all'app.</p>
 
-<section id="episodi">
-
-  <div class="section-label">// Episodi</div>
-
-  <div class="episodes-grid">
-
-    <article class="episode-card">
-
-      <div class="episode-cover">
-        Copertina episodio
+    <div class="intro-grid">
+      <div class="glass-card">
+        <h3>Cosa troverai qui</h3>
+        <p>La pagina raccoglie gli episodi pubblicati sui social e li trasforma in contenuti ordinati, consultabili e condivisibili anche fuori dalle piattaforme.</p>
+        <ul class="feature-list">
+          <li>Sceneggiatura breve o descrizione narrativa della puntata.</li>
+          <li>Link diretto allo Short o al contenuto social pubblicato.</li>
+          <li>PDF ufficiale consultabile o scaricabile.</li>
+          <li>Collegamento all'app AutoBit su Google Play.</li>
+        </ul>
       </div>
 
-      <div class="episode-content">
+      <div class="glass-card">
+        <h3>Formato consigliato</h3>
+        <p>Per ogni nuovo episodio ti basterà duplicare una card nella sezione episodi, cambiare titolo, testo, link YouTube e percorso del PDF.</p>
+        <span class="code-note">
+          Cartella consigliata:<br>
+          /autobit/episodi/<br>
+          /autobit/pdf/
+        </span>
+      </div>
+    </div>
+  </section>
 
-        <div class="episode-number">Episode 01</div>
+  <section id="episodi">
+    <div class="section-label">// Episodi</div>
+    <h2 class="section-title">Archivio episodi AutoBit</h2>
+    <p class="section-sub">Schema già pronto per i caricamenti futuri. Il primo blocco è un esempio modificabile; il secondo è un placeholder per mantenere chiara la struttura.</p>
 
-        <h3 class="episode-title">Titolo episodio</h3>
+    <div class="episodes-grid">
+      <!-- EPISODIO TEMPLATE: duplica questa card per ogni nuova puntata -->
+      <article class="episode-card">
+        <div class="episode-meta">
+          <span class="chip">Episodio 01</span>
+          <span class="chip">In arrivo</span>
+        </div>
+        <h3>Titolo della puntata</h3>
+        <p>Breve introduzione dell'episodio. Puoi usare questo spazio per raccontare il problema automotive affrontato da Luca.</p>
 
-        <p class="episode-desc">
-          Inserisci qui la mini sceneggiatura ufficiale dell’episodio.
-          Questo spazio è già pronto per ospitare testo, PDF ufficiale, link YouTube Shorts e immagini della puntata.
-        </p>
-
-        <div class="episode-actions">
-          <a href="#" class="btn-primary">Guarda lo Short</a>
-          <a href="#" class="btn-secondary">Apri PDF</a>
+        <div class="script-box">
+          <strong>Sceneggiatura breve</strong>
+          <p>Oggi Luca aiuta una persona a leggere meglio i segnali nascosti di un veicolo prima della scelta finale.</p>
         </div>
 
+        <div class="episode-actions">
+          <a href="#" class="btn-soft" aria-disabled="true">YouTube Shorts</a>
+          <a href="#" class="btn-outline" aria-disabled="true">PDF puntata</a>
+        </div>
+      </article>
+
+      <article class="empty-card">
+        <h3>Prossimo episodio</h3>
+        <p>Quando pubblicherai una nuova storia, potrai duplicare la card precedente e sostituire solo contenuti, link e PDF.</p>
+        <span class="code-note">
+          Sostituisci # con:<br>
+          link Short YouTube<br>
+          percorso PDF, es. /autobit/pdf/episodio-01.pdf
+        </span>
+      </article>
+    </div>
+  </section>
+
+  <section id="app">
+    <div class="app-section">
+      <div>
+        <div class="section-label" style="margin-bottom:14px;">// App ufficiale</div>
+        <h2>Valuta un veicolo con AutoBit</h2>
+        <p>La serie racconta casi e situazioni. L'app ti aiuta a trasformare quei controlli in una valutazione più ordinata, chiara e ripetibile.</p>
       </div>
-
-    </article>
-
-    <article class="episode-card">
-
-      <div class="episode-cover">
-        Future Episode
-      </div>
-
-      <div class="episode-content">
-
-        <div class="episode-number">Next Release</div>
-
-        <h3 class="episode-title">Nuovo episodio in arrivo</h3>
-
-        <p class="episode-desc">
-          Duplica questo blocco per pubblicare ogni nuova puntata della serie.
-          La struttura è già pronta per espandere facilmente l’archivio AutoBit.
-        </p>
-
-      </div>
-
-    </article>
-
-  </div>
-
-  <div class="timeline-box">
-
-    <div class="section-label">// Universo Narrativo</div>
-
-    <h3>La serie continua</h3>
-
-    <p>
-      Gli episodi di AutoBit fanno parte di un universo narrativo condiviso con ImmoBit.
-      Alcune storie si incroceranno progressivamente durante la serie.
-    </p>
-
-  </div>
-
-</section>
+      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" aria-label="Scarica AutoBit su Google Play">
+        <img src="/image/playstore_autobit.png" alt="AutoBit disponibile su Google Play" class="store-badge" />
+      </a>
+    </div>
+  </section>
+</main>
 
 <footer>
-  © 2026 AutoBit · Memmola Labs® · Tutti i diritti riservati
+  <div class="footer-logo">Memmola<span>Labs®</span></div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/immobit/">ImmoBit</a>
+    <a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a>
+    <a href="https://github.com/alessandromemmola" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a>
+    <a href="https://x.com/MemmolaLabs" target="_blank">X</a>
+    <a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a>
+  </div>
+  <div>
+    © 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br>
+    Nessun tracciamento personale o cookie di profilazione
+  </div>
+  <div class="footer-trademark">Memmola Labs® è un marchio registrato di Alessandro Memmola</div>
 </footer>
 
 </body>
 </html>
-```
