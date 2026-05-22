@@ -412,6 +412,59 @@
     }
 
 
+    .project-logo-img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      display: block;
+      margin-bottom: 14px;
+      border-radius: 12px;
+      background: rgba(0,200,255,0.06);
+      border: 1px solid rgba(0,200,255,0.14);
+      padding: 6px;
+    }
+
+    .origin-section {
+      background: linear-gradient(135deg, rgba(0,119,255,0.10), rgba(0,200,255,0.05));
+      border: 1px solid rgba(0,200,255,0.22);
+      border-radius: 24px;
+      padding: 56px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .origin-section::after {
+      content: '';
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      right: -160px;
+      top: -160px;
+      background: radial-gradient(circle, rgba(0,200,255,0.16) 0%, transparent 68%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .origin-section > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .origin-section .section-sub {
+      margin-bottom: 30px;
+      max-width: 720px;
+    }
+
+    .origin-kicker {
+      font-family: 'JetBrains Mono', monospace;
+      color: rgba(232,244,255,0.72);
+      font-size: 0.82rem;
+      line-height: 1.8;
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+
     
     .app-store-visual {
       position: relative;
@@ -593,6 +646,7 @@
     <a href="#progetti">Progetti</a>
     <a href="/immobit/">ImmoBit</a>
     <a href="/autobit/">AutoBit</a>
+    <a href="#origins">Origins</a>
     <a href="#supporta">Supporta</a>
     <a href="https://alessandromemmola.com" target="_blank">Chi sono</a>
     <a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a>
@@ -654,35 +708,41 @@
     
     <div class="project-card">
       <span class="project-tag tag-app">Android App · Serie</span>
-      <div class="app-store-visual">
-        <img src="image/playstore_immobit.png" alt="ImmoBit su Google Play" loading="lazy">
-      </div>
+      <img src="image/playstore_immobit.png" alt="ImmoBit" class="project-logo-img" loading="lazy">
       <div class="project-name">ImmoBit</div>
       <p class="project-desc">App Android per la valutazione immobiliare italiana. Con Elena Moretti, ImmoBit diventa anche una serie editoriale: storie brevi, casi reali e guide pratiche per scegliere casa con più consapevolezza.</p>
       <div class="project-links">
         <a href="/immobit/" class="btn-card btn-card-primary">Pagina ImmoBit →</a>
+        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" class="btn-card btn-card-secondary">Google Play</a>
       </div>
-      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" aria-label="Scarica ImmoBit da Google Play">
-        <img src="image/play_ita.png" alt="Disponibile su Google Play" class="store-badge-img" loading="lazy">
-      </a>
     </div>
 
     
     <div class="project-card">
       <span class="project-tag tag-app">Android App · Serie</span>
-      <div class="app-store-visual">
-        <img src="image/playstore_autobit.png" alt="AutoBit su Google Play" loading="lazy">
-      </div>
+      <img src="image/playstore_autobit.png" alt="AutoBit" class="project-logo-img" loading="lazy">
       <div class="project-name">AutoBit</div>
       <p class="project-desc">App Android per la valutazione veicoli. Con Luca Romano, AutoBit diventa anche una serie editoriale: storie brevi, controlli intelligenti e segnali da osservare prima di acquistare un’auto usata.</p>
       <div class="project-links">
         <a href="/autobit/" class="btn-card btn-card-primary">Pagina AutoBit →</a>
+        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" class="btn-card btn-card-secondary">Google Play</a>
       </div>
-      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" aria-label="Scarica AutoBit da Google Play">
-        <img src="image/play_ita.png" alt="Disponibile su Google Play" class="store-badge-img" loading="lazy">
-      </a>
     </div>
 
+  </div>
+</section>
+
+
+<section id="origins">
+  <div class="origin-section">
+    <div class="section-label">// Origins</div>
+    <h2 class="section-title">The Origin of ImmoBit & AutoBit Stories</h2>
+    <p class="section-sub">From two apps to a shared narrative universe.</p>
+    <p class="origin-kicker">
+      Before the episodes, before the reports and before the crossover, there was one idea:
+      turning real decisions into stories. This is the future home of the founding manifesto of Memmola Labs Stories.
+    </p>
+    <a href="/origins/" class="btn-primary">Read the origin story →</a>
   </div>
 </section>
 
@@ -713,6 +773,9 @@
 <footer>
   <div class="footer-logo">Memmola<span>Labs®</span></div>
   <div class="footer-links">
+    <a href="/immobit/">ImmoBit</a>
+    <a href="/autobit/">AutoBit</a>
+    <a href="/origins/">Origins</a>
     <a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a>
     <a href="https://github.com/alessandromemmola" target="_blank">GitHub</a>
     <a href="https://www.producthunt.com/@alessandromemmola" target="_blank">Product Hunt</a>
