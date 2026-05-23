@@ -3,53 +3,733 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="The Origin of ImmoBit & AutoBit Stories — manifesto fondativo dell'universo narrativo Memmola Labs Stories." />
+  <meta name="description" content="Origini di ImmoBit e AutoBit Stories — manifesto fondativo dell'universo narrativo Memmola Labs Stories." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://memmolalabs.com/origins/" />
-  <title>The Origin of ImmoBit & AutoBit Stories — Memmola Labs</title>
-  <meta property="og:title" content="The Origin of ImmoBit & AutoBit Stories" />
-  <meta property="og:description" content="From two apps to a shared narrative universe. The manifesto behind Memmola Labs Stories." />
+  <title>Origini di ImmoBit e AutoBit Stories — Memmola Labs</title>
+
+  <meta property="og:title" content="Origini di ImmoBit e AutoBit Stories" />
+  <meta property="og:description" content="Dalle app a un universo narrativo condiviso: il manifesto fondativo di Memmola Labs Stories." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://memmolalabs.com/origins/" />
+
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
   <style>
-    :root { --bg:#000508; --surface:#040d14; --surface2:#071520; --border:#0d2a40; --blue:#0077ff; --cyan:#00c8ff; --cyan2:#00eaff; --text:#e8f4ff; --muted:#4a7a99; --gold:#d7a84f; }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
+    :root {
+      --bg:#000508; --surface:#040d14; --surface2:#071520; --border:#0d2a40;
+      --blue:#0077ff; --cyan:#00c8ff; --cyan2:#00eaff; --text:#e8f4ff;
+      --muted:#4a7a99; --gold:#d7a84f;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
     body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;min-height:100vh;overflow-x:hidden}
     body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,200,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
     a{color:inherit}
+
     nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:rgba(0,5,8,.86);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
-    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}.nav-logo-mark{width:36px;height:36px;background:linear-gradient(135deg,var(--blue),var(--cyan));border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;color:#000;box-shadow:0 0 16px rgba(0,200,255,.4)}.nav-logo-text{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text);letter-spacing:.05em}.nav-logo-text span{color:var(--cyan)}
-    .nav-links{display:flex;gap:28px;align-items:center}.nav-links a{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .2s}.nav-links a:hover{color:var(--cyan)}.nav-cta{border:1px solid var(--cyan);color:var(--cyan)!important;padding:6px 16px;border-radius:4px}.nav-cta:hover{background:var(--cyan);color:#000!important}
-    .hero{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px 24px 90px;z-index:1;border-bottom:1px solid var(--border);overflow:hidden}.hero::before{content:'';position:absolute;width:760px;height:760px;background:radial-gradient(circle,rgba(0,119,255,.18) 0%,rgba(0,200,255,.08) 42%,transparent 72%);top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;z-index:-1}.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,5,8,.1),rgba(0,5,8,.95)),linear-gradient(90deg,rgba(215,168,79,.06),rgba(0,200,255,.06));z-index:-2}.hero-inner{max-width:980px;margin:0 auto}
-    .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(0,200,255,.08);border:1px solid rgba(0,200,255,.2);border-radius:100px;padding:6px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:30px}.eyebrow-dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;box-shadow:0 0 8px var(--cyan)}
-    h1{font-size:clamp(3rem,8vw,7rem);font-weight:900;line-height:.92;letter-spacing:-.055em;margin-bottom:28px}h1 span{background:linear-gradient(90deg,var(--blue),var(--cyan2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero-sub{max-width:720px;margin:0 auto 38px;color:#a9c9da;font-size:clamp(1rem,2.2vw,1.28rem);line-height:1.75;font-weight:300}
-    .hero-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}.btn-primary,.btn-outline,.btn-soft{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:12px 22px;border-radius:7px;text-decoration:none;font-weight:700;font-size:.88rem;letter-spacing:.04em;transition:transform .16s,opacity .2s,border-color .2s,color .2s,background .2s}.btn-primary{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#000;box-shadow:0 0 24px rgba(0,200,255,.24)}.btn-outline{border:1px solid var(--border);color:#9ec5da;background:rgba(0,5,8,.3)}.btn-soft{border:1px solid rgba(0,200,255,.22);color:var(--cyan);background:rgba(0,200,255,.08)}.btn-primary:hover,.btn-outline:hover,.btn-soft:hover{transform:translateY(-2px)}.btn-outline:hover{border-color:var(--cyan);color:var(--cyan)}.btn-primary:hover{opacity:.88}
-    main{position:relative;z-index:1}section{max-width:1200px;margin:0 auto;padding:92px 40px}.section-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em;color:var(--cyan);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px}.section-label::after{content:'';flex:1;height:1px;background:var(--border);max-width:90px}.section-title{font-size:clamp(1.9rem,4vw,3.1rem);font-weight:900;letter-spacing:-.03em;color:var(--text);margin-bottom:14px}.section-sub{font-size:1rem;color:var(--muted);font-weight:300;max-width:760px;line-height:1.75;margin-bottom:44px}
-    .chapter{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:40px;position:relative;overflow:hidden;margin-bottom:28px}.chapter::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan),transparent);opacity:.86}.chapter h3{font-size:clamp(1.35rem,2.4vw,2rem);margin-bottom:18px;line-height:1.2}.chapter p{color:#abc9db;line-height:1.85;font-size:1rem;margin-bottom:18px}.chapter p:last-child{margin-bottom:0}.quote-box{border-left:3px solid var(--cyan);padding:18px 20px;background:rgba(0,200,255,.06);border-radius:0 14px 14px 0;margin:26px 0}.quote-box p{color:#d7efff;font-size:1.08rem;margin:0}.split-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.feature-list{display:grid;gap:12px;margin-top:20px}.feature-list li{list-style:none;color:#b7d6e8;font-size:.95rem;line-height:1.5;padding-left:22px;position:relative}.feature-list li::before{content:'→';position:absolute;left:0;color:var(--cyan)}
-    .image-strip{margin:46px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}.shot-card{border:1px solid rgba(0,200,255,.18);background:rgba(0,5,8,.45);border-radius:18px;overflow:hidden;transition:transform .18s,border-color .2s}.shot-card:hover{transform:translateY(-3px);border-color:rgba(0,200,255,.38)}.shot-card img{width:100%;height:310px;object-fit:contain;display:block;background:#02080c;padding:10px}.shot-caption{padding:14px;border-top:1px solid rgba(13,42,64,.78);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;line-height:1.5}
-    .timeline{display:grid;gap:18px;margin-top:28px}.timeline-item{display:grid;grid-template-columns:130px 1fr;gap:22px;padding:24px;border:1px solid var(--border);border-radius:18px;background:rgba(4,13,20,.62)}.timeline-step{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--cyan);text-transform:uppercase}.timeline-item h4{font-size:1.2rem;margin-bottom:8px}.timeline-item p{color:var(--muted);line-height:1.7}
-    .manifesto-end{text-align:center;padding:70px 44px;background:linear-gradient(135deg,rgba(0,119,255,.14),rgba(0,200,255,.06)),var(--surface);border:1px solid rgba(0,200,255,.22);border-radius:26px;position:relative;overflow:hidden}.manifesto-end::after{content:'';position:absolute;width:440px;height:440px;right:-140px;top:-160px;background:radial-gradient(circle,rgba(0,200,255,.14) 0%,transparent 68%);border-radius:50%;pointer-events:none}.manifesto-end>*{position:relative;z-index:1}.manifesto-end h2{font-size:clamp(2rem,5vw,4rem);line-height:1;letter-spacing:-.04em;margin-bottom:24px}.manifesto-end p{max-width:780px;margin:0 auto;color:#b4d1e2;line-height:1.85;font-size:1.06rem}
-    footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:48px 40px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);line-height:2}footer a{color:var(--muted);text-decoration:none;transition:color .2s}footer a:hover{color:var(--cyan)}.footer-logo{font-family:'Exo 2',sans-serif;font-size:1.1rem;font-weight:900;color:var(--text);margin-bottom:16px;letter-spacing:-.02em}.footer-logo span{background:linear-gradient(90deg,var(--blue),var(--cyan2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.footer-links{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin:12px 0}
-    @media(max-width:860px){nav{padding:14px 20px}.nav-links{display:none}section{padding:64px 22px}.chapter{padding:28px}.split-grid,.timeline-item{grid-template-columns:1fr}.shot-card img{height:260px}footer{padding:40px 20px}}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .nav-logo-mark{width:36px;height:36px;background:linear-gradient(135deg,var(--blue),var(--cyan));border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;color:#000;box-shadow:0 0 16px rgba(0,200,255,.4)}
+    .nav-logo-text{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text);letter-spacing:.05em}
+    .nav-logo-text span{color:var(--cyan)}
+    .nav-links{display:flex;gap:28px;align-items:center}
+    .nav-links a{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .2s}
+    .nav-links a:hover{color:var(--cyan)}
+    .nav-cta{border:1px solid var(--cyan);color:var(--cyan)!important;padding:6px 16px;border-radius:4px}
+    .nav-cta:hover{background:var(--cyan);color:#000!important}
+
+    .hero{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px 24px 90px;z-index:1;border-bottom:1px solid var(--border);overflow:hidden}
+    .hero::before{content:'';position:absolute;width:760px;height:760px;background:radial-gradient(circle,rgba(0,119,255,.18) 0%,rgba(0,200,255,.08) 42%,transparent 72%);top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;z-index:-1}
+    .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,5,8,.1),rgba(0,5,8,.95)),linear-gradient(90deg,rgba(215,168,79,.06),rgba(0,200,255,.06));z-index:-2}
+    .hero-inner{max-width:980px;margin:0 auto}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(0,200,255,.08);border:1px solid rgba(0,200,255,.2);border-radius:100px;padding:6px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:30px}
+    .eyebrow-dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;box-shadow:0 0 8px var(--cyan)}
+    h1{font-size:clamp(3rem,8vw,7rem);font-weight:900;line-height:.92;letter-spacing:-.055em;margin-bottom:28px}
+    h1 span{background:linear-gradient(90deg,var(--blue),var(--cyan2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-sub{max-width:740px;margin:0 auto 38px;color:#a9c9da;font-size:clamp(1rem,2.2vw,1.28rem);line-height:1.75;font-weight:300}
+    .hero-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+    .btn-primary,.btn-outline,.btn-soft{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:12px 22px;border-radius:7px;text-decoration:none;font-weight:700;font-size:.88rem;letter-spacing:.04em;transition:transform .16s,opacity .2s,border-color .2s,color .2s,background .2s}
+    .btn-primary{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#000;box-shadow:0 0 24px rgba(0,200,255,.24)}
+    .btn-outline{border:1px solid var(--border);color:#9ec5da;background:rgba(0,5,8,.3)}
+    .btn-soft{border:1px solid rgba(0,200,255,.22);color:var(--cyan);background:rgba(0,200,255,.08)}
+    .btn-primary:hover,.btn-outline:hover,.btn-soft:hover{transform:translateY(-2px)} .btn-outline:hover{border-color:var(--cyan);color:var(--cyan)} .btn-primary:hover{opacity:.88}
+
+    main{position:relative;z-index:1}
+    section{max-width:1200px;margin:0 auto;padding:92px 40px}
+    .section-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em;color:var(--cyan);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+    .section-label::after{content:'';flex:1;height:1px;background:var(--border);max-width:90px}
+    .section-title{font-size:clamp(1.9rem,4vw,3.1rem);font-weight:900;letter-spacing:-.03em;color:var(--text);margin-bottom:14px}
+    .section-sub{font-size:1rem;color:var(--muted);font-weight:300;max-width:780px;line-height:1.75;margin-bottom:44px}
+
+    .chapter{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:40px;position:relative;overflow:hidden;margin-bottom:28px}
+    .chapter::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan),transparent);opacity:.86}
+    .chapter h3{font-size:clamp(1.35rem,2.4vw,2rem);margin-bottom:18px;line-height:1.2}
+    .chapter p{color:#abc9db;line-height:1.85;font-size:1rem;margin-bottom:18px}
+    .chapter p:last-child{margin-bottom:0}
+
+    .quote-box{border-left:3px solid var(--cyan);padding:18px 20px;background:rgba(0,200,255,.06);border-radius:0 14px 14px 0;margin:26px 0}
+    .quote-box p{color:#d7efff;font-size:1.08rem;margin:0}
+
+    .raw-block{margin-top:24px;border:1px solid rgba(215,168,79,.25);background:rgba(215,168,79,.045);border-radius:16px;overflow:hidden}
+    .raw-block summary{cursor:pointer;padding:16px 18px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);list-style:none}
+    .raw-block summary::-webkit-details-marker{display:none}
+    .raw-block pre{white-space:pre-wrap;padding:0 18px 20px;color:#d7c29a;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.75;overflow:auto}
+
+    .split-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .feature-list{display:grid;gap:12px;margin-top:20px}
+    .feature-list li{list-style:none;color:#b7d6e8;font-size:.95rem;line-height:1.5;padding-left:22px;position:relative}
+    .feature-list li::before{content:'→';position:absolute;left:0;color:var(--cyan)}
+
+    .image-strip{margin:46px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+    .shot-card{border:1px solid rgba(0,200,255,.18);background:rgba(0,5,8,.45);border-radius:18px;overflow:hidden;transition:transform .18s,border-color .2s}
+    .shot-card:hover{transform:translateY(-3px);border-color:rgba(0,200,255,.38)}
+    .shot-card img{width:100%;height:310px;object-fit:contain;display:block;background:#02080c;padding:10px}
+    .shot-caption{padding:14px;border-top:1px solid rgba(13,42,64,.78);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;line-height:1.5}
+
+    .timeline{display:grid;gap:18px;margin-top:28px}
+    .timeline-item{display:grid;grid-template-columns:130px 1fr;gap:22px;padding:24px;border:1px solid var(--border);border-radius:18px;background:rgba(4,13,20,.62)}
+    .timeline-step{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--cyan);text-transform:uppercase}
+    .timeline-item h4{font-size:1.2rem;margin-bottom:8px}
+    .timeline-item p{color:var(--muted);line-height:1.7}
+
+    .manifesto-end{text-align:center;padding:70px 44px;background:linear-gradient(135deg,rgba(0,119,255,.14),rgba(0,200,255,.06)),var(--surface);border:1px solid rgba(0,200,255,.22);border-radius:26px;position:relative;overflow:hidden}
+    .manifesto-end::after{content:'';position:absolute;width:440px;height:440px;right:-140px;top:-160px;background:radial-gradient(circle,rgba(0,200,255,.14) 0%,transparent 68%);border-radius:50%;pointer-events:none}
+    .manifesto-end>*{position:relative;z-index:1}
+    .manifesto-end h2{font-size:clamp(2rem,5vw,4rem);line-height:1;letter-spacing:-.04em;margin-bottom:24px}
+    .manifesto-end p{max-width:780px;margin:0 auto;color:#b4d1e2;line-height:1.85;font-size:1.06rem}
+
+    footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:48px 40px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);line-height:2}
+    footer a{color:var(--muted);text-decoration:none;transition:color .2s} footer a:hover{color:var(--cyan)}
+    .footer-logo{font-family:'Exo 2',sans-serif;font-size:1.1rem;font-weight:900;color:var(--text);margin-bottom:16px;letter-spacing:-.02em}
+    .footer-logo span{background:linear-gradient(90deg,var(--blue),var(--cyan2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .footer-links{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+
+    @media(max-width:860px){
+      nav{padding:14px 20px} .nav-links{display:none} section{padding:64px 22px} .chapter{padding:28px}
+      .split-grid,.timeline-item{grid-template-columns:1fr} .shot-card img{height:260px} footer{padding:40px 20px}
+    }
   </style>
 </head>
+
 <body>
 <nav>
-  <a href="/" class="nav-logo"><div class="nav-logo-mark">M</div><span class="nav-logo-text">Memmola<span>Labs</span>®</span></a>
-  <div class="nav-links"><a href="/">Home</a><a href="/immobit/">ImmoBit</a><a href="/autobit/">AutoBit</a><a href="#archive">Archive</a><a href="#social">Publishing</a><a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a></div>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-mark">M</div>
+    <span class="nav-logo-text">Memmola<span>Labs</span>®</span>
+  </a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/immobit/">ImmoBit</a>
+    <a href="/autobit/">AutoBit</a>
+    <a href="#archivio">Archivio</a>
+    <a href="#pubblicazione">Pubblicazione</a>
+    <a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a>
+  </div>
 </nav>
-<header class="hero"><div class="hero-inner"><div class="eyebrow"><span class="eyebrow-dot"></span> Memmola Labs Stories · Origins</div><h1>The Origin of<br><span>ImmoBit & AutoBit Stories</span></h1><p class="hero-sub">From two apps to a shared narrative universe. A manifesto about decisions, trust, hidden details and the moment software became storytelling.</p><div class="hero-actions"><a href="#manifesto" class="btn-primary">Read the manifesto →</a><a href="#archive" class="btn-outline">View production archive</a></div></div></header>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> Memmola Labs Stories · Origini</div>
+    <h1>Le origini di<br><span>ImmoBit & AutoBit Stories</span></h1>
+    <p class="hero-sub">
+      Dalle app a un universo narrativo condiviso. Un manifesto sulla fiducia,
+      sulle decisioni importanti e sui dettagli che spesso restano invisibili.
+    </p>
+    <div class="hero-actions">
+      <a href="#manifesto" class="btn-primary">Leggi il manifesto →</a>
+      <a href="#archivio" class="btn-outline">Vai all’archivio visuale</a>
+    </div>
+  </div>
+</header>
+
 <main>
-<section id="manifesto"><div class="section-label">// The Beginning</div><h2 class="section-title">The first idea was simple</h2><p class="section-sub">Before the episodes, before the reports and before the crossover, there was one intuition: the best way to explain an app is not to advertise it, but to show a real problem being solved.</p><article class="chapter"><h3>“Ho deciso che il modo migliore per pubblicizzare le mie app è creare un fumetto.”</h3><p>L’idea nasce da una decisione molto concreta: usare il fumetto per raccontare situazioni reali in cui ImmoBit e AutoBit non vengono mostrate come semplici prodotti, ma come strumenti naturali dentro una storia.</p><p>Il target è ampio, adulto e trasversale. Per questo lo stile scelto doveva essere pulito, leggibile, europeo e professionale: <strong>European ligne claire</strong>.</p><p>Non un fumetto comico. Non un contenuto aggressivo. Non una pubblicità travestita. Ma una serie realistica, elegante, leggermente investigativa, dove i protagonisti osservano ciò che gli altri ignorano.</p><div class="quote-box"><p>Le app non devono sembrare “guardate la mia app”. Devono sembrare strumenti narrativi.</p></div><p>Da qui nasce il cuore del progetto: persone normali, decisioni importanti, dettagli nascosti, tecnologia credibile e un tono europeo contemporaneo.</p></article></section>
-<section><div class="section-label">// The Vision</div><h2 class="section-title">Not product placement. Narrative tools.</h2><p class="section-sub">The apps become part of the characters’ method: a way to observe, compare, remember and decide.</p><div class="split-grid"><article class="chapter"><h3>ImmoBit</h3><p>ImmoBit non parla solo di immobili. Parla di luoghi in cui le persone vivono, investono, rischiano, sperano e spesso si fidano troppo delle apparenze.</p><ul class="feature-list"><li>Valutazioni immobiliari ordinate.</li><li>Checklist di osservazione.</li><li>Report PDF consultabili.</li><li>Confronti tra immobili.</li><li>Promemoria e archivio visite.</li></ul></article><article class="chapter"><h3>AutoBit</h3><p>AutoBit non parla solo di auto. Parla di scelte, rischio, documentazione, storia nascosta dei veicoli e fiducia da verificare prima dell’acquisto.</p><ul class="feature-list"><li>Valutazione veicoli.</li><li>Controlli e scoring.</li><li>PDF report professionali.</li><li>Confronto tra più auto.</li><li>Archivio e promemoria.</li></ul></article></div></section>
-<section><div class="section-label">// Worldbuilding</div><h2 class="section-title">A contemporary European tech universe</h2><p class="section-sub">Il mondo narrativo non è fantascienza. È il nostro mondo, ma osservato con più attenzione: città europee, tecnologia discreta, decisioni costose, bugie eleganti e dettagli che cambiano tutto.</p><article class="chapter"><h3>The world is realistic. The method is analytical.</h3><p>Il linguaggio visivo è pensato per restare riconoscibile: ligne claire europea, volti illustrati, contorni puliti, atmosfera editoriale, UI nitide e moderne.</p><p>La regola è semplice: <strong>il mondo è illustrato, l’app è precisa</strong>. Questo contrasto rende ImmoBit e AutoBit strumenti credibili dentro una realtà narrativa.</p><div class="quote-box"><p>I dettagli raccontano la verità. Basta sapere dove guardarli.</p></div></article></section>
-<section><div class="section-label">// Characters</div><h2 class="section-title">Elena and Luca start apart</h2><p class="section-sub">ImmoBit e AutoBit nascono come universi paralleli. Il collegamento non deve essere forzato: deve emergere nel tempo, fino al primo crossover.</p><div class="split-grid"><article class="chapter"><h3>Elena Moretti · ImmoBit</h3><p>Elena osserva gli immobili come se fossero memorie fisiche. Pareti, odori, luce, rumori, dettagli nascosti: tutto può raccontare qualcosa.</p><p>ImmoBit diventa il suo metodo: checklist, punteggi, note, confronti, archivio e report trasformano l’intuizione in una valutazione chiara.</p></article><article class="chapter"><h3>Luca Romano · AutoBit</h3><p>Luca legge le auto come Elena legge le case. Usura, documenti, vernice, interni, motore, venditore: tutto può rivelare una storia.</p><p>AutoBit diventa la sua memoria tecnica: scoring, confronti, promemoria e PDF rendono visibili incoerenze che spesso passano inosservate.</p></article></div></section>
-<section id="archive"><div class="section-label">// Production Archive</div><h2 class="section-title">The apps before the stories</h2><p class="section-sub">Gli screen non sono semplici immagini di app. Sono il materiale storico che mostra come le interfacce reali abbiano generato il linguaggio narrativo delle storie.</p><article class="chapter"><h3>ImmoBit interface archive</h3><p>Checklist, scoring, archivi, confronti e report PDF diventano la grammatica narrativa della serie ImmoBit.</p><div class="image-strip"><figure class="shot-card"><img src="immobit_images/immobit_1_home.png" alt="ImmoBit home screen" loading="lazy"><figcaption class="shot-caption">Home · Entry point</figcaption></figure><figure class="shot-card"><img src="immobit_images/immobit_2_checklist-1.png" alt="ImmoBit checklist screen" loading="lazy"><figcaption class="shot-caption">Checklist · Observation</figcaption></figure><figure class="shot-card"><img src="immobit_images/immobit_13_scoring.png" alt="ImmoBit scoring screen" loading="lazy"><figcaption class="shot-caption">Scoring · Decision system</figcaption></figure><figure class="shot-card"><img src="immobit_images/immobit_19_comparison.png" alt="ImmoBit comparison screen" loading="lazy"><figcaption class="shot-caption">Comparison · Choice</figcaption></figure><figure class="shot-card"><img src="immobit_images/immobit_22_pdf_report-1.png" alt="ImmoBit PDF report screen" loading="lazy"><figcaption class="shot-caption">PDF report · Archive</figcaption></figure><figure class="shot-card"><img src="immobit_images/immobit_23_pdf_report-2.png" alt="ImmoBit PDF report detail" loading="lazy"><figcaption class="shot-caption">Report detail · Memory</figcaption></figure></div></article><article class="chapter"><h3>AutoBit interface archive</h3><p>AutoBit introduce una grammatica diversa: valutazione tecnica, confronto tra più auto, promemoria, documentazione e report.</p><div class="image-strip"><figure class="shot-card"><img src="autobit_images/autobit_1_home.png" alt="AutoBit home screen" loading="lazy"><figcaption class="shot-caption">Home · Vehicle analysis</figcaption></figure><figure class="shot-card"><img src="autobit_images/autobit_3_checklist-1.png" alt="AutoBit checklist screen" loading="lazy"><figcaption class="shot-caption">Checklist · Inspection</figcaption></figure><figure class="shot-card"><img src="autobit_images/autobit_15_scoring.png" alt="AutoBit scoring screen" loading="lazy"><figcaption class="shot-caption">Scoring · Technical reading</figcaption></figure><figure class="shot-card"><img src="autobit_images/autobit_17_report-1.png" alt="AutoBit report screen" loading="lazy"><figcaption class="shot-caption">Report · Evaluation</figcaption></figure><figure class="shot-card"><img src="autobit_images/autobit_26_comparison-1.png" alt="AutoBit comparison screen" loading="lazy"><figcaption class="shot-caption">Comparison · Multiple cars</figcaption></figure><figure class="shot-card"><img src="autobit_images/autobit_22_pdf_report-1.png" alt="AutoBit PDF report screen" loading="lazy"><figcaption class="shot-caption">PDF report · Proof</figcaption></figure></div></article></section>
-<section><div class="section-label">// Crossover Design</div><h2 class="section-title">Separate worlds, designed to meet</h2><p class="section-sub">La scelta strategica è far crescere ImmoBit e AutoBit separatamente, ma con un filo invisibile: stessa filosofia, stessa città narrativa, stessi dettagli ricorrenti.</p><article class="chapter"><h3>The shared universe appears slowly</h3><p>All’inizio Elena e Luca vivono in due mondi distinti. Lei osserva case, lui osserva auto. Ma entrambi cercano la stessa cosa: la verità nascosta nei dettagli.</p><p>I crossover diventano eventi, non scorciatoie. Il primo incontro ha senso solo quando il pubblico ha già imparato a conoscere entrambi.</p><div class="timeline"><div class="timeline-item"><div class="timeline-step">Phase 01</div><div><h4>Separate identity</h4><p>ImmoBit e AutoBit crescono come serie autonome, con ritmo, casi e pubblico propri.</p></div></div><div class="timeline-item"><div class="timeline-step">Phase 02</div><div><h4>Invisible links</h4><p>Luoghi, dettagli, aziende, quartieri e segnali visivi iniziano a comparire in entrambe le serie.</p></div></div><div class="timeline-item"><div class="timeline-step">Phase 03</div><div><h4>First crossover</h4><p>Elena e Luca si incontrano quando le loro indagini quotidiane toccano lo stesso problema.</p></div></div></div></article></section>
-<section id="social"><div class="section-label">// Social & Publishing Strategy</div><h2 class="section-title">From manifesto to publishing system</h2><p class="section-sub">La parte social arriva dopo la genesi: YouTube, Shorts, Reel, PDF, backstage, concept art e LinkedIn diventano il sistema di distribuzione dell’universo narrativo.</p><div class="split-grid"><article class="chapter"><h3>The master episode</h3><p>Ogni episodio nasce come versione completa: cinematografica, leggibile, adatta al sito, a Facebook, a PDF carousel e come archivio ufficiale.</p><ul class="feature-list"><li>12 vignette come episodio completo.</li><li>Versione italiana e inglese.</li><li>PDF/report ufficiale.</li><li>Pagina episodio su ImmoBit o AutoBit.</li></ul></article><article class="chapter"><h3>Micro-scenes</h3><p>L’episodio completo viene tagliato in scene verticali per TikTok, Reels e Shorts: piccoli cliffhanger che aumentano retention e serialità.</p><ul class="feature-list"><li>3 vignette verticali per scena.</li><li>4 micro-video per episodio.</li><li>Hook iniziale e payoff finale.</li><li>Rimando al sito e al canale YouTube.</li></ul></article></div><article class="chapter"><h3>The publishing ecosystem</h3><p>YouTube ospita i canali separati. Instagram, TikTok, Facebook, X e LinkedIn vivono come hub Memmola Labs: backstage, mini scene, concept art, UI details, worldbuilding, thread, PDF e processi creativi.</p><div class="timeline"><div class="timeline-item"><div class="timeline-step">YouTube</div><div><h4>Separate channels</h4><p>ImmoBit e AutoBit mantengono identità autonome e playlist dedicate.</p></div></div><div class="timeline-item"><div class="timeline-step">Social</div><div><h4>Memmola Labs as hub</h4><p>Un solo ecosistema social raccoglie clip, backstage, teaser, concept e worldbuilding.</p></div></div><div class="timeline-item"><div class="timeline-step">LinkedIn</div><div><h4>How we built it</h4><p>Racconto della pipeline AI, UX narrativa, storytelling tech e branded narrative.</p></div></div></div></article></section>
-<section><div class="manifesto-end"><h2>This was never just advertising.</h2><p>ImmoBit and AutoBit Stories became a narrative universe built around decisions, trust and hidden details. The apps are real, the problems are real, and the stories exist to show what happens when people learn to look better.</p></div></section>
+  <section id="manifesto">
+    <div class="section-label">// L’inizio vero</div>
+    <h2 class="section-title">Prima di tutto c’era un’idea molto semplice</h2>
+    <p class="section-sub">
+      La pagina non deve nascondere il processo. Deve mostrarlo. Per questo il testo editoriale
+      è accompagnato da blocchi grezzi: appunti, dubbi, dialoghi e ragionamenti originali.
+    </p>
+
+    <article class="chapter">
+      <h3>Il primo pensiero</h3>
+      <p>
+        L’idea nasce da una domanda pratica: come raccontare due app senza trasformarle in pubblicità?
+        La risposta è stata costruire storie in cui le app vengono usate naturalmente per risolvere situazioni reali.
+      </p>
+      <p>
+        È qui che ImmoBit e AutoBit smettono di essere solo prodotti e iniziano a diventare strumenti narrativi.
+      </p>
+      
+      <details class="raw-block">
+        <summary>Archivio grezzo · La prima formulazione dell’idea</summary>
+        <pre>Ho deciso,
+che il modo migliore per pubblicizzare le mie app
+è quello di creare un fumetto in cui i protagonisti
+le useranno per risolvere le situazioni.
+Lo stile che ho scelto, visto il target di riferimento,
+ossia 20 - 60 anni / uomo - donna,
+deve essere European ligne claire.
+Non sono uno scrittore di fumetti e dialoghi,
+vorrei solo che dal lancio della prima puntata,
+chiamiamola così, il tema abbia una sua evoluzione,
+magari arriveremo a 5 oppure 10 oppure 20 puntate, non saprei.
+Non serve che gli episodi seguano un collegamento temporale,
+magari quello potremmo farlo per gli ultimi 2 o 3.
+Ora le app in questione sono
+https://play.google.com/store/apps/details?id=com.memmolalabs.immobit
+https://play.google.com/store/apps/details?id=com.memmolalabs.autobit
+Dimmi che ne pensi.</pre>
+      </details>
+    
+    </article>
+
+    <article class="chapter">
+      <h3>La scelta dello stile</h3>
+      <p>
+        La direzione visuale nasce da una scelta precisa: European ligne claire. Uno stile leggibile,
+        adulto, professionale, non fotorealistico e adatto a raccontare case, auto, tecnologia e dettagli.
+      </p>
+      <div class="quote-box">
+        <p>Il mondo è illustrato. L’app è precisa.</p>
+      </div>
+      <p>
+        Questa regola mantiene la distanza dal fotoromanzo e rende il progetto riconoscibile come graphic novel tech europea.
+      </p>
+    </article>
+  </section>
+
+  <section>
+    <div class="section-label">// Filosofia narrativa</div>
+    <h2 class="section-title">Niente product placement</h2>
+    <p class="section-sub">
+      Il punto non è mostrare funzioni. Il punto è mostrare decisioni, dubbi, rischi e dettagli che cambiano tutto.
+    </p>
+
+    <article class="chapter">
+      <h3>Le app come strumenti narrativi</h3>
+      <p>
+        ImmoBit e AutoBit devono entrare nella storia come entrerebbero un taccuino, un archivio,
+        una macchina fotografica o uno strumento professionale: senza gridare, ma diventando necessari.
+      </p>
+      
+      <details class="raw-block">
+        <summary>Archivio grezzo · Non fare product placement</summary>
+        <pre>Il punto chiave: NON fare “product placement”
+
+Qui c’è la differenza tra:
+
+un progetto che la gente ignora
+e qualcosa che può davvero crescere
+
+Le app non devono sembrare:
+
+“guardate la mia app”
+
+Devono sembrare:
+
+“questo personaggio usa naturalmente questo strumento.”
+
+Quasi come:
+
+Batman → Batcomputer
+detective → archivio
+pilota → strumenti
+giornalista → macchina fotografica
+
+Le tue app devono diventare:
+
+strumenti narrativi.</pre>
+      </details>
+    
+    </article>
+  </section>
+
+  <section>
+    <div class="section-label">// Costruzione del mondo</div>
+    <h2 class="section-title">Europa contemporanea realistica</h2>
+    <p class="section-sub">
+      Il mondo narrativo non è fantascienza. È una versione più osservativa del nostro mondo:
+      città europee, app reali, problemi quotidiani, tecnologia discreta e tensione sottile.
+    </p>
+
+    <article class="chapter">
+      <h3>Il mood</h3>
+      <p>
+        Le storie devono respirare come piccoli thriller realistici: silenzi, pioggia leggera,
+        bar moderni, uffici immobiliari, concessionarie, parcheggi sotterranei, tablet e documenti.
+      </p>
+      
+      <details class="raw-block">
+        <summary>Archivio grezzo · Fase 1, creare il mondo</summary>
+        <pre>FASE 1 — Creare il “mondo”
+
+Prima ancora della storia.
+
+Devi definire:
+
+atmosfera
+città
+tipo di persone
+livello di realismo
+tono emotivo
+
+Ti consiglio questo mood:
+“Europa contemporanea realistica”
+
+Tra:
+
+Milano
+Bruxelles
+Lione
+Torino
+Amsterdam
+
+Atmosfera:
+
+elegante
+urbana
+leggermente malinconica
+professionale
+tecnologica
+realistica</pre>
+      </details>
+    
+    </article>
+  </section>
+
+  <section>
+    <div class="section-label">// Personaggi</div>
+    <h2 class="section-title">Prima il metodo, poi i volti</h2>
+    <p class="section-sub">
+      I personaggi nascono da una funzione narrativa: qualcuno osserva, qualcuno fa domande,
+      qualcuno porta conflitto. Da lì emergono Elena e Luca.
+    </p>
+
+    <div class="split-grid">
+      <article class="chapter">
+        <h3>Elena Moretti</h3>
+        <p>
+          Elena osserva gli immobili come se fossero memorie fisiche. Pareti, odori, luce,
+          silenzi e dettagli nascosti diventano segnali.
+        </p>
+        <p>
+          ImmoBit è il suo metodo: checklist, note, punteggi, confronti, promemoria e report.
+        </p>
+      </article>
+
+      <article class="chapter">
+        <h3>Luca Romano</h3>
+        <p>
+          Luca legge le auto come Elena legge le case. Usura, documenti, motore, vernice,
+          interni e venditore raccontano una storia.
+        </p>
+        <p>
+          AutoBit è la sua memoria tecnica: valutazioni, confronti, report e promemoria.
+        </p>
+      </article>
+    </div>
+
+    <article class="chapter">
+      <h3>La struttura iniziale dei personaggi</h3>
+      <p>
+        All’inizio non serviva un cast enorme. Serviva una dinamica semplice:
+        chi sa leggere i dettagli e chi rappresenta il dubbio del pubblico.
+      </p>
+      
+      <details class="raw-block">
+        <summary>Archivio grezzo · Fase 2, creare due protagonisti</summary>
+        <pre>FASE 2 — Creare 2 protagonisti
+
+NON 10.
+
+Due bastano.
+
+Protagonista 1
+
+Quello razionale.
+
+Caratteristiche:
+osservatore
+parla poco
+molto analitico
+elegante ma semplice
+usa naturalmente Immobit e Autobit
+
+Età:
+35–45
+
+Protagonista 2
+
+Quello emotivo.
+
+Caratteristiche:
+impulsivo
+curioso
+umano
+fa domande
+crea conflitto narrativo
+
+Età:
+28–38
+
+Perché servono entrambi?
+
+Perché il lettore è il personaggio impulsivo.</pre>
+      </details>
+    
+      
+      <details class="raw-block">
+        <summary>Archivio grezzo · Dialoghi naturali</summary>
+        <pre>Esempio perfetto di dialogo naturale
+
+SBAGLIATO
+
+“Con Immobit possiamo analizzare il mercato immobiliare.”
+
+(pubblicità)
+
+GIUSTO
+
+“Aspetta… qualcosa non torna.”
+
+“Che intendi?”
+
+“Il prezzo è troppo basso per questa zona.”
+
+Poi compare l’app.
+
+Questo è storytelling.</pre>
+      </details>
+    
+    </article>
+  </section>
+
+  <section>
+    <div class="section-label">// Episodio pilota</div>
+    <h2 class="section-title">La prima storia doveva essere semplice</h2>
+    <p class="section-sub">
+      Non serviva partire con una saga enorme. Bastava un caso forte, chiaro, quotidiano:
+      un appartamento perfetto, forse troppo perfetto.
+    </p>
+
+    <article class="chapter">
+      <h3>L’appartamento perfetto</h3>
+      <p>
+        La prima struttura narrativa è costruita come un micro-thriller:
+        apparenza, dubbio, osservazione, verifica, scoperta e frase finale.
+      </p>
+      
+      <details class="raw-block">
+        <summary>Archivio grezzo · Struttura del pilota</summary>
+        <pre>Struttura PERFETTA per iniziare
+Episodio 1
+“L’appartamento perfetto”
+
+Trama semplicissima:
+
+una coppia visita un appartamento incredibile
+prezzo stranamente basso
+tutto sembra perfetto
+il protagonista nota dettagli incoerenti
+usa Immobit
+scopre storico problematico
+la vendita salta
+ultimo pannello ambiguo
+
+Fine.</pre>
+      </details>
+    
+      
+      <details class="raw-block">
+        <summary>Archivio grezzo · Pipeline moderna</summary>
+        <pre>Pipeline moderna
+1. Scriviamo la scena
+
+Io ti aiuto.
+
+2. Creiamo storyboard semplice
+
+Anche stickman va bene.
+
+3. Generi i pannelli con AI
+
+Mantenendo:
+
+stesso stile
+stessi personaggi
+stessa palette
+
+4. Tu fai da regista
+
+Non da disegnatore.
+
+Questa è la chiave mentale.
+
+La tua vera skill sarà:
+la regia visiva</pre>
+      </details>
+    
+    </article>
+  </section>
+
+  <section id="archivio">
+    <div class="section-label">// Archivio visuale</div>
+    <h2 class="section-title">Le app prima delle storie</h2>
+    <p class="section-sub">
+      Gli screen mostrano perché il progetto funziona: le app erano già credibili come strumenti professionali,
+      quindi potevano diventare parte naturale del mondo narrativo.
+    </p>
+
+    <article class="chapter">
+      <h3>Archivio interfaccia ImmoBit</h3>
+      <p>
+        Checklist, scoring, archivio, confronto e PDF diventano la grammatica narrativa della serie.
+      </p>
+      <div class="image-strip">
+        <figure class="shot-card"><img src="immobit_images/immobit_1_home.png" alt="Home ImmoBit" loading="lazy"><figcaption class="shot-caption">Home · punto di ingresso</figcaption></figure>
+        <figure class="shot-card"><img src="immobit_images/immobit_2_checklist-1.png" alt="Checklist ImmoBit" loading="lazy"><figcaption class="shot-caption">Checklist · osservazione</figcaption></figure>
+        <figure class="shot-card"><img src="immobit_images/immobit_13_scoring.png" alt="Scoring ImmoBit" loading="lazy"><figcaption class="shot-caption">Scoring · decisione</figcaption></figure>
+        <figure class="shot-card"><img src="immobit_images/immobit_19_comparison.png" alt="Confronto ImmoBit" loading="lazy"><figcaption class="shot-caption">Confronto · scelta</figcaption></figure>
+        <figure class="shot-card"><img src="immobit_images/immobit_22_pdf_report-1.png" alt="PDF ImmoBit" loading="lazy"><figcaption class="shot-caption">PDF · archivio</figcaption></figure>
+        <figure class="shot-card"><img src="immobit_images/immobit_23_pdf_report-2.png" alt="Dettaglio PDF ImmoBit" loading="lazy"><figcaption class="shot-caption">Report · memoria</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="chapter">
+      <h3>Archivio interfaccia AutoBit</h3>
+      <p>
+        AutoBit introduce valutazione tecnica, confronto tra più auto, promemoria,
+        documentazione e report.
+      </p>
+      <div class="image-strip">
+        <figure class="shot-card"><img src="autobit_images/autobit_1_home.png" alt="Home AutoBit" loading="lazy"><figcaption class="shot-caption">Home · analisi veicolo</figcaption></figure>
+        <figure class="shot-card"><img src="autobit_images/autobit_3_checklist-1.png" alt="Checklist AutoBit" loading="lazy"><figcaption class="shot-caption">Checklist · ispezione</figcaption></figure>
+        <figure class="shot-card"><img src="autobit_images/autobit_15_scoring.png" alt="Scoring AutoBit" loading="lazy"><figcaption class="shot-caption">Scoring · lettura tecnica</figcaption></figure>
+        <figure class="shot-card"><img src="autobit_images/autobit_17_report-1.png" alt="Report AutoBit" loading="lazy"><figcaption class="shot-caption">Report · valutazione</figcaption></figure>
+        <figure class="shot-card"><img src="autobit_images/autobit_26_comparison-1.png" alt="Confronto AutoBit" loading="lazy"><figcaption class="shot-caption">Confronto · più auto</figcaption></figure>
+        <figure class="shot-card"><img src="autobit_images/autobit_22_pdf_report-1.png" alt="PDF AutoBit" loading="lazy"><figcaption class="shot-caption">PDF · prova</figcaption></figure>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <div class="section-label">// Universo condiviso</div>
+    <h2 class="section-title">Separati all’inizio, collegati nel tempo</h2>
+    <p class="section-sub">
+      ImmoBit e AutoBit devono crescere come due serie autonome. Il crossover funziona solo se prima
+      il pubblico ha imparato a riconoscere i due mondi.
+    </p>
+
+    <article class="chapter">
+      <h3>La collisione narrativa</h3>
+      <p>
+        Elena e Luca cercano la stessa cosa in due mercati diversi: la verità dietro le apparenze.
+        Quando si incontrano, il crossover non è un trucco: è una conseguenza naturale.
+      </p>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-step">Fase 01</div><div><h4>Identità separate</h4><p>ImmoBit e AutoBit crescono con ritmo, casi e pubblico propri.</p></div></div>
+        <div class="timeline-item"><div class="timeline-step">Fase 02</div><div><h4>Legami invisibili</h4><p>Luoghi, dettagli, aziende, quartieri e segnali iniziano a ripetersi.</p></div></div>
+        <div class="timeline-item"><div class="timeline-step">Fase 03</div><div><h4>Primo crossover</h4><p>Elena e Luca si incontrano quando le loro indagini quotidiane toccano lo stesso problema.</p></div></div>
+      </div>
+    </article>
+  </section>
+
+  <section id="pubblicazione">
+    <div class="section-label">// Pubblicazione</div>
+    <h2 class="section-title">Solo dopo arriva la strategia social</h2>
+    <p class="section-sub">
+      La parte social non è l’origine: è la fase successiva. Prima nasce l’universo,
+      poi nasce il sistema per distribuirlo.
+    </p>
+
+    <div class="split-grid">
+      <article class="chapter">
+        <h3>Episodio master</h3>
+        <p>
+          Ogni puntata nasce completa: leggibile sul sito, trasformabile in PDF,
+          pubblicabile come carousel e poi tagliabile in micro-scene.
+        </p>
+        
+      <details class="raw-block">
+        <summary>Archivio grezzo · Episodio master e micro-scene</summary>
+        <pre>Come proseguire adesso
+
+Ti consiglio questa pipeline:
+
+1. Mantieni l’episodio “master”
+
+Quello che abbiamo appena creato.
+
+Formato:
+
+completo
+cinematografico
+leggibile
+perfetto per:
+Facebook
+X
+LinkedIn
+PDF carousel
+sito web
+
+Questo diventa:
+la “versione regista”.
+
+2. Taglialo in micro-scene verticali
+
+Sì.
+Assolutamente sì.
+
+Questa è la vera mossa forte.
+
+TikTok / Reels / Shorts
+
+Non pubblichi il fumetto intero.
+
+Pubblichi:
+micro cliffhanger.</pre>
+      </details>
+    
+      </article>
+
+      <article class="chapter">
+        <h3>Micro-scene verticali</h3>
+        <p>
+          Le 12 vignette diventano quattro piccoli video verticali con hook, suspense e payoff.
+        </p>
+        
+      <details class="raw-block">
+        <summary>Archivio grezzo · Struttura Short/Reel</summary>
+        <pre>STRUTTURA IDEALE SHORTS/REELS
+
+VIDEO 1
+
+Hook:
+“L’appartamento perfetto”
+
+Vignette:
+1–3
+
+Finale:
+
+“Troppo perfetto…”
+
+VIDEO 2
+
+Vignette:
+4–6
+
+Finale:
+
+“Aspetta…”
+
+VIDEO 3
+
+Vignette:
+7–9
+
+Finale:
+
+“C’era un problema nascosto.”
+
+VIDEO 4
+
+Vignette:
+10–12
+
+Payoff finale:
+
+“Le case parlano…”</pre>
+      </details>
+    
+      </article>
+    </div>
+
+    <article class="chapter">
+      <h3>Ritmo e canali</h3>
+      <p>
+        YouTube resta separato per ImmoBit e AutoBit. Gli altri social possono vivere come hub Memmola Labs,
+        con backstage, concept art, mini scene, dettagli UI e worldbuilding.
+      </p>
+      
+      <details class="raw-block">
+        <summary>Archivio grezzo · Ritmo consigliato</summary>
+        <pre>Struttura consigliata
+
+YouTube → canali separati
+
+1 canale Immobit
+1 canale Autobit
+
+Pubblicazione:
+
+1 episodio a settimana per canale
+
+Quindi:
+
+Martedì → Immobit
+Venerdì → Autobit
+
+Questo è PERFETTO perché:
+
+ogni canale rimane coerente
+l’algoritmo capisce il tema
+il pubblico capisce cosa aspettarsi
+non sparisci mai per una settimana
+hai tempo umano per produrre bene</pre>
+      </details>
+    
+      
+      <details class="raw-block">
+        <summary>Archivio grezzo · LinkedIn e processo creativo</summary>
+        <pre>LinkedIn serve per:
+
+raccontare il processo
+AI pipeline
+storytelling tech
+UX narrativa
+“how we built it”
+
+Tu stai facendo:
+
+narrative software branding
+
+Ed è molto raro.</pre>
+      </details>
+    
+    </article>
+  </section>
+
+  <section>
+    <div class="manifesto-end">
+      <h2>Non era solo pubblicità.</h2>
+      <p>
+        ImmoBit e AutoBit Stories sono diventate un universo narrativo costruito intorno a decisioni,
+        fiducia e dettagli nascosti. Le app sono reali, i problemi sono reali, e le storie servono
+        a mostrare cosa succede quando le persone imparano a guardare meglio.
+      </p>
+    </div>
+  </section>
 </main>
-<footer><div class="footer-logo">Memmola<span>Labs®</span></div><div class="footer-links"><a href="/">Home</a><a href="/immobit/">ImmoBit</a><a href="/autobit/">AutoBit</a><a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a><a href="https://github.com/alessandromemmola" target="_blank">GitHub</a><a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a><a href="https://x.com/MemmolaLabs" target="_blank">X</a><a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a></div><div>© 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br>Nessun tracciamento personale o cookie di profilazione</div></footer>
+
+<footer>
+  <div class="footer-logo">Memmola<span>Labs®</span></div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/immobit/">ImmoBit</a>
+    <a href="/autobit/">AutoBit</a>
+    <a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a>
+    <a href="https://github.com/alessandromemmola" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a>
+    <a href="https://x.com/MemmolaLabs" target="_blank">X</a>
+    <a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a>
+  </div>
+  <div>
+    © 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br>
+    Nessun tracciamento personale o cookie di profilazione
+  </div>
+</footer>
+
 </body>
 </html>
