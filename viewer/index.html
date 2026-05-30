@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memmola Labs Viewer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<link rel="manifest" href="manifest.json">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;--gold-light:#E8C97A;--gold-dim:rgba(201,168,76,0.1);
+  --blue:#4A5FD4;--blue-light:#7A8FFF;--blue-dim:rgba(74,95,212,0.1);
+  --bg:#0F0E0C;--card:#1E1D1A;--field:#242320;
+  --text:#F0ECE3;--text-sec:#A09A8E;--text-hint:#6B6560;
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.13);
+  --green:#4CAF7D;--green-dim:rgba(76,175,125,0.12);
+  --red:#E05252;--red-dim:rgba(224,82,82,0.12);
+  --accent:#C9A84C;--accent-dim:rgba(201,168,76,0.1);
+}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
+
+/* DROP ZONE */
+#dropZone{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px;cursor:pointer}
+.dz-inner{border:1.5px dashed rgba(201,168,76,0.35);border-radius:20px;padding:60px 48px;text-align:center;max-width:520px;width:100%;background:rgba(201,168,76,0.03);transition:border-color .2s}
+.dz-inner:hover{border-color:rgba(201,168,76,0.7)}
+.dz-logo{font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);margin-bottom:32px;letter-spacing:-0.5px}
+.dz-logo span{color:var(--text-hint);font-size:16px;font-family:'DM Sans',sans-serif;display:block;margin-top:4px;letter-spacing:0}
+.dz-badges{display:flex;gap:10px;justify-content:center;margin-bottom:28px;flex-wrap:wrap}
+.dz-badge{background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:8px 16px;font-size:12px;font-weight:500}
+.dz-badge.immobit{color:var(--gold);border-color:rgba(201,168,76,0.3)}
+.dz-badge.autobit{color:var(--blue-light);border-color:rgba(74,95,212,0.3)}
+.dz-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--text);margin-bottom:10px}
+.dz-sub{font-size:13px;color:var(--text-hint);margin-bottom:28px;line-height:1.6}
+.dz-btn{background:var(--gold-dim);border:1px solid rgba(201,168,76,0.4);color:var(--gold);padding:12px 32px;border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500;transition:background .15s}
+.dz-btn:hover{background:rgba(201,168,76,0.2)}
+.dz-hint{font-size:11px;color:var(--text-hint);margin-top:16px}
+
+/* PRESENTATION */
+#presentation{display:none}
+.top-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:100}
+.tb-brand{font-family:'Playfair Display',serif;font-size:16px;color:var(--accent);font-weight:700}
+.tb-name{font-size:13px;color:var(--text-sec);margin-left:14px}
+.tb-nav{display:flex;gap:4px}
+.nav-btn{background:none;border:1px solid var(--border);color:var(--text-hint);padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap}
+.nav-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.nav-btn:hover:not(.active){background:rgba(255,255,255,0.04);color:var(--text)}
+.tb-close{background:none;border:1px solid var(--border);color:var(--text-hint);padding:6px 10px;border-radius:6px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+
+/* SECTIONS */
+.section{display:none;padding:28px;max-width:900px;margin:0 auto}
+.section.active{display:block}
+
+/* HERO */
+.hero-grid{display:grid;grid-template-columns:1fr 340px;gap:20px;margin-bottom:24px}
+.hero-name{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;line-height:1.2;margin-bottom:8px}
+.hero-sub{font-size:13px;color:var(--text-hint);margin-bottom:20px;display:flex;align-items:center;gap:6px}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.meta-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+.meta-label{font-size:10px;color:var(--text-hint);letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
+.meta-value{font-size:13px;color:var(--text);font-weight:500}
+.score-card{background:var(--card);border:1px solid var(--border2);border-radius:16px;padding:24px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.score-num{font-family:'Playfair Display',serif;font-size:72px;font-weight:900;line-height:1;margin-bottom:4px}
+.score-max{font-size:13px;color:var(--text-hint);margin-bottom:14px}
+.stars{display:flex;gap:3px;justify-content:center;margin-bottom:12px;font-size:20px}
+.verdict-badge{font-size:12px;padding:5px 16px;border-radius:20px;font-weight:500}
+.radar-wrap{position:relative;height:180px;width:100%;margin-top:16px}
+
+/* BARS */
+.bars-section{margin-bottom:20px}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.bar-label{font-size:12px;color:var(--text-sec);width:90px;flex-shrink:0}
+.bar-track{flex:1;height:5px;background:var(--field);border-radius:99px;overflow:hidden}
+.bar-fill{height:100%;border-radius:99px;width:0%;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.bar-score{font-size:12px;color:var(--text-hint);width:24px;text-align:right;flex-shrink:0}
+
+/* VERDICT FOOTER */
+.verdict-footer{background:var(--accent-dim);border:1px solid rgba(201,168,76,0.2);border-radius:14px;padding:20px;text-align:center;margin-top:20px}
+.vf-label{font-size:10px;color:var(--text-hint);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.vf-text{font-family:'Playfair Display',serif;font-size:18px;font-weight:700}
+
+/* DETAIL CARDS */
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.detail-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
+.detail-card h4{font-size:10px;color:var(--text-hint);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+.rating-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px}
+.rating-row:last-child{border-bottom:none}
+.r-label{color:var(--text-sec)}
+.rb{font-size:11px;padding:2px 10px;border-radius:10px;font-weight:500}
+.rb-ottimo{background:rgba(201,168,76,0.12);color:var(--gold);border:1px solid rgba(201,168,76,0.25)}
+.rb-buono{background:var(--green-dim);color:var(--green);border:1px solid rgba(76,175,125,0.25)}
+.rb-discreto{background:rgba(232,168,56,0.12);color:#E8A838;border:1px solid rgba(232,168,56,0.25)}
+.rb-cattivo{background:var(--red-dim);color:var(--red);border:1px solid rgba(224,82,82,0.25)}
+.rb-na{background:rgba(255,255,255,0.04);color:var(--text-hint);border:1px solid var(--border)}
+.rb-si{background:var(--green-dim);color:var(--green);border:1px solid rgba(76,175,125,0.25)}
+.rb-no{background:var(--red-dim);color:var(--red);border:1px solid rgba(224,82,82,0.25)}
+
+/* NOTE BOX */
+.note-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;font-size:13px;color:var(--text-sec);line-height:1.7;margin-bottom:14px}
+.note-label{font-size:10px;color:var(--text-hint);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px}
+
+/* SECTION HEADING */
+.sec-heading{font-size:10px;color:var(--text-hint);letter-spacing:1.8px;text-transform:uppercase;margin-bottom:14px;font-weight:500}
+
+/* COSTI */
+.costi-table{width:100%;border-collapse:collapse}
+.costi-table td{padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px}
+.costi-table tr:last-child td{border-bottom:none}
+.costi-table .cl{color:var(--text-sec)}
+.costi-table .cv{text-align:right;color:var(--text);font-weight:500}
+.costi-table .cv.hi{color:var(--accent)}
+.costi-total{border-top:1px solid rgba(201,168,76,0.2)!important;padding-top:14px!important}
+
+/* FOTO */
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.photo-item{aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--field);border:1px solid var(--border)}
+.photo-item img{width:100%;height:100%;object-fit:cover}
+.photo-placeholder{display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-hint);font-size:11px;flex-direction:column;gap:6px}
+
+/* EMOJI EVAL */
+.emoji-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px}
+.emoji-row{display:flex;align-items:center;gap:12px;padding:10px;background:var(--field);border-radius:10px;margin-bottom:8px}
+.emoji-row:last-child{margin-bottom:0}
+.emoji-icon{font-size:20px;flex-shrink:0}
+.emoji-label{font-size:13px;color:var(--text);font-weight:500}
+.emoji-msg{font-size:11px;font-weight:500;margin-top:2px}
+
+/* AUTOBIT SPECIFICS */
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.tech-item{background:var(--field);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+.tech-label{font-size:10px;color:var(--text-hint);margin-bottom:3px}
+.tech-value{font-size:13px;color:var(--text);font-weight:500}
+.bool-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px}
+.bool-row:last-child{border-bottom:none}
+
+/* CHIP */
+.chip{display:inline-block;background:var(--field);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:11px;color:var(--text-sec);margin:2px}
+
+/* UTILITY */
+.divider{height:1px;background:var(--border);margin:20px 0}
+.full-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:14px}
+.tag{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:500;margin-right:4px}
+
+@media(max-width:700px){
+  .hero-grid{grid-template-columns:1fr}
+  .detail-grid{grid-template-columns:1fr}
+  .tech-grid{grid-template-columns:1fr 1fr}
+  .tb-nav{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="dropZone">
+  <div class="dz-inner" id="dzInner">
+    <div class="dz-logo">Memmola Labs Viewer <span>Visualizzatore valutazioni</span></div>
+    <div class="dz-badges">
+      <span class="dz-badge immobit">📁 .immobit</span>
+      <span class="dz-badge autobit">🚗 .autobit</span>
+    </div>
+    <div class="dz-title">Trascina il file o carica demo</div>
+    <div class="dz-sub">Trascina un file .immobit o .autobit per visualizzare<br>la valutazione in modalità presentazione professionale.</div>
+    <button class="dz-btn" id="loadBtn">Carica file</button>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:12px;flex-wrap:wrap">
+      <button class="dz-btn" style="font-size:12px;padding:8px 18px" id="demoImmo">Demo ImmoBit</button>
+      <button class="dz-btn" style="font-size:12px;padding:8px 18px;border-color:rgba(74,95,212,0.4);color:var(--blue-light);background:var(--blue-dim)" id="demoAuto">Demo AutoBit</button>
+    </div>
+    <div class="dz-hint">Supporta file esportati da ImmoBit e AutoBit</div>
+    <input type="file" id="fileInput" accept=".immobit,.autobit,.json" style="display:none">
+  </div>
+</div>
+
+<div id="presentation">
+  <div class="top-bar">
+    <div style="display:flex;align-items:center">
+      <span class="tb-brand" id="tbBrand">Viewer</span>
+      <span class="tb-name" id="tbName"></span>
+    </div>
+    <div class="tb-nav" id="tabNav"></div>
+    <button class="tb-close" id="closeBtn">✕ Chiudi</button>
+  </div>
+  <div id="sectionsContainer"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+// ── ENUM DECODERS ──────────────────────────────────────────────────────────
+
+const IMMO = {
+  tipoImmobile: ['Appartamento','Villetta','Ufficio','Negozio','Magazzino','Altro'],
+  condizioneContrattuale: ['Affitto','Sub-affitto','Vendita'],
+  tipoContratto: ['Proprietario','Agenzia','Subaffittuario'],
+  arredamento: ['Arredata','Semi-arredata','Non arredata'],
+  rating: ['Assente','Cattivo','Discreto','Buono','Ottimo'],
+  abitabilita: ['Da verificare','Presente','Assente'],
+  zona: {centrale:'Centrale',periferica:'Periferica',fronte_strada:'Fronte strada',via_principale:'Via principale',via_secondaria:'Via secondaria'},
+  parcheggio: {garage:'Garage',posto_coperto:'Posto coperto',posto_scoperto:'Posto scoperto',solo_strada:'Solo strada',facile_accesso:'Facile accesso',difficile_accesso:'Difficile accesso'},
+  cats: {cat_posizione:'Posizione',cat_stato:'Stato immobile',cat_impianti:'Impianti',cat_accesso:'Accesso',cat_comfort:'Comfort'},
+  catColors: {cat_posizione:'#C9A84C',cat_stato:'#4CAF7D',cat_impianti:'#5B9BD5',cat_accesso:'#C97C4C',cat_comfort:'#9B5BD5'},
+  verdicts: {verdict_eccellente:'Eccellente',verdict_molto_buono:'Molto buono',verdict_buono:'Buono',verdict_discreto:'Discreto',verdict_mediocre:'Mediocre',verdict_scarso:'Scarso',verdict_none:'Non valutato'},
+};
+
+const AUTO = {
+  tipoVeicolo: ['Berlina','SUV','Furgone','Moto','Station Wagon','Monovolume','Ciclomotore','Pick-up','Coupé','Cabriolet','City car','Fuoristrada','Trattore','D\'epoca','Altro'],
+  alimentazione: ['Benzina','Diesel','GPL','Metano','Elettrico','Ibrido','Altro'],
+  tipoMotore: ['2 tempi','4 tempi','Altro'],
+  tipoCambio: ['Automatico','Sequenziale','Manuale','Altro'],
+  condizione: ['Nuova','Usata','Usato aziendale','Altro'],
+  tipoVendita: ['Proprietario','Autosalone','Altro'],
+  numeroProprietari: ['Uniproprietario','Più proprietari','Altro'],
+  rating: ['Assente','Cattivo','Discreto','Buono','Ottimo'],
+  cats: {cat_motore:'Motore e meccanica',cat_carrozzeria:'Carrozzeria',cat_impianti:'Impianti',cat_documentazione:'Documentazione',cat_commerciale:'Commerciale'},
+  catColors: {cat_motore:'#4A5FD4',cat_carrozzeria:'#4CAF7D',cat_impianti:'#C97C4C',cat_documentazione:'#9B5BD5',cat_commerciale:'#C9A84C'},
+  verdicts: {verdict_eccellente:'Eccellente',verdict_molto_buono:'Molto buono',verdict_buono:'Buono',verdict_discreto:'Discreto',verdict_mediocre:'Mediocre',verdict_scarso:'Scarso',verdict_none:'Non valutato'},
+};
+
+// ── SCORE ENGINE ────────────────────────────────────────────────────────────
+
+function calcScoreImmo(v) {
+  const ratingScore = r => r == null ? null : ['assente','cattivo','discreto','buono','ottimo'].indexOf(r) === -1 ? null : [0,25,50,75,100][['assente','cattivo','discreto','buono','ottimo'].indexOf(r)];
+  const avg = fields => { const f = fields.filter(x=>x!=null&&x!=='assente'); return f.length ? f.reduce((s,x)=>s+ratingScore(x),0)/f.length : null; };
+  const cats = [
+    {id:'cat_posizione',label:'cat_posizione',weight:25,score:avg([v.quartiere,v.illuminazionePubblica,v.collegamenti])},
+    {id:'cat_stato',label:'cat_stato',weight:30,score:avg([v.statoGenerale,v.mura,v.pavimentazione,v.soffitti,v.finestre,v.porte])},
+    {id:'cat_impianti',label:'cat_impianti',weight:20,score:avg([v.impiantoElettrico,v.impiantoIdraulico,v.caldaia,v.impiantoGas,v.condizionatore,v.reteTv,v.reteMobile])},
+    {id:'cat_accesso',label:'cat_accesso',weight:10,score:avg([v.ingresso,v.scaleComuni,v.ascensore,v.areeAdiacenti])},
+    {id:'cat_comfort',label:'cat_comfort',weight:15,score:avg([v.esposizioneLuce,v.vistaEsterna,v.privacy,v.balconi])},
+  ];
+  let ws=0,wt=0;
+  cats.forEach(c=>{ if(c.score!=null){ws+=c.score*c.weight;wt+=c.weight;} });
+  const total = wt>0 ? ws/wt : null;
+  const stars = total!=null ? Math.round((total/20)*2)/2 : 0;
+  const verdict = total==null?'verdict_none':total>=85?'verdict_eccellente':total>=70?'verdict_molto_buono':total>=55?'verdict_buono':total>=40?'verdict_discreto':total>=25?'verdict_mediocre':'verdict_scarso';
+  return {total,cats,stars,verdict};
+}
+
+function calcScoreAuto(v) {
+  const ri = idx => idx==null?null:[0,25,50,75,100][idx]??null;
+  const avg = fields => { const f=fields.filter(x=>x!=null&&x!==0); return f.length?f.reduce((s,x)=>s+ri(x),0)/f.length:null; };
+  const cats = [
+    {id:'cat_motore',label:'cat_motore',weight:30,score:avg([v.motoreGenerale,v.impiantoElettrico,v.impiantoIdraulico,v.freniAnteriori,v.freniPosteriori,v.sospensioni,v.pneumatici,v.convergenza,v.distribuzione])},
+    {id:'cat_carrozzeria',label:'cat_carrozzeria',weight:25,score:avg([v.carrozzeria,v.vernice,v.coloreStato,v.ruggine,v.cristalli,v.alzacristalli,v.specchiRetrovisori])},
+    {id:'cat_impianti',label:'cat_impianti',weight:20,score:avg([v.luciSegnalatori,v.ariaCondizionata,v.clacson,v.autoradio,v.antenna,v.chiavi,v.sedili,v.interniGenerale])},
+    {id:'cat_documentazione',label:'cat_documentazione',weight:15,score:null},
+    {id:'cat_commerciale',label:'cat_commerciale',weight:10,score:null},
+  ];
+  if(v.incidenti!=null||v.fermoAmministrativo!=null||v.finanziamentiInCorso!=null||v.libroServizio!=null||v.documentazioneCompleta!=null||v.numeroProprietari!=null){
+    let scores=[];
+    if(v.incidenti!=null) scores.push(v.incidenti?20:100);
+    if(v.fermoAmministrativo!=null) scores.push(v.fermoAmministrativo?10:100);
+    if(v.finanziamentiInCorso!=null) scores.push(v.finanziamentiInCorso?50:100);
+    if(v.libroServizio!=null) scores.push(v.libroServizio?100:40);
+    if(v.documentazioneCompleta!=null) scores.push(v.documentazioneCompleta?100:30);
+    if(v.numeroProprietari!=null) scores.push(v.numeroProprietari===0?100:v.numeroProprietari===1?60:40);
+    cats[3].score = scores.reduce((a,b)=>a+b,0)/scores.length;
+  }
+  if(v.prezzoVendita||v.prezzoAffittoMensile){
+    let s=75;
+    if(v.metodoPagamento) s=90;
+    cats[4].score=s;
+  }
+  let ws=0,wt=0;
+  cats.forEach(c=>{ if(c.score!=null){ws+=c.score*c.weight;wt+=c.weight;} });
+  const total=wt>0?ws/wt:null;
+  const stars=total!=null?Math.round((total/20)*2)/2:0;
+  const verdict=total==null?'verdict_none':total>=85?'verdict_eccellente':total>=70?'verdict_molto_buono':total>=55?'verdict_buono':total>=40?'verdict_discreto':total>=25?'verdict_mediocre':'verdict_scarso';
+  return {total,cats,stars,verdict};
+}
+
+// ── HELPERS ─────────────────────────────────────────────────────────────────
+
+function fmtPrice(n){ if(!n&&n!==0) return '—'; return Math.round(n).toLocaleString('it-IT')+' €'; }
+function fmtNum(n){ if(n==null) return '—'; return Number(n).toLocaleString('it-IT'); }
+function fmtDate(s){ if(!s) return '—'; try{const d=new Date(s);return d.toLocaleDateString('it-IT',{day:'numeric',month:'short',year:'numeric'});}catch{return s;} }
+function fmtYear(s){ if(!s) return '—'; try{return new Date(s).getFullYear().toString();}catch{return s;} }
+
+function ratingClass(val,isIndex=false){
+  let s = isIndex ? ['assente','cattivo','discreto','buono','ottimo'][val] : val;
+  if(!s||s==='assente') return 'rb-na';
+  if(s==='ottimo') return 'rb-ottimo';
+  if(s==='buono') return 'rb-buono';
+  if(s==='discreto') return 'rb-discreto';
+  if(s==='cattivo') return 'rb-cattivo';
+  return 'rb-na';
+}
+function ratingLabel(val,isIndex=false){
+  const labels=['Assente','Cattivo','Discreto','Buono','Ottimo'];
+  if(isIndex) return labels[val]??'—';
+  const map={assente:'Assente',cattivo:'Cattivo',discreto:'Discreto',buono:'Buono',ottimo:'Ottimo'};
+  return map[val]??'—';
+}
+function boolBadge(val){ if(val==null) return '<span class="rb rb-na">—</span>'; return val?'<span class="rb rb-si">Sì</span>':'<span class="rb rb-no">No</span>'; }
+function ratingBadge(val,isIndex=false){ return `<span class="rb ${ratingClass(val,isIndex)}">${ratingLabel(val,isIndex)}</span>`; }
+function starsHTML(stars,color){ let h=''; for(let i=1;i<=5;i++){ if(stars>=i) h+=`<span style="color:${color}">★</span>`; else if(stars>=i-0.5) h+=`<span style="color:${color}">⭐</span>`; else h+=`<span style="color:var(--text-hint)">☆</span>`; } return h; }
+function verdictStyle(verdict,color){ return `background:${color}20;border:1px solid ${color}40;color:${color}`; }
+
+// ── RADAR CHART ─────────────────────────────────────────────────────────────
+let radarInst=null;
+function buildRadar(canvasId,cats,dictColors){
+  if(radarInst){radarInst.destroy();radarInst=null;}
+  const canvas=document.getElementById(canvasId);
+  if(!canvas) return;
+  const labels=cats.map(c=>{ const d=Object.values(IMMO.cats).length?IMMO.cats[c.label]||AUTO.cats[c.label]||c.label:c.label; return d.split(' ').slice(0,2).join(' '); });
+  const color=cats[0]&&dictColors[cats[0].label]?dictColors[cats[0].label]:'#C9A84C';
+  radarInst=new Chart(canvas,{
+    type:'radar',
+    data:{labels,datasets:[{data:cats.map(c=>Math.round(c.score??0)),backgroundColor:color+'20',borderColor:color,borderWidth:1.5,pointBackgroundColor:color,pointRadius:3}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{r:{min:0,max:100,ticks:{display:false,stepSize:25},grid:{color:'rgba(255,255,255,0.06)'},angleLines:{color:'rgba(255,255,255,0.06)'},pointLabels:{color:'#6B6560',font:{size:10}}}}}
+  });
+}
+
+// ── IMMOBIT RENDERER ─────────────────────────────────────────────────────────
+
+function renderImmobit(v){
+  const score=calcScoreImmo(v);
+  const color='#C9A84C';
+  document.getElementById('tbBrand').textContent='ImmoBit';
+  document.getElementById('tbBrand').style.color=color;
+  document.getElementById('tbName').textContent=v.nome||'Valutazione';
+  document.title='ImmoBit – '+( v.nome||'Valutazione');
+
+  const tabs=[{id:'panoramica',label:'Panoramica'},{id:'dettagli',label:'Dettagli'},{id:'costi',label:'Costi'},{id:'note',label:'Note'},{id:'foto',label:'Foto'}];
+  buildTabs(tabs,'panoramica');
+
+  // PANORAMICA
+  const tipo=v.tipoImmobile??'';
+  const cond=v.condizioneContrattuale??'';
+  const piano=v.piano?`Piano ${v.piano}`:'';
+  const sub=[tipo,cond,piano].filter(Boolean).join(' · ');
+  const verdLabel=IMMO.verdicts[score.verdict]??score.verdict;
+
+  let metaRows='';
+  if(v.prezzo) metaRows+=metaItem('Prezzo',fmtPrice(v.prezzo)+(cond==='affitto'?'/mese':''));
+  if(v.tipoContratto) metaRows+=metaItem('Contratto con',v.tipoContratto);
+  if(v.arredamento) metaRows+=metaItem('Arredamento',v.arredamento);
+  if(v.metriQuadri) metaRows+=metaItem('Superficie',v.metriQuadri+' m²');
+  if(v.numeroStanze) metaRows+=metaItem('Stanze',v.numeroStanze);
+  if(v.numeroBagni) metaRows+=metaItem('Bagni',v.numeroBagni);
+  metaRows+=metaItem('Valutata il',fmtDate(v.createdAt));
+
+  let barsHTML='';
+  score.cats.forEach(c=>{
+    const col=IMMO.catColors[c.label]??color;
+    const lbl=IMMO.cats[c.label]??c.label;
+    const sc=c.score!=null?Math.round(c.score):null;
+    barsHTML+=`<div class="bar-row"><span class="bar-label">${lbl}</span><div class="bar-track"><div class="bar-fill" data-w="${sc??0}" style="background:${col}"></div></div><span class="bar-score">${sc??'—'}</span></div>`;
+  });
+
+  const panoHTML=`
+<div class="hero-grid">
+  <div>
+    <div class="hero-name">${v.nome||'Immobile'}</div>
+    <div class="hero-sub">📍 ${sub||'—'}</div>
+    <div class="meta-grid">${metaRows}</div>
+    <div class="sec-heading">Punteggi per categoria</div>
+    <div class="bars-section" id="barsImmo">${barsHTML}</div>
+  </div>
+  <div class="score-card">
+    <div class="score-num" style="color:${color}">${score.total!=null?Math.round(score.total):'—'}</div>
+    <div class="score-max">su 100</div>
+    <div class="stars">${starsHTML(score.stars,color)}</div>
+    <div class="verdict-badge" style="${verdictStyle(score.verdict,color)}">${verdLabel}</div>
+    <div class="radar-wrap"><canvas id="radarChart" role="img" aria-label="Radar categorie valutazione">Radar delle categorie.</canvas></div>
+  </div>
+</div>
+<div class="verdict-footer">
+  <div class="vf-label">✦ Verdetto finale</div>
+  <div class="vf-text" style="color:${color}">${v.nome||'Immobile'} — ${verdLabel}</div>
+</div>`;
+  addSection('panoramica',panoHTML);
+
+  // DETTAGLI
+  let detHTML='<div class="detail-grid">';
+  detHTML+=detailCard('📍 Posizione',[
+    ratingRow('Quartiere',v.quartiere),
+    ratingRow('Illuminazione pubblica',v.illuminazionePubblica),
+    ratingRow('Trasporti',v.collegamenti),
+  ]);
+  detHTML+=detailCard('🚪 Accesso',[
+    v.ingressoIndipendente!=null?`<div class="rating-row"><span class="r-label">Tipo ingresso</span>${v.ingressoIndipendente?'<span class="rb rb-buono">Indipendente</span>':'<span class="rb rb-na">Comune</span>'}</div>`:'',
+    ratingRow('Ingresso',v.ingresso),
+    ratingRow('Scale comuni',v.scaleComuni),
+    ratingRow('Ascensore',v.ascensore),
+    ratingRow('Aree adiacenti',v.areeAdiacenti),
+  ]);
+  detHTML+=detailCard('🔧 Stato immobile',[
+    ratingRow('Stato generale',v.statoGenerale),
+    ratingRow('Mura',v.mura),
+    ratingRow('Pavimentazione',v.pavimentazione),
+    ratingRow('Soffitti',v.soffitti),
+    ratingRow('Finestre',v.finestre),
+    ratingRow('Porte',v.porte),
+    ratingRow('Balconi',v.balconi),
+    v.arredamento?`<div class="rating-row"><span class="r-label">Arredamento</span><span class="rb rb-na">${v.arredamento}</span></div>`:'',
+  ]);
+  detHTML+=detailCard('⚡ Impianti',[
+    ratingRow('Elettrico',v.impiantoElettrico),
+    ratingRow('Idraulico',v.impiantoIdraulico),
+    ratingRow('Caldaia',v.caldaia),
+    ratingRow('Gas',v.impiantoGas),
+    ratingRow('Condizionatore',v.condizionatore),
+    ratingRow('Rete TV',v.reteTv),
+    ratingRow('Rete mobile',v.reteMobile),
+  ]);
+  detHTML+=detailCard('☀️ Comfort',[
+    ratingRow('Esposizione luce',v.esposizioneLuce),
+    ratingRow('Vista esterna',v.vistaEsterna),
+    ratingRow('Privacy',v.privacy),
+    v.animaliConsentiti!=null?`<div class="rating-row"><span class="r-label">Animali consentiti</span>${boolBadge(v.animaliConsentiti)}</div>`:'',
+  ]);
+
+  const zoneList=v.zona&&v.zona.length?v.zona.map(z=>IMMO.zona[z]||z).join(', '):'—';
+  const parcList=v.parcheggio&&v.parcheggio.length?v.parcheggio.map(p=>IMMO.parcheggio[p]||p).join(', '):'—';
+  detHTML+=detailCard('ℹ️ Dati contrattuali',[
+    v.tipoImmobile?`<div class="rating-row"><span class="r-label">Tipo</span><span class="rb rb-na">${v.tipoImmobile}</span></div>`:'',
+    v.condizioneContrattuale?`<div class="rating-row"><span class="r-label">Condizione</span><span class="rb rb-na">${v.condizioneContrattuale}</span></div>`:'',
+    v.durataContratto?`<div class="rating-row"><span class="r-label">Durata</span><span class="rb rb-na">${v.durataContratto}</span></div>`:'',
+    v.cedolareSecca!=null?`<div class="rating-row"><span class="r-label">Cedolare secca</span>${boolBadge(v.cedolareSecca)}</div>`:'',
+    v.abitabilita!=null?`<div class="rating-row"><span class="r-label">Abitabilità</span><span class="rb rb-na">${IMMO.abitabilita[v.abitabilita]??'—'}</span></div>`:'',
+    v.ipoteche!=null?`<div class="rating-row"><span class="r-label">Ipoteche</span>${boolBadge(v.ipoteche)}</div>`:'',
+    `<div class="rating-row"><span class="r-label">Zona</span><span class="r-label" style="text-align:right">${zoneList}</span></div>`,
+    `<div class="rating-row"><span class="r-label">Parcheggio</span><span class="r-label" style="text-align:right">${parcList}</span></div>`,
+  ]);
+  detHTML+='</div>';
+
+  // Valutazione visiva
+  detHTML+='<div class="sec-heading" style="margin-top:20px">Valutazione visiva</div><div class="emoji-card">';
+  score.cats.forEach(c=>{
+    const lbl=IMMO.cats[c.label]??c.label;
+    const sc=c.score??0;
+    const icon=sc>=75?'✅':sc>=50?'⚠️':'❌';
+    const msg=sc>=75?'Buone condizioni':sc>=50?'Da controllare con attenzione':'Aspetto critico';
+    const mc=sc>=75?'var(--green)':sc>=50?'#E8A838':'var(--red)';
+    detHTML+=`<div class="emoji-row"><span class="emoji-icon">${icon}</span><div><div class="emoji-label">${lbl}</div><div class="emoji-msg" style="color:${mc}">${msg}</div></div></div>`;
+  });
+  detHTML+='</div>';
+  addSection('dettagli',detHTML);
+
+  // COSTI
+  let costiHTML='<div class="full-card"><div class="sec-heading">Riepilogo economico</div><table class="costi-table">';
+  if(v.prezzo) costiHTML+=`<tr><td class="cl">Prezzo${v.condizioneContrattuale==='affitto'?' mensile':''}</td><td class="cv hi">${fmtPrice(v.prezzo)}</td></tr>`;
+  if(v.speseCondominiali) costiHTML+=`<tr><td class="cl">Spese condominiali</td><td class="cv">${v.speseCondominiali}</td></tr>`;
+  if(v.provvigioneAgenzia) costiHTML+=`<tr><td class="cl">Provvigione agenzia</td><td class="cv">${v.provvigioneAgenzia}</td></tr>`;
+  if(v.cedolareSecca!=null) costiHTML+=`<tr><td class="cl">Cedolare secca</td><td class="cv">${v.cedolareSecca?'Sì':'No'}</td></tr>`;
+  if(v.durataContratto) costiHTML+=`<tr><td class="cl">Durata contratto</td><td class="cv">${v.durataContratto}</td></tr>`;
+  if(v.abitabilita!=null) costiHTML+=`<tr><td class="cl">Abitabilità</td><td class="cv">${IMMO.abitabilita[v.abitabilita]??'—'}</td></tr>`;
+  if(v.ipoteche!=null) costiHTML+=`<tr><td class="cl">Ipoteche</td><td class="cv">${v.ipoteche?'Sì':'No'}</td></tr>`;
+  costiHTML+='</table></div>';
+  if(v.prezzo&&v.condizioneContrattuale==='affitto'){
+    const annuo=v.prezzo*12;
+    const spese=(parseFloat(v.speseCondominiali)||0)*12;
+    const provv=parseFloat(v.provvigioneAgenzia)||0;
+    const tot=annuo+spese+provv;
+    costiHTML+=`<div class="full-card"><div class="sec-heading">Costo totale primo anno stimato</div><table class="costi-table">
+    <tr><td class="cl">Canone annuo (12 mesi)</td><td class="cv">${fmtPrice(annuo)}</td></tr>
+    ${spese?`<tr><td class="cl">Spese condominiali (12 mesi)</td><td class="cv">${fmtPrice(spese)}</td></tr>`:''}
+    ${provv?`<tr><td class="cl">Provvigione una tantum</td><td class="cv">${fmtPrice(provv)}</td></tr>`:''}
+    <tr style="border-top:1px solid rgba(201,168,76,0.2)"><td class="cl costi-total" style="font-weight:500;color:var(--text)">Totale primo anno</td><td class="cv hi costi-total" style="font-size:16px">${fmtPrice(tot)}</td></tr>
+    </table></div>`;
+  }
+  if(v.metriQuadri&&v.prezzo){ costiHTML+=`<div class="full-card"><div class="sec-heading">Indicatori</div><table class="costi-table"><tr><td class="cl">Prezzo al m²</td><td class="cv">${fmtPrice(v.prezzo/v.metriQuadri)}/m²</td></tr></table></div>`; }
+  addSection('costi',costiHTML);
+
+  // NOTE
+  let noteHTML='';
+  const noteFields=[
+    ['Note stato immobile',v.noteStato],
+    ['Note comfort',v.noteComfort],
+    ['Note costi',v.noteCosti],
+    ['Valutazione generale',v.valutazioneGenerale],
+  ];
+  noteFields.forEach(([lbl,val])=>{ if(val) noteHTML+=`<div class="note-box"><div class="note-label">${lbl}</div>${val}</div>`; });
+  if(!noteHTML) noteHTML='<div style="color:var(--text-hint);font-size:13px">Nessuna nota inserita.</div>';
+  addSection('note',noteHTML);
+
+  // FOTO
+  addSection('foto',buildFotoSection(v.fotoPaths, v._fotoUrls));
+
+  setTimeout(()=>{
+    document.querySelectorAll('.bar-fill').forEach(el=>{ el.style.width=el.dataset.w+'%'; });
+    buildRadar('radarChart',score.cats,IMMO.catColors);
+  },100);
+}
+
+// ── AUTOBIT RENDERER ─────────────────────────────────────────────────────────
+
+function renderAutobit(v){
+  const score=calcScoreAuto(v);
+  const color='#4A5FD4';
+  document.getElementById('tbBrand').textContent='AutoBit';
+  document.getElementById('tbBrand').style.color=color;
+  const displayName=v.nome||(v.marca&&v.modello?`${v.marca} ${v.modello}`:'Veicolo');
+  document.getElementById('tbName').textContent=displayName;
+  document.title='AutoBit – '+displayName;
+
+  const tabs=[{id:'panoramica',label:'Panoramica'},{id:'tecnica',label:'Tecnica'},{id:'dettagli',label:'Dettagli'},{id:'documentazione',label:'Documenti'},{id:'commerciale',label:'Commerciale'},{id:'note',label:'Note'},{id:'foto',label:'Foto'}];
+  buildTabs(tabs,'panoramica');
+
+  const verdLabel=AUTO.verdicts[score.verdict]??score.verdict;
+  const tipoLabel=v.tipoVeicolo!=null?AUTO.tipoVeicolo[v.tipoVeicolo]??'—':'—';
+  const condLabel=v.condizione!=null?AUTO.condizione[v.condizione]??'—':'—';
+  const aliLabel=v.alimentazione!=null?AUTO.alimentazione[v.alimentazione]??'—':'—';
+
+  let metaRows='';
+  if(v.marca) metaRows+=metaItem('Marca',v.marca);
+  if(v.modello) metaRows+=metaItem('Modello',v.modello);
+  if(v.kmPercorsi!=null) metaRows+=metaItem('KM percorsi',fmtNum(v.kmPercorsi)+' km');
+  if(v.annoImmatricolazione) metaRows+=metaItem('Anno',fmtYear(v.annoImmatricolazione));
+  if(v.alimentazione!=null) metaRows+=metaItem('Alimentazione',aliLabel);
+  if(v.tipoCambio!=null) metaRows+=metaItem('Cambio',AUTO.tipoCambio[v.tipoCambio]??'—');
+  metaRows+=metaItem('Valutato il',fmtDate(v.createdAt));
+
+  let barsHTML='';
+  score.cats.forEach(c=>{
+    const col=AUTO.catColors[c.label]??color;
+    const lbl=AUTO.cats[c.label]??c.label;
+    const sc=c.score!=null?Math.round(c.score):null;
+    barsHTML+=`<div class="bar-row"><span class="bar-label">${lbl}</span><div class="bar-track"><div class="bar-fill" data-w="${sc??0}" style="background:${col}"></div></div><span class="bar-score">${sc??'—'}</span></div>`;
+  });
+
+  const panoHTML=`
+<div class="hero-grid">
+  <div>
+    <div class="hero-name">${displayName}</div>
+    <div class="hero-sub">🚗 ${[tipoLabel,condLabel].filter(x=>x&&x!=='—').join(' · ')||'—'}</div>
+    <div class="meta-grid">${metaRows}</div>
+    <div class="sec-heading">Punteggi per categoria</div>
+    <div class="bars-section">${barsHTML}</div>
+  </div>
+  <div class="score-card">
+    <div class="score-num" style="color:${color}">${score.total!=null?Math.round(score.total):'—'}</div>
+    <div class="score-max">su 100</div>
+    <div class="stars">${starsHTML(score.stars,color)}</div>
+    <div class="verdict-badge" style="${verdictStyle(score.verdict,color)}">${verdLabel}</div>
+    <div class="radar-wrap"><canvas id="radarChart" role="img" aria-label="Radar categorie valutazione">Radar delle categorie.</canvas></div>
+  </div>
+</div>
+<div class="verdict-footer" style="background:${color}10;border-color:${color}30">
+  <div class="vf-label">✦ Verdetto finale</div>
+  <div class="vf-text" style="color:${color}">${displayName} — ${verdLabel}</div>
+</div>`;
+  addSection('panoramica',panoHTML);
+
+  // TECNICA
+  let techHTML='<div class="sec-heading">Caratteristiche tecniche</div><div class="tech-grid">';
+  const techItems=[
+    ['Tipo',tipoLabel],['Condizione',condLabel],['Alimentazione',aliLabel],
+    ['KM percorsi',v.kmPercorsi!=null?fmtNum(v.kmPercorsi)+' km':'—'],
+    ['Anno',v.annoImmatricolazione?fmtYear(v.annoImmatricolazione):'—'],
+    ['Colore',v.coloreVeicolo||'—'],['Targa',v.targa||'—'],
+    ['Cilindrata',v.cilindrata?v.cilindrata+' cc':'—'],
+    ['Classe Euro',v.classeEuro?'Euro '+v.classeEuro:'—'],
+    ['Cambio',v.tipoCambio!=null?AUTO.tipoCambio[v.tipoCambio]:'—'],
+    ['Tipo motore',v.tipoMotore!=null?AUTO.tipoMotore[v.tipoMotore]:'—'],
+    ['Valvole',v.valvole||'—'],
+  ];
+  techItems.forEach(([l,val])=>{ techHTML+=`<div class="tech-item"><div class="tech-label">${l}</div><div class="tech-value">${val}</div></div>`; });
+  techHTML+='</div>';
+  if(v.motoreNote) techHTML+=`<div class="note-box"><div class="note-label">Note motore</div>${v.motoreNote}</div>`;
+
+  // Dotazioni
+  const dotazioni=[];
+  if(v.haRuotaScorta) dotazioni.push('Ruota di scorta');
+  if(v.haCrik) dotazioni.push('Crik');
+  if(v.haTriangolo) dotazioni.push('Triangolo');
+  if(v.allestimentiEsterni&&v.allestimentiEsterni.length) dotazioni.push(...v.allestimentiEsterni);
+  if(dotazioni.length){ techHTML+=`<div class="sec-heading" style="margin-top:16px">Dotazioni</div><div>`; dotazioni.forEach(d=>{ techHTML+=`<span class="chip">${d}</span>`; }); techHTML+='</div>'; }
+  if(v.altriAccessori) techHTML+=`<div class="note-box" style="margin-top:12px"><div class="note-label">Altri accessori</div>${v.altriAccessori}</div>`;
+  addSection('tecnica',techHTML);
+
+  // DETTAGLI
+  let detHTML='<div class="detail-grid">';
+  detHTML+=detailCard('🎨 Carrozzeria ed esterni',[
+    ratingRowIdx('Carrozzeria',v.carrozzeria),
+    ratingRowIdx('Vernice',v.vernice),
+    ratingRowIdx('Colore',v.coloreStato),
+    v.marciante!=null?`<div class="rating-row"><span class="r-label">Stato</span>${v.marciante?'<span class="rb rb-buono">Marciante</span>':'<span class="rb rb-cattivo">Ferma</span>'}</div>`:'',
+    ratingRowIdx('Ruggine',v.ruggine),
+    ratingRowIdx('Cristalli',v.cristalli),
+    ratingRowIdx('Alzacristalli',v.alzacristalli),
+    ratingRowIdx('Specchi retrovisori',v.specchiRetrovisori),
+  ]);
+  detHTML+=detailCard('💡 Impianti e dotazioni',[
+    ratingRowIdx('Luci e segnalatori',v.luciSegnalatori),
+    ratingRowIdx('Aria condizionata',v.ariaCondizionata),
+    ratingRowIdx('Clacson',v.clacson),
+    ratingRowIdx('Antifurto',v.antifurto),
+    v.numChiavi!=null?`<div class="rating-row"><span class="r-label">Chiavi</span><span class="rb rb-na">${v.numChiavi}</span></div>`:'',
+    ratingRowIdx('Autoradio',v.autoradio),
+    ratingRowIdx('Antenna',v.antenna),
+    ratingRowIdx('Sedili',v.sedili),
+    ratingRowIdx('Interni',v.interniGenerale),
+  ]);
+  detHTML+=detailCard('🔧 Motore e meccanica',[
+    ratingRowIdx('Motore generale',v.motoreGenerale),
+    ratingRowIdx('Impianto elettrico',v.impiantoElettrico),
+    ratingRowIdx('Impianto idraulico',v.impiantoIdraulico),
+    ratingRowIdx('Freni anteriori',v.freniAnteriori),
+    ratingRowIdx('Freni posteriori',v.freniPosteriori),
+    ratingRowIdx('Sospensioni',v.sospensioni),
+    ratingRowIdx('Pneumatici',v.pneumatici),
+    ratingRowIdx('Convergenza',v.convergenza),
+    ratingRowIdx('Distribuzione',v.distribuzione),
+  ]);
+  detHTML+='</div>';
+
+  // Emoji eval
+  detHTML+='<div class="sec-heading" style="margin-top:20px">Valutazione visiva</div><div class="emoji-card">';
+  score.cats.forEach(c=>{
+    const lbl=AUTO.cats[c.label]??c.label;
+    const sc=c.score??0;
+    const icon=sc>=75?'✅':sc>=50?'⚠️':'❌';
+    const msg=sc>=75?'Buone condizioni':sc>=50?'Da controllare con attenzione':'Aspetto critico';
+    const mc=sc>=75?'var(--green)':sc>=50?'#E8A838':'var(--red)';
+    detHTML+=`<div class="emoji-row"><span class="emoji-icon">${icon}</span><div><div class="emoji-label">${lbl}</div><div class="emoji-msg" style="color:${mc}">${msg}</div></div></div>`;
+  });
+  detHTML+='</div>';
+  addSection('dettagli',detHTML);
+
+  // DOCUMENTAZIONE
+  let docHTML='<div class="full-card"><div class="sec-heading">Storia e documentazione</div>';
+  const docRows=[
+    ['Incidenti',v.incidenti!=null?boolBadge(v.incidenti):null],
+    ['Fermo amministrativo',v.fermoAmministrativo!=null?boolBadge(v.fermoAmministrativo):null],
+    ['Finanziamenti in corso',v.finanziamentiInCorso!=null?boolBadge(v.finanziamentiInCorso):null],
+    ['Libro di servizio',v.libroServizio!=null?boolBadge(v.libroServizio):null],
+    ['Documentazione completa',v.documentazioneCompleta!=null?boolBadge(v.documentazioneCompleta):null],
+    ['Numero proprietari',v.numeroProprietari!=null?`<span class="rb rb-na">${AUTO.numeroProprietari[v.numeroProprietari]??'—'}</span>`:null],
+    ['Tipo vendita',v.tipoVendita!=null?`<span class="rb rb-na">${AUTO.tipoVendita[v.tipoVendita]??'—'}</span>`:null],
+    ['Ultima revisione',v.ultimaRevisione?`<span class="rb rb-na">${fmtDate(v.ultimaRevisione)}</span>`:null],
+    ['Ultimo tagliando',v.ultimoTagliando?`<span class="rb rb-na">${fmtDate(v.ultimoTagliando)}</span>`:null],
+  ];
+  docRows.forEach(([l,val])=>{ if(val) docHTML+=`<div class="bool-row"><span style="font-size:12px;color:var(--text-sec)">${l}</span>${val}</div>`; });
+  docHTML+='</div>';
+  if(v.incidentiNote) docHTML+=`<div class="note-box"><div class="note-label">Note incidenti</div>${v.incidentiNote}</div>`;
+  if(v.finanziamentiNote) docHTML+=`<div class="note-box"><div class="note-label">Note finanziamenti</div>${v.finanziamentiNote}</div>`;
+  addSection('documentazione',docHTML);
+
+  // COMMERCIALE
+  let commHTML='<div class="full-card"><div class="sec-heading">Prezzi</div><table class="costi-table">';
+  if(v.prezzoVendita) commHTML+=`<tr><td class="cl">Prezzo di vendita</td><td class="cv hi">${fmtPrice(v.prezzoVendita)}</td></tr>`;
+  if(v.prezzoAffittoGiornaliero) commHTML+=`<tr><td class="cl">Affitto giornaliero</td><td class="cv">${fmtPrice(v.prezzoAffittoGiornaliero)}</td></tr>`;
+  if(v.prezzoAffittoSettimanale) commHTML+=`<tr><td class="cl">Affitto settimanale</td><td class="cv">${fmtPrice(v.prezzoAffittoSettimanale)}</td></tr>`;
+  if(v.prezzoAffittoMensile) commHTML+=`<tr><td class="cl">Affitto mensile</td><td class="cv">${fmtPrice(v.prezzoAffittoMensile)}</td></tr>`;
+  if(v.prezzoAffittoSemestrale) commHTML+=`<tr><td class="cl">Affitto semestrale</td><td class="cv">${fmtPrice(v.prezzoAffittoSemestrale)}</td></tr>`;
+  if(v.prezzoAffittoAnnuale) commHTML+=`<tr><td class="cl">Affitto annuale</td><td class="cv">${fmtPrice(v.prezzoAffittoAnnuale)}</td></tr>`;
+  if(v.metodoPagamento) commHTML+=`<tr><td class="cl">Metodo di pagamento</td><td class="cv">${v.metodoPagamento}</td></tr>`;
+  commHTML+='</table></div>';
+  addSection('commerciale',commHTML);
+
+  // NOTE
+  let noteHTML='';
+  if(v.resocontoGenerale) noteHTML+=`<div class="note-box"><div class="note-label">Resoconto generale</div>${v.resocontoGenerale}</div>`;
+  if(!noteHTML) noteHTML='<div style="color:var(--text-hint);font-size:13px">Nessuna nota inserita.</div>';
+  addSection('note',noteHTML);
+
+  // FOTO
+  addSection('foto',buildFotoSection(v.fotoPaths, v._fotoUrls));
+
+  setTimeout(()=>{
+    document.querySelectorAll('.bar-fill').forEach(el=>{ el.style.width=el.dataset.w+'%'; });
+    buildRadar('radarChart',score.cats,AUTO.catColors);
+  },100);
+}
+
+// ── UI HELPERS ───────────────────────────────────────────────────────────────
+
+function metaItem(label,value){ return `<div class="meta-item"><div class="meta-label">${label}</div><div class="meta-value">${value||'—'}</div></div>`; }
+function ratingRow(label,val){ if(val==null) return ''; return `<div class="rating-row"><span class="r-label">${label}</span>${ratingBadge(val,false)}</div>`; }
+function ratingRowIdx(label,val){ if(val==null) return ''; return `<div class="rating-row"><span class="r-label">${label}</span>${ratingBadge(val,true)}</div>`; }
+function detailCard(title,rows){ const content=rows.filter(Boolean).join(''); if(!content) return ''; return `<div class="detail-card"><h4>${title}</h4>${content}</div>`; }
+function buildFotoSection(paths, fotoUrls){
+  if(!paths||!paths.length) return '<div style="color:var(--text-hint);font-size:13px;padding:20px 0">Nessuna foto inclusa nel file esportato.</div>';
+  let h='<div class="photo-grid">';
+  paths.forEach((p,i)=>{
+    const url = fotoUrls && (fotoUrls[p] || fotoUrls['foto/foto_'+i+'.jpg'] || fotoUrls['foto/foto_'+i+'.png']);
+    if(url){
+      h+=`<div class="photo-item"><img src="${url}" alt="Foto ${i+1}" loading="lazy"></div>`;
+    } else {
+      h+=`<div class="photo-item"><div class="photo-placeholder">📷<span style="font-size:11px">Foto ${i+1}</span></div></div>`;
+    }
+  });
+  h+='</div>';
+  return h;
+}
+
+function buildTabs(tabs,activeId){
+  const nav=document.getElementById('tabNav');
+  nav.innerHTML='';
+  tabs.forEach(t=>{
+    const btn=document.createElement('button');
+    btn.className='nav-btn'+(t.id===activeId?' active':'');
+    btn.textContent=t.label;
+    btn.onclick=()=>showSection(t.id,btn);
+    nav.appendChild(btn);
+  });
+}
+
+function addSection(id,html){
+  const container=document.getElementById('sectionsContainer');
+  const div=document.createElement('div');
+  div.className='section'+(id==='panoramica'?' active':'');
+  div.id='s-'+id;
+  div.innerHTML=html;
+  container.appendChild(div);
+}
+
+function showSection(name,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const sec=document.getElementById('s-'+name);
+  if(sec){ sec.classList.add('active'); if(name==='panoramica'){ setTimeout(()=>{ document.querySelectorAll('.bar-fill').forEach(el=>{el.style.width=el.dataset.w+'%';}); },50); } }
+  if(btn) btn.classList.add('active');
+}
+
+// ── DEMO DATA ────────────────────────────────────────────────────────────────
+
+const DEMO_IMMO = {app:'immobit',version:'1.0',nome:'Via Roma 12, Milano',tipoImmobile:'appartamento',condizioneContrattuale:'affitto',tipoContratto:'agenzia',prezzo:1400,piano:'3',arredamento:'semiArredata',metriQuadri:85,numeroStanze:3,numeroBagni:1,createdAt:'2026-03-24T10:00:00Z',quartiere:'ottimo',illuminazionePubblica:'buono',collegamenti:'ottimo',zona:['centrale','via_principale'],parcheggio:['posto_coperto'],ingressoIndipendente:false,ingresso:'buono',scaleComuni:'buono',ascensore:'ottimo',areeAdiacenti:'discreto',statoGenerale:'buono',mura:'buono',pavimentazione:'ottimo',soffitti:'buono',finestre:'buono',porte:'discreto',balconi:'ottimo',impiantoElettrico:'ottimo',impiantoIdraulico:'buono',caldaia:'buono',impiantoGas:'buono',condizionatore:'assente',reteTv:'buono',reteMobile:'ottimo',esposizioneLuce:'ottimo',vistaEsterna:'buono',privacy:'discreto',animaliConsentiti:true,cedolareSecca:false,durataContratto:'4+4 anni',abitabilita:1,ipoteche:false,provvigioneAgenzia:'1400',speseCondominiali:'80',noteStato:'Recentemente ristrutturato nei bagni.',noteComfort:'Buona esposizione solare al mattino.',valutazioneGenerale:'Ottimo appartamento in zona centrale, mancanza del condizionatore è l\'unico punto debole.',fotoPaths:[]};
+
+const DEMO_AUTO = {app:'autobit',version:'1.0',nome:'AB123CD',marca:'BMW',modello:'Serie 3',tipoVeicolo:0,condizione:1,alimentazione:1,coloreVeicolo:'Grigio metallizzato',targa:'AB123CD',kmPercorsi:85000,annoImmatricolazione:'2018-06-15T00:00:00Z',cilindrata:1995,classeEuro:6,tipoCambio:0,motoreGenerale:3,impiantoElettrico:4,impiantoIdraulico:3,freniAnteriori:3,freniPosteriori:3,sospensioni:3,pneumatici:2,convergenza:3,distribuzione:3,carrozzeria:3,vernice:3,coloreStato:4,ruggine:4,cristalli:4,alzacristalli:4,specchiRetrovisori:3,luciSegnalatori:4,ariaCondizionata:3,clacson:4,antifurto:3,numChiavi:2,autoradio:3,antenna:3,sedili:3,interniGenerale:3,incidenti:false,fermoAmministrativo:false,finanziamentiInCorso:false,libroServizio:true,documentazioneCompleta:true,numeroProprietari:0,tipoVendita:0,ultimaRevisione:'2025-04-10T00:00:00Z',ultimoTagliando:'2025-01-15T00:00:00Z',prezzoVendita:18500,metodoPagamento:'Contanti o bonifico',haRuotaScorta:true,haCrik:true,haTriangolo:true,allestimentiEsterni:[],resocontoGenerale:'Veicolo in buone condizioni generali. Pneumatici da sostituire a breve. Libretto di servizio completo.',fotoPaths:[]};
+
+// ── MAIN FLOW ────────────────────────────────────────────────────────────────
+
+function loadData(data){
+  document.getElementById('dropZone').style.display='none';
+  document.getElementById('presentation').style.display='block';
+  document.getElementById('sectionsContainer').innerHTML='';
+  document.getElementById('tabNav').innerHTML='';
+  if(radarInst){radarInst.destroy();radarInst=null;}
+  if(data.app==='immobit') renderImmobit(data);
+  else if(data.app==='autobit') renderAutobit(data);
+  else if(data.tipoImmobile!==undefined||data.quartiere!==undefined){ data.app='immobit'; renderImmobit(data); }
+  else if(data.marca!==undefined||data.tipoVeicolo!==undefined){ data.app='autobit'; renderAutobit(data); }
+  else alert('Formato file non riconosciuto.');
+}
+
+// ── FILE LOADING — ZIP + JSON legacy ────────────────────────────────────────
+
+async function loadFileFromBlob(file){
+  const name = file.name.toLowerCase();
+  const isZip = name.endsWith('.immobit') || name.endsWith('.autobit') || name.endsWith('.zip');
+
+  if(isZip){
+    try{
+      const zip = await JSZip.loadAsync(file);
+
+      // Leggi meta.json
+      let meta = {};
+      const metaFile = zip.file('meta.json');
+      if(metaFile){ try{ meta = JSON.parse(await metaFile.async('text')); }catch{} }
+
+      // Leggi data.json
+      const dataFile = zip.file('data.json');
+      if(!dataFile){ alert('File non valido: manca data.json'); return; }
+      const data = JSON.parse(await dataFile.async('text'));
+
+      // Imposta app da meta o da dati
+      if(meta.app) data.app = meta.app;
+
+      // Carica foto come blob URL
+      const fotoUrls = {};
+      const fotoFolder = zip.folder('foto');
+      if(fotoFolder){
+        const fotoFiles = [];
+        fotoFolder.forEach((relPath, zipEntry) => { if(!zipEntry.dir) fotoFiles.push({relPath, zipEntry}); });
+        fotoFiles.sort((a,b) => a.relPath.localeCompare(b.relPath));
+        for(const {relPath, zipEntry} of fotoFiles){
+          const blob = await zipEntry.async('blob');
+          const url = URL.createObjectURL(blob);
+          fotoUrls['foto/'+relPath] = url;
+        }
+      }
+
+      data._fotoUrls = fotoUrls;
+      loadData(data);
+    } catch(e){
+      alert('Errore apertura file: '+e.message);
+    }
+  } else {
+    // Fallback JSON legacy
+    const reader = new FileReader();
+    reader.onload = ev => { try{ loadData(JSON.parse(ev.target.result)); }catch{ alert('File non valido o corrotto.'); } };
+    reader.readAsText(file);
+  }
+}
+
+function loadFile(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  loadFileFromBlob(file);
+  e.target.value = '';
+}
+
+document.getElementById('loadBtn').onclick=()=>document.getElementById('fileInput').click();
+document.getElementById('fileInput').onchange=loadFile;
+document.getElementById('demoImmo').onclick=()=>loadData(JSON.parse(JSON.stringify(DEMO_IMMO)));
+document.getElementById('demoAuto').onclick=()=>loadData(JSON.parse(JSON.stringify(DEMO_AUTO)));
+document.getElementById('closeBtn').onclick=()=>{
+  document.getElementById('presentation').style.display='none';
+  document.getElementById('dropZone').style.display='flex';
+  if(radarInst){radarInst.destroy();radarInst=null;}
+};
+
+const dz=document.getElementById('dropZone');
+dz.addEventListener('dragover',e=>e.preventDefault());
+dz.addEventListener('drop',e=>{
+  e.preventDefault();
+  const file=e.dataTransfer.files[0];
+  if(file) loadFileFromBlob(file);
+});
+
+// PWA service worker
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
+}
+</script>
+</body>
+</html>
