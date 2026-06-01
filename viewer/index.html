@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="manifest.json?v=20260601">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -22,7 +22,7 @@
 }
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
 
-/* DROP ZONE */
+
 #dropZone{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px;cursor:pointer}
 .dz-inner{border:1.5px dashed rgba(201,168,76,0.35);border-radius:20px;padding:80px 64px;text-align:center;max-width:640px;width:100%;background:rgba(201,168,76,0.03);transition:border-color .2s}
 .dz-inner:hover{border-color:rgba(201,168,76,0.7)}
@@ -48,7 +48,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .privacy-note{margin-top:22px;padding:14px 16px;border-radius:12px;background:rgba(76,175,125,0.055);border:1px solid rgba(76,175,125,0.18);font-size:12px;color:var(--text-sec);line-height:1.6}
 .privacy-note strong{color:var(--green);font-weight:600}
 
-/* PRESENTATION */
+
 #presentation{display:none}
 .top-bar{display:flex;align-items:center;justify-content:space-between;padding:16px 40px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:100}
 .tb-brand{font-family:'Playfair Display',serif;font-size:16px;color:var(--accent);font-weight:700}
@@ -59,11 +59,11 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .nav-btn:hover:not(.active){background:rgba(255,255,255,0.04);color:var(--text)}
 .tb-close{background:none;border:1px solid var(--border);color:var(--text-hint);padding:6px 10px;border-radius:6px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
 
-/* SECTIONS */
+
 .section{display:none;padding:28px 40px;width:100%}
 .section.active{display:block}
 
-/* HERO */
+
 .hero-grid{display:grid;grid-template-columns:1fr 380px;gap:24px;margin-bottom:24px}
 .hero-name{font-family:'Playfair Display',serif;font-size:34px;font-weight:900;line-height:1.2;margin-bottom:8px}
 .hero-sub{font-size:14px;color:var(--text-hint);margin-bottom:20px;display:flex;align-items:center;gap:6px}
@@ -78,7 +78,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .verdict-badge{font-size:13px;padding:6px 20px;border-radius:20px;font-weight:500}
 .radar-wrap{position:relative;height:200px;width:100%;margin-top:16px}
 
-/* BARS */
+
 .bars-section{margin-bottom:20px}
 .bar-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .bar-label{font-size:12px;color:var(--text-sec);width:90px;flex-shrink:0}
@@ -86,12 +86,11 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .bar-fill{height:100%;border-radius:99px;width:0%;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
 .bar-score{font-size:12px;color:var(--text-hint);width:24px;text-align:right;flex-shrink:0}
 
-/* VERDICT FOOTER */
 .verdict-footer{background:var(--accent-dim);border:1px solid rgba(201,168,76,0.2);border-radius:14px;padding:20px;text-align:center;margin-top:20px}
 .vf-label{font-size:10px;color:var(--text-hint);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
 .vf-text{font-family:'Playfair Display',serif;font-size:18px;font-weight:700}
 
-/* DETAIL CARDS */
+
 .detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}
 .detail-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
 .detail-card h4{font-size:10px;color:var(--text-hint);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
@@ -107,14 +106,14 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .rb-si{background:var(--green-dim);color:var(--green);border:1px solid rgba(76,175,125,0.25)}
 .rb-no{background:var(--red-dim);color:var(--red);border:1px solid rgba(224,82,82,0.25)}
 
-/* NOTE BOX */
+
 .note-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;font-size:13px;color:var(--text-sec);line-height:1.7;margin-bottom:14px}
 .note-label{font-size:10px;color:var(--text-hint);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px}
 
-/* SECTION HEADING */
+
 .sec-heading{font-size:10px;color:var(--text-hint);letter-spacing:1.8px;text-transform:uppercase;margin-bottom:14px;font-weight:500}
 
-/* COSTI */
+
 .costi-table{width:100%;border-collapse:collapse}
 .costi-table td{padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px}
 .costi-table tr:last-child td{border-bottom:none}
@@ -123,13 +122,13 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .costi-table .cv.hi{color:var(--accent)}
 .costi-total{border-top:1px solid rgba(201,168,76,0.2)!important;padding-top:14px!important}
 
-/* FOTO */
+
 .photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .photo-item{aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--field);border:1px solid var(--border)}
 .photo-item img{width:100%;height:100%;object-fit:cover}
 .photo-placeholder{display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-hint);font-size:11px;flex-direction:column;gap:6px}
 
-/* EMOJI EVAL */
+
 .emoji-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px}
 .emoji-row{display:flex;align-items:center;gap:12px;padding:10px;background:var(--field);border-radius:10px;margin-bottom:8px}
 .emoji-row:last-child{margin-bottom:0}
@@ -137,7 +136,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .emoji-label{font-size:13px;color:var(--text);font-weight:500}
 .emoji-msg{font-size:11px;font-weight:500;margin-top:2px}
 
-/* AUTOBIT SPECIFICS */
+
 .tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
 .tech-item{background:var(--field);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
 .tech-label{font-size:10px;color:var(--text-hint);margin-bottom:3px}
@@ -145,10 +144,10 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .bool-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px}
 .bool-row:last-child{border-bottom:none}
 
-/* CHIP */
+
 .chip{display:inline-block;background:var(--field);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:11px;color:var(--text-sec);margin:2px}
 
-/* UTILITY */
+
 .divider{height:1px;background:var(--border);margin:20px 0}
 .full-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:14px}
 .tag{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:500;margin-right:4px}
@@ -172,7 +171,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 }
 
 
-/* === FULLSCREEN PRESENTATION MODE — desktop/laptop === */
+
 @media (min-width:1200px){
   body{overflow-x:hidden;}
 
@@ -375,7 +374,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-// ── ENUM DECODERS ──────────────────────────────────────────────────────────
+
 
 const IMMO = {
   tipoImmobile: ['Appartamento','Villetta','Ufficio','Negozio','Magazzino','Altro'],
@@ -405,7 +404,7 @@ const AUTO = {
   verdicts: {verdict_eccellente:'Eccellente',verdict_molto_buono:'Molto buono',verdict_buono:'Buono',verdict_discreto:'Discreto',verdict_mediocre:'Mediocre',verdict_scarso:'Scarso',verdict_none:'Non valutato'},
 };
 
-// ── SCORE ENGINE ────────────────────────────────────────────────────────────
+
 
 function calcScoreImmo(v) {
   const ratingScore = r => r == null ? null : ['assente','cattivo','discreto','buono','ottimo'].indexOf(r) === -1 ? null : [0,25,50,75,100][['assente','cattivo','discreto','buono','ottimo'].indexOf(r)];
@@ -458,7 +457,7 @@ function calcScoreAuto(v) {
   return {total,cats,stars,verdict};
 }
 
-// ── HELPERS ─────────────────────────────────────────────────────────────────
+
 
 function fmtPrice(n){ if(!n&&n!==0) return '—'; return Math.round(n).toLocaleString('it-IT')+' €'; }
 function fmtNum(n){ if(n==null) return '—'; return Number(n).toLocaleString('it-IT'); }
@@ -485,7 +484,7 @@ function ratingBadge(val,isIndex=false){ return `<span class="rb ${ratingClass(v
 function starsHTML(stars,color){ let h=''; for(let i=1;i<=5;i++){ if(stars>=i) h+=`<span style="color:${color}">★</span>`; else if(stars>=i-0.5) h+=`<span style="color:${color}">⭐</span>`; else h+=`<span style="color:var(--text-hint)">☆</span>`; } return h; }
 function verdictStyle(verdict,color){ return `background:${color}20;border:1px solid ${color}40;color:${color}`; }
 
-// ── RADAR CHART ─────────────────────────────────────────────────────────────
+
 let radarInst=null;
 function buildRadar(canvasId,cats,dictColors){
   if(radarInst){radarInst.destroy();radarInst=null;}
@@ -500,7 +499,7 @@ function buildRadar(canvasId,cats,dictColors){
   });
 }
 
-// ── IMMOBIT RENDERER ─────────────────────────────────────────────────────────
+
 
 function renderImmobit(v){
   const score=calcScoreImmo(v);
@@ -513,7 +512,7 @@ function renderImmobit(v){
   const tabs=[{id:'panoramica',label:'Panoramica'},{id:'dettagli',label:'Dettagli'},{id:'costi',label:'Costi'},{id:'note',label:'Note'},{id:'foto',label:'Foto'}];
   buildTabs(tabs,'panoramica');
 
-  // PANORAMICA
+  
   const tipo=v.tipoImmobile??'';
   const cond=v.condizioneContrattuale??'';
   const piano=v.piano?`Piano ${v.piano}`:'';
@@ -560,7 +559,7 @@ function renderImmobit(v){
 </div>`;
   addSection('panoramica',panoHTML);
 
-  // DETTAGLI
+  
   let detHTML='<div class="detail-grid">';
   detHTML+=detailCard('📍 Posizione',[
     ratingRow('Quartiere',v.quartiere),
@@ -614,7 +613,7 @@ function renderImmobit(v){
   ]);
   detHTML+='</div>';
 
-  // Valutazione visiva
+  
   detHTML+='<div class="sec-heading" style="margin-top:20px">Valutazione visiva</div><div class="emoji-card">';
   score.cats.forEach(c=>{
     const lbl=IMMO.cats[c.label]??c.label;
@@ -627,7 +626,7 @@ function renderImmobit(v){
   detHTML+='</div>';
   addSection('dettagli',detHTML);
 
-  // COSTI
+  
   let costiHTML='<div class="full-card"><div class="sec-heading">Riepilogo economico</div><table class="costi-table">';
   if(v.prezzo) costiHTML+=`<tr><td class="cl">Prezzo${v.condizioneContrattuale==='affitto'?' mensile':''}</td><td class="cv hi">${fmtPrice(v.prezzo)}</td></tr>`;
   if(v.speseCondominiali) costiHTML+=`<tr><td class="cl">Spese condominiali</td><td class="cv">${v.speseCondominiali}</td></tr>`;
@@ -652,7 +651,7 @@ function renderImmobit(v){
   if(v.metriQuadri&&v.prezzo){ costiHTML+=`<div class="full-card"><div class="sec-heading">Indicatori</div><table class="costi-table"><tr><td class="cl">Prezzo al m²</td><td class="cv">${fmtPrice(v.prezzo/v.metriQuadri)}/m²</td></tr></table></div>`; }
   addSection('costi',costiHTML);
 
-  // NOTE
+  
   let noteHTML='';
   const noteFields=[
     ['Note stato immobile',v.noteStato],
@@ -664,7 +663,7 @@ function renderImmobit(v){
   if(!noteHTML) noteHTML='<div style="color:var(--text-hint);font-size:13px">Nessuna nota inserita.</div>';
   addSection('note',noteHTML);
 
-  // FOTO
+  
   addSection('foto',buildFotoSection(v.fotoPaths, v._fotoUrls));
 
   setTimeout(()=>{
@@ -673,7 +672,7 @@ function renderImmobit(v){
   },100);
 }
 
-// ── AUTOBIT RENDERER ─────────────────────────────────────────────────────────
+
 
 function renderAutobit(v){
   const score=calcScoreAuto(v);
@@ -732,7 +731,7 @@ function renderAutobit(v){
 </div>`;
   addSection('panoramica',panoHTML);
 
-  // TECNICA
+  
   let techHTML='<div class="sec-heading">Caratteristiche tecniche</div><div class="tech-grid">';
   const techItems=[
     ['Tipo',tipoLabel],['Condizione',condLabel],['Alimentazione',aliLabel],
@@ -749,7 +748,7 @@ function renderAutobit(v){
   techHTML+='</div>';
   if(v.motoreNote) techHTML+=`<div class="note-box"><div class="note-label">Note motore</div>${v.motoreNote}</div>`;
 
-  // Dotazioni
+  
   const dotazioni=[];
   if(v.haRuotaScorta) dotazioni.push('Ruota di scorta');
   if(v.haCrik) dotazioni.push('Crik');
@@ -759,7 +758,7 @@ function renderAutobit(v){
   if(v.altriAccessori) techHTML+=`<div class="note-box" style="margin-top:12px"><div class="note-label">Altri accessori</div>${v.altriAccessori}</div>`;
   addSection('tecnica',techHTML);
 
-  // DETTAGLI
+  
   let detHTML='<div class="detail-grid">';
   detHTML+=detailCard('🎨 Carrozzeria ed esterni',[
     ratingRowIdx('Carrozzeria',v.carrozzeria),
@@ -795,7 +794,7 @@ function renderAutobit(v){
   ]);
   detHTML+='</div>';
 
-  // Emoji eval
+  
   detHTML+='<div class="sec-heading" style="margin-top:20px">Valutazione visiva</div><div class="emoji-card">';
   score.cats.forEach(c=>{
     const lbl=AUTO.cats[c.label]??c.label;
@@ -808,7 +807,7 @@ function renderAutobit(v){
   detHTML+='</div>';
   addSection('dettagli',detHTML);
 
-  // DOCUMENTAZIONE
+  
   let docHTML='<div class="full-card"><div class="sec-heading">Storia e documentazione</div>';
   const docRows=[
     ['Incidenti',v.incidenti!=null?boolBadge(v.incidenti):null],
@@ -827,7 +826,7 @@ function renderAutobit(v){
   if(v.finanziamentiNote) docHTML+=`<div class="note-box"><div class="note-label">Note finanziamenti</div>${v.finanziamentiNote}</div>`;
   addSection('documentazione',docHTML);
 
-  // COMMERCIALE
+  
   let commHTML='<div class="full-card"><div class="sec-heading">Prezzi</div><table class="costi-table">';
   if(v.prezzoVendita) commHTML+=`<tr><td class="cl">Prezzo di vendita</td><td class="cv hi">${fmtPrice(v.prezzoVendita)}</td></tr>`;
   if(v.prezzoAffittoGiornaliero) commHTML+=`<tr><td class="cl">Affitto giornaliero</td><td class="cv">${fmtPrice(v.prezzoAffittoGiornaliero)}</td></tr>`;
@@ -839,7 +838,7 @@ function renderAutobit(v){
   commHTML+='</table></div>';
   addSection('commerciale',commHTML);
 
-  // NOTE
+  
   let noteHTML='';
   if(v.resocontoGenerale) noteHTML+=`<div class="note-box"><div class="note-label">Resoconto generale</div>${v.resocontoGenerale}</div>`;
   if(!noteHTML) noteHTML='<div style="color:var(--text-hint);font-size:13px">Nessuna nota inserita.</div>';
@@ -854,7 +853,7 @@ function renderAutobit(v){
   },100);
 }
 
-// ── UI HELPERS ───────────────────────────────────────────────────────────────
+
 
 function metaItem(label,value){ return `<div class="meta-item"><div class="meta-label">${label}</div><div class="meta-value">${value||'—'}</div></div>`; }
 function ratingRow(label,val){ if(val==null) return ''; return `<div class="rating-row"><span class="r-label">${label}</span>${ratingBadge(val,false)}</div>`; }
@@ -904,13 +903,13 @@ function showSection(name,btn){
   if(btn) btn.classList.add('active');
 }
 
-// ── DEMO DATA ────────────────────────────────────────────────────────────────
+
 
 const DEMO_IMMO = {app:'immobit',version:'1.0',nome:'Via Roma 12, Milano',tipoImmobile:'appartamento',condizioneContrattuale:'affitto',tipoContratto:'agenzia',prezzo:1400,piano:'3',arredamento:'semiArredata',metriQuadri:85,numeroStanze:3,numeroBagni:1,createdAt:'2026-03-24T10:00:00Z',quartiere:'ottimo',illuminazionePubblica:'buono',collegamenti:'ottimo',zona:['centrale','via_principale'],parcheggio:['posto_coperto'],ingressoIndipendente:false,ingresso:'buono',scaleComuni:'buono',ascensore:'ottimo',areeAdiacenti:'discreto',statoGenerale:'buono',mura:'buono',pavimentazione:'ottimo',soffitti:'buono',finestre:'buono',porte:'discreto',balconi:'ottimo',impiantoElettrico:'ottimo',impiantoIdraulico:'buono',caldaia:'buono',impiantoGas:'buono',condizionatore:'assente',reteTv:'buono',reteMobile:'ottimo',esposizioneLuce:'ottimo',vistaEsterna:'buono',privacy:'discreto',animaliConsentiti:true,cedolareSecca:false,durataContratto:'4+4 anni',abitabilita:1,ipoteche:false,provvigioneAgenzia:'1400',speseCondominiali:'80',noteStato:'Recentemente ristrutturato nei bagni.',noteComfort:'Buona esposizione solare al mattino.',valutazioneGenerale:'Ottimo appartamento in zona centrale, mancanza del condizionatore è l\'unico punto debole.',fotoPaths:[]};
 
 const DEMO_AUTO = {app:'autobit',version:'1.0',nome:'AB123CD',marca:'BMW',modello:'Serie 3',tipoVeicolo:0,condizione:1,alimentazione:1,coloreVeicolo:'Grigio metallizzato',targa:'AB123CD',kmPercorsi:85000,annoImmatricolazione:'2018-06-15T00:00:00Z',cilindrata:1995,classeEuro:6,tipoCambio:0,motoreGenerale:3,impiantoElettrico:4,impiantoIdraulico:3,freniAnteriori:3,freniPosteriori:3,sospensioni:3,pneumatici:2,convergenza:3,distribuzione:3,carrozzeria:3,vernice:3,coloreStato:4,ruggine:4,cristalli:4,alzacristalli:4,specchiRetrovisori:3,luciSegnalatori:4,ariaCondizionata:3,clacson:4,antifurto:3,numChiavi:2,autoradio:3,antenna:3,sedili:3,interniGenerale:3,incidenti:false,fermoAmministrativo:false,finanziamentiInCorso:false,libroServizio:true,documentazioneCompleta:true,numeroProprietari:0,tipoVendita:0,ultimaRevisione:'2025-04-10T00:00:00Z',ultimoTagliando:'2025-01-15T00:00:00Z',prezzoVendita:18500,metodoPagamento:'Contanti o bonifico',haRuotaScorta:true,haCrik:true,haTriangolo:true,allestimentiEsterni:[],resocontoGenerale:'Veicolo in buone condizioni generali. Pneumatici da sostituire a breve. Libretto di servizio completo.',fotoPaths:[]};
 
-// ── MAIN FLOW ────────────────────────────────────────────────────────────────
+
 
 function loadData(data){
   document.getElementById('dropZone').style.display='none';
@@ -925,7 +924,7 @@ function loadData(data){
   else alert('Formato file non riconosciuto.');
 }
 
-// ── FILE LOADING — ZIP + JSON legacy ────────────────────────────────────────
+
 
 async function loadFileFromBlob(file){
   const name = file.name.toLowerCase();
@@ -935,20 +934,20 @@ async function loadFileFromBlob(file){
     try{
       const zip = await JSZip.loadAsync(file);
 
-      // Leggi meta.json
+      
       let meta = {};
       const metaFile = zip.file('meta.json');
       if(metaFile){ try{ meta = JSON.parse(await metaFile.async('text')); }catch{} }
 
-      // Leggi data.json
+      
       const dataFile = zip.file('data.json');
       if(!dataFile){ alert('File non valido: manca data.json'); return; }
       const data = JSON.parse(await dataFile.async('text'));
 
-      // Imposta app da meta o da dati
+      
       if(meta.app) data.app = meta.app;
 
-      // Carica foto come blob URL
+      
       const fotoUrls = {};
       const fotoFolder = zip.folder('foto');
       if(fotoFolder){
@@ -968,7 +967,7 @@ async function loadFileFromBlob(file){
       alert('Errore apertura file: '+e.message);
     }
   } else {
-    // Fallback JSON legacy
+    
     const reader = new FileReader();
     reader.onload = ev => { try{ loadData(JSON.parse(ev.target.result)); }catch{ alert('File non valido o corrotto.'); } };
     reader.readAsText(file);
@@ -1005,7 +1004,7 @@ dz.addEventListener('drop',e=>{
   const file=e.dataTransfer.files[0];
   if(file) loadFileFromBlob(file);
 });
-// PWA install prompt
+
 let deferredInstallPrompt = null;
 const installBtn = document.getElementById('installBtn');
 
@@ -1031,7 +1030,7 @@ window.addEventListener('appinstalled', () => {
   if (installBtn) installBtn.style.display = 'none';
 });
 
-// PWA service worker
+
 if('serviceWorker' in navigator){
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
