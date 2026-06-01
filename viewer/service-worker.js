@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ml-viewer-v1';
+const CACHE_NAME = 'ml-viewer-v2';
 const ASSETS = [
   './',
   './index.html',
