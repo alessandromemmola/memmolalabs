@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<link rel="manifest" href="manifest.json?v=4">
+<link rel="manifest" href="manifest.json?v=5">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -124,9 +124,23 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 
 
 .photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.photo-item{aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--field);border:1px solid var(--border)}
-.photo-item img{width:100%;height:100%;object-fit:cover}
+.photo-item{aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--field);border:1px solid var(--border);position:relative;cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s}
+.photo-item:hover{transform:translateY(-2px);border-color:rgba(201,168,76,0.45);box-shadow:0 10px 30px rgba(0,0,0,0.25)}
+.photo-item::after{content:'🔍';position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.18);color:#fff;border-radius:999px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:13px;opacity:0;transition:opacity .15s}
+.photo-item:hover::after{opacity:1}
+.photo-item img{width:100%;height:100%;object-fit:cover;display:block}
 .photo-placeholder{display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-hint);font-size:11px;flex-direction:column;gap:6px}
+
+.photo-lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;z-index:9999;padding:28px}
+.photo-lightbox.active{display:flex}
+.photo-lightbox-img{max-width:94vw;max-height:86vh;object-fit:contain;border-radius:14px;box-shadow:0 30px 90px rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.12)}
+.photo-lightbox-close,.photo-lightbox-prev,.photo-lightbox-next{position:absolute;background:rgba(30,29,26,0.85);border:1px solid rgba(255,255,255,0.18);color:var(--text);border-radius:999px;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s,transform .15s}
+.photo-lightbox-close{top:22px;right:22px;width:44px;height:44px;font-size:26px;line-height:1}
+.photo-lightbox-prev,.photo-lightbox-next{top:50%;transform:translateY(-50%);width:54px;height:54px;font-size:34px;line-height:1}
+.photo-lightbox-prev{left:22px}.photo-lightbox-next{right:22px}
+.photo-lightbox-close:hover,.photo-lightbox-prev:hover,.photo-lightbox-next:hover{background:rgba(201,168,76,0.18);border-color:rgba(201,168,76,0.45)}
+.photo-lightbox-counter{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);background:rgba(30,29,26,0.85);border:1px solid rgba(255,255,255,0.14);border-radius:999px;padding:8px 16px;color:var(--text-sec);font-size:13px}
+.photo-lightbox-hint{position:absolute;left:22px;bottom:22px;color:var(--text-hint);font-size:12px;background:rgba(30,29,26,0.55);border:1px solid rgba(255,255,255,0.08);border-radius:999px;padding:8px 12px}
 
 
 .emoji-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px}
@@ -202,6 +216,12 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
   .tb-nav{display:none}
   .section{padding:20px 16px}
   .dz-info-grid{grid-template-columns:1fr}
+  .photo-lightbox{padding:14px}
+  .photo-lightbox-img{max-width:96vw;max-height:82vh;border-radius:10px}
+  .photo-lightbox-prev,.photo-lightbox-next{width:42px;height:42px;font-size:28px}
+  .photo-lightbox-prev{left:10px}.photo-lightbox-next{right:10px}
+  .photo-lightbox-close{top:12px;right:12px;width:40px;height:40px;font-size:24px}
+  .photo-lightbox-hint{display:none}
 }
 
 
@@ -428,6 +448,16 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
   <div id="sectionsContainer"></div>
 </div>
 
+
+<div class="photo-lightbox" id="photoLightbox" aria-hidden="true">
+  <button class="photo-lightbox-close" id="photoLightboxClose" aria-label="Chiudi foto">×</button>
+  <button class="photo-lightbox-prev" id="photoLightboxPrev" aria-label="Foto precedente">‹</button>
+  <img class="photo-lightbox-img" id="photoLightboxImg" src="" alt="Foto ingrandita">
+  <button class="photo-lightbox-next" id="photoLightboxNext" aria-label="Foto successiva">›</button>
+  <div class="photo-lightbox-counter" id="photoLightboxCounter">1 / 1</div>
+  <div class="photo-lightbox-hint">ESC per chiudere · Frecce per navigare</div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 
@@ -542,6 +572,9 @@ function verdictStyle(verdict,color){ return `background:${color}20;border:1px s
 
 
 let radarInst=null;
+let photoGalleries = {};
+let activePhotoGalleryId = null;
+let activePhotoIndex = 0;
 function buildRadar(canvasId,cats,dictColors){
   if(radarInst){radarInst.destroy();radarInst=null;}
   const canvas=document.getElementById(canvasId);
@@ -923,17 +956,80 @@ function ratingRowIdx(label,val){ if(val==null) return ''; return `<div class="r
 function detailCard(title,rows){ const content=rows.filter(Boolean).join(''); if(!content) return ''; return `<div class="detail-card"><h4>${title}</h4>${content}</div>`; }
 function buildFotoSection(paths, fotoUrls){
   if(!paths||!paths.length) return '<div style="color:var(--text-hint);font-size:13px;padding:20px 0">Nessuna foto inclusa nel file esportato.</div>';
-  let h='<div class="photo-grid">';
+  const galleryId = 'gallery_' + Math.random().toString(36).slice(2);
+  const urls = [];
+  paths.forEach((p,i)=>{
+    const url = fotoUrls && (fotoUrls[p] || fotoUrls['foto/foto_'+i+'.jpg'] || fotoUrls['foto/foto_'+i+'.png']);
+    if(url) urls.push(url);
+  });
+  photoGalleries[galleryId] = urls;
+
+  let h=`<div class="photo-grid" data-gallery-id="${galleryId}">`;
   paths.forEach((p,i)=>{
     const url = fotoUrls && (fotoUrls[p] || fotoUrls['foto/foto_'+i+'.jpg'] || fotoUrls['foto/foto_'+i+'.png']);
     if(url){
-      h+=`<div class="photo-item"><img src="${url}" alt="Foto ${i+1}" loading="lazy"></div>`;
+      const galleryIndex = urls.indexOf(url);
+      h+=`<div class="photo-item" onclick="openPhotoLightbox('${galleryId}', ${galleryIndex})"><img src="${url}" alt="Foto ${i+1}" loading="lazy"></div>`;
     } else {
-      h+=`<div class="photo-item"><div class="photo-placeholder">📷<span style="font-size:11px">Foto ${i+1}</span></div></div>`;
+      h+=`<div class="photo-item" style="cursor:default"><div class="photo-placeholder">📷<span style="font-size:11px">Foto ${i+1}</span></div></div>`;
     }
   });
   h+='</div>';
   return h;
+}
+
+
+function updatePhotoLightbox(){
+  const gallery = photoGalleries[activePhotoGalleryId] || [];
+  const img = document.getElementById('photoLightboxImg');
+  const counter = document.getElementById('photoLightboxCounter');
+  const prev = document.getElementById('photoLightboxPrev');
+  const next = document.getElementById('photoLightboxNext');
+
+  if(!gallery.length || !img) return;
+  activePhotoIndex = (activePhotoIndex + gallery.length) % gallery.length;
+  img.src = gallery[activePhotoIndex];
+  img.alt = `Foto ${activePhotoIndex + 1}`;
+  if(counter) counter.textContent = `${activePhotoIndex + 1} / ${gallery.length}`;
+  if(prev) prev.style.display = gallery.length > 1 ? 'flex' : 'none';
+  if(next) next.style.display = gallery.length > 1 ? 'flex' : 'none';
+}
+
+function openPhotoLightbox(galleryId, index){
+  const gallery = photoGalleries[galleryId] || [];
+  if(!gallery.length) return;
+  activePhotoGalleryId = galleryId;
+  activePhotoIndex = index || 0;
+  updatePhotoLightbox();
+  const lightbox = document.getElementById('photoLightbox');
+  if(lightbox){
+    lightbox.classList.add('active');
+    lightbox.setAttribute('aria-hidden','false');
+  }
+}
+
+function closePhotoLightbox(){
+  const lightbox = document.getElementById('photoLightbox');
+  const img = document.getElementById('photoLightboxImg');
+  if(lightbox){
+    lightbox.classList.remove('active');
+    lightbox.setAttribute('aria-hidden','true');
+  }
+  if(img) img.src = '';
+}
+
+function nextPhoto(){
+  const gallery = photoGalleries[activePhotoGalleryId] || [];
+  if(gallery.length <= 1) return;
+  activePhotoIndex++;
+  updatePhotoLightbox();
+}
+
+function prevPhoto(){
+  const gallery = photoGalleries[activePhotoGalleryId] || [];
+  if(gallery.length <= 1) return;
+  activePhotoIndex--;
+  updatePhotoLightbox();
 }
 
 function buildTabs(tabs,activeId){
@@ -1278,6 +1374,10 @@ function resetToHome(clearLoaded=false){
   document.getElementById('tabNav').innerHTML='';
   document.getElementById('fileInput').value='';
   if(radarInst){radarInst.destroy();radarInst=null;}
+  closePhotoLightbox();
+  photoGalleries = {};
+  activePhotoGalleryId = null;
+  activePhotoIndex = 0;
 
   if(clearLoaded){
     loadedEvaluations.forEach(item => {
@@ -1302,6 +1402,28 @@ dz.addEventListener('dragover',e=>e.preventDefault());
 dz.addEventListener('drop',e=>{
   e.preventDefault();
   loadFiles(e.dataTransfer.files);
+});
+
+
+const photoLightbox = document.getElementById('photoLightbox');
+const photoLightboxClose = document.getElementById('photoLightboxClose');
+const photoLightboxPrev = document.getElementById('photoLightboxPrev');
+const photoLightboxNext = document.getElementById('photoLightboxNext');
+if(photoLightboxClose) photoLightboxClose.onclick = closePhotoLightbox;
+if(photoLightboxPrev) photoLightboxPrev.onclick = (e) => { e.stopPropagation(); prevPhoto(); };
+if(photoLightboxNext) photoLightboxNext.onclick = (e) => { e.stopPropagation(); nextPhoto(); };
+if(photoLightbox){
+  photoLightbox.addEventListener('click', e => {
+    if(e.target === photoLightbox) closePhotoLightbox();
+  });
+}
+document.addEventListener('keydown', e => {
+  const lightbox = document.getElementById('photoLightbox');
+  const isOpen = lightbox && lightbox.classList.contains('active');
+  if(!isOpen) return;
+  if(e.key === 'Escape') closePhotoLightbox();
+  if(e.key === 'ArrowRight') nextPhoto();
+  if(e.key === 'ArrowLeft') prevPhoto();
 });
 
 let deferredInstallPrompt = null;
@@ -1332,7 +1454,7 @@ window.addEventListener('appinstalled', () => {
 
 if('serviceWorker' in navigator){
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js?v=4').catch(()=>{});
+    navigator.serviceWorker.register('./service-worker.js?v=5').catch(()=>{});
   });
 }
 </script>
