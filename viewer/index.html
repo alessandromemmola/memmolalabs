@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<link rel="manifest" href="manifest.json?v=3">
+<link rel="manifest" href="manifest.json?v=4">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -151,6 +151,40 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .divider{height:1px;background:var(--border);margin:20px 0}
 .full-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:14px}
 .tag{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:500;margin-right:4px}
+
+
+/* LOADED EVALUATIONS / COMPARISON */
+.loaded-panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-top:20px}
+.loaded-panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.loaded-panel-title{font-size:10px;color:var(--text-hint);letter-spacing:1.5px;text-transform:uppercase;font-weight:600}
+.loaded-panel-sub{font-size:12px;color:var(--text-sec);line-height:1.5}
+.loaded-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.loaded-item{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--field);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+.loaded-item-main{display:flex;align-items:center;gap:10px;min-width:0}
+.loaded-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.loaded-name{font-size:13px;color:var(--text);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.loaded-meta{font-size:11px;color:var(--text-hint);margin-top:2px}
+.loaded-actions{display:flex;gap:6px;flex-shrink:0}
+.loaded-mini-btn{background:none;border:1px solid var(--border);color:var(--text-hint);border-radius:8px;padding:5px 8px;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.loaded-mini-btn:hover{color:var(--text);background:rgba(255,255,255,0.04)}
+.compare-btn{background:var(--accent-dim);border:1px solid rgba(201,168,76,0.35);color:var(--accent);border-radius:10px;padding:8px 14px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600}
+.compare-btn:hover{background:rgba(201,168,76,0.18)}
+.compare-wrap{overflow-x:auto}
+.compare-table{width:100%;border-collapse:collapse;min-width:920px;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.compare-table th,.compare-table td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.055);font-size:13px;text-align:left;vertical-align:middle}
+.compare-table th{font-size:10px;color:var(--text-hint);letter-spacing:1.2px;text-transform:uppercase;background:rgba(255,255,255,0.025)}
+.compare-table td{color:var(--text-sec)}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-name{color:var(--text);font-weight:600}
+.compare-score{font-family:'Playfair Display',serif;font-size:28px;color:var(--accent);font-weight:900;line-height:1}
+.compare-best{display:inline-block;color:var(--green);background:var(--green-dim);border:1px solid rgba(76,175,125,0.22);border-radius:999px;padding:3px 8px;font-size:10px;margin-left:6px;font-family:'DM Sans',sans-serif;font-weight:600}
+.compare-small{font-size:11px;color:var(--text-hint);line-height:1.5}
+.compare-bars{display:flex;flex-direction:column;gap:6px;min-width:180px}
+.compare-bar-row{display:flex;align-items:center;gap:8px}
+.compare-bar-label{width:70px;font-size:10px;color:var(--text-hint)}
+.compare-bar-track{flex:1;height:5px;background:var(--field);border-radius:99px;overflow:hidden}
+.compare-bar-fill{height:100%;background:var(--accent);border-radius:99px}
+.compare-bar-score{width:24px;text-align:right;font-size:10px;color:var(--text-hint)}
 
 @media(max-width:1100px){
   .hero-grid{grid-template-columns:1fr 320px}
@@ -297,7 +331,17 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
   .tech-value{font-size:19px;}
 
   .photo-grid{grid-template-columns:repeat(3,1fr);gap:18px;}
+  .loaded-panel{padding:28px;border-radius:20px;margin-top:34px;}
+  .loaded-panel-title{font-size:14px;}
+  .loaded-panel-sub{font-size:17px;}
+  .loaded-name{font-size:18px;}
+  .loaded-meta{font-size:14px;}
+  .loaded-mini-btn,.compare-btn{font-size:15px;padding:8px 12px;}
+  .compare-table th{font-size:14px;}
+  .compare-table td{font-size:18px;padding:18px 20px;}
+  .compare-score{font-size:42px;}
 }
+
 
 @media (min-width:1600px){
   .section{max-width:1780px;padding-left:84px;padding-right:84px;}
@@ -365,7 +409,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
       <strong>Privacy by design:</strong> Memmola Labs Viewer funziona nel browser. Le valutazioni .immobit e .autobit restano sul dispositivo dell'utente.
     </div>
 
-    <input type="file" id="fileInput" accept=".immobit,.autobit,.json" style="display:none">
+    <input type="file" id="fileInput" accept=".immobit,.autobit,.json" multiple style="display:none">
   </div>
 </div>
 
@@ -377,7 +421,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
     </div>
     <div class="tb-nav" id="tabNav"></div>
     <div style="display:flex;align-items:center;gap:8px">
-      <button class="tb-close" id="newBtn" style="color:var(--gold);border-color:rgba(201,168,76,0.3)">+ Nuova valutazione</button>
+      <button class="tb-close" id="newBtn" style="color:var(--gold);border-color:rgba(201,168,76,0.3)">+ Aggiungi valutazione</button>
       <button class="tb-close" id="closeBtn">✕ Chiudi</button>
     </div>
   </div>
@@ -522,6 +566,7 @@ function renderImmobit(v){
   document.title='ImmoBit – '+( v.nome||'Valutazione');
 
   const tabs=[{id:'panoramica',label:'Panoramica'},{id:'dettagli',label:'Dettagli'},{id:'costi',label:'Costi'},{id:'note',label:'Note'},{id:'foto',label:'Foto'}];
+  if(getComparableItems('immobit').length >= 2) tabs.push({id:'confronta',label:'Confronta'});
   buildTabs(tabs,'panoramica');
 
   
@@ -568,7 +613,8 @@ function renderImmobit(v){
 <div class="verdict-footer">
   <div class="vf-label">✦ Verdetto finale</div>
   <div class="vf-text" style="color:${color}">${v.nome||'Immobile'} — ${verdLabel}</div>
-</div>`;
+</div>
+${buildLoadedPanel('immobit')}`;
   addSection('panoramica',panoHTML);
 
   
@@ -677,6 +723,7 @@ function renderImmobit(v){
 
   
   addSection('foto',buildFotoSection(v.fotoPaths, v._fotoUrls));
+  if(getComparableItems('immobit').length >= 2) addSection('confronta', buildCompareSection('immobit'));
 
   setTimeout(()=>{
     document.querySelectorAll('.bar-fill').forEach(el=>{ el.style.width=el.dataset.w+'%'; });
@@ -696,6 +743,7 @@ function renderAutobit(v){
   document.title='AutoBit – '+displayName;
 
   const tabs=[{id:'panoramica',label:'Panoramica'},{id:'tecnica',label:'Tecnica'},{id:'dettagli',label:'Dettagli'},{id:'documentazione',label:'Documenti'},{id:'commerciale',label:'Commerciale'},{id:'note',label:'Note'},{id:'foto',label:'Foto'}];
+  if(getComparableItems('autobit').length >= 2) tabs.push({id:'confronta',label:'Confronta'});
   buildTabs(tabs,'panoramica');
 
   const verdLabel=AUTO.verdicts[score.verdict]??score.verdict;
@@ -740,7 +788,8 @@ function renderAutobit(v){
 <div class="verdict-footer" style="background:${color}10;border-color:${color}30">
   <div class="vf-label">✦ Verdetto finale</div>
   <div class="vf-text" style="color:${color}">${displayName} — ${verdLabel}</div>
-</div>`;
+</div>
+${buildLoadedPanel('autobit')}`;
   addSection('panoramica',panoHTML);
 
   
@@ -858,6 +907,7 @@ function renderAutobit(v){
 
   // FOTO
   addSection('foto',buildFotoSection(v.fotoPaths, v._fotoUrls));
+  if(getComparableItems('autobit').length >= 2) addSection('confronta', buildCompareSection('autobit'));
 
   setTimeout(()=>{
     document.querySelectorAll('.bar-fill').forEach(el=>{ el.style.width=el.dataset.w+'%'; });
@@ -917,6 +967,209 @@ function showSection(name,btn){
 
 
 
+// ── MULTI FILE / CONFRONTO ─────────────────────────────────────────────────
+let loadedEvaluations = [];
+let currentEvaluationId = null;
+
+function escapeHtml(value){
+  return String(value ?? '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+}
+
+function normalizeApp(data){
+  if(!data) return null;
+  if(data.app === 'immobit' || data.app === 'autobit') return data.app;
+  if(data.tipoImmobile !== undefined || data.quartiere !== undefined){ data.app = 'immobit'; return 'immobit'; }
+  if(data.marca !== undefined || data.tipoVeicolo !== undefined){ data.app = 'autobit'; return 'autobit'; }
+  return null;
+}
+
+function getEvaluationTitle(data){
+  const app = normalizeApp(data);
+  if(app === 'immobit') return data.nome || data.indirizzo || 'Immobile senza nome';
+  if(app === 'autobit') return data.nome || [data.marca, data.modello].filter(Boolean).join(' ') || data.targa || 'Veicolo senza nome';
+  return 'Valutazione';
+}
+
+function getScoreForData(data){
+  const app = normalizeApp(data);
+  if(app === 'immobit') return calcScoreImmo(data);
+  if(app === 'autobit') return calcScoreAuto(data);
+  return null;
+}
+
+function addAndLoadEvaluation(data, fileName){
+  const app = normalizeApp(data);
+  if(!app){ alert('Formato file non riconosciuto.'); return; }
+  const id = 'ev_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,8);
+  loadedEvaluations.push({ id, app, data, fileName: fileName || getEvaluationTitle(data) });
+  currentEvaluationId = id;
+  loadData(data);
+}
+
+function getComparableItems(app){
+  return loadedEvaluations.filter(item => item.app === app);
+}
+
+function viewLoadedEvaluation(id){
+  const item = loadedEvaluations.find(x => x.id === id);
+  if(!item) return;
+  currentEvaluationId = id;
+  loadData(item.data);
+}
+
+function removeLoadedEvaluation(id){
+  const item = loadedEvaluations.find(x => x.id === id);
+  if(item && item.data && item.data._fotoUrls){
+    Object.values(item.data._fotoUrls).forEach(url => { try{ URL.revokeObjectURL(url); }catch{} });
+  }
+  loadedEvaluations = loadedEvaluations.filter(x => x.id !== id);
+
+  if(!loadedEvaluations.length){
+    resetToHome(true);
+    return;
+  }
+
+  if(currentEvaluationId === id){
+    const next = loadedEvaluations[loadedEvaluations.length - 1];
+    currentEvaluationId = next.id;
+    loadData(next.data);
+  } else {
+    const current = loadedEvaluations.find(x => x.id === currentEvaluationId) || loadedEvaluations[loadedEvaluations.length - 1];
+    loadData(current.data);
+  }
+}
+
+function openCompare(app){
+  const btn = Array.from(document.querySelectorAll('.nav-btn')).find(b => b.textContent.trim() === 'Confronta');
+  showSection('confronta', btn || null);
+}
+
+function buildLoadedPanel(app){
+  const items = getComparableItems(app);
+  if(!items.length) return '';
+  const currentAppLabel = app === 'immobit' ? 'immobili' : 'veicoli';
+  const canCompare = items.length >= 2;
+  let html = `<div class="loaded-panel">
+    <div class="loaded-panel-head">
+      <div>
+        <div class="loaded-panel-title">Valutazioni caricate</div>
+        <div class="loaded-panel-sub">Hai caricato ${items.length} ${currentAppLabel}. ${canCompare ? 'Puoi confrontarle quando vuoi.' : 'Aggiungi almeno un altro file per attivare il confronto.'}</div>
+      </div>
+      ${canCompare ? `<button class="compare-btn" onclick="openCompare('${app}')">Avvia confronto</button>` : ''}
+    </div>
+    <div class="loaded-list">`;
+
+  items.forEach(item => {
+    const score = getScoreForData(item.data);
+    const title = escapeHtml(getEvaluationTitle(item.data));
+    const fileName = escapeHtml(item.fileName || 'File caricato');
+    const active = item.id === currentEvaluationId ? ' · visualizzata ora' : '';
+    html += `<div class="loaded-item">
+      <div class="loaded-item-main">
+        <span class="loaded-dot"></span>
+        <div style="min-width:0">
+          <div class="loaded-name">${title}</div>
+          <div class="loaded-meta">${Math.round(score?.total ?? 0) || '—'}/100 · ${fileName}${active}</div>
+        </div>
+      </div>
+      <div class="loaded-actions">
+        <button class="loaded-mini-btn" onclick="viewLoadedEvaluation('${item.id}')">Apri</button>
+        <button class="loaded-mini-btn" onclick="removeLoadedEvaluation('${item.id}')">✕</button>
+      </div>
+    </div>`;
+  });
+
+  html += '</div></div>';
+  return html;
+}
+
+function compareValue(value, fallback='—'){
+  if(value === null || value === undefined || value === '') return fallback;
+  return escapeHtml(value);
+}
+
+function buildCompareBars(score, app){
+  if(!score || !score.cats) return '—';
+  const dict = app === 'immobit' ? IMMO.cats : AUTO.cats;
+  let html = '<div class="compare-bars">';
+  score.cats.forEach(c => {
+    const label = dict[c.label] || c.label;
+    const sc = c.score != null ? Math.round(c.score) : 0;
+    html += `<div class="compare-bar-row"><span class="compare-bar-label">${escapeHtml(label.split(' ')[0])}</span><div class="compare-bar-track"><div class="compare-bar-fill" style="width:${sc}%"></div></div><span class="compare-bar-score">${c.score != null ? sc : '—'}</span></div>`;
+  });
+  html += '</div>';
+  return html;
+}
+
+function buildCompareSection(app){
+  const items = getComparableItems(app);
+  if(items.length < 2){
+    return '<div class="note-box">Carica almeno due valutazioni per usare il confronto.</div>';
+  }
+
+  const rows = items.map(item => {
+    const score = getScoreForData(item.data);
+    return { item, score, total: score?.total ?? null };
+  });
+  const validScores = rows.map(r => r.total).filter(v => v != null);
+  const bestScore = validScores.length ? Math.max(...validScores) : null;
+
+  let html = `<div class="full-card" style="max-width:none">
+    <div class="sec-heading">Confronta valutazioni</div>
+    <div class="note-box" style="margin-bottom:18px">Confronto generato localmente dal browser. Nessun file viene caricato o inviato online.</div>
+    <div class="compare-wrap"><table class="compare-table"><thead><tr>`;
+
+  if(app === 'immobit'){
+    html += '<th>Immobile</th><th>Punteggio</th><th>Prezzo</th><th>m²</th><th>€/m²</th><th>Stanze</th><th>Bagni</th><th>Categorie</th><th></th>';
+  } else {
+    html += '<th>Veicolo</th><th>Punteggio</th><th>Prezzo</th><th>KM</th><th>Anno</th><th>Alimentazione</th><th>Categorie</th><th></th>';
+  }
+
+  html += '</tr></thead><tbody>';
+
+  rows.forEach(({item, score, total}) => {
+    const data = item.data;
+    const title = escapeHtml(getEvaluationTitle(data));
+    const totalRounded = total != null ? Math.round(total) : '—';
+    const best = bestScore != null && total === bestScore ? '<span class="compare-best">Migliore</span>' : '';
+
+    if(app === 'immobit'){
+      const prezzo = data.prezzo ? fmtPrice(data.prezzo) : '—';
+      const mq = data.metriQuadri ? Number(data.metriQuadri) : null;
+      const prezzoMq = data.prezzo && mq ? fmtPrice(data.prezzo / mq) + '/m²' : '—';
+      html += `<tr>
+        <td><div class="compare-name">${title}</div><div class="compare-small">${compareValue(data.tipoImmobile)} · ${compareValue(data.condizioneContrattuale)}</div></td>
+        <td><span class="compare-score">${totalRounded}</span>${best}</td>
+        <td>${prezzo}</td>
+        <td>${mq ? mq + ' m²' : '—'}</td>
+        <td>${prezzoMq}</td>
+        <td>${compareValue(data.numeroStanze)}</td>
+        <td>${compareValue(data.numeroBagni)}</td>
+        <td>${buildCompareBars(score, app)}</td>
+        <td><button class="loaded-mini-btn" onclick="viewLoadedEvaluation('${item.id}')">Apri</button></td>
+      </tr>`;
+    } else {
+      const prezzo = data.prezzoVendita ? fmtPrice(data.prezzoVendita) : (data.prezzoAffittoMensile ? fmtPrice(data.prezzoAffittoMensile) + '/mese' : '—');
+      const anno = data.annoImmatricolazione ? fmtYear(data.annoImmatricolazione) : '—';
+      const alimentazione = data.alimentazione != null ? (AUTO.alimentazione[data.alimentazione] || '—') : '—';
+      html += `<tr>
+        <td><div class="compare-name">${title}</div><div class="compare-small">${compareValue(data.marca)} ${compareValue(data.modello)}</div></td>
+        <td><span class="compare-score">${totalRounded}</span>${best}</td>
+        <td>${prezzo}</td>
+        <td>${data.kmPercorsi != null ? fmtNum(data.kmPercorsi) + ' km' : '—'}</td>
+        <td>${anno}</td>
+        <td>${alimentazione}</td>
+        <td>${buildCompareBars(score, app)}</td>
+        <td><button class="loaded-mini-btn" onclick="viewLoadedEvaluation('${item.id}')">Apri</button></td>
+      </tr>`;
+    }
+  });
+
+  html += '</tbody></table></div></div>';
+  return html;
+}
+
+
 const DEMO_IMMO = {app:'immobit',version:'1.0',nome:'Via Roma 12, Milano',tipoImmobile:'appartamento',condizioneContrattuale:'affitto',tipoContratto:'agenzia',prezzo:1400,piano:'3',arredamento:'semiArredata',metriQuadri:85,numeroStanze:3,numeroBagni:1,createdAt:'2026-03-24T10:00:00Z',quartiere:'ottimo',illuminazionePubblica:'buono',collegamenti:'ottimo',zona:['centrale','via_principale'],parcheggio:['posto_coperto'],ingressoIndipendente:false,ingresso:'buono',scaleComuni:'buono',ascensore:'ottimo',areeAdiacenti:'discreto',statoGenerale:'buono',mura:'buono',pavimentazione:'ottimo',soffitti:'buono',finestre:'buono',porte:'discreto',balconi:'ottimo',impiantoElettrico:'ottimo',impiantoIdraulico:'buono',caldaia:'buono',impiantoGas:'buono',condizionatore:'assente',reteTv:'buono',reteMobile:'ottimo',esposizioneLuce:'ottimo',vistaEsterna:'buono',privacy:'discreto',animaliConsentiti:true,cedolareSecca:false,durataContratto:'4+4 anni',abitabilita:1,ipoteche:false,provvigioneAgenzia:'1400',speseCondominiali:'80',noteStato:'Recentemente ristrutturato nei bagni.',noteComfort:'Buona esposizione solare al mattino.',valutazioneGenerale:'Ottimo appartamento in zona centrale, mancanza del condizionatore è l\'unico punto debole.',fotoPaths:[]};
 
 const DEMO_AUTO = {app:'autobit',version:'1.0',nome:'AB123CD',marca:'BMW',modello:'Serie 3',tipoVeicolo:0,condizione:1,alimentazione:1,coloreVeicolo:'Grigio metallizzato',targa:'AB123CD',kmPercorsi:85000,annoImmatricolazione:'2018-06-15T00:00:00Z',cilindrata:1995,classeEuro:6,tipoCambio:0,motoreGenerale:3,impiantoElettrico:4,impiantoIdraulico:3,freniAnteriori:3,freniPosteriori:3,sospensioni:3,pneumatici:2,convergenza:3,distribuzione:3,carrozzeria:3,vernice:3,coloreStato:4,ruggine:4,cristalli:4,alzacristalli:4,specchiRetrovisori:3,luciSegnalatori:4,ariaCondizionata:3,clacson:4,antifurto:3,numChiavi:2,autoradio:3,antenna:3,sedili:3,interniGenerale:3,incidenti:false,fermoAmministrativo:false,finanziamentiInCorso:false,libroServizio:true,documentazioneCompleta:true,numeroProprietari:0,tipoVendita:0,ultimaRevisione:'2025-04-10T00:00:00Z',ultimoTagliando:'2025-01-15T00:00:00Z',prezzoVendita:18500,metodoPagamento:'Contanti o bonifico',haRuotaScorta:true,haCrik:true,haTriangolo:true,allestimentiEsterni:[],resocontoGenerale:'Veicolo in buone condizioni generali. Pneumatici da sostituire a breve. Libretto di servizio completo.',fotoPaths:[]};
@@ -924,97 +1177,131 @@ const DEMO_AUTO = {app:'autobit',version:'1.0',nome:'AB123CD',marca:'BMW',modell
 
 
 function loadData(data){
+  const app = normalizeApp(data);
+  if(!app){ alert('Formato file non riconosciuto.'); return; }
+
   document.getElementById('dropZone').style.display='none';
   document.getElementById('presentation').style.display='block';
   document.getElementById('sectionsContainer').innerHTML='';
   document.getElementById('tabNav').innerHTML='';
   if(radarInst){radarInst.destroy();radarInst=null;}
-  if(data.app==='immobit') renderImmobit(data);
-  else if(data.app==='autobit') renderAutobit(data);
-  else if(data.tipoImmobile!==undefined||data.quartiere!==undefined){ data.app='immobit'; renderImmobit(data); }
-  else if(data.marca!==undefined||data.tipoVeicolo!==undefined){ data.app='autobit'; renderAutobit(data); }
-  else alert('Formato file non riconosciuto.');
+
+  if(app==='immobit') renderImmobit(data);
+  else if(app==='autobit') renderAutobit(data);
 }
 
 
 
-async function loadFileFromBlob(file){
+async function readEvaluationFromBlob(file){
   const name = file.name.toLowerCase();
   const isZip = name.endsWith('.immobit') || name.endsWith('.autobit') || name.endsWith('.zip');
 
   if(isZip){
-    try{
-      const zip = await JSZip.loadAsync(file);
+    const zip = await JSZip.loadAsync(file);
 
-      
-      let meta = {};
-      const metaFile = zip.file('meta.json');
-      if(metaFile){ try{ meta = JSON.parse(await metaFile.async('text')); }catch{} }
+    let meta = {};
+    const metaFile = zip.file('meta.json');
+    if(metaFile){ try{ meta = JSON.parse(await metaFile.async('text')); }catch{} }
 
-      
-      const dataFile = zip.file('data.json');
-      if(!dataFile){ alert('File non valido: manca data.json'); return; }
-      const data = JSON.parse(await dataFile.async('text'));
+    const dataFile = zip.file('data.json');
+    if(!dataFile) throw new Error('File non valido: manca data.json');
+    const data = JSON.parse(await dataFile.async('text'));
 
-      
-      if(meta.app) data.app = meta.app;
+    if(meta.app) data.app = meta.app;
 
-      
-      const fotoUrls = {};
-      const fotoFolder = zip.folder('foto');
-      if(fotoFolder){
-        const fotoFiles = [];
-        fotoFolder.forEach((relPath, zipEntry) => { if(!zipEntry.dir) fotoFiles.push({relPath, zipEntry}); });
-        fotoFiles.sort((a,b) => a.relPath.localeCompare(b.relPath));
-        for(const {relPath, zipEntry} of fotoFiles){
-          const blob = await zipEntry.async('blob');
-          const url = URL.createObjectURL(blob);
-          fotoUrls['foto/'+relPath] = url;
-        }
+    const fotoUrls = {};
+    const fotoFolder = zip.folder('foto');
+    if(fotoFolder){
+      const fotoFiles = [];
+      fotoFolder.forEach((relPath, zipEntry) => { if(!zipEntry.dir) fotoFiles.push({relPath, zipEntry}); });
+      fotoFiles.sort((a,b) => a.relPath.localeCompare(b.relPath));
+      for(const {relPath, zipEntry} of fotoFiles){
+        const blob = await zipEntry.async('blob');
+        const url = URL.createObjectURL(blob);
+        fotoUrls['foto/'+relPath] = url;
       }
-
-      data._fotoUrls = fotoUrls;
-      loadData(data);
-    } catch(e){
-      alert('Errore apertura file: '+e.message);
     }
-  } else {
-    
-    const reader = new FileReader();
-    reader.onload = ev => { try{ loadData(JSON.parse(ev.target.result)); }catch{ alert('File non valido o corrotto.'); } };
-    reader.readAsText(file);
+
+    data._fotoUrls = fotoUrls;
+    return data;
+  }
+
+  const text = await file.text();
+  return JSON.parse(text);
+}
+
+async function loadFileFromBlob(file){
+  try{
+    const data = await readEvaluationFromBlob(file);
+    addAndLoadEvaluation(data, file.name);
+  }catch(e){
+    alert('Errore apertura file: ' + (e && e.message ? e.message : 'file non valido o corrotto.'));
+  }
+}
+
+async function loadFiles(fileList){
+  const files = Array.from(fileList || []).filter(Boolean);
+  if(!files.length) return;
+
+  let lastData = null;
+  let lastId = null;
+
+  for(const file of files){
+    try{
+      const data = await readEvaluationFromBlob(file);
+      const app = normalizeApp(data);
+      if(!app){ alert(file.name + ': formato file non riconosciuto.'); continue; }
+      const id = 'ev_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,8);
+      loadedEvaluations.push({ id, app, data, fileName: file.name });
+      lastData = data;
+      lastId = id;
+    }catch(e){
+      alert(file.name + ': ' + (e && e.message ? e.message : 'file non valido o corrotto.'));
+    }
+  }
+
+  if(lastData){
+    currentEvaluationId = lastId;
+    loadData(lastData);
   }
 }
 
 function loadFile(e){
-  const file = e.target.files[0];
-  if(!file) return;
-  loadFileFromBlob(file);
+  loadFiles(e.target.files);
   e.target.value = '';
 }
 
-function resetToHome(){
+function resetToHome(clearLoaded=false){
   document.getElementById('presentation').style.display='none';
   document.getElementById('dropZone').style.display='flex';
   document.getElementById('sectionsContainer').innerHTML='';
   document.getElementById('tabNav').innerHTML='';
   document.getElementById('fileInput').value='';
   if(radarInst){radarInst.destroy();radarInst=null;}
+
+  if(clearLoaded){
+    loadedEvaluations.forEach(item => {
+      if(item.data && item.data._fotoUrls){
+        Object.values(item.data._fotoUrls).forEach(url => { try{ URL.revokeObjectURL(url); }catch{} });
+      }
+    });
+    loadedEvaluations = [];
+    currentEvaluationId = null;
+  }
 }
 
 document.getElementById('loadBtn').onclick=()=>document.getElementById('fileInput').click();
 document.getElementById('fileInput').onchange=loadFile;
-document.getElementById('demoImmo').onclick=()=>loadData(JSON.parse(JSON.stringify(DEMO_IMMO)));
-document.getElementById('demoAuto').onclick=()=>loadData(JSON.parse(JSON.stringify(DEMO_AUTO)));
-document.getElementById('closeBtn').onclick=resetToHome;
-document.getElementById('newBtn').onclick=()=>{ resetToHome(); setTimeout(()=>document.getElementById('fileInput').click(),100); };
+document.getElementById('demoImmo').onclick=()=>addAndLoadEvaluation(JSON.parse(JSON.stringify(DEMO_IMMO)), 'Demo ImmoBit');
+document.getElementById('demoAuto').onclick=()=>addAndLoadEvaluation(JSON.parse(JSON.stringify(DEMO_AUTO)), 'Demo AutoBit');
+document.getElementById('closeBtn').onclick=()=>resetToHome(true);
+document.getElementById('newBtn').onclick=()=>document.getElementById('fileInput').click();
 
 const dz=document.getElementById('dropZone');
 dz.addEventListener('dragover',e=>e.preventDefault());
 dz.addEventListener('drop',e=>{
   e.preventDefault();
-  const file=e.dataTransfer.files[0];
-  if(file) loadFileFromBlob(file);
+  loadFiles(e.dataTransfer.files);
 });
 
 let deferredInstallPrompt = null;
@@ -1045,7 +1332,7 @@ window.addEventListener('appinstalled', () => {
 
 if('serviceWorker' in navigator){
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
+    navigator.serviceWorker.register('./service-worker.js?v=4').catch(()=>{});
   });
 }
 </script>
