@@ -1,0 +1,44 @@
+Memmola Labs Viewer
+Copyright (c) 2026 Alessandro Memmola
+All Rights Reserved
+
+This software, including all source code, assets, documentation,
+design elements, and related materials, is the exclusive property
+of Alessandro Memmola and Memmola Labs.
+
+Permission is granted to use the official Memmola Labs Viewer
+application through its official distribution channels.
+
+You may NOT:
+
+- Copy the source code in whole or in part.
+- Modify the source code.
+- Create derivative works.
+- Create public or private forks for redistribution.
+- Redistribute the software.
+- Rebrand the software.
+- Sell, sublicense, rent, or commercialize the software.
+- Remove copyright notices or branding.
+- Use the names "Memmola Labs", "ImmoBit", "AutoBit",
+  or "Memmola Labs Viewer" without prior written permission.
+
+The source code may be visible for transparency,
+educational review, or security inspection purposes only.
+Visibility of the source code does not grant any rights
+to copy, modify, distribute, or commercialize the software.
+
+This software is provided "AS IS", without warranty of any kind,
+express or implied, including but not limited to warranties of
+merchantability, fitness for a particular purpose, and noninfringement.
+
+In no event shall Alessandro Memmola or Memmola Labs be liable
+for any claim, damages, or other liability arising from the use
+of the software.
+
+For permissions beyond the scope of this license:
+
+Website: https://memmolalabs.com
+GitHub: https://github.com/alessandromemmola
+X: https://x.com/MemmolaLabs
+
+END OF TERMS
