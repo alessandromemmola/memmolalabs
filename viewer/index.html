@@ -166,6 +166,44 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .full-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:14px}
 .tag{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:500;margin-right:4px}
 
+/* AUTOBIT VISUAL SCHEMA */
+.auto-schema-wrap{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,.8fr);gap:18px;align-items:start}
+.auto-schema-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;overflow:hidden}
+.auto-schema-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}
+.auto-schema-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--text);line-height:1.15}
+.auto-schema-sub{font-size:12px;color:var(--text-hint);line-height:1.6;margin-top:5px}
+.auto-schema-svg{width:100%;height:auto;display:block;filter:drop-shadow(0 18px 28px rgba(0,0,0,.32))}
+/* zone cliccabili */
+.auto-part{transition:opacity .18s,filter .18s;cursor:pointer}
+.auto-part:hover{filter:brightness(1.22) drop-shadow(0 0 8px currentColor)}
+.auto-part.active-part{filter:brightness(1.35) drop-shadow(0 0 14px currentColor)}
+/* toggle vista */
+.vista-toggle{display:flex;gap:6px;margin-bottom:14px}
+.vista-btn{background:var(--field);border:1px solid var(--border);color:var(--text-hint);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;transition:all .15s}
+.vista-btn.active{background:rgba(74,95,212,0.15);border-color:rgba(74,95,212,0.5);color:#7A8FFF}
+/* popup zona */
+.schema-popup{position:absolute;bottom:20px;left:20px;background:#1a1918;border:1px solid rgba(74,95,212,0.4);border-radius:14px;padding:14px 16px;min-width:210px;max-width:270px;box-shadow:0 12px 40px rgba(0,0,0,.6);z-index:200;pointer-events:none;opacity:0;transition:opacity .18s;transform:translateY(6px)}
+.schema-popup.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+.schema-popup-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.schema-popup-score{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;line-height:1}
+.schema-popup-label{font-size:11px;font-weight:600;margin-top:2px}
+.schema-popup-items{margin-top:10px;display:flex;flex-direction:column;gap:4px}
+.schema-popup-item{display:flex;justify-content:space-between;font-size:11px;color:var(--text-sec);padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.schema-popup-item:last-child{border-bottom:none}
+.schema-popup-close{position:absolute;top:8px;right:10px;background:none;border:none;color:var(--text-hint);cursor:pointer;font-size:14px;line-height:1}
+.schema-popup-wrap{position:relative}
+/* legenda */
+.schema-legend{display:flex;flex-direction:column;gap:8px}
+.schema-row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--field);border:1px solid var(--border);border-radius:12px;padding:10px 14px;cursor:pointer;transition:border-color .15s}
+.schema-row:hover{border-color:rgba(255,255,255,0.18)}
+.schema-row.active-row{border-color:rgba(74,95,212,0.5);background:rgba(74,95,212,0.06)}
+.schema-row-main{display:flex;align-items:center;gap:10px;min-width:0}
+.schema-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;box-shadow:0 0 10px currentColor}
+.schema-label{font-size:13px;color:var(--text);font-weight:600}
+.schema-score{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;line-height:1}
+.schema-note{font-size:12px;color:var(--text-sec);line-height:1.65;margin-top:12px;padding:10px 12px;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid var(--border)}
+@media(max-width:900px){.auto-schema-wrap{grid-template-columns:1fr}.auto-schema-title{font-size:22px}}
+
 
 /* LOADED EVALUATIONS / COMPARISON */
 .loaded-panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-top:20px}
@@ -766,6 +804,406 @@ ${buildLoadedPanel('immobit')}`;
 
 
 
+
+function buildAutoSchemaSection(score, v){
+  const cat = id => score.cats.find(c => c.label === id || c.id === id) || {score:null};
+  const colorFor = val => val==null?'#4B5563':val>=75?'#4CAF7D':val>=50?'#E8A838':'#E05252';
+  const labelFor = val => val==null?'Non valutato':val>=75?'Buone condizioni':val>=50?'Da controllare':'Criticità';
+  const pct = val => val==null?'—':Math.round(val);
+
+  const parts = {
+    motore:        cat('cat_motore').score,
+    carrozzeria:   cat('cat_carrozzeria').score,
+    impianti:      cat('cat_impianti').score,
+    documentazione:cat('cat_documentazione').score,
+    commerciale:   cat('cat_commerciale').score,
+  };
+
+  // Dettagli per popup — mappa campo → label leggibile
+  const popupDetails = {
+    motore: [
+      ['Motore generale',      v?.motoreGenerale],
+      ['Impianto elettrico',   v?.impiantoElettrico],
+      ['Impianto idraulico',   v?.impiantoIdraulico],
+      ['Freni anteriori',      v?.freniAnteriori],
+      ['Freni posteriori',     v?.freniPosteriori],
+      ['Sospensioni',          v?.sospensioni],
+      ['Pneumatici',           v?.pneumatici],
+      ['Distribuzione',        v?.distribuzione],
+    ],
+    carrozzeria: [
+      ['Carrozzeria',          v?.carrozzeria],
+      ['Vernice',              v?.vernice],
+      ['Ruggine',              v?.ruggine],
+      ['Cristalli',            v?.cristalli],
+      ['Alzacristalli',        v?.alzacristalli],
+      ['Specchi',              v?.specchiRetrovisori],
+    ],
+    impianti: [
+      ['Luci e segnalatori',   v?.luciSegnalatori],
+      ['Aria condizionata',    v?.ariaCondizionata],
+      ['Autoradio',            v?.autoradio],
+      ['Sedili',               v?.sedili],
+      ['Interni',              v?.interniGenerale],
+      ['Antifurto',            v?.antifurto],
+    ],
+    documentazione: [
+      ['Incidenti',            v?.incidenti!=null?(v.incidenti?'Sì':'No'):null],
+      ['Fermo amministrativo', v?.fermoAmministrativo!=null?(v.fermoAmministrativo?'Sì':'No'):null],
+      ['Finanziamenti',        v?.finanziamentiInCorso!=null?(v.finanziamentiInCorso?'Sì':'No'):null],
+      ['Libro servizio',       v?.libroServizio!=null?(v.libroServizio?'Presente':'Assente'):null],
+      ['Doc. completa',        v?.documentazioneCompleta!=null?(v.documentazioneCompleta?'Sì':'No'):null],
+    ],
+    commerciale: [
+      ['Prezzo vendita',       v?.prezzoVendita?fmtPrice(v.prezzoVendita):null],
+      ['Affitto mensile',      v?.prezzoAffittoMensile?fmtPrice(v.prezzoAffittoMensile):null],
+      ['Metodo pagamento',     v?.metodoPagamento],
+    ],
+  };
+
+  const ratingStr = idx => idx==null?'—':['Assente','Cattivo','Discreto','Buono','Ottimo'][idx]??'—';
+
+  function popupItemsHTML(key){
+    const items = popupDetails[key] || [];
+    return items.filter(([,val])=>val!=null).map(([lbl,val])=>{
+      const display = typeof val==='number' ? ratingStr(val) : val;
+      return `<div class="schema-popup-item"><span>${lbl}</span><span style="color:var(--text);font-weight:500">${display}</span></div>`;
+    }).join('') || '<div class="schema-popup-item"><span style="color:var(--text-hint)">Nessun dato disponibile</span></div>';
+  }
+
+  // SVG ESTERNA — berlina di qualità, senza icone volanti
+  const svgEsterna = `
+<svg class="auto-schema-svg" id="svgEsterna" viewBox="0 0 960 440" role="img" aria-label="Vista esterna veicolo">
+  <defs>
+    <radialGradient id="shadowGrad" cx="50%" cy="100%" r="50%">
+      <stop offset="0" stop-color="rgba(0,0,0,0.5)"/>
+      <stop offset="1" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+    <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.08)"/>
+      <stop offset="1" stop-color="rgba(0,0,0,0.12)"/>
+    </linearGradient>
+    <linearGradient id="glassGrad" x1="0" y1="0" x2="0.5" y2="1">
+      <stop offset="0" stop-color="rgba(100,130,200,0.55)"/>
+      <stop offset="1" stop-color="rgba(20,30,70,0.7)"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ombra pavimento -->
+  <ellipse cx="480" cy="372" rx="360" ry="22" fill="url(#shadowGrad)" opacity="0.7"/>
+
+  <!-- CARROZZERIA — corpo principale berlina -->
+  <g class="auto-part" id="part-carrozzeria" data-key="carrozzeria"
+     style="color:${colorFor(parts.carrozzeria)}">
+    <!-- fiancata bassa -->
+    <path fill="${colorFor(parts.carrozzeria)}" fill-opacity="0.82"
+      d="M148 290 C148 290 155 258 172 248 L196 240 L204 230
+         L740 230 L760 238 L784 250 C804 258 816 275 820 290
+         L820 320 L148 320 Z"/>
+    <!-- tetto e montanti -->
+    <path fill="${colorFor(parts.carrozzeria)}" fill-opacity="0.75"
+      d="M310 160 C330 138 365 124 410 120 L570 120
+         C612 120 645 136 668 162 L700 200 L700 230
+         L260 230 L260 200 Z"/>
+    <!-- overlay lucido -->
+    <path fill="url(#bodyGrad)" fill-opacity="0.4"
+      d="M148 290 C148 290 155 258 172 248 L196 240 L204 230
+         L740 230 L760 238 L784 250 C804 258 816 275 820 290
+         L820 300 L148 300 Z"/>
+    <!-- linea stile fiancata -->
+    <path fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"
+      d="M200 270 L750 270"/>
+    <!-- bordo tetto -->
+    <path fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"
+      d="M310 160 C330 138 365 124 410 120 L570 120
+         C612 120 645 136 668 162"/>
+  </g>
+
+  <!-- MOTORE — cofano anteriore -->
+  <g class="auto-part" id="part-motore" data-key="motore"
+     style="color:${colorFor(parts.motore)}">
+    <path fill="${colorFor(parts.motore)}" fill-opacity="0.88"
+      d="M148 290 L148 320 L78 320 L64 308 L60 280
+         C60 260 72 244 92 238 L140 230 L160 230
+         L172 248 C160 254 150 270 148 290 Z"/>
+    <!-- griglia anteriore -->
+    <rect x="62" y="270" width="52" height="32" rx="4"
+          fill="rgba(0,0,0,0.4)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <line x1="68" y1="274" x2="68" y2="298" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <line x1="76" y1="274" x2="76" y2="298" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <line x1="84" y1="274" x2="84" y2="298" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <line x1="92" y1="274" x2="92" y2="298" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <line x1="100" y1="274" x2="100" y2="298" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <line x1="108" y1="274" x2="108" y2="298" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <!-- faro anteriore -->
+    <path fill="rgba(255,240,180,0.22)" stroke="rgba(255,240,180,0.5)" stroke-width="1.5"
+      d="M64 260 L88 256 L90 270 L64 272 Z" rx="3"/>
+  </g>
+
+  <!-- IMPIANTI E INTERNI — finestratura + pilastri -->
+  <g class="auto-part" id="part-impianti" data-key="impianti"
+     style="color:${colorFor(parts.impianti)}">
+    <!-- lunotto anteriore -->
+    <path fill="url(#glassGrad)" fill-opacity="0.92" stroke="${colorFor(parts.impianti)}" stroke-width="1.5"
+      d="M312 200 L338 166 C355 145 380 132 412 128 L450 126 L450 200 Z"/>
+    <!-- finestrino anteriore -->
+    <path fill="url(#glassGrad)" fill-opacity="0.85" stroke="${colorFor(parts.impianti)}" stroke-width="1.5"
+      d="M452 126 L452 200 L564 200 L564 126 Z"/>
+    <!-- finestrino posteriore -->
+    <path fill="url(#glassGrad)" fill-opacity="0.85" stroke="${colorFor(parts.impianti)}" stroke-width="1.5"
+      d="M566 126 L566 200 L620 200 L614 140 C598 126 582 120 566 126 Z"/>
+    <!-- lunotto posteriore -->
+    <path fill="url(#glassGrad)" fill-opacity="0.75" stroke="${colorFor(parts.impianti)}" stroke-width="1.5"
+      d="M622 200 L618 142 C640 138 662 150 672 172 L688 200 Z"/>
+    <!-- riflesso vetro -->
+    <path fill="rgba(255,255,255,0.06)"
+      d="M322 196 L346 164 L360 158 L360 196 Z"/>
+    <!-- pilastro B -->
+    <rect x="448" y="126" width="6" height="74"
+          fill="${colorFor(parts.impianti)}" fill-opacity="0.6"/>
+    <!-- pilastro C -->
+    <rect x="562" y="126" width="6" height="74"
+          fill="${colorFor(parts.impianti)}" fill-opacity="0.6"/>
+  </g>
+
+  <!-- PORTELLONE / BAULE — posteriore -->
+  <g class="auto-part" id="part-portellone" data-key="carrozzeria"
+     style="color:${colorFor(parts.carrozzeria)}">
+    <path fill="${colorFor(parts.carrozzeria)}" fill-opacity="0.7"
+      d="M820 290 L820 320 L882 320 L892 306 L896 282
+         C896 260 884 244 864 238 L816 230 L760 230
+         L784 250 C804 258 816 275 820 290 Z"/>
+    <!-- faro posteriore -->
+    <path fill="rgba(255,80,80,0.28)" stroke="rgba(255,80,80,0.6)" stroke-width="1.5"
+      d="M868 256 L890 260 L892 272 L868 270 Z"/>
+  </g>
+
+  <!-- RUOTA ANT -->
+  <g>
+    <circle cx="228" cy="322" r="56" fill="#0d0d0d"/>
+    <circle cx="228" cy="322" r="48" fill="#161820" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <circle cx="228" cy="322" r="32" fill="#1e2030"/>
+    <!-- raggi -->
+    <line x1="228" y1="290" x2="228" y2="354" stroke="rgba(255,255,255,0.12)" stroke-width="3"/>
+    <line x1="196" y1="322" x2="260" y2="322" stroke="rgba(255,255,255,0.12)" stroke-width="3"/>
+    <line x1="205" y1="299" x2="251" y2="345" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+    <line x1="251" y1="299" x2="205" y2="345" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+    <circle cx="228" cy="322" r="10" fill="#2a2d3e"/>
+  </g>
+
+  <!-- RUOTA POST -->
+  <g>
+    <circle cx="718" cy="322" r="56" fill="#0d0d0d"/>
+    <circle cx="718" cy="322" r="48" fill="#161820" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <circle cx="718" cy="322" r="32" fill="#1e2030"/>
+    <line x1="718" y1="290" x2="718" y2="354" stroke="rgba(255,255,255,0.12)" stroke-width="3"/>
+    <line x1="686" y1="322" x2="750" y2="322" stroke="rgba(255,255,255,0.12)" stroke-width="3"/>
+    <line x1="695" y1="299" x2="741" y2="345" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+    <line x1="741" y1="299" x2="695" y2="345" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+    <circle cx="718" cy="322" r="10" fill="#2a2d3e"/>
+  </g>
+
+  <!-- INDICATORI zona sulle parti -->
+  <circle cx="130" cy="268" r="9" fill="${colorFor(parts.motore)}" opacity="0.9" filter="url(#glow)" class="auto-part" id="ind-motore" data-key="motore" style="color:${colorFor(parts.motore)}"/>
+  <circle cx="480" cy="158" r="9" fill="${colorFor(parts.impianti)}" opacity="0.9" filter="url(#glow)" class="auto-part" id="ind-impianti" data-key="impianti" style="color:${colorFor(parts.impianti)}"/>
+  <circle cx="480" cy="278" r="9" fill="${colorFor(parts.carrozzeria)}" opacity="0.9" filter="url(#glow)" class="auto-part" id="ind-carrozzeria" data-key="carrozzeria" style="color:${colorFor(parts.carrozzeria)}"/>
+  <circle cx="860" cy="268" r="9" fill="${colorFor(parts.documentazione)}" opacity="0.9" filter="url(#glow)" class="auto-part" id="ind-doc" data-key="documentazione" style="color:${colorFor(parts.documentazione)}"/>
+</svg>`;
+
+  // SVG INTERNA — abitacolo vista frontale
+  const svgInterna = `
+<svg class="auto-schema-svg" id="svgInterna" viewBox="0 0 960 480" role="img" aria-label="Vista interna veicolo">
+  <defs>
+    <linearGradient id="dashGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a2d3e"/>
+      <stop offset="1" stop-color="#14151f"/>
+    </linearGradient>
+    <linearGradient id="seatGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2e3048"/>
+      <stop offset="1" stop-color="#1a1b2e"/>
+    </linearGradient>
+    <radialGradient id="windshieldGrad" cx="50%" cy="40%" r="60%">
+      <stop offset="0" stop-color="rgba(80,110,180,0.3)"/>
+      <stop offset="1" stop-color="rgba(20,30,60,0.7)"/>
+    </radialGradient>
+  </defs>
+
+  <!-- sfondo abitacolo -->
+  <rect x="80" y="60" width="800" height="360" rx="18" fill="#111218"/>
+
+  <!-- PARABREZZA -->
+  <g class="auto-part" id="int-parabrezza" data-key="impianti" style="color:${colorFor(parts.impianti)}">
+    <path fill="url(#windshieldGrad)" stroke="${colorFor(parts.impianti)}" stroke-width="1.5"
+      d="M160 60 L800 60 L860 130 L100 130 Z"/>
+    <path fill="rgba(255,255,255,0.04)"
+      d="M200 65 L480 65 L520 130 L160 130 Z"/>
+    <!-- tergicristalli -->
+    <path fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-linecap="round"
+      d="M200 125 Q350 80 440 105"/>
+    <path fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-linecap="round"
+      d="M760 125 Q610 80 520 105"/>
+  </g>
+
+  <!-- CRUSCOTTO -->
+  <g class="auto-part" id="int-cruscotto" data-key="impianti" style="color:${colorFor(parts.impianti)}">
+    <path fill="url(#dashGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1"
+      d="M100 130 L860 130 L900 200 L900 240 L60 240 L60 200 Z"/>
+    <!-- cluster strumenti -->
+    <ellipse cx="310" cy="185" rx="70" ry="42" fill="#0d0e16" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <ellipse cx="310" cy="185" rx="52" ry="30" fill="#0a0b12"/>
+    <text x="310" y="178" fill="${colorFor(parts.impianti)}" font-size="11" text-anchor="middle" font-family="DM Sans,sans-serif">RPM</text>
+    <path fill="none" stroke="${colorFor(parts.impianti)}" stroke-width="2" stroke-linecap="round"
+      d="M290 200 Q310 172 330 200"/>
+    <!-- display centrale -->
+    <rect x="410" y="152" width="140" height="72" rx="8" fill="#0a0b12" stroke="rgba(74,95,212,0.3)" stroke-width="1"/>
+    <text x="480" y="193" fill="rgba(74,95,212,0.8)" font-size="22" font-family="DM Sans,sans-serif" text-anchor="middle" font-weight="600">AutoBit</text>
+    <!-- velocimetro dx -->
+    <ellipse cx="650" cy="185" rx="70" ry="42" fill="#0d0e16" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <ellipse cx="650" cy="185" rx="52" ry="30" fill="#0a0b12"/>
+    <text x="650" y="178" fill="${colorFor(parts.impianti)}" font-size="11" text-anchor="middle" font-family="DM Sans,sans-serif">km/h</text>
+    <path fill="none" stroke="${colorFor(parts.impianti)}" stroke-width="2" stroke-linecap="round"
+      d="M630 200 Q660 168 670 198"/>
+    <!-- bocchette AC -->
+    <rect x="100" y="158" width="56" height="18" rx="4" fill="#0d0e16" stroke="rgba(255,255,255,0.08)"/>
+    <rect x="804" y="158" width="56" height="18" rx="4" fill="#0d0e16" stroke="rgba(255,255,255,0.08)"/>
+    <line x1="110" y1="158" x2="110" y2="176" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <line x1="120" y1="158" x2="120" y2="176" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <line x1="130" y1="158" x2="130" y2="176" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <line x1="814" y1="158" x2="814" y2="176" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <line x1="824" y1="158" x2="824" y2="176" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <line x1="834" y1="158" x2="834" y2="176" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  </g>
+
+  <!-- VOLANTE -->
+  <g class="auto-part" id="int-volante" data-key="impianti" style="color:${colorFor(parts.impianti)}">
+    <circle cx="310" cy="260" r="54" fill="none" stroke="${colorFor(parts.impianti)}" stroke-width="9" stroke-opacity="0.7"/>
+    <circle cx="310" cy="260" r="18" fill="#1a1b2e" stroke="${colorFor(parts.impianti)}" stroke-width="2" stroke-opacity="0.5"/>
+    <line x1="310" y1="206" x2="310" y2="242" stroke="${colorFor(parts.impianti)}" stroke-width="6" stroke-opacity="0.6"/>
+    <line x1="310" y1="278" x2="310" y2="314" stroke="${colorFor(parts.impianti)}" stroke-width="6" stroke-opacity="0.6"/>
+    <line x1="256" y1="260" x2="292" y2="260" stroke="${colorFor(parts.impianti)}" stroke-width="6" stroke-opacity="0.6"/>
+    <line x1="328" y1="260" x2="364" y2="260" stroke="${colorFor(parts.impianti)}" stroke-width="6" stroke-opacity="0.6"/>
+    <circle cx="310" cy="260" r="54" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  </g>
+
+  <!-- SEDILE GUIDATORE -->
+  <g class="auto-part" id="int-sedili" data-key="impianti" style="color:${colorFor(parts.impianti)}">
+    <path fill="url(#seatGrad)" stroke="${colorFor(parts.impianti)}" stroke-width="1.5" stroke-opacity="0.5"
+      d="M120 290 L120 420 L290 420 L290 310 C290 290 276 272 258 268 L180 264 C154 264 130 274 120 290 Z"/>
+    <path fill="rgba(255,255,255,0.04)"
+      d="M130 295 L130 360 L200 360 L200 298 Z"/>
+    <!-- cuciture -->
+    <path fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="4 4"
+      d="M150 290 L150 415"/>
+    <path fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="4 4"
+      d="M260 290 L260 415"/>
+    <path fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="4 4"
+      d="M130 340 L280 340"/>
+    <!-- poggiatesta -->
+    <rect x="148" y="255" width="114" height="14" rx="7"
+          fill="url(#seatGrad)" stroke="${colorFor(parts.impianti)}" stroke-width="1" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- SEDILE PASSEGGERO -->
+  <g class="auto-part" id="int-sedile-pass" data-key="impianti" style="color:${colorFor(parts.impianti)}">
+    <path fill="url(#seatGrad)" stroke="${colorFor(parts.impianti)}" stroke-width="1.5" stroke-opacity="0.5"
+      d="M670 290 L670 420 L840 420 L840 310 C840 290 826 272 808 268 L730 264 C704 264 680 274 670 290 Z"/>
+    <path fill="rgba(255,255,255,0.04)"
+      d="M680 295 L680 360 L750 360 L750 298 Z"/>
+    <path fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="4 4"
+      d="M700 290 L700 415"/>
+    <path fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="4 4"
+      d="M810 290 L810 415"/>
+    <path fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="4 4"
+      d="M680 340 L830 340"/>
+    <rect x="698" y="255" width="114" height="14" rx="7"
+          fill="url(#seatGrad)" stroke="${colorFor(parts.impianti)}" stroke-width="1" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- TUNNEL CENTRALE + LEVA -->
+  <g>
+    <rect x="328" y="240" width="304" height="180" rx="14" fill="#0f1018" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <!-- leva cambio -->
+    <rect x="448" y="280" width="64" height="12" rx="6" fill="#1e2030" stroke="rgba(255,255,255,0.08)"/>
+    <circle cx="448" cy="286" r="10" fill="#2a2d3e" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <!-- freno a mano -->
+    <rect x="540" y="268" width="16" height="48" rx="8" fill="#1e2030" stroke="rgba(255,255,255,0.08)"/>
+    <!-- portabicchieri -->
+    <circle cx="390" cy="360" r="18" fill="#0d0e16" stroke="rgba(255,255,255,0.07)"/>
+    <circle cx="390" cy="360" r="10" fill="#1a1b2e"/>
+    <circle cx="570" cy="360" r="18" fill="#0d0e16" stroke="rgba(255,255,255,0.07)"/>
+    <circle cx="570" cy="360" r="10" fill="#1a1b2e"/>
+  </g>
+
+  <!-- etichette vista interna -->
+  <text x="480" y="452" fill="rgba(255,255,255,0.2)" font-size="11" text-anchor="middle" font-family="DM Sans,sans-serif">
+    Clicca sulle aree per i dettagli
+  </text>
+</svg>`;
+
+  // Legenda rows (cliccabili)
+  const legendItems = [
+    {key:'motore',      label:'Motore e meccanica', val:parts.motore},
+    {key:'carrozzeria', label:'Carrozzeria',         val:parts.carrozzeria},
+    {key:'impianti',    label:'Impianti e interni',  val:parts.impianti},
+    {key:'documentazione',label:'Documentazione',   val:parts.documentazione},
+    {key:'commerciale', label:'Commerciale',         val:parts.commerciale},
+  ];
+
+  const rows = legendItems.map(({key,label,val}) => `
+    <div class="schema-row" id="row-${key}" onclick="highlightPart('${key}')" style="cursor:pointer">
+      <div class="schema-row-main">
+        <span class="schema-dot" style="background:${colorFor(val)};color:${colorFor(val)}"></span>
+        <div>
+          <div class="schema-label">${label}</div>
+          <div style="font-size:11px;color:${colorFor(val)};font-weight:500;margin-top:1px">${labelFor(val)}</div>
+        </div>
+      </div>
+      <div class="schema-score" style="color:${colorFor(val)}">${pct(val)}</div>
+    </div>
+  `).join('');
+
+  return `
+  <div class="vista-toggle">
+    <button class="vista-btn active" id="btnEsterna" onclick="switchVista('esterna')">🚗 Vista esterna</button>
+    <button class="vista-btn" id="btnInterna" onclick="switchVista('interna')">🪑 Vista interna</button>
+  </div>
+  <div class="auto-schema-wrap">
+    <div class="auto-schema-card schema-popup-wrap">
+      <div class="auto-schema-head">
+        <div>
+          <div class="auto-schema-title">Mappa criticità</div>
+          <div class="auto-schema-sub">Clicca su un'area per vedere il dettaglio. Schema indicativo — non sostituisce una perizia professionale.</div>
+        </div>
+        <span class="verdict-badge" style="${verdictStyle(score.verdict,'#4A5FD4')}">${AUTO.verdicts[score.verdict]??score.verdict}</span>
+      </div>
+      <div id="vistaEsterna">${svgEsterna}</div>
+      <div id="vistaInterna" style="display:none">${svgInterna}</div>
+      <!-- popup zona -->
+      <div class="schema-popup" id="schemaPopup">
+        <button class="schema-popup-close" onclick="closeSchemaPopup()">✕</button>
+        <div class="schema-popup-title" id="popupTitle">—</div>
+        <div class="schema-popup-score" id="popupScore">—</div>
+        <div class="schema-popup-label" id="popupLabel">—</div>
+        <div class="schema-popup-items" id="popupItems"></div>
+      </div>
+    </div>
+    <div class="auto-schema-card">
+      <div class="sec-heading">Legenda criticità</div>
+      <div class="schema-legend">${rows}</div>
+      <div class="schema-note">
+        🟢 Verde: area positiva &nbsp;|&nbsp; 🟡 Giallo: controllo consigliato &nbsp;|&nbsp; 🔴 Rosso: criticità &nbsp;|&nbsp; ⚫ Grigio: dati insufficienti
+      </div>
+    </div>
+  </div>`;
+}
+
+
+
+
 function renderAutobit(v){
   const score=calcScoreAuto(v);
   const color='#4A5FD4';
@@ -775,7 +1213,7 @@ function renderAutobit(v){
   document.getElementById('tbName').textContent=displayName;
   document.title='AutoBit – '+displayName;
 
-  const tabs=[{id:'panoramica',label:'Panoramica'},{id:'tecnica',label:'Tecnica'},{id:'dettagli',label:'Dettagli'},{id:'documentazione',label:'Documenti'},{id:'commerciale',label:'Commerciale'},{id:'note',label:'Note'},{id:'foto',label:'Foto'}];
+  const tabs=[{id:'panoramica',label:'Panoramica'},{id:'tecnica',label:'Tecnica'},{id:'dettagli',label:'Dettagli'},{id:'schema',label:'Schema'},{id:'documentazione',label:'Documenti'},{id:'commerciale',label:'Commerciale'},{id:'note',label:'Note'},{id:'foto',label:'Foto'}];
   if(getComparableItems('autobit').length >= 2) tabs.push({id:'confronta',label:'Confronta'});
   buildTabs(tabs,'panoramica');
 
@@ -901,7 +1339,11 @@ ${buildLoadedPanel('autobit')}`;
   detHTML+='</div>';
   addSection('dettagli',detHTML);
 
-  
+  // SCHEMA — mappa criticità con viste esterna/interna
+  _schemaPopupData.score = score;
+  addSection('schema', buildAutoSchemaSection(score, v));
+  initSchemaPopup(v);
+
   let docHTML='<div class="full-card"><div class="sec-heading">Storia e documentazione</div>';
   const docRows=[
     ['Incidenti',v.incidenti!=null?boolBadge(v.incidenti):null],
@@ -949,6 +1391,135 @@ ${buildLoadedPanel('autobit')}`;
 }
 
 
+
+// ── SCHEMA INTERATTIVO ──────────────────────────────────────────────────────
+
+function switchVista(vista){
+  const ext = document.getElementById('vistaEsterna');
+  const int = document.getElementById('vistaInterna');
+  const btnE = document.getElementById('btnEsterna');
+  const btnI = document.getElementById('btnInterna');
+  if(!ext||!int) return;
+  if(vista==='esterna'){
+    ext.style.display=''; int.style.display='none';
+    btnE.classList.add('active'); btnI.classList.remove('active');
+  } else {
+    ext.style.display='none'; int.style.display='';
+    btnI.classList.add('active'); btnE.classList.remove('active');
+  }
+  closeSchemaPopup();
+}
+
+// Mappa key → dettagli popup
+const _schemaPopupData = {};
+
+function initSchemaPopup(data){
+  // Salva riferimento ai dati del veicolo corrente
+  _schemaPopupData.v = data;
+}
+
+function highlightPart(key){
+  // Rimuovi active da tutto
+  document.querySelectorAll('.auto-part').forEach(el => el.classList.remove('active-part'));
+  document.querySelectorAll('.schema-row').forEach(el => el.classList.remove('active-row'));
+
+  // Evidenzia parti con data-key corrispondente
+  document.querySelectorAll(`.auto-part[data-key="${key}"]`).forEach(el => el.classList.add('active-part'));
+  const row = document.getElementById('row-'+key);
+  if(row) row.classList.add('active-row');
+
+  // Aggiorna e mostra popup
+  const popup = document.getElementById('schemaPopup');
+  const titleEl = document.getElementById('popupTitle');
+  const scoreEl = document.getElementById('popupScore');
+  const labelEl = document.getElementById('popupLabel');
+  const itemsEl = document.getElementById('popupItems');
+  if(!popup) return;
+
+  const labels = {
+    motore:'🔧 Motore e meccanica', carrozzeria:'🎨 Carrozzeria',
+    impianti:'💡 Impianti e interni', documentazione:'📋 Documentazione',
+    commerciale:'💶 Commerciale'
+  };
+  const colorFor = val => val==null?'#6B6560':val>=75?'#4CAF7D':val>=50?'#E8A838':'#E05252';
+  const labelFor = val => val==null?'Non valutato':val>=75?'Buone condizioni':val>=50?'Da controllare':'Criticità';
+  const ratingStr = idx => idx==null?'—':['Assente','Cattivo','Discreto','Buono','Ottimo'][idx]??'—';
+
+  const v = _schemaPopupData.v || {};
+
+  const detailMap = {
+    motore:[
+      ['Motore generale',v.motoreGenerale],['Impianto elettrico',v.impiantoElettrico],
+      ['Impianto idraulico',v.impiantoIdraulico],['Freni anteriori',v.freniAnteriori],
+      ['Freni posteriori',v.freniPosteriori],['Sospensioni',v.sospensioni],
+      ['Pneumatici',v.pneumatici],['Convergenza',v.convergenza],['Distribuzione',v.distribuzione],
+    ],
+    carrozzeria:[
+      ['Carrozzeria',v.carrozzeria],['Vernice',v.vernice],['Colore',v.coloreStato],
+      ['Ruggine',v.ruggine],['Cristalli',v.cristalli],
+      ['Alzacristalli',v.alzacristalli],['Specchi',v.specchiRetrovisori],
+    ],
+    impianti:[
+      ['Luci e segnalatori',v.luciSegnalatori],['Aria condizionata',v.ariaCondizionata],
+      ['Autoradio',v.autoradio],['Antenna',v.antenna],
+      ['Sedili',v.sedili],['Interni',v.interniGenerale],['Antifurto',v.antifurto],
+    ],
+    documentazione:[
+      ['Incidenti',v.incidenti!=null?(v.incidenti?'Sì':'No'):null],
+      ['Fermo amm.',v.fermoAmministrativo!=null?(v.fermoAmministrativo?'Sì':'No'):null],
+      ['Finanziamenti',v.finanziamentiInCorso!=null?(v.finanziamentiInCorso?'Sì':'No'):null],
+      ['Libro servizio',v.libroServizio!=null?(v.libroServizio?'Presente':'Assente'):null],
+      ['Doc. completa',v.documentazioneCompleta!=null?(v.documentazioneCompleta?'Sì':'No'):null],
+      ['Proprietari',v.numeroProprietari!=null?(['Uniproprietario','Più proprietari','Altro'][v.numeroProprietari]??'—'):null],
+    ],
+    commerciale:[
+      ['Prezzo vendita',v.prezzoVendita?Math.round(v.prezzoVendita).toLocaleString('it-IT')+' €':null],
+      ['Affitto mensile',v.prezzoAffittoMensile?Math.round(v.prezzoAffittoMensile).toLocaleString('it-IT')+' €':null],
+      ['Affitto annuale',v.prezzoAffittoAnnuale?Math.round(v.prezzoAffittoAnnuale).toLocaleString('it-IT')+' €':null],
+      ['Metodo pagamento',v.metodoPagamento],
+    ],
+  };
+
+  // Calcola score per questa categoria
+  const cats = (_schemaPopupData.score||{cats:[]}).cats||[];
+  const cat = cats.find(c=>c.label==='cat_'+key||c.id===key)||{score:null};
+  const sc = cat.score!=null?Math.round(cat.score):null;
+  const col = colorFor(cat.score);
+
+  titleEl.innerHTML = `<span>${labels[key]||key}</span>`;
+  scoreEl.textContent = sc!=null?sc:'—';
+  scoreEl.style.color = col;
+  labelEl.textContent = labelFor(cat.score);
+  labelEl.style.color = col;
+
+  const items = (detailMap[key]||[]).filter(([,val])=>val!=null);
+  itemsEl.innerHTML = items.length
+    ? items.map(([lbl,val])=>{
+        const display = typeof val==='number' ? ratingStr(val) : val;
+        return `<div class="schema-popup-item"><span>${lbl}</span><span style="color:var(--text);font-weight:500">${display}</span></div>`;
+      }).join('')
+    : '<div class="schema-popup-item"><span style="color:var(--text-hint)">Nessun dato disponibile</span></div>';
+
+  popup.classList.add('visible');
+}
+
+function closeSchemaPopup(){
+  const popup = document.getElementById('schemaPopup');
+  if(popup) popup.classList.remove('visible');
+  document.querySelectorAll('.auto-part').forEach(el => el.classList.remove('active-part'));
+  document.querySelectorAll('.schema-row').forEach(el => el.classList.remove('active-row'));
+}
+
+// Click sulle parti SVG — delegato al documento
+document.addEventListener('click', e => {
+  const part = e.target.closest('.auto-part[data-key]');
+  if(part){ highlightPart(part.dataset.key); return; }
+  // Click fuori popup chiude
+  const popup = document.getElementById('schemaPopup');
+  if(popup && !popup.contains(e.target) && !e.target.closest('.auto-part') && !e.target.closest('.schema-row')){
+    closeSchemaPopup();
+  }
+});
 
 function metaItem(label,value){ return `<div class="meta-item"><div class="meta-label">${label}</div><div class="meta-value">${value||'—'}</div></div>`; }
 function ratingRow(label,val){ if(val==null) return ''; return `<div class="rating-row"><span class="r-label">${label}</span>${ratingBadge(val,false)}</div>`; }
