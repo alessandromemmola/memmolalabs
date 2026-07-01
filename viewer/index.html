@@ -22,6 +22,12 @@
 }
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
 
+.lang-switch{position:fixed;top:18px;right:18px;z-index:10000;display:flex;gap:6px;background:rgba(30,29,26,.78);border:1px solid var(--border);border-radius:999px;padding:5px;backdrop-filter:blur(10px)}
+.lang-btn{background:transparent;border:1px solid transparent;color:var(--text-hint);border-radius:999px;padding:6px 10px;font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:600}
+.lang-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.top-lang-switch{position:static;background:transparent;border:none;padding:0;margin-right:4px}
+
+
 
 #dropZone{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px;cursor:pointer}
 .dz-inner{border:1.5px dashed rgba(201,168,76,0.35);border-radius:20px;padding:80px 64px;text-align:center;max-width:640px;width:100%;background:rgba(201,168,76,0.03);transition:border-color .2s}
@@ -413,6 +419,11 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 </head>
 <body>
 
+<div class="lang-switch" id="homeLangSwitch">
+  <button class="lang-btn" data-lang="it" type="button">IT</button>
+  <button class="lang-btn" data-lang="en" type="button">EN</button>
+</div>
+
 <div id="dropZone">
   <div class="dz-inner" id="dzInner">
     <div class="dz-logo" style="display:flex;align-items:center;justify-content:center;gap:12px">
@@ -422,49 +433,49 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 
   <div>
     Memmola Labs Viewer
-    <span>Visualizzatore valutazioni</span>
+    <span data-i18n="viewerSubtitle">Visualizzatore valutazioni</span>
   </div>
 </div>
     <div class="dz-badges">
       <span class="dz-badge immobit">📁 .immobit</span>
       <span class="dz-badge autobit">🚗 .autobit</span>
     </div>
-    <div class="dz-title">Trascina il file o carica demo</div>
-    <div class="dz-sub">Trascina un file .immobit o .autobit per visualizzare<br>la valutazione in modalità presentazione professionale.</div>
-    <button class="dz-btn" id="loadBtn">Carica file</button>
+    <div class="dz-title" data-i18n="dropTitle">Trascina il file o carica demo</div>
+    <div class="dz-sub" data-i18n-html="dropSub">Trascina un file .immobit o .autobit per visualizzare<br>la valutazione in modalità presentazione professionale.</div>
+    <button class="dz-btn" id="loadBtn" data-i18n="loadFile">Carica file</button>
     <div style="display:flex;gap:12px;justify-content:center;margin-top:12px;flex-wrap:wrap">
-      <button class="dz-btn" style="font-size:12px;padding:8px 18px" id="demoImmo">Demo ImmoBit</button>
-      <button class="dz-btn" style="font-size:12px;padding:8px 18px;border-color:rgba(74,95,212,0.4);color:var(--blue-light);background:var(--blue-dim)" id="demoAuto">Demo AutoBit</button>
+      <button class="dz-btn" style="font-size:12px;padding:8px 18px" id="demoImmo" data-i18n="demoImmo">Demo ImmoBit</button>
+      <button class="dz-btn" style="font-size:12px;padding:8px 18px;border-color:rgba(74,95,212,0.4);color:var(--blue-light);background:var(--blue-dim)" id="demoAuto" data-i18n="demoAuto">Demo AutoBit</button>
       <a href="https://memmolalabs.com/" class="dz-btn" style="font-size:12px;padding:8px 18px;text-decoration:none;display:inline-block">
        ← Memmola Labs
       </a>
     </div>
-    <div class="dz-hint">Supporta file esportati da ImmoBit e AutoBit</div>
+    <div class="dz-hint" data-i18n="dropHint">Supporta file esportati da ImmoBit e AutoBit</div>
 
     <div class="install-row">
-      <button class="dz-btn" id="installBtn">Installa come app</button>
+      <button class="dz-btn" id="installBtn" data-i18n="installApp">Installa come app</button>
     </div>
 
     <div class="dz-info-grid">
       <div class="dz-info-card">
         <div class="dz-info-icon">🖥️</div>
-        <div class="dz-info-title">Presentazione desktop</div>
-        <div class="dz-info-text">Apri il file esportato dall'app e mostra la valutazione in una schermata professionale, leggibile e interattiva.</div>
+        <div class="dz-info-title" data-i18n="infoDesktopTitle">Presentazione desktop</div>
+        <div class="dz-info-text" data-i18n="infoDesktopText">Apri il file esportato dall'app e mostra la valutazione in una schermata professionale, leggibile e interattiva.</div>
       </div>
       <div class="dz-info-card">
         <div class="dz-info-icon">🔒</div>
-        <div class="dz-info-title">Dati sempre locali</div>
-        <div class="dz-info-text">Il file viene letto dal browser sul tuo dispositivo. Non viene caricato, copiato o inviato ai server Memmola Labs.</div>
+        <div class="dz-info-title" data-i18n="infoLocalTitle">Dati sempre locali</div>
+        <div class="dz-info-text" data-i18n="infoLocalText">Il file viene letto dal browser sul tuo dispositivo. Non viene caricato, copiato o inviato ai server Memmola Labs.</div>
       </div>
       <div class="dz-info-card">
         <div class="dz-info-icon">⚡</div>
-        <div class="dz-info-title">Installabile e offline</div>
-        <div class="dz-info-text">Puoi installarlo come PWA: icona sul desktop, apertura rapida e uso anche senza connessione dopo il primo caricamento.</div>
+        <div class="dz-info-title" data-i18n="infoOfflineTitle">Installabile e offline</div>
+        <div class="dz-info-text" data-i18n="infoOfflineText">Puoi installarlo come PWA: icona sul desktop, apertura rapida e uso anche senza connessione dopo il primo caricamento.</div>
       </div>
     </div>
 
     <div class="privacy-note">
-      <strong>Privacy by design:</strong> Memmola Labs Viewer funziona nel browser. Le valutazioni .immobit e .autobit restano sul dispositivo dell'utente.
+      <strong data-i18n="privacyStrong">Privacy by design:</strong> <span data-i18n="privacyText">Memmola Labs Viewer funziona nel browser. Le valutazioni .immobit e .autobit restano sul dispositivo dell'utente.</span>
     </div>
 
     <input type="file" id="fileInput" accept=".immobit,.autobit,.json" multiple style="display:none">
@@ -479,8 +490,12 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
     </div>
     <div class="tb-nav" id="tabNav"></div>
     <div style="display:flex;align-items:center;gap:8px">
-      <button class="tb-close" id="newBtn" style="color:var(--gold);border-color:rgba(201,168,76,0.3)">+ Aggiungi valutazione</button>
-      <button class="tb-close" id="closeBtn">✕ Chiudi</button>
+      <div class="lang-switch top-lang-switch" id="topLangSwitch">
+        <button class="lang-btn" data-lang="it" type="button">IT</button>
+        <button class="lang-btn" data-lang="en" type="button">EN</button>
+      </div>
+      <button class="tb-close" id="newBtn" style="color:var(--gold);border-color:rgba(201,168,76,0.3)">+ <span data-i18n="addEvaluation">Aggiungi valutazione</span></button>
+      <button class="tb-close" id="closeBtn">✕ <span data-i18n="close">Chiudi</span></button>
     </div>
   </div>
   <div id="sectionsContainer"></div>
@@ -493,11 +508,93 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
   <img class="photo-lightbox-img" id="photoLightboxImg" src="" alt="Foto ingrandita">
   <button class="photo-lightbox-next" id="photoLightboxNext" aria-label="Foto successiva">›</button>
   <div class="photo-lightbox-counter" id="photoLightboxCounter">1 / 1</div>
-  <div class="photo-lightbox-hint">ESC per chiudere · Frecce per navigare</div>
+  <div class="photo-lightbox-hint" data-i18n="photoHint">ESC per chiudere · Frecce per navigare</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
+
+const I18N = {
+  it: {
+    viewerSubtitle:'Visualizzatore valutazioni', dropTitle:'Trascina il file o carica demo',
+    dropSub:'Trascina un file .immobit o .autobit per visualizzare<br>la valutazione in modalità presentazione professionale.',
+    loadFile:'Carica file', demoImmo:'Demo ImmoBit', demoAuto:'Demo AutoBit', dropHint:'Supporta file esportati da ImmoBit e AutoBit', installApp:'Installa come app',
+    infoDesktopTitle:'Presentazione desktop', infoDesktopText:"Apri il file esportato dall'app e mostra la valutazione in una schermata professionale, leggibile e interattiva.",
+    infoLocalTitle:'Dati sempre locali', infoLocalText:'Il file viene letto dal browser sul tuo dispositivo. Non viene caricato, copiato o inviato ai server Memmola Labs.',
+    infoOfflineTitle:'Installabile e offline', infoOfflineText:'Puoi installarlo come PWA: icona sul desktop, apertura rapida e uso anche senza connessione dopo il primo caricamento.',
+    privacyStrong:'Privacy by design:', privacyText:"Memmola Labs Viewer funziona nel browser. Le valutazioni .immobit e .autobit restano sul dispositivo dell'utente.",
+    addEvaluation:'Aggiungi valutazione', close:'Chiudi', photoHint:'ESC per chiudere · Frecce per navigare'
+  },
+  en: {
+    viewerSubtitle:'Evaluation viewer', dropTitle:'Drop a file or load a demo',
+    dropSub:'Drop an .immobit or .autobit file to view<br>the evaluation in professional presentation mode.',
+    loadFile:'Load file', demoImmo:'ImmoBit demo', demoAuto:'AutoBit demo', dropHint:'Supports files exported from ImmoBit and AutoBit', installApp:'Install as app',
+    infoDesktopTitle:'Desktop presentation', infoDesktopText:'Open the file exported from the app and show the evaluation in a professional, readable and interactive screen.',
+    infoLocalTitle:'Always local data', infoLocalText:'The file is read by the browser on your device. It is not uploaded, copied or sent to Memmola Labs servers.',
+    infoOfflineTitle:'Installable and offline', infoOfflineText:'You can install it as a PWA: desktop icon, fast launch and offline use after the first load.',
+    privacyStrong:'Privacy by design:', privacyText:'Memmola Labs Viewer runs in the browser. .immobit and .autobit evaluations stay on the user device.',
+    addEvaluation:'Add evaluation', close:'Close', photoHint:'ESC to close · Arrow keys to navigate'
+  }
+};
+
+const TEXT_EN = {
+  'Visualizzatore valutazioni':'Evaluation viewer','Trascina il file o carica demo':'Drop a file or load a demo','Carica file':'Load file','Installa come app':'Install as app',
+  'Presentazione desktop':'Desktop presentation','Dati sempre locali':'Always local data','Installabile e offline':'Installable and offline','Aggiungi valutazione':'Add evaluation','Chiudi':'Close',
+  'Panoramica':'Overview','Dettagli':'Details','Costi':'Costs','Note':'Notes','Foto':'Photos','Confronta':'Compare','Tecnica':'Technical','Schema':'Diagram','Documenti':'Documents','Commerciale':'Commercial','Documentazione':'Documents',
+  'Prezzo':'Price','Contratto con':'Contract with','Arredamento':'Furnishing','Superficie':'Area','Stanze':'Rooms','Bagni':'Bathrooms','Valutata il':'Evaluated on','Punteggi per categoria':'Category scores','su 100':'out of 100','✦ Verdetto finale':'✦ Final verdict',
+  'Posizione':'Location','Stato immobile':'Property condition','Impianti':'Systems','Accesso':'Access','Comfort':'Comfort','Quartiere':'Area','Illuminazione pubblica':'Street lighting','Trasporti':'Transport','Ingresso':'Entrance','Scale comuni':'Shared stairs','Ascensore':'Elevator','Aree adiacenti':'Adjacent areas','Stato generale':'General condition','Mura':'Walls','Pavimentazione':'Flooring','Soffitti':'Ceilings','Finestre':'Windows','Porte':'Doors','Balconi':'Balconies','Elettrico':'Electrical','Idraulico':'Plumbing','Caldaia':'Boiler','Gas':'Gas','Condizionatore':'Air conditioning','Rete TV':'TV signal','Rete mobile':'Mobile signal','Esposizione luce':'Light exposure','Vista esterna':'External view','Privacy':'Privacy','Animali consentiti':'Pets allowed','Tipo':'Type','Condizione':'Condition','Durata':'Duration','Cedolare secca':'Flat tax','Abitabilità':'Habitability','Ipoteche':'Mortgages','Parcheggio':'Parking',
+  'Valutazione visiva':'Visual evaluation','Buone condizioni':'Good condition','Da controllare con attenzione':'Check carefully','Aspetto critico':'Critical aspect','Da controllare':'Check carefully','Criticità':'Critical issue','Non valutato':'Not evaluated','Nessun dato disponibile':'No data available',
+  'Riepilogo economico':'Economic summary','Spese condominiali':'Condominium fees','Provvigione agenzia':'Agency fee','Durata contratto':'Contract duration','Costo totale primo anno stimato':'Estimated first-year total cost','Canone annuo (12 mesi)':'Annual rent (12 months)','Spese condominiali (12 mesi)':'Condominium fees (12 months)','Provvigione una tantum':'One-time agency fee','Totale primo anno':'First-year total','Indicatori':'Indicators','Prezzo al m²':'Price per m²','Nessuna nota inserita.':'No notes added.','Nessuna foto inclusa nel file esportato.':'No photos included in the exported file.',
+  'Assente':'Missing','Cattivo':'Poor','Discreto':'Fair','Buono':'Good','Ottimo':'Excellent','Sì':'Yes','No':'No','Eccellente':'Excellent','Molto buono':'Very good','Mediocre':'Average','Scarso':'Poor','Immobili':'Properties','Immobile':'Property','Immobile senza nome':'Unnamed property','Valutazione':'Evaluation','Valutazioni caricate':'Loaded evaluations','Puoi confrontarle quando vuoi.':'You can compare them anytime.','Aggiungi almeno un altro file per attivare il confronto.':'Add at least one more file to enable comparison.','Avvia confronto':'Start comparison','Apri':'Open','visualizzata ora':'currently displayed','Migliore':'Best','Confronta valutazioni':'Compare evaluations','Confronto generato localmente dal browser. Nessun file viene caricato o inviato online.':'Comparison generated locally by the browser. No file is uploaded or sent online.','Carica almeno due valutazioni per usare il confronto.':'Load at least two evaluations to use comparison.',
+  'Marca':'Brand','Modello':'Model','KM percorsi':'Mileage','Anno':'Year','Alimentazione':'Fuel','Veicolo':'Vehicle','Veicolo senza nome':'Unnamed vehicle','Motore e meccanica':'Engine and mechanics','Carrozzeria':'Bodywork','Documentazione':'Documentation','Freni anteriori':'Front brakes','Freni posteriori':'Rear brakes','Sospensioni':'Suspension','Pneumatici':'Tires','Convergenza':'Wheel alignment','Distribuzione':'Timing belt','Motore generale':'General engine','Impianto elettrico':'Electrical system','Impianto idraulico':'Hydraulic system','Luci e segnalatori':'Lights and indicators','Aria condizionata':'Air conditioning','Autoradio':'Radio','Sedili':'Seats','Interni':'Interior','Antifurto':'Anti-theft','Incidenti':'Accidents','Fermo amministrativo':'Administrative hold','Finanziamenti':'Financing','Libro servizio':'Service book','Doc. completa':'Complete docs','Prezzo vendita':'Sale price','Affitto mensile':'Monthly rental','Metodo pagamento':'Payment method','Fermo amm.':'Admin hold','Libro di servizio':'Service book','Documentazione completa':'Complete documentation','Numero proprietari':'Owner history','Tipo vendita':'Sale type','Ultima revisione':'Last inspection','Ultimo tagliando':'Last service','Ruota di scorta':'Spare wheel','Crik':'Jack','Triangolo':'Warning triangle','Cilindrata':'Engine size','Cambio':'Transmission','Classe Euro':'Euro class','Tipo motore':'Engine type','Targa':'Plate','Colore':'Color','Alzacristalli':'Power windows','Specchi':'Mirrors','Specchi retrovisori':'Rear-view mirrors','Antenna':'Antenna','Clacson':'Horn',
+  'Appartamento':'Apartment','Villetta':'Small villa','Ufficio':'Office','Negozio':'Shop','Magazzino':'Warehouse','Altro':'Other','Affitto':'Rent','Sub-affitto':'Sublease','Vendita':'Sale','Proprietario':'Owner','Agenzia':'Agency','Subaffittuario':'Subtenant','Arredata':'Furnished','Semi-arredata':'Partly furnished','Non arredata':'Unfurnished','Da verificare':'To be checked','Presente':'Present','Centrale':'Central','Periferica':'Suburban','Fronte strada':'Street-facing','Via principale':'Main road','Via secondaria':'Side street','Garage':'Garage','Posto coperto':'Covered space','Posto scoperto':'Uncovered space','Solo strada':'Street only','Facile accesso':'Easy access','Difficile accesso':'Difficult access',
+  'Berlina':'Sedan','Furgone':'Van','Moto':'Motorbike','Station Wagon':'Station wagon','Monovolume':'Minivan','Ciclomotore':'Moped','Pick-up':'Pick-up','Coupé':'Coupé','Cabriolet':'Convertible','City car':'City car','Fuoristrada':'Off-road','Trattore':'Tractor','D\'epoca':'Classic','Benzina':'Petrol','Diesel':'Diesel','GPL':'LPG','Metano':'CNG','Elettrico':'Electric','Ibrido':'Hybrid','Automatico':'Automatic','Sequenziale':'Sequential','Manuale':'Manual','Nuova':'New','Usata':'Used','Usato aziendale':'Company used','Autosalone':'Dealer','Uniproprietario':'One owner','Più proprietari':'Multiple owners'
+};
+
+let currentLang = localStorage.getItem('ml_viewer_lang') || (((navigator.language || 'it').toLowerCase().startsWith('it')) ? 'it' : 'en');
+function i18n(key){ return (I18N[currentLang] && I18N[currentLang][key]) || I18N.it[key] || key; }
+function trText(value){ if(currentLang === 'it') return value; return TEXT_EN[value] || value; }
+function localeCode(){ return currentLang === 'it' ? 'it-IT' : 'en-US'; }
+function setViewerLanguage(lang){
+  currentLang = lang === 'en' ? 'en' : 'it';
+  localStorage.setItem('ml_viewer_lang', currentLang);
+  document.documentElement.lang = currentLang;
+  updateLangButtons();
+  applyStaticI18n();
+  const current = loadedEvaluations.find(x => x.id === currentEvaluationId);
+  if(current) loadData(current.data); else translateTextNodes(document.body);
+}
+function updateLangButtons(){
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === currentLang));
+}
+function applyStaticI18n(){
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = i18n(el.dataset.i18n); });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = i18n(el.dataset.i18nHtml); });
+  updateLangButtons();
+}
+function translateTextNodes(root){
+  if(currentLang === 'it') return;
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode(node){
+      const p = node.parentElement;
+      if(!p || ['SCRIPT','STYLE','TEXTAREA','INPUT'].includes(p.tagName)) return NodeFilter.FILTER_REJECT;
+      return node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }
+  });
+  const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(node => {
+    const raw = node.nodeValue;
+    const trimmed = raw.trim();
+    if(!trimmed) return;
+    let translated = TEXT_EN[trimmed];
+    if(!translated){
+      translated = trimmed;
+      Object.keys(TEXT_EN).sort((a,b)=>b.length-a.length).forEach(k => { translated = translated.replaceAll(k, TEXT_EN[k]); });
+      if(translated === trimmed) return;
+    }
+    node.nodeValue = raw.replace(trimmed, translated);
+  });
+}
 
 
 const IMMO = {
@@ -583,9 +680,9 @@ function calcScoreAuto(v) {
 
 
 
-function fmtPrice(n){ if(!n&&n!==0) return '—'; return Math.round(n).toLocaleString('it-IT')+' €'; }
-function fmtNum(n){ if(n==null) return '—'; return Number(n).toLocaleString('it-IT'); }
-function fmtDate(s){ if(!s) return '—'; try{const d=new Date(s);return d.toLocaleDateString('it-IT',{day:'numeric',month:'short',year:'numeric'});}catch{return s;} }
+function fmtPrice(n){ if(!n&&n!==0) return '—'; return Math.round(n).toLocaleString(localeCode())+' €'; }
+function fmtNum(n){ if(n==null) return '—'; return Number(n).toLocaleString(localeCode()); }
+function fmtDate(s){ if(!s) return '—'; try{const d=new Date(s);return d.toLocaleDateString(localeCode(),{day:'numeric',month:'short',year:'numeric'});}catch{return s;} }
 function fmtYear(s){ if(!s) return '—'; try{return new Date(s).getFullYear().toString();}catch{return s;} }
 
 function ratingClass(val,isIndex=false){
@@ -599,11 +696,11 @@ function ratingClass(val,isIndex=false){
 }
 function ratingLabel(val,isIndex=false){
   const labels=['Assente','Cattivo','Discreto','Buono','Ottimo'];
-  if(isIndex) return labels[val]??'—';
+  if(isIndex) return trText(labels[val]??'—');
   const map={assente:'Assente',cattivo:'Cattivo',discreto:'Discreto',buono:'Buono',ottimo:'Ottimo'};
-  return map[val]??'—';
+  return trText(map[val]??'—');
 }
-function boolBadge(val){ if(val==null) return '<span class="rb rb-na">—</span>'; return val?'<span class="rb rb-si">Sì</span>':'<span class="rb rb-no">No</span>'; }
+function boolBadge(val){ if(val==null) return '<span class="rb rb-na">—</span>'; return val?`<span class="rb rb-si">${trText('Sì')}</span>`:`<span class="rb rb-no">${trText('No')}</span>`; }
 function ratingBadge(val,isIndex=false){ return `<span class="rb ${ratingClass(val,isIndex)}">${ratingLabel(val,isIndex)}</span>`; }
 function starsHTML(stars,color){ let h=''; for(let i=1;i<=5;i++){ if(stars>=i) h+=`<span style="color:${color}">★</span>`; else if(stars>=i-0.5) h+=`<span style="color:${color}">⭐</span>`; else h+=`<span style="color:var(--text-hint)">☆</span>`; } return h; }
 function verdictStyle(verdict,color){ return `background:${color}20;border:1px solid ${color}40;color:${color}`; }
@@ -617,7 +714,7 @@ function buildRadar(canvasId,cats,dictColors){
   if(radarInst){radarInst.destroy();radarInst=null;}
   const canvas=document.getElementById(canvasId);
   if(!canvas) return;
-  const labels=cats.map(c=>{ const d=Object.values(IMMO.cats).length?IMMO.cats[c.label]||AUTO.cats[c.label]||c.label:c.label; return d.split(' ').slice(0,2).join(' '); });
+  const labels=cats.map(c=>{ const d=Object.values(IMMO.cats).length?IMMO.cats[c.label]||AUTO.cats[c.label]||c.label:c.label; return trText(d).split(' ').slice(0,2).join(' '); });
   const color=cats[0]&&dictColors[cats[0].label]?dictColors[cats[0].label]:'#C9A84C';
   radarInst=new Chart(canvas,{
     type:'radar',
@@ -1609,7 +1706,7 @@ function buildTabs(tabs,activeId){
   tabs.forEach(t=>{
     const btn=document.createElement('button');
     btn.className='nav-btn'+(t.id===activeId?' active':'');
-    btn.textContent=t.label;
+    btn.textContent=trText(t.label);
     btn.onclick=()=>showSection(t.id,btn);
     nav.appendChild(btn);
   });
@@ -1622,6 +1719,8 @@ function addSection(id,html){
   div.id='s-'+id;
   div.innerHTML=html;
   container.appendChild(div);
+  applyStaticI18n();
+  translateTextNodes(div);
 }
 
 function showSection(name,btn){
@@ -1666,7 +1765,7 @@ function getScoreForData(data){
 
 function addAndLoadEvaluation(data, fileName){
   const app = normalizeApp(data);
-  if(!app){ alert('Formato file non riconosciuto.'); return; }
+  if(!app){ alert(trText('Formato file non riconosciuto.')); return; }
   const id = 'ev_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,8);
   loadedEvaluations.push({ id, app, data, fileName: fileName || getEvaluationTitle(data) });
   currentEvaluationId = id;
@@ -1707,7 +1806,7 @@ function removeLoadedEvaluation(id){
 }
 
 function openCompare(app){
-  const btn = Array.from(document.querySelectorAll('.nav-btn')).find(b => b.textContent.trim() === 'Confronta');
+  const btn = Array.from(document.querySelectorAll('.nav-btn')).find(b => b.textContent.trim() === trText('Confronta'));
   showSection('confronta', btn || null);
 }
 
@@ -1845,16 +1944,23 @@ const DEMO_AUTO = {app:'autobit',version:'1.0',nome:'AB123CD',marca:'BMW',modell
 
 function loadData(data){
   const app = normalizeApp(data);
-  if(!app){ alert('Formato file non riconosciuto.'); return; }
+  if(!app){ alert(trText('Formato file non riconosciuto.')); return; }
 
   document.getElementById('dropZone').style.display='none';
   document.getElementById('presentation').style.display='block';
   document.getElementById('sectionsContainer').innerHTML='';
   document.getElementById('tabNav').innerHTML='';
+
+  document.getElementById('homeLangSwitch').style.display = 'none';
+  document.getElementById('topLangSwitch').style.display = 'flex';
+
   if(radarInst){radarInst.destroy();radarInst=null;}
 
   if(app==='immobit') renderImmobit(data);
   else if(app==='autobit') renderAutobit(data);
+
+  applyStaticI18n();
+  translateTextNodes(document.getElementById('presentation'));
 }
 
 
@@ -1871,7 +1977,7 @@ async function readEvaluationFromBlob(file){
     if(metaFile){ try{ meta = JSON.parse(await metaFile.async('text')); }catch{} }
 
     const dataFile = zip.file('data.json');
-    if(!dataFile) throw new Error('File non valido: manca data.json');
+    if(!dataFile) throw new Error(trText('File non valido: manca data.json'));
     const data = JSON.parse(await dataFile.async('text'));
 
     if(meta.app) data.app = meta.app;
@@ -1902,7 +2008,7 @@ async function loadFileFromBlob(file){
     const data = await readEvaluationFromBlob(file);
     addAndLoadEvaluation(data, file.name);
   }catch(e){
-    alert('Errore apertura file: ' + (e && e.message ? e.message : 'file non valido o corrotto.'));
+    alert(trText('Errore apertura file: ') + (e && e.message ? e.message : trText('file non valido o corrotto.')));
   }
 }
 
@@ -1917,13 +2023,13 @@ async function loadFiles(fileList){
     try{
       const data = await readEvaluationFromBlob(file);
       const app = normalizeApp(data);
-      if(!app){ alert(file.name + ': formato file non riconosciuto.'); continue; }
+      if(!app){ alert(file.name + ': ' + trText('Formato file non riconosciuto.')); continue; }
       const id = 'ev_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,8);
       loadedEvaluations.push({ id, app, data, fileName: file.name });
       lastData = data;
       lastId = id;
     }catch(e){
-      alert(file.name + ': ' + (e && e.message ? e.message : 'file non valido o corrotto.'));
+      alert(file.name + ': ' + (e && e.message ? e.message : trText('file non valido o corrotto.')));
     }
   }
 
@@ -1961,11 +2067,18 @@ function resetToHome(clearLoaded=false){
   }
 }
 
+document.querySelectorAll('.lang-btn').forEach(btn => btn.onclick = () => setViewerLanguage(btn.dataset.lang));
+applyStaticI18n();
+translateTextNodes(document.getElementById('dropZone'));
 document.getElementById('loadBtn').onclick=()=>document.getElementById('fileInput').click();
 document.getElementById('fileInput').onchange=loadFile;
 document.getElementById('demoImmo').onclick=()=>addAndLoadEvaluation(JSON.parse(JSON.stringify(DEMO_IMMO)), 'Demo ImmoBit');
 document.getElementById('demoAuto').onclick=()=>addAndLoadEvaluation(JSON.parse(JSON.stringify(DEMO_AUTO)), 'Demo AutoBit');
 document.getElementById('closeBtn').onclick=()=>resetToHome(true);
+
+document.getElementById('homeLangSwitch').style.display = 'flex';
+document.getElementById('topLangSwitch').style.display = 'none';
+
 document.getElementById('newBtn').onclick=()=>document.getElementById('fileInput').click();
 
 const dz=document.getElementById('dropZone');
