@@ -2047,6 +2047,10 @@ function loadFile(e){
 function resetToHome(clearLoaded=false){
   document.getElementById('presentation').style.display='none';
   document.getElementById('dropZone').style.display='flex';
+
+  document.getElementById('homeLangSwitch').style.display = 'flex';
+  document.getElementById('topLangSwitch').style.display = 'none';
+  
   document.getElementById('sectionsContainer').innerHTML='';
   document.getElementById('tabNav').innerHTML='';
   document.getElementById('fileInput').value='';
