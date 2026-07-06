@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DotTap Game — gioco arcade veloce di Memmola Labs per allenare riflessi, precisione e velocità. Modalità Classic, Precision, Rush e Survival." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://memmolalabs.com/dottap/" />
+  <title>DotTap Game — Arcade Reflex Game by Memmola Labs</title>
+
+  <meta property="og:title" content="DotTap Game — Arcade Reflex Game" />
+  <meta property="og:description" content="Tocca i punti, migliora riflessi e precisione, supera i tuoi record personali." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://memmolalabs.com/dottap/" />
+  <meta property="og:image" content="https://memmolalabs.com/dottap/images/banner.png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #000508;
+      --surface: #040d14;
+      --surface2: #071520;
+      --border: #0d2a40;
+      --blue: #0077ff;
+      --cyan: #00c8ff;
+      --cyan2: #00eaff;
+      --text: #e8f4ff;
+      --muted: #4a7a99;
+      --green: #34f5a5;
+      --pink: #ff4fd8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a { color: inherit; }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(0,5,8,0.86);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 18px;
+      color: #000;
+      box-shadow: 0 0 16px rgba(0,200,255,0.4);
+    }
+
+    .nav-logo-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--text);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-logo-text span { color: var(--cyan); }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+
+    .nav-cta {
+      border: 1px solid var(--cyan);
+      color: var(--cyan) !important;
+      padding: 6px 16px;
+      border-radius: 4px;
+    }
+
+    .nav-cta:hover { background: var(--cyan); color: #000 !important; }
+
+    .page-hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: flex-end;
+      z-index: 1;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,5,8,0.18) 0%, rgba(0,5,8,0.74) 58%, rgba(0,5,8,0.98) 100%),
+        linear-gradient(90deg, rgba(0,5,8,0.94) 0%, rgba(0,5,8,0.42) 52%, rgba(0,5,8,0.88) 100%),
+        url('images/banner.png') center / cover no-repeat;
+      z-index: -2;
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      width: 560px;
+      height: 560px;
+      right: -140px;
+      bottom: -170px;
+      background: radial-gradient(circle, rgba(255,79,216,0.18) 0%, rgba(0,200,255,0.12) 38%, transparent 68%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .hero-inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 140px 40px 80px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 48px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,200,255,0.08);
+      border: 1px solid rgba(0,200,255,0.2);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--cyan);
+      letter-spacing: 0.1em;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--cyan);
+    }
+
+    h1 {
+      font-size: clamp(3.4rem, 9vw, 7.4rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.055em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, var(--cyan2), var(--pink), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      max-width: 660px;
+      color: #a9c9da;
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 34px;
+    }
+
+    .hero-actions,
+    .app-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-outline,
+    .btn-soft {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 12px 22px;
+      border-radius: 7px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      transition: transform 0.16s, opacity 0.2s, border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cyan), var(--pink));
+      color: #000;
+      box-shadow: 0 0 24px rgba(0,200,255,0.24);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: #9ec5da;
+      background: rgba(0,5,8,0.3);
+    }
+
+    .btn-soft {
+      border: 1px solid rgba(0,200,255,0.22);
+      color: var(--cyan);
+      background: rgba(0,200,255,0.08);
+    }
+
+    .btn-primary:hover,
+    .btn-outline:hover,
+    .btn-soft:hover { transform: translateY(-2px); }
+    .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
+    .btn-primary:hover { opacity: 0.9; }
+
+    .app-card {
+      background: rgba(4,13,20,0.78);
+      border: 1px solid rgba(0,200,255,0.22);
+      border-radius: 22px;
+      padding: 28px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 80px rgba(0,0,0,0.35);
+    }
+
+    .app-icon {
+      width: 118px;
+      height: 118px;
+      border-radius: 26px;
+      object-fit: cover;
+      display: block;
+      border: 1px solid rgba(0,200,255,0.32);
+      box-shadow: 0 0 34px rgba(0,200,255,0.18);
+      margin-bottom: 20px;
+      background: var(--surface2);
+    }
+
+    .app-card h2 {
+      font-size: 1.45rem;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .app-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--cyan);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .app-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    main { position: relative; z-index: 1; }
+
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 92px 40px;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 90px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 680px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+    }
+
+    .glass-card,
+    .mode-card,
+    .privacy-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before,
+    .mode-card::before,
+    .privacy-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--pink), transparent);
+      opacity: 0.85;
+    }
+
+    .glass-card h3,
+    .mode-card h3,
+    .privacy-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+    }
+
+    .glass-card p,
+    .mode-card p,
+    .privacy-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .feature-list li {
+      list-style: none;
+      color: #b7d6e8;
+      font-size: 0.94rem;
+      line-height: 1.45;
+      padding-left: 22px;
+      position: relative;
+    }
+
+    .feature-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+    }
+
+    .modes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .mode-badge {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(0,200,255,0.22);
+      background: rgba(0,200,255,0.07);
+      color: var(--cyan);
+      border-radius: 100px;
+      padding: 5px 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .premium {
+      border-color: rgba(255,79,216,0.28);
+      background: rgba(255,79,216,0.08);
+      color: #ff9bea;
+    }
+
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+    }
+
+    .screen-card {
+      border: 1px solid rgba(0,200,255,0.18);
+      background: rgba(0,5,8,0.45);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform 0.18s, border-color 0.2s;
+    }
+
+    .screen-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0,200,255,0.38);
+    }
+
+    .screen-card img {
+      width: 100%;
+      height: 420px;
+      object-fit: contain;
+      display: block;
+      background: #02080c;
+      padding: 10px;
+    }
+
+    .screen-caption {
+      padding: 14px;
+      border-top: 1px solid rgba(13,42,64,0.78);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    .app-section {
+      background: linear-gradient(135deg, rgba(0,119,255,0.12), rgba(255,79,216,0.07));
+      border: 1px solid rgba(0,200,255,0.22);
+      border-radius: 22px;
+      padding: 44px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .app-section::after {
+      content: '';
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      right: -120px;
+      top: -120px;
+      background: radial-gradient(circle, rgba(0,200,255,0.14) 0%, transparent 68%);
+      border-radius: 50%;
+    }
+
+    .app-section > * { position: relative; z-index: 1; }
+
+    .app-section h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      margin-bottom: 10px;
+    }
+
+    .app-section p {
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    .store-badge {
+      display: block;
+      width: min(220px, 100%);
+      height: auto;
+      transition: transform 0.18s, opacity 0.2s;
+    }
+
+    .store-badge:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 48px 40px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 2;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--cyan); }
+
+    .footer-logo {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-logo span {
+      background: linear-gradient(90deg, var(--blue), var(--cyan2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 12px 0;
+    }
+
+    .footer-trademark {
+      font-size: 10px;
+      color: rgba(74,122,153,0.5);
+      margin-top: 16px;
+    }
+
+    @media (max-width: 860px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero-inner,
+      .intro-grid,
+      .app-section { grid-template-columns: 1fr; }
+      .hero-inner { padding: 120px 22px 56px; }
+      .app-card { max-width: 380px; }
+      section { padding: 64px 22px; }
+      .app-section { padding: 30px; }
+      .screen-card img { height: 360px; }
+      footer { padding: 40px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-mark">M</div>
+    <span class="nav-logo-text">Memmola<span>Labs</span>®</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="#modalita">Modalità</a>
+    <a href="#screens">Screenshot</a>
+    <a href="#privacy">Privacy</a>
+    <a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-dot"></span> Arcade · Reflex · Speed</div>
+
+      <h1>Dot<span>Tap</span><br>Game</h1>
+
+      <p class="hero-sub">
+        Un gioco arcade veloce e coinvolgente per allenare riflessi, precisione e velocità.
+        Tocca i punti, reagisci rapidamente e prova a superare il tuo record personale.
+      </p>
+
+      <div class="hero-actions">
+        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.dottapgame" target="_blank" class="btn-primary">
+          Scarica su Google Play →
+        </a>
+        <a href="#modalita" class="btn-outline">
+          Scopri le modalità
+        </a>
+      </div>
+    </div>
+
+    <aside class="app-card" aria-label="DotTap Game">
+      <img src="images/dottap.png" alt="Icona DotTap Game" class="app-icon" />
+      <h2>DotTap Game</h2>
+      <div class="app-role">Memmola Labs · Arcade Game</div>
+      <p>
+        Partite rapide, controlli immediati e modalità pensate per mettere alla prova concentrazione,
+        precisione e reazione sotto pressione.
+      </p>
+      <div class="app-actions">
+        <a href="#screens" class="btn-soft">Guarda gli screen</a>
+      </div>
+    </aside>
+  </div>
+</header>
+
+<main>
+  <section id="intro">
+    <div class="section-label">// DotTap Game</div>
+    <h2 class="section-title">Allenare i riflessi, una partita alla volta</h2>
+    <p class="section-sub">
+      DotTap Game è pensato per sessioni rapide: tocchi, reagisci, migliori e provi di nuovo.
+      Una formula semplice, immediata e perfetta per chi vuole sfidare sé stesso.
+    </p>
+
+    <div class="intro-grid">
+      <div class="glass-card">
+        <h3>Gameplay immediato</h3>
+        <p>
+          Tocca i punti che appaiono sullo schermo, evita errori inutili e cerca di ottenere
+          il punteggio più alto possibile. Ogni partita mette alla prova concentrazione e velocità.
+        </p>
+
+        <ul class="feature-list">
+          <li>Controlli semplici e immediati.</li>
+          <li>Gameplay arcade veloce e coinvolgente.</li>
+          <li>Record personali da superare.</li>
+          <li>Partite rapide perfette in qualsiasi momento.</li>
+        </ul>
+      </div>
+
+      <div class="glass-card">
+        <h3>Gratis con modalità Premium</h3>
+        <p>
+          Le modalità Classic e Precision sono disponibili per iniziare subito.
+          Rush e Survival sono modalità Premium sbloccabili con un acquisto una tantum.
+        </p>
+
+        <ul class="feature-list">
+          <li>Disponibile in italiano e inglese.</li>
+          <li>Design pulito e intuitivo.</li>
+          <li>Ottimizzazioni di prestazioni e stabilità.</li>
+          <li>Nessun dato utente raccolto.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="modalita">
+    <div class="section-label">// Modalità</div>
+    <h2 class="section-title">Quattro modi per metterti alla prova</h2>
+    <p class="section-sub">
+      Ogni modalità cambia il ritmo della sfida: miglioramento progressivo, precisione,
+      velocità estrema o resistenza.
+    </p>
+
+    <div class="modes-grid">
+      <article class="mode-card">
+        <span class="mode-badge">Classic</span>
+        <h3>Classic</h3>
+        <p>
+          La modalità ideale per migliorare progressivamente il tuo record personale
+          e prendere confidenza con il ritmo del gioco.
+        </p>
+      </article>
+
+      <article class="mode-card">
+        <span class="mode-badge">Precision</span>
+        <h3>Precision</h3>
+        <p>
+          Ogni tocco conta. Mantieni la massima precisione e dimostra le tue abilità
+          evitando errori sotto pressione.
+        </p>
+      </article>
+
+      <article class="mode-card">
+        <span class="mode-badge premium">Premium · Rush</span>
+        <h3>Rush</h3>
+        <p>
+          Velocità aumentata e sfida ancora più intensa per giocatori esperti
+          che vogliono spingere i propri riflessi al limite.
+        </p>
+      </article>
+
+      <article class="mode-card">
+        <span class="mode-badge premium">Premium · Survival</span>
+        <h3>Survival</h3>
+        <p>
+          Resisti il più a lungo possibile e prova a mantenere lucidità,
+          precisione e ritmo anche quando la pressione aumenta.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section id="screens">
+    <div class="section-label">// Screenshot</div>
+    <h2 class="section-title">Interfaccia pulita, sfida immediata</h2>
+    <p class="section-sub">
+      Gli screenshot dello store mostrano il flusso principale del gioco:
+      modalità, gameplay, record e schermate essenziali.
+    </p>
+
+    <div class="screens-grid">
+      <figure class="screen-card"><img src="images/1.png" alt="DotTap Game screenshot 1" loading="lazy"><figcaption class="screen-caption">Screenshot 01</figcaption></figure>
+      <figure class="screen-card"><img src="images/2.png" alt="DotTap Game screenshot 2" loading="lazy"><figcaption class="screen-caption">Screenshot 02</figcaption></figure>
+      <figure class="screen-card"><img src="images/3.png" alt="DotTap Game screenshot 3" loading="lazy"><figcaption class="screen-caption">Screenshot 03</figcaption></figure>
+      <figure class="screen-card"><img src="images/4.png" alt="DotTap Game screenshot 4" loading="lazy"><figcaption class="screen-caption">Screenshot 04</figcaption></figure>
+      <figure class="screen-card"><img src="images/5.png" alt="DotTap Game screenshot 5" loading="lazy"><figcaption class="screen-caption">Screenshot 05</figcaption></figure>
+      <figure class="screen-card"><img src="images/6.png" alt="DotTap Game screenshot 6" loading="lazy"><figcaption class="screen-caption">Screenshot 06</figcaption></figure>
+      <figure class="screen-card"><img src="images/7.png" alt="DotTap Game screenshot 7" loading="lazy"><figcaption class="screen-caption">Screenshot 07</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="section-label">// Privacy</div>
+    <h2 class="section-title">Nessun dato raccolto</h2>
+    <p class="section-sub">
+      In base alle dichiarazioni fornite per lo store, DotTap Game non raccoglie e non condivide dati utente.
+    </p>
+
+    <div class="intro-grid">
+      <article class="privacy-card">
+        <h3>Sicurezza dei dati</h3>
+        <p>
+          DotTap Game non raccoglie dati utente e non condivide dati con terze parti.
+          Il gioco è pensato per essere immediato, semplice e rispettoso della privacy.
+        </p>
+      </article>
+
+      <article class="privacy-card">
+        <h3>Informazioni legali</h3>
+        <p>
+          Puoi consultare la pagina privacy ufficiale pubblicata nel repository Memmola Labs.
+        </p>
+        <div class="app-actions" style="margin-top:22px;">
+          <a href="https://github.com/alessandromemmola/memmolalabs/blob/main/privacy-dottap.html" target="_blank" class="btn-outline">
+            Privacy Policy →
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="download">
+    <div class="app-section">
+      <div>
+        <div class="section-label" style="margin-bottom:14px;">// Google Play</div>
+        <h2>Scarica DotTap Game</h2>
+        <p>
+          Allenati, migliora i tuoi riflessi e scopri fin dove puoi arrivare.
+          Riuscirai a diventare un vero maestro di DotTap?
+        </p>
+      </div>
+
+      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.dottapgame" target="_blank" aria-label="Scarica DotTap Game su Google Play">
+        <img src="/image/play_ita.png" alt="Disponibile su Google Play" class="store-badge" />
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-logo">Memmola<span>Labs®</span></div>
+
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/immobit/">ImmoBit</a>
+    <a href="/autobit/">AutoBit</a>
+    <a href="/origins/">Origins</a>
+    <a href="https://slangbit.com" target="_blank">SlangBit</a>
+    <a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a>
+    <a href="https://github.com/alessandromemmola" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a>
+    <a href="https://x.com/MemmolaLabs" target="_blank">X</a>
+    <a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a>
+  </div>
+
+  <div>
+    © 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br>
+    Nessun tracciamento personale o cookie di profilazione
+  </div>
+
+  <div class="footer-trademark">Memmola Labs® è un marchio registrato di Alessandro Memmola</div>
+</footer>
+
+</body>
+</html>
