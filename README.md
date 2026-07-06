@@ -158,7 +158,7 @@ Projects such as SlangBit and Memmola Labs Viewer have been developed to reduce 
 
 * 🌐 [Memmola Labs](https://memmolalabs.com)
 * 💼 [LinkedIn ... Alessandro Memmola](https://www.linkedin.com/in/alessandro-memmola-233868372/)
-* 🐦 [X
+* 🐦 [X ... Memmola Labs](https://x.com/MemmolaLabs)
 * 🐙 [GitHub ... alessandromola](https://github.com/alessandromemmola)
 * 🚀 [Product Hunt ... @alessandromemmola](https://www.producthunt.com/@alessandromemmola)
 * 📧 [info@memmolalabs.com](mailto:info@memmolalabs.com)
