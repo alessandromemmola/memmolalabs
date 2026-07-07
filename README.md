@@ -24,6 +24,8 @@ Includes an integrated Package Manager to install and manage language models dir
 
 → [Discover SlangBit](https://slangbit.com)
 
+→ [Available on Microsoft Store](https://apps.microsoft.com/detail/9mvktr6xwl27?hl=it-IT&gl=IT)
+
 ---
 
 ## 🏠 ImmoBit
@@ -34,7 +36,9 @@ ImmoBit allows you to analyze a property through checklists, scores, photographs
 
 Designed for those looking for a home, evaluate a property before buying or working in the real estate sector.
 
-[Available on Google Play](https://play.google.com/store/apps/details?id=com.memmolalabs.immobit)
+→ [Discover immoBit](https://memmolalabs.com/immobit)
+
+→ [Available on Google Play](https://play.google.com/store/apps/details?id=com.memmolalabs.immobit)
 
 ---
 
@@ -46,7 +50,9 @@ AutoBit helps analyze the status of a vehicle through guided checklists, scores,
 
 Designed for those who buy, sell or want to document in a structured way the conditions of a vehicle.
 
-[Available on Google Play](https://play.google.com/store/apps/details?id=com.memmolalabs.autobit)
+→ [Discover AutoBit](https://memmolalabs.com/immobit)
+
+→ [Available on Google Play](https://play.google.com/store/apps/details?id=com.memmolalabs.autobit)
 
 ---
 
@@ -56,7 +62,9 @@ Arcade game for Android based on speed, precision and reflexes.
 
 Four game modes test concentration, speed and ability to react, from fast games to intense challenges.
 
-[Available on Google Play](https://play.google.com/store/apps/details?id=com.memmolalabs.dottapgame)
+→ [Discover DotTap](https://memmolalabs.com/dottap)
+
+→ [Available on Google Play](https://play.google.com/store/apps/details?id=com.memmolalabs.dottapgame)
 
 ---
 
@@ -66,7 +74,9 @@ A personal canvas of memories designed to connect scents, experiences, photograp
 
 Each memory becomes a node inside a personal visual map, allowing you to create connections between experiences and build over time an archive of your memories.
 
-[Available on Google Play](https://play.google.com/store/apps/details?id=com.memmolalabs.scentweave)
+→ [Discover ScentWeave](https://memmolalabs.com/scentweave)
+
+→ [Available on Google Play](https://play.google.com/store/apps/details?id=com.memmolalabs.scentweave)
 
 ---
 
@@ -78,7 +88,7 @@ It works directly in the browser, can be installed as a desktop application and,
 
 Files remain on the user's device and are not loaded to Memmola Labs servers.
 
-[Open Memmola Labs Viewer](https://memmolalabs.com/viewer/)
+→ [Open Memmola Labs Viewer](https://memmolalabs.com/viewer/)
 
 ---
 
@@ -88,7 +98,7 @@ Web tool designed to facilitate preview update and re-indexing of modified Linke
 
 Includes a free embedded widget.
 
-[Visit Reindexme](https://reindexme.com)
+→ [Visit Reindexme](https://reindexme.com)
 
 → [Try the widget](https://reindexme.com/widget-demo.html)
 
