@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>CivicAI Privacy Policy</title>
+
+  <meta
+    name="description"
+    content="Privacy Policy for the CivicAI browser extension."
+  >
+
+  <meta name="theme-color" content="#080c18">
+
+  <style>
+    :root {
+      --background: #080c18;
+      --surface: #11182a;
+      --text: #f4f7ff;
+      --muted: #aab4cb;
+      --border: rgba(255, 255, 255, 0.1);
+      --primary: #79a7ff;
+      --success: #7ee2b8;
+      --max-width: 860px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(79, 131, 234, 0.18),
+          transparent 32rem
+        ),
+        var(--background);
+      color: var(--text);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--primary);
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 34px 0;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8, 12, 24, 0.84);
+      backdrop-filter: blur(12px);
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    .back-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .back-link:hover {
+      color: var(--text);
+    }
+
+    main {
+      padding: 76px 0 90px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--success);
+      background: rgba(126, 226, 184, 0.08);
+      font-size: 0.82rem;
+      font-weight: 750;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.7rem, 7vw, 4.8rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .intro {
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .updated {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .policy {
+      margin-top: 48px;
+      padding: 34px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: rgba(17, 24, 42, 0.84);
+    }
+
+    section + section {
+      margin-top: 38px;
+      padding-top: 34px;
+      border-top: 1px solid var(--border);
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.55rem;
+      letter-spacing: -0.025em;
+    }
+
+    h3 {
+      margin: 22px 0 10px;
+      font-size: 1.08rem;
+    }
+
+    p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 12px 0 0;
+      padding-left: 22px;
+      color: var(--muted);
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    code {
+      padding: 2px 6px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      font-size: 0.92em;
+    }
+
+    .highlight {
+      padding: 20px;
+      border: 1px solid rgba(126, 226, 184, 0.25);
+      border-radius: 14px;
+      background: rgba(126, 226, 184, 0.07);
+    }
+
+    .highlight p {
+      margin: 0;
+      color: var(--text);
+    }
+
+    footer {
+      padding: 34px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    @media (max-width: 640px) {
+      .header-content {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      main {
+        padding-top: 54px;
+      }
+
+      .policy {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container header-content">
+      <a class="brand" href="/civicai/">
+        Civic<span>AI</span>
+      </a>
+
+      <a class="back-link" href="/civicai/">
+        Back to CivicAI
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <span class="eyebrow">Privacy first</span>
+
+      <h1>Privacy Policy</h1>
+
+      <p class="intro">
+        This Privacy Policy explains how the CivicAI browser extension
+        processes user-selected text and related local data.
+      </p>
+
+      <p class="updated">
+        Last updated: July 2026
+      </p>
+
+      <div class="policy">
+        <section>
+          <h2>1. Overview</h2>
+
+          <div class="highlight">
+            <p>
+              CivicAI performs its AI analysis locally inside the browser.
+              Selected text is not sent to an external AI service, backend,
+              analytics platform, or cloud-processing provider.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2>2. Data processed by CivicAI</h2>
+
+          <p>
+            CivicAI processes only the information required to provide its
+            visible browser-extension functionality.
+          </p>
+
+          <h3>Selected webpage text</h3>
+
+          <p>
+            When the user explicitly selects text on a webpage and chooses
+            <strong>Analyze with CivicAI</strong>, the selected text is passed
+            to the CivicAI side panel and analyzed locally.
+          </p>
+
+          <h3>Normalized source hostname</h3>
+
+          <p>
+            CivicAI may temporarily store the normalized hostname of the
+            webpage from which the text was selected. It does not store the
+            complete page URL, query string, page title, or browsing history.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. How the data is used</h2>
+
+          <p>
+            User-selected text is used only to provide CivicAI’s single
+            purpose:
+          </p>
+
+          <ul>
+            <li>classifying the civic issue;</li>
+            <li>calculating a semantic similarity score;</li>
+            <li>estimating urgency;</li>
+            <li>suggesting a possible public recipient;</li>
+            <li>identifying potentially missing information;</li>
+            <li>generating an editable civic report draft.</li>
+          </ul>
+
+          <p>
+            CivicAI does not use selected text for advertising, profiling,
+            credit decisions, model training, analytics, or unrelated
+            purposes.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Local processing</h2>
+
+          <p>
+            CivicAI includes its AI runtime and multilingual model inside the
+            installed browser-extension package.
+          </p>
+
+          <p>
+            The extension uses locally packaged components, including:
+          </p>
+
+          <ul>
+            <li>Transformers.js;</li>
+            <li>ONNX Runtime Web;</li>
+            <li>a quantized multilingual ONNX model;</li>
+            <li>single-threaded SIMD WebAssembly.</li>
+          </ul>
+
+          <p>
+            Remote model loading is disabled. CivicAI does not download or
+            execute remote JavaScript, WebAssembly, model code, or executable
+            logic while the extension is running.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Local storage and retention</h2>
+
+          <p>
+            CivicAI uses the browser extension’s private local storage only
+            to transfer the user-selected text and normalized hostname from
+            the context-menu action to the side panel.
+          </p>
+
+          <p>
+            Pending data is removed after the side panel consumes it.
+          </p>
+
+          <p>
+            If the side panel is never opened, the latest pending selection
+            may remain in the extension’s private local storage until it is:
+          </p>
+
+          <ul>
+            <li>replaced by another selection;</li>
+            <li>removed through the extension’s Reset function;</li>
+            <li>removed by clearing the extension’s local data;</li>
+            <li>removed by uninstalling the extension.</li>
+          </ul>
+
+          <p>
+            CivicAI does not build or maintain a history of visited webpages.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Data sharing and transfers</h2>
+
+          <p>CivicAI does not:</p>
+
+          <ul>
+            <li>sell user data;</li>
+            <li>share user data with third parties;</li>
+            <li>transfer selected text to external AI services;</li>
+            <li>use data for advertising or marketing profiling;</li>
+            <li>use data to determine creditworthiness or lending eligibility;</li>
+            <li>send analytics, telemetry, tracking events, or usage statistics.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>7. Browser permissions</h2>
+
+          <p>CivicAI requests only these browser permissions:</p>
+
+          <h3><code>contextMenus</code></h3>
+
+          <p>
+            Used to show the <strong>Analyze with CivicAI</strong> action when
+            the user explicitly selects webpage text.
+          </p>
+
+          <h3><code>sidePanel</code></h3>
+
+          <p>
+            Used to display the selected text, local analysis, and editable
+            civic report beside the current webpage.
+          </p>
+
+          <h3><code>storage</code></h3>
+
+          <p>
+            Used for the temporary local transfer of selected text and the
+            normalized source hostname to the side panel.
+          </p>
+
+          <p>
+            CivicAI does not request <code>host_permissions</code> and does not
+            automatically read or modify webpage content.
+          </p>
+        </section>
+
+        <section>
+          <h2>8. Personal and sensitive information</h2>
+
+          <p>
+            CivicAI does not intentionally request names, email addresses,
+            payment information, authentication credentials, health data,
+            precise location data, or other personal information.
+          </p>
+
+          <p>
+            However, users can select arbitrary webpage text. The selected
+            text may therefore contain personal or sensitive information
+            chosen by the user.
+          </p>
+
+          <p>
+            Users should avoid including unnecessary personal or sensitive
+            information in the final report.
+          </p>
+        </section>
+
+        <section>
+          <h2>9. No automatic submission</h2>
+
+          <p>
+            CivicAI does not automatically send, publish, or submit civic
+            reports.
+          </p>
+
+          <p>
+            Every generated result remains editable and must be reviewed and
+            used manually by the user.
+          </p>
+        </section>
+
+        <section>
+          <h2>10. Children’s privacy</h2>
+
+          <p>
+            CivicAI is not designed to collect personal information from
+            children. The extension does not create user accounts and does not
+            intentionally collect age information.
+          </p>
+        </section>
+
+        <section>
+          <h2>11. Security</h2>
+
+          <p>
+            CivicAI uses a local-first architecture and limited browser
+            permissions to reduce unnecessary data exposure.
+          </p>
+
+          <p>
+            Untrusted webpage text is rendered using safe text properties such
+            as <code>value</code> and <code>textContent</code>.
+          </p>
+
+          <p>
+            Additional technical details are available in the project’s
+            public security documentation.
+          </p>
+        </section>
+
+        <section>
+          <h2>12. Open-source transparency</h2>
+
+          <p>
+            CivicAI is open source. Its source code, dependency information,
+            model documentation, security notes, and third-party licenses are
+            publicly available at:
+          </p>
+
+          <p>
+            <a
+              href="https://github.com/memmolalabs/CivicAI"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://github.com/memmolalabs/CivicAI
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h2>13. Changes to this policy</h2>
+
+          <p>
+            This Privacy Policy may be updated when CivicAI’s functionality,
+            storage behavior, permissions, or distribution methods change.
+          </p>
+
+          <p>
+            The current version will always be published on this page.
+          </p>
+        </section>
+
+        <section>
+          <h2>14. Contact and support</h2>
+
+          <p>
+            Questions, privacy concerns, and technical issues can be submitted
+            through the CivicAI public issue tracker:
+          </p>
+
+          <p>
+            <a
+              href="https://github.com/memmolalabs/CivicAI/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://github.com/memmolalabs/CivicAI/issues
+            </a>
+          </p>
+
+          <p>
+            Project website:
+          </p>
+
+          <p>
+            <a href="https://memmolalabs.com/civicai/">
+              https://memmolalabs.com/civicai/
+            </a>
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <span>CivicAI · Memmola Labs</span>
+
+      <span>
+        Open source · Local AI · No telemetry
+      </span>
+    </div>
+  </footer>
+</body>
+</html>
