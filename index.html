@@ -17,957 +17,387 @@
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
-    :root {
-      --bg:        #000508;
-      --surface:   #040d14;
-      --surface2:  #071520;
-      --border:    #0d2a40;
-      --blue:      #0077ff;
-      --cyan:      #00c8ff;
-      --cyan2:     #00eaff;
-      --text:      #e8f4ff;
-      --muted:     #4a7a99;
-      --card-glow: rgba(0,200,255,0.07);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Exo 2', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image:
-        linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 40px;
-      background: rgba(0,5,8,0.85);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav-logo {
-      display: flex; align-items: center; gap: 12px;
-      text-decoration: none;
-    }
-
-    .nav-logo-mark {
-      width: 36px; height: 36px;
-      background: linear-gradient(135deg, var(--blue), var(--cyan));
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Exo 2', sans-serif;
-      font-weight: 900; font-size: 18px;
-      color: #000;
-      box-shadow: 0 0 16px rgba(0,200,255,0.4);
-    }
-
-    .nav-logo-text {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      color: var(--text);
-      letter-spacing: 0.05em;
-    }
-
-    .nav-logo-text span { color: var(--cyan); }
-
-    .nav-links {
-      display: flex; gap: 32px; align-items: center;
-    }
-
-    .nav-links a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--cyan); }
-
-    .nav-cta {
-      background: transparent;
-      border: 1px solid var(--cyan);
-      color: var(--cyan) !important;
-      padding: 6px 16px;
-      border-radius: 4px;
-      transition: background 0.2s, color 0.2s !important;
-    }
-
-    .nav-cta:hover { background: var(--cyan); color: #000 !important; }
-
-    
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 120px 24px 80px;
-      z-index: 1;
-    }
-
-    
-    .hero::before {
-      content: '';
-      position: absolute;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(0,119,255,0.15) 0%, rgba(0,200,255,0.08) 40%, transparent 70%);
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(0,200,255,0.08);
-      border: 1px solid rgba(0,200,255,0.2);
-      border-radius: 100px;
-      padding: 6px 16px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--cyan);
-      letter-spacing: 0.1em;
-      margin-bottom: 32px;
-      animation: fadeUp 0.6s ease both;
-    }
-
-    .hero-badge-dot {
-      width: 6px; height: 6px;
-      background: var(--cyan);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--cyan);
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-    .hero h1 {
-      font-size: clamp(3rem, 8vw, 6.5rem);
-      font-weight: 900;
-      line-height: 1.0;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      animation: fadeUp 0.6s 0.1s ease both;
-    }
-
-    .hero h1 .accent {
-      background: linear-gradient(90deg, var(--blue), var(--cyan2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-sub {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      color: var(--muted);
-      font-weight: 300;
-      max-width: 560px;
-      line-height: 1.7;
-      margin-top: 20px;
-      animation: fadeUp 0.6s 0.2s ease both;
-    }
-
-    .hero-actions {
-      display: flex; gap: 16px; flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 40px;
-      animation: fadeUp 0.6s 0.3s ease both;
-    }
-
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: linear-gradient(135deg, var(--blue), var(--cyan));
-      color: #000;
-      font-family: 'Exo 2', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      padding: 14px 32px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: opacity 0.2s, transform 0.15s;
-      box-shadow: 0 0 24px rgba(0,200,255,0.3);
-    }
-
-    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
-
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-family: 'Exo 2', sans-serif;
-      font-weight: 600;
-      font-size: 0.9rem;
-      padding: 14px 32px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
-
-    
-    .stats-strip {
-      display: flex; gap: 48px; flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 64px;
-      padding-top: 48px;
-      border-top: 1px solid var(--border);
-      animation: fadeUp 0.6s 0.4s ease both;
-    }
-
-    .stat { text-align: center; }
-
-    .stat-num {
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--cyan);
-      font-family: 'JetBrains Mono', monospace;
-      display: block;
-    }
-
-    .stat-label {
-      font-size: 11px;
-      color: var(--muted);
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-top: 4px;
-    }
-
-    
-    section {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 100px 40px;
-    }
-
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: var(--cyan);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      display: flex; align-items: center; gap: 12px;
-    }
-
-    .section-label::after {
-      content: '';
-      flex: 1; height: 1px;
-      background: var(--border);
-      max-width: 80px;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-
-    .section-sub {
-      font-size: 1rem;
-      color: var(--muted);
-      font-weight: 300;
-      max-width: 560px;
-      line-height: 1.7;
-      margin-bottom: 56px;
-    }
-
-    
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 24px;
-    }
-
-    .project-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px;
-      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--blue), var(--cyan), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .project-card:hover {
-      border-color: rgba(0,200,255,0.3);
-      box-shadow: 0 0 40px rgba(0,200,255,0.08);
-      transform: translateY(-4px);
-    }
-
-    .project-card:hover::before { opacity: 1; }
-
-    .project-tag {
-      display: inline-block;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 100px;
-      margin-bottom: 16px;
-    }
-
-    .tag-web { background: rgba(0,119,255,0.12); color: #4da6ff; border: 1px solid rgba(0,119,255,0.25); }
-    .tag-app { background: rgba(0,234,255,0.12); color: var(--cyan2); border: 1px solid rgba(0,234,255,0.25); }
-    .tag-widget { background: rgba(100,180,255,0.1); color: #80c8ff; border: 1px solid rgba(100,180,255,0.2); }
-
-    .project-icon { font-size: 2rem; margin-bottom: 12px; }
-
-    .project-name {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .project-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-
-    .project-links {
-      display: flex; gap: 10px; flex-wrap: wrap;
-    }
-
-    .btn-card {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.06em;
-      padding: 8px 16px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .btn-card-primary {
-      background: rgba(0,200,255,0.1);
-      border: 1px solid rgba(0,200,255,0.25);
-      color: var(--cyan);
-    }
-
-    .btn-card-primary:hover { background: var(--cyan); color: #000; }
-
-    .btn-card-secondary {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-    }
-
-    .btn-card-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
-
-    
-    .app-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 4px 10px;
-      border-radius: 4px;
-      margin-bottom: 16px;
-    }
-
-
-    .project-logo-img {
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-      display: block;
-      margin-bottom: 14px;
-      border-radius: 12px;
-      background: rgba(0,200,255,0.06);
-      border: 1px solid rgba(0,200,255,0.14);
-      padding: 6px;
-    }
-
-    .origin-section {
-      background: linear-gradient(135deg, rgba(0,119,255,0.10), rgba(0,200,255,0.05));
-      border: 1px solid rgba(0,200,255,0.22);
-      border-radius: 24px;
-      padding: 56px 48px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .origin-section::after {
-      content: '';
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      right: -160px;
-      top: -160px;
-      background: radial-gradient(circle, rgba(0,200,255,0.16) 0%, transparent 68%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .origin-section > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .origin-section .section-sub {
-      margin-bottom: 30px;
-      max-width: 720px;
-    }
-
-    .origin-kicker {
-      font-family: 'JetBrains Mono', monospace;
-      color: rgba(232,244,255,0.72);
-      font-size: 0.82rem;
-      line-height: 1.8;
-      max-width: 760px;
-      margin-bottom: 28px;
-    }
-
-
-    
-    .app-store-visual {
-      position: relative;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid rgba(0,200,255,0.18);
-      background: linear-gradient(135deg, rgba(0,119,255,0.08), rgba(0,200,255,0.04));
-      margin-bottom: 22px;
-      aspect-ratio: 16 / 9;
-    }
-
-    .app-store-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      opacity: 0.92;
-      transition: transform 0.35s ease, opacity 0.35s ease;
-    }
-
-    .project-card:hover .app-store-visual img {
-      transform: scale(1.04);
-      opacity: 1;
-    }
-
-    .app-store-visual::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 45%, rgba(0,5,8,0.72) 100%);
-      pointer-events: none;
-    }
-
-    .store-badge-img {
-      display: block;
-      height: 42px;
-      width: auto;
-      margin-top: 12px;
-      opacity: 0.95;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-
-    .store-badge-img:hover {
-      opacity: 1;
-      transform: translateY(-1px);
-    }
-
-    
-    .support-section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 56px 48px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .support-section::before {
-      content: '';
-      position: absolute;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(0,200,255,0.06) 0%, transparent 70%);
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .support-section h2 {
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-
-    .support-section p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 36px;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.7;
-    }
-
-    .support-btns {
-      display: flex; gap: 20px;
-      justify-content: center; flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .support-item { text-align: center; }
-
-    .support-item-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--muted);
-      margin-top: 6px;
-      letter-spacing: 0.08em;
-    }
-
-    .paypal-form { display: inline-flex; align-items: center; }
-
-    
-    footer {
-      position: relative; z-index: 1;
-      border-top: 1px solid var(--border);
-      padding: 48px 40px;
-      text-align: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      line-height: 2;
-    }
-
-    footer a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    footer a:hover { color: var(--cyan); }
-
-    .footer-logo {
-      font-family: 'Exo 2', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 900;
-      color: var(--text);
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
-    }
-
-    .footer-logo span {
-      background: linear-gradient(90deg, var(--blue), var(--cyan2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .footer-links {
-      display: flex; gap: 20px; flex-wrap: wrap;
-      justify-content: center;
-      margin: 12px 0;
-    }
-
-    .footer-trademark {
-      font-size: 10px;
-      color: rgba(74,122,153,0.5);
-      margin-top: 16px;
-    }
-
-    
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    
-    @media (max-width: 768px) {
-      nav { padding: 14px 20px; }
-      .nav-links { display: none; }
-      section { padding: 60px 20px; }
-      .support-section { padding: 36px 24px; }
-      .stats-strip { gap: 28px; }
-      footer { padding: 40px 20px; }
-    }
-  </style>
-</head>
+:root{
+  --bg:#ffffff;
+  --surface:#f7f9fc;
+  --surface-2:#eef3f8;
+  --line:#dfe6ee;
+  --text:#111827;
+  --muted:#5f6b7a;
+  --blue:#3578ff;
+  --cyan:#4cc9f0;
+  --green:#0f9f6e;
+  --gold:#d6a62f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  overflow-x:hidden;
+}
+a{color:inherit}
+img{display:block;max-width:100%}
+
+nav{
+  position:sticky;top:0;z-index:100;
+  height:62px;padding:0 3vw;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(255,255,255,.92);
+  border-bottom:1px solid rgba(17,24,39,.08);
+  backdrop-filter:blur(18px);
+}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-mark{
+  width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#2f6fff,#55d5f4);
+  color:#fff;font-weight:800;font-size:15px;
+}
+.nav-logo-text{font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.nav-logo-text span{color:var(--blue)}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{
+  text-decoration:none;text-transform:uppercase;
+  font-size:10px;font-weight:700;letter-spacing:.08em;color:#243042;
+}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{padding:7px 13px;border:1px solid #cbd5e1;border-radius:999px}
+
+.hero{
+  min-height:520px;
+  padding:65px 3.5vw 28px;
+  display:grid;grid-template-columns:minmax(360px,.8fr) minmax(650px,1.35fr);
+  align-items:center;gap:2vw;
+  background:
+    radial-gradient(circle at 55% 40%,rgba(69,154,255,.12),transparent 24%),
+    radial-gradient(circle at 73% 56%,rgba(255,185,80,.10),transparent 18%),
+    linear-gradient(180deg,#fff,#fbfdff);
+}
+.hero-copy-wrap{align-self:start;padding-top:22px}
+.eyebrow{font-size:11px;font-weight:700;color:#69788b;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.hero h1{
+  font-size:clamp(2.9rem,5vw,5.6rem);
+  line-height:.98;letter-spacing:-.05em;
+  max-width:680px;
+}
+.hero h1 span{display:block;color:var(--blue)}
+.hero-copy{
+  margin-top:18px;max-width:610px;
+  font-size:1.05rem;line-height:1.55;color:#566273;
+}
+.platforms{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.platforms span{
+  display:inline-flex;align-items:center;padding:7px 11px;
+  border:1px solid #d9e2ec;border-radius:6px;background:#fff;
+  font-size:11px;font-weight:700;color:#364152;
+}
+.hero-actions{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.btn-primary,.btn-outline{
+  display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;border-radius:8px;padding:11px 18px;
+  font-size:12px;font-weight:800;
+}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-outline{border:1px solid #d2dbe6;background:#fff;color:#273244}
+
+.hero-art{
+  min-height:410px;position:relative;display:flex;align-items:flex-end;justify-content:center;
+}
+.hero-device{
+  width:84%;height:auto;filter:drop-shadow(0 30px 55px rgba(31,50,81,.16));
+  transform:translateY(6px);
+}
+.hero-ribbon{
+  position:absolute;inset:7% 2% 12% 0;border-radius:50%;
+  background:
+    radial-gradient(circle at 18% 50%,rgba(77,188,255,.14),transparent 18%),
+    radial-gradient(circle at 77% 53%,rgba(255,191,93,.12),transparent 18%);
+  filter:blur(10px);z-index:-1;
+}
+
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  margin:0 auto;max-width:1500px;border-top:1px solid #e6ebf1;border-bottom:1px solid #e6ebf1;
+}
+.stat{padding:22px;text-align:center;border-right:1px solid #e6ebf1}.stat:last-child{border-right:0}
+.stat strong{display:block;font-size:1.45rem;color:#1a2b42}.stat span{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#7a8796;font-weight:700}
+
+.section-head{max-width:1500px;margin:0 auto;padding:70px 3vw 24px}
+.section-label{font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#7b8797}
+.section-head h2{font-size:clamp(2rem,3.5vw,3.6rem);letter-spacing:-.045em;margin-top:8px}
+.section-head p{color:#667284;line-height:1.55;max-width:650px;margin-top:10px;font-size:.98rem}
+
+.showcase{
+  max-width:1500px;margin:0 auto;
+  padding:0 3vw 70px;
+  display:grid;grid-template-columns:1fr 1fr;gap:18px;
+}
+.project{
+  position:relative;overflow:hidden;
+  min-height:360px;border-radius:18px;
+  border:1px solid #e1e7ef;background:#fff;
+  box-shadow:0 12px 35px rgba(47,64,84,.06);
+}
+.project.full{grid-column:1/-1;min-height:430px}
+.project-media{position:absolute;inset:0}
+.project-media img{width:100%;height:100%;object-fit:cover}
+.project-media::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.86) 33%,rgba(255,255,255,.22) 63%,rgba(255,255,255,0) 80%);
+}
+.project.full .project-media::after{
+  background:linear-gradient(90deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.82) 29%,rgba(255,255,255,.08) 62%,rgba(255,255,255,0) 78%);
+}
+.project-copy{
+  position:relative;z-index:2;
+  width:48%;padding:34px 30px;min-height:100%;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.project.full .project-copy{width:34%;padding-left:36px}
+.project-kicker{font-size:9px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#7e8b99;margin-bottom:8px}
+.project-copy h3{font-size:clamp(1.8rem,3vw,3rem);line-height:1;letter-spacing:-.045em}
+.project-copy p{color:#5f6c7c;line-height:1.5;margin-top:10px;font-size:.9rem}
+.project-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.project-meta span{font-size:9px;font-weight:800;letter-spacing:.05em;padding:5px 7px;border:1px solid #dfe6ee;border-radius:5px;background:rgba(255,255,255,.82);color:#6e7b8a}
+.project-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.project-actions .btn-primary,.project-actions .btn-outline{padding:9px 13px;font-size:10px}
+
+#slangbit{background:#06111b;border-color:#06111b}
+#slangbit .project-media::after{background:linear-gradient(90deg,rgba(3,12,20,.97) 0%,rgba(3,12,20,.86) 31%,rgba(3,12,20,.12) 66%,transparent 82%)}
+#slangbit .project-copy,#slangbit .project-copy p{color:#fff}
+#slangbit .project-copy p{color:#b9cad9}
+#slangbit .project-kicker{color:#6fdfff}
+#slangbit .project-meta span{border-color:#17364a;background:rgba(5,19,30,.75);color:#9bdcff}
+#slangbit .btn-outline{border-color:#23465c;background:transparent;color:#cbeeff}
+
+#autobit .project-copy h3{color:#1c5dff}
+#immobit .project-copy h3{color:#c99618}
+#scentweave .project-copy h3{color:#b18722}
+#dottap .project-copy h3{color:#ef438c}
+#civicai .project-copy h3{color:#15936a}
+#viewer .project-copy h3{color:#237bdc}
+
+.origins-strip{
+  max-width:1500px;margin:0 auto;padding:0 3vw 74px;
+}
+.origins-frame{
+  display:grid;grid-template-columns:230px minmax(0,1fr);
+  gap:12px;align-items:stretch;
+}
+.origins-intro{
+  border:1px solid #e1e7ef;border-radius:16px;padding:26px 22px;background:#fff;
+}
+.origins-intro h3{font-size:1.45rem;margin:8px 0 10px}
+.origins-intro p{color:#687487;line-height:1.5;font-size:.9rem}
+.origins-scroll{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}
+.origin-card{
+  min-width:520px;aspect-ratio:2.2/1;position:relative;overflow:hidden;border-radius:16px;scroll-snap-align:start;
+  box-shadow:0 10px 30px rgba(36,50,68,.08)
+}
+.origin-card img{width:100%;height:100%;object-fit:cover}
+
+.minor-grid{
+  max-width:1500px;margin:0 auto;padding:0 3vw 80px;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:16px;
+}
+.minor{border:1px solid #e1e7ef;background:#fff;border-radius:16px;padding:28px;box-shadow:0 10px 28px rgba(50,70,90,.04)}
+.minor h3{font-size:1.4rem;margin:10px 0 8px}.minor p{color:#697586;line-height:1.55;font-size:.9rem}
+
+.support{
+  max-width:1200px;margin:0 auto 80px;
+  padding:52px 5vw;text-align:center;
+  border:1px solid #e1e7ef;border-radius:18px;background:#f8fafc;
+}
+.support h2{font-size:2rem;margin:8px 0}.support p{color:#6d7887;margin-bottom:22px}
+
+footer{
+  border-top:1px solid #e6ebf0;background:#fff;
+  padding:38px 4vw;text-align:center;color:#7c8796;font-size:10px;line-height:1.9
+}
+.footer-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.footer-links a{text-decoration:none}.footer-links a:hover{color:var(--blue)}
+
+@media(max-width:1050px){
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr;padding-top:45px}
+  .hero-copy-wrap{text-align:center}.hero-copy{margin-left:auto;margin-right:auto}.platforms,.hero-actions{justify-content:center}
+  .hero-art{min-height:330px}.hero-device{width:95%}
+  .showcase{grid-template-columns:1fr}.project,.project.full{grid-column:auto;min-height:390px}
+  .project-copy,.project.full .project-copy{width:46%;padding:30px 24px}
+  .origins-frame{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  nav{padding:0 18px}
+  .hero{padding:38px 18px 20px;min-height:auto}
+  .hero h1{font-size:3.25rem}
+  .hero-art{min-height:240px}.hero-device{width:110%}
+  .stats{grid-template-columns:1fr 1fr}
+  .showcase{padding:0 12px 50px}
+  .project,.project.full{min-height:520px}
+  .project-media::after,.project.full .project-media::after{background:linear-gradient(180deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.12) 45%,rgba(255,255,255,.96) 69%,#fff 100%)}
+  #slangbit .project-media::after{background:linear-gradient(180deg,rgba(3,12,20,.05) 0%,rgba(3,12,20,.12) 45%,rgba(3,12,20,.94) 68%,#030c14 100%)}
+  .project-copy,.project.full .project-copy{width:100%;padding:300px 24px 24px;justify-content:flex-end}
+  .origins-strip{padding:0 12px 55px}.origin-card{min-width:86vw}
+  .minor-grid{grid-template-columns:1fr;padding:0 18px 60px}
+}
+</style></head>
 <body>
 
-
 <nav>
-  <a href="/" class="nav-logo">
-    <div class="nav-logo-mark">M</div>
-    <span class="nav-logo-text">Memmola<span>Labs</span>®</span>
-  </a>
+  <a href="/" class="nav-logo"><div class="nav-logo-mark">M</div><span class="nav-logo-text">Memmola<span>Labs</span>®</span></a>
   <div class="nav-links">
-    <a href="#progetti">Progetti</a>
-    <a href="https://slangbit.com" target="_blank">SlangBit</a>
-    <a href="/dottap/">DotTap</a>
-    <a href="/viewer/">Viewer</a>
-    <a href="/scentweave/">ScentWeave</a>
-    <a href="/civicai/">CivicAI</a>
-    <a href="/immobit/">ImmoBit</a>
-    <a href="/autobit/">AutoBit</a>
+    <a href="#progetti">Prodotti</a>
     <a href="/origins/">Origins</a>
+    <a href="/viewer/">Viewer</a>
     <a href="#supporta">Supporta</a>
     <a href="https://alessandromemmola.com" target="_blank">Chi sono</a>
     <a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a>
   </div>
 </nav>
 
+<header class="hero">
+  <div class="hero-copy-wrap">
+    <div class="eyebrow">Independent software studio · Latina, Italia</div>
+    <h1>Software indipendente.<span>Pensato per essere utile.</span></h1>
+    <p class="hero-copy">Realizziamo strumenti che semplificano il lavoro e le decisioni di ogni giorno. Offline quando possibile, privati per scelta, senza compromessi inutili.</p>
+    <div class="platforms"><span>▣ Windows</span><span>● Android</span><span>◎ Web</span><span>&lt;/&gt; Open Source</span></div>
+    <div class="hero-actions"><a href="#progetti" class="btn-primary">Esplora i prodotti</a><a href="https://alessandromemmola.com" target="_blank" class="btn-outline">Chi sono</a></div>
+  </div>
+  <div class="hero-art">
+    <div class="hero-ribbon"></div>
+    <img class="hero-device" src="images/slangbit/slangbit.png" alt="Memmola Labs software">
+  </div>
+</header>
 
-<div class="hero">
-  <div class="hero-badge">
-    <span class="hero-badge-dot"></span>
-    Studio indipendente · Latina, Italia
-  </div>
-  <h1>Memmola<br><span class="accent">Labs®</span></h1>
-  <p class="hero-sub">Tool web gratuiti, widget embeddabili e app mobile costruiti da zero per risolvere problemi reali.</p>
-  <div class="hero-actions">
-    <a href="#progetti" class="btn-primary">Esplora i progetti →</a>
-    <a href="https://alessandromemmola.com" target="_blank" class="btn-outline">Chi sono</a>
-  </div>
-  <div class="stats-strip">
-    <div class="stat"><span class="stat-num">11</span><span class="stat-label">Progetti Live</span></div>
-    <div class="stat"><span class="stat-num">1</span><span class="stat-label">Utility Windows Traduzione Offline</span></div>
-    <div class="stat"><span class="stat-num">4</span><span class="stat-label">Tools Gratuiti</span></div>
-    <div class="stat"><span class="stat-num">2</span><span class="stat-label">Widget Gratuiti</span></div>
-    <div class="stat"><span class="stat-num">4</span><span class="stat-label">App su Play Store</span></div>
-    <div class="stat"><span class="stat-num">0</span><span class="stat-label">Dati Raccolti</span></div>
-  </div>
+<div class="stats">
+  <div class="stat"><strong>11</strong><span>Progetti live</span></div>
+  <div class="stat"><strong>4</strong><span>App Play Store</span></div>
+  <div class="stat"><strong>1</strong><span>Utility Windows offline</span></div>
+  <div class="stat"><strong>0</strong><span>Dati raccolti</span></div>
 </div>
 
-
-<section id="progetti">
-  <div class="section-label">// Progetti</div>
-  <h2 class="section-title">Cosa costruisce Memmola Labs</h2>
-  <p class="section-sub">Tool pratici, gratuiti e senza tracking. Ogni progetto risolve un problema reale.</p>
-
-  <div class="projects-grid">
-
-    
-    <div class="project-card">
-      <span class="project-tag tag-web">Web · Multilingua Free</span>
-      <div class="project-icon">🌟</div>
-      <div class="project-name">AskingStars</div>
-      <p class="project-desc">Oroscopo interattivo e ironico: chiedi alle stelle o alla cartomante risposte divertenti e personalizzate per il tuo segno zodiacale.</p>
-      <div class="project-links">
-        <a href="https://askingstars.com" target="_blank" class="btn-card btn-card-primary">Visita il sito →</a>
-        <a href="https://askingstars.com/widget-demo.html" target="_blank" class="btn-card btn-card-secondary">Widget demo</a>
-      </div>
-    </div>
-
-   
-    <div class="project-card">
-      <span class="project-tag tag-web">Web · SEO Tool Free</span>
-      <div class="project-icon">⚡</div>
-      <div class="project-name">Reindexme</div>
-      <p class="project-desc">Hai aggiornato il profilo LinkedIn ma Google mostra ancora la vecchia posizione? Invia segnali di re-indicizzazione a Bing, Yandex e Google in un click.</p>
-      <div class="project-links">
-        <a href="https://reindexme.com" target="_blank" class="btn-card btn-card-primary">Visita il sito →</a>
-        <a href="https://reindexme.com/widget-demo.html" target="_blank" class="btn-card btn-card-secondary">Widget demo</a>
-      </div>
-    </div>
-
-    
-    <div class="project-card">
-      <span class="project-tag tag-app">Android App · Serie Freemium</span>
-      <img src="image/playstore_immobit.png" alt="ImmoBit" class="project-logo-img" loading="lazy">
-      <div class="project-name">ImmoBit</div>
-      <p class="project-desc">App Android per la valutazione immobiliare italiana. Con Elena Moretti, ImmoBit diventa anche una serie editoriale: storie brevi, casi reali e guide pratiche per scegliere casa con più consapevolezza.</p>
-      <div class="project-links">
-        <a href="/immobit/" class="btn-card btn-card-primary">Pagina ImmoBit →</a>
-        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" class="btn-card btn-card-secondary">Google Play</a>
-      </div>
-    </div>
-
-    
-    <div class="project-card">
-      <span class="project-tag tag-app">Android App · Serie Freemium</span>
-      <img src="image/playstore_autobit.png" alt="AutoBit" class="project-logo-img" loading="lazy">
-      <div class="project-name">AutoBit</div>
-      <p class="project-desc">App Android per la valutazione veicoli. Con Luca Romano, AutoBit diventa anche una serie editoriale: storie brevi, controlli intelligenti e segnali da osservare prima di acquistare un’auto usata.</p>
-      <div class="project-links">
-        <a href="/autobit/" class="btn-card btn-card-primary">Pagina AutoBit →</a>
-        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" class="btn-card btn-card-secondary">Google Play</a>
-      </div>
-    </div>
-
-
-    <div class="project-card">
-      <span class="project-tag tag-app">Android App · Serie Freemium</span>
-      <img src="image/dottap.png" alt="DotTap" class="project-logo-img" loading="lazy">
-      <div class="project-name">DotTap</div>
-      <p class="project-desc">DotTap Game è un gioco Arcade veloce e coinvolgente con cui puoi allenare e migliorare i riflessi, precisione e velocità.
-                              Tocca i punti che appaiono sullo schermo, reagisci rapidamente e cerca di ottenere il punteggio più alto possibile. Ogni partita mette alla prova la tua concentrazione e la tua capacità di reagire sotto pressione.</p>
-      <div class="project-links">
-        <a href="/dottap/" class="btn-card btn-card-primary">Pagina DotTap →</a>
-        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.dottapgame" target="_blank" class="btn-card btn-card-secondary">Google Play</a>
-      </div>
-    </div>
-
-
-    <div class="project-card">
-      <span class="project-tag tag-app">Android App · Serie Freemium</span>
-      <img src="image/scentweave.png" alt="ScentWeave" class="project-logo-img" loading="lazy">
-      <div class="project-name">ScentWeave</div>
-      <p class="project-desc">ScentWeave è una tela dei ricordi unica, progettata per aiutarti a connettere profumi, ricordi, foto ed esperienze personali.
-                              Ogni profumo può diventare un nodo nella tua mappa personale. Collega i ricordi, crea connessioni significative e costruisci un archivio visivo dei momenti che hanno plasmato la tua vita.</p>
-      <div class="project-links">
-        <a href="/scentweave/" class="btn-card btn-card-primary">Pagina ScentWeave →</a>
-        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.scentweave" target="_blank" class="btn-card btn-card-secondary">Google Play</a>
-      </div>
-    </div>
-
-
-  </div>
-
-</section>
-
-<section id="slangbit">
-  <div class="origin-section">
-
-
-<div class="section-label">// SlangBit</div>
-
-<h2 class="section-title">
-  SlangBit Desktop
-</h2>
-
-<p class="section-sub">
-  Traduci testi direttamente nel tuo flusso di lavoro Windows
-  con una scorciatoia globale, modelli AI locali
-  e traduzione completamente offline.
-</p>
-
-<p class="origin-kicker">
-  Seleziona e copia un testo da un'applicazione Windows,
-  posiziona il cursore dove vuoi inserire la traduzione
-  e premi ALT+Z.
-  SlangBit traduce il contenuto localmente e inserisce
-  automaticamente il testo tradotto nel punto in cui stai lavorando.
-</p>
-
-<p class="origin-kicker">
-  Nessun browser da aprire, nessun testo da inviare a servizi
-  di traduzione esterni e nessun limite al numero di traduzioni.
-  I modelli linguistici vengono installati attraverso il Package Manager
-  integrato e possono essere utilizzati completamente offline.
-</p>
-
-<p class="origin-kicker">
-  SlangBit è stato progettato e validato per l'utilizzo quotidiano
-  con browser, applicazioni Office, client email, social network,
-  editor di codice, documenti e numerose applicazioni desktop Windows.
-</p>
-
-<div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:24px;">
-  <a href="https://slangbit.com" class="btn-primary">
-    Scopri SlangBit →
-  </a>
-
+<div class="section-head" id="progetti">
+  <div class="section-label">// Prodotti</div>
+  <h2>Un prodotto alla volta.</h2>
+  <p>La homepage diventa una vetrina: immagini grandi, interfacce reali e accesso diretto alle piattaforme dove ogni prodotto viene distribuito.</p>
 </div>
 
-
-  </div>
-</section>
-
-<section id="civicai">
-  <div class="origin-section">
-
-    <div class="section-label">// CivicAI</div>
-
-    <h2 class="section-title">
-      CivicAI
-    </h2>
-
-    <p class="section-sub">
-      Trasforma il testo selezionato sul web in una segnalazione civica
-      strutturata, modificabile e completamente elaborata sul dispositivo.
-    </p>
-
-    <p class="origin-kicker">
-      Seleziona un testo su qualsiasi pagina web, fai clic con il tasto destro
-      e scegli “Analizza con CivicAI”.
-      L’estensione apre un pannello laterale e organizza il contenuto
-      in una bozza di segnalazione pronta per essere controllata e modificata.
-    </p>
-
-    <p class="origin-kicker">
-      CivicAI può classificare il problema, stimare l’urgenza,
-      suggerire un possibile destinatario pubblico,
-      evidenziare le informazioni mancanti
-      e generare una bozza di report modificabile.
-    </p>
-
-    <p class="origin-kicker">
-      Tutta l’inferenza AI viene eseguita localmente nel browser.
-      Nessun backend, nessuna chiave API, nessun account,
-      nessuna telemetria e nessun testo inviato a servizi esterni.
-    </p>
-
-    <p class="origin-kicker">
-      CivicAI è open source, disponibile per Google Chrome e Microsoft Edge,
-      ed è stato realizzato per OpenAI Build Week
-      e per il lancio OpenAI Day su Product Hunt.
-    </p>
-
-    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:24px;">
-      <a href="/civicai/" class="btn-primary">
-        Scopri CivicAI →
-      </a>
-
-      <a
-        href="https://github.com/memmolalabs/CivicAI/releases/tag/v0.3.1"
-        class="btn-secondary"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Scarica CivicAI
-      </a>
+<main class="showcase">
+  <article class="project full" id="slangbit">
+    <div class="project-media"><img src="images/slangbit/slangbit.png" alt="SlangBit per Windows" loading="lazy"></div>
+    <div class="project-copy">
+      <div class="project-kicker">Windows · AI locale · Offline</div><h3>SlangBit</h3>
+      <p>Traduci testi direttamente nel tuo flusso di lavoro Windows con una scorciatoia globale e modelli linguistici locali.</p>
+      <div class="project-meta"><span>ALT + Z</span><span>OFFLINE</span><span>PRIVACY</span></div>
+      <div class="project-actions"><a href="https://slangbit.com" target="_blank" class="btn-primary">Scopri SlangBit →</a></div>
     </div>
+  </article>
 
-  </div>
-</section>  
-  
-
-</section>
-
-<section id="viewer">
-  <div class="origin-section">
-
-    <div class="section-label">// Viewer</div>
-
-    <h2 class="section-title">
-      Memmola Labs Viewer Free
-    </h2>
-
-    <p class="section-sub">
-      Presenta le valutazioni di ImmoBit e AutoBit
-      su desktop, laptop e tablet con un'interfaccia
-      professionale pensata per clienti e consulenze.
-    </p>
-
-    <p class="origin-kicker">
-     Apri un file .immobit o .autobit direttamente dal browser.
-     Naviga tra punteggi, fotografie, costi, note e dettagli
-     attraverso una presentazione interattiva molto più ricca di un PDF.
-    </p>
-
-    <p class="origin-kicker">
-      I dati rimangono sempre sul tuo dispositivo.
-      Nessun file viene caricato o inviato ai server Memmola Labs.
-      Il Viewer può essere installato come applicazione desktop e,
-      dopo il primo utilizzo, funziona anche offline.
-    </p>
-
-    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:24px;">
-      <a href="/viewer/" class="btn-primary">
-        Apri Memmola Labs Viewer →
-      </a>
-
-      <a href="/viewer/" class="btn-outline">
-        Installa come App
-      </a>
+  <article class="project" id="autobit">
+    <div class="project-media"><img src="images/autobit/autobit.png" alt="AutoBit" loading="lazy"></div>
+    <div class="project-copy">
+      <div class="project-kicker">Android · Valutazione auto</div><h3>AutoBit</h3>
+      <p>Controlla un'auto usata con checklist guidate, punteggio e confronto tra veicoli.</p>
+      <div class="project-actions"><a href="/autobit/" class="btn-primary">Scopri di più →</a><a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" class="btn-outline">Google Play</a></div>
     </div>
+  </article>
 
-  </div>
-</section>
-  
-<section id="origins">
-  <div class="origin-section">
-    <div class="section-label">// Origins</div>
-    <h2 class="section-title">Le Origini di ImmoBit & AutoBit Stories</h2>
-    <p class="section-sub">Da due app a un universo narrativo condiviso.</p>
-    <p class="origin-kicker">
-      Prima degli episodi, prima dei reportage e prima del crossover, c'era un'idea:
-      trasformare decisioni reali in storie. Questa è la futura sede del manifesto fondativo di Memmola Labs Stories.
-    </p>
-    <a href="/origins/" class="btn-primary">Leggi la storia delle origini →</a>
-  </div>
-</section>
-  
-<section id="supporta" style="padding-top: 0;">
-  <div class="support-section">
-    <div class="section-label" style="justify-content:center;margin-bottom:20px;">// Supporta</div>
-    <h2>Supporta Memmola Labs</h2>
-    <p>Tool gratuiti e senza tracking. Se ti sono utili, supportami per costruirne altri.</p>
-    <div class="support-btns">
-      <div class="support-item">
-        <iframe src="https://github.com/sponsors/alessandromemmola/button" title="Sponsor alessandromemmola" height="32" width="114" style="border:0;border-radius:6px;display:block;"></iframe>
-        <p class="support-item-label"></p>
-      </div>
+  <article class="project" id="immobit">
+    <div class="project-media"><img src="images/immobit/immobit.png" alt="ImmoBit" loading="lazy"></div>
+    <div class="project-copy">
+      <div class="project-kicker">Android · Valutazione immobiliare</div><h3>ImmoBit</h3>
+      <p>Valuta un immobile in pochi minuti attraverso controlli guidati, costi, stato e comfort.</p>
+      <div class="project-actions"><a href="/immobit/" class="btn-primary">Scopri di più →</a><a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" class="btn-outline">Google Play</a></div>
+    </div>
+  </article>
+
+  <article class="project" id="scentweave">
+    <div class="project-media"><img src="images/scentweave/scentweave.png" alt="ScentWeave" loading="lazy"></div>
+    <div class="project-copy">
+      <div class="project-kicker">Android · Memorie olfattive</div><h3>ScentWeave</h3>
+      <p>Connetti profumi, fotografie, luoghi ed emozioni in una mappa personale dei ricordi.</p>
+      <div class="project-actions"><a href="/scentweave/" class="btn-primary">Scopri di più →</a><a href="https://play.google.com/store/apps/details?id=com.memmolalabs.scentweave" target="_blank" class="btn-outline">Google Play</a></div>
+    </div>
+  </article>
+
+  <article class="project" id="dottap">
+    <div class="project-media"><img src="images/dottap/dottap.png" alt="DotTap" loading="lazy"></div>
+    <div class="project-copy">
+      <div class="project-kicker">Android · Arcade</div><h3>DotTap</h3>
+      <p>Riflessi, precisione e velocità in un gioco rapido con quattro modalità e sfide fino a quattro giocatori.</p>
+      <div class="project-actions"><a href="/dottap/" class="btn-primary">Scopri di più →</a><a href="https://play.google.com/store/apps/details?id=com.memmolalabs.dottapgame" target="_blank" class="btn-outline">Google Play</a></div>
+    </div>
+  </article>
+
+  <article class="project full" id="civicai">
+    <div class="project-media"><img src="images/civicai/civicai.png" alt="CivicAI" loading="lazy"></div>
+    <div class="project-copy">
+      <div class="project-kicker">Open source · Browser · Local AI</div><h3>CivicAI</h3>
+      <p>Trasforma testo selezionato sul web in una bozza di segnalazione civica strutturata, elaborata localmente nel browser.</p>
+      <div class="project-actions"><a href="/civicai/" class="btn-primary">Scopri CivicAI →</a><a href="https://github.com/memmolalabs/CivicAI/releases/tag/v0.3.1" target="_blank" rel="noopener noreferrer" class="btn-outline">GitHub</a></div>
+    </div>
+  </article>
+
+  <article class="project full" id="viewer">
+    <div class="project-media"><img src="images/viewer/viewer.png" alt="Memmola Labs Viewer" loading="lazy"></div>
+    <div class="project-copy">
+      <div class="project-kicker">Web app · Viewer</div><h3>Viewer</h3>
+      <p>Apri e presenta su desktop i file esportati da AutoBit, ImmoBit e ScentWeave, mantenendo i dati sul dispositivo.</p>
+      <div class="project-actions"><a href="/viewer/" class="btn-primary">Apri Viewer →</a><a href="/viewer/" class="btn-outline">Installa come App</a></div>
+    </div>
+  </article>
+</main>
+
+<div class="section-head">
+  <div class="section-label">// Origins</div>
+  <h2>Ogni prodotto nasce da un'idea.</h2>
+  <p>Le storie dietro AutoBit e ImmoBit entrano nella homepage come pausa narrativa, con scorrimento laterale.</p>
+</div>
+
+<section class="origins-strip" id="origins">
+  <div class="origins-frame">
+    <div class="origins-intro">
+      <div class="section-label">Origins</div>
+      <h3>Le storie dietro i prodotti.</h3>
+      <p>AutoBit Stories e ImmoBit Stories raccontano decisioni, errori e dettagli che spesso cambiano tutto.</p>
+      <div class="project-actions"><a href="/origins/" class="btn-outline">Scopri Origins →</a></div>
+    </div>
+    <div class="origins-scroll">
+      <a href="/origins/" class="origin-card"><img src="images/autobit/autobit_origins.png" alt="AutoBit Stories" loading="lazy"></a>
+      <a href="/origins/" class="origin-card"><img src="images/immobit/immobit_origins.png" alt="ImmoBit Stories" loading="lazy"></a>
     </div>
   </div>
+</section>
+
+<div class="section-head">
+  <div class="section-label">// Web tools</div>
+  <h2>Altri strumenti.</h2>
+</div>
+
+<section class="minor-grid">
+  <article class="minor">
+    <div>🌟</div><h3>AskingStars</h3><p>Oroscopo interattivo e ironico, multilingua, con widget embeddabile.</p>
+    <div class="project-actions"><a href="https://askingstars.com" target="_blank" class="btn-primary">Visita il sito →</a><a href="https://askingstars.com/widget-demo.html" target="_blank" class="btn-outline">Widget demo</a></div>
+  </article>
+  <article class="minor">
+    <div>⚡</div><h3>Reindexme</h3><p>Tool gratuito per inviare segnali di re-indicizzazione dopo l'aggiornamento di un profilo o di una pagina.</p>
+    <div class="project-actions"><a href="https://reindexme.com" target="_blank" class="btn-primary">Visita il sito →</a><a href="https://reindexme.com/widget-demo.html" target="_blank" class="btn-outline">Widget demo</a></div>
+  </article>
+</section>
+
+<section class="support" id="supporta">
+  <div class="section-label">// Supporta</div>
+  <h2>Supporta Memmola Labs</h2>
+  <p>Se questi strumenti ti sono utili, puoi contribuire allo sviluppo dei prossimi.</p>
+  <iframe src="https://github.com/sponsors/alessandromemmola/button" title="Sponsor alessandromemmola" height="32" width="114" style="border:0;border-radius:6px"></iframe>
 </section>
 
 <footer>
-  <div class="footer-logo">Memmola<span>Labs®</span></div>
   <div class="footer-links">
-    <<a href="https://slangbit.com" target="_blank">SlangBit</a>
-    <a href="/dottap/">DotTap</a>
-    <a href="/viewer/">Viewer</a>
-    <a href="/scentweave/">ScentWeave</a>
-    <a href="/immobit/">ImmoBit</a>
-    <a href="/autobit/">AutoBit</a>
-    <a href="/origins/">Origins</a>
-    <a href="/civicai/">CivicAI</a>  
-    <a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a>
-    <a href="https://github.com/alessandromemmola" target="_blank">GitHub</a>
-    <a href="https://www.producthunt.com/@alessandromemmola" target="_blank">Product Hunt</a>
-    <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a>
-    <a href="https://x.com/MemmolaLabs" target="_blank">X</a>
-    <a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a>
+    <a href="https://slangbit.com" target="_blank">SlangBit</a><a href="/dottap/">DotTap</a><a href="/viewer/">Viewer</a><a href="/scentweave/">ScentWeave</a><a href="/immobit/">ImmoBit</a><a href="/autobit/">AutoBit</a><a href="/origins/">Origins</a><a href="/civicai/">CivicAI</a><a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a><a href="https://github.com/alessandromemmola" target="_blank">GitHub</a><a href="https://www.producthunt.com/@alessandromemmola" target="_blank">Product Hunt</a><a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a><a href="https://x.com/MemmolaLabs" target="_blank">X</a><a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a>
   </div>
-  <div>
-    © 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br>
-    Nessun tracciamento personale o cookie di profilazione
-  </div>
-  <div class="footer-trademark">Memmola Labs® è un marchio registrato di Alessandro Memmola</div>
+  <div>© 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br>Nessun tracciamento personale o cookie di profilazione</div>
 </footer>
 
-</body>
-</html>
+</body></html>
