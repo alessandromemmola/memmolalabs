@@ -18,678 +18,63 @@
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
-    :root {
-      --bg: #000508;
-      --surface: #040d14;
-      --surface2: #071520;
-      --border: #0d2a40;
-      --blue: #0077ff;
-      --cyan: #00c8ff;
-      --cyan2: #00eaff;
-      --text: #e8f4ff;
-      --muted: #4a7a99;
-      --soft: rgba(0,200,255,0.08);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Exo 2', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    a { color: inherit; }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 40px;
-      background: rgba(0,5,8,0.86);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .nav-logo-mark {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, var(--blue), var(--cyan));
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      font-size: 18px;
-      color: #000;
-      box-shadow: 0 0 16px rgba(0,200,255,0.4);
-    }
-
-    .nav-logo-text {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      color: var(--text);
-      letter-spacing: 0.05em;
-    }
-
-    .nav-logo-text span { color: var(--cyan); }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .nav-links a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--cyan); }
-
-    .nav-cta {
-      border: 1px solid var(--cyan);
-      color: var(--cyan) !important;
-      padding: 6px 16px;
-      border-radius: 4px;
-    }
-
-    .nav-cta:hover { background: var(--cyan); color: #000 !important; }
-
-    .page-hero {
-      position: relative;
-      min-height: 86vh;
-      display: flex;
-      align-items: flex-end;
-      z-index: 1;
-      overflow: hidden;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-    }
-
-    .page-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(0,5,8,0.15) 0%, rgba(0,5,8,0.75) 58%, rgba(0,5,8,0.98) 100%),
-        linear-gradient(90deg, rgba(0,5,8,0.92) 0%, rgba(0,5,8,0.45) 48%, rgba(0,5,8,0.88) 100%),
-        url('banner_immobit.png') center / cover no-repeat;
-      z-index: -2;
-    }
-
-    .page-hero::after {
-      content: '';
-      position: absolute;
-      width: 520px;
-      height: 520px;
-      right: -120px;
-      bottom: -160px;
-      background: radial-gradient(circle, rgba(0,200,255,0.18) 0%, transparent 68%);
-      border-radius: 50%;
-      z-index: -1;
-    }
-
-    .hero-inner {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 140px 40px 80px;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 320px;
-      gap: 48px;
-      align-items: end;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(0,200,255,0.08);
-      border: 1px solid rgba(0,200,255,0.2);
-      border-radius: 100px;
-      padding: 6px 16px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--cyan);
-      letter-spacing: 0.1em;
-      margin-bottom: 28px;
-      text-transform: uppercase;
-    }
-
-    .eyebrow-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--cyan);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--cyan);
-    }
-
-    h1 {
-      font-size: clamp(3.5rem, 10vw, 7.5rem);
-      font-weight: 900;
-      line-height: 0.9;
-      letter-spacing: -0.05em;
-      color: var(--text);
-      margin-bottom: 24px;
-    }
-
-    h1 span {
-      background: linear-gradient(90deg, var(--blue), var(--cyan2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-sub {
-      max-width: 660px;
-      color: #a9c9da;
-      font-size: clamp(1rem, 2.2vw, 1.25rem);
-      line-height: 1.7;
-      font-weight: 300;
-      margin-bottom: 34px;
-    }
-
-    .hero-actions,
-    .episode-actions,
-    .profile-links {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .btn-primary,
-    .btn-outline,
-    .btn-soft {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 42px;
-      padding: 12px 22px;
-      border-radius: 7px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.88rem;
-      letter-spacing: 0.04em;
-      transition: transform 0.16s, opacity 0.2s, border-color 0.2s, color 0.2s, background 0.2s;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--blue), var(--cyan));
-      color: #000;
-      box-shadow: 0 0 24px rgba(0,200,255,0.24);
-    }
-
-    .btn-outline {
-      border: 1px solid var(--border);
-      color: #9ec5da;
-      background: rgba(0,5,8,0.3);
-    }
-
-    .btn-soft {
-      border: 1px solid rgba(0,200,255,0.22);
-      color: var(--cyan);
-      background: rgba(0,200,255,0.08);
-    }
-
-    .btn-primary:hover,
-    .btn-outline:hover,
-    .btn-soft:hover { transform: translateY(-2px); }
-    .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
-    .btn-primary:hover { opacity: 0.88; }
-
-    .profile-card {
-      background: rgba(4,13,20,0.78);
-      border: 1px solid rgba(0,200,255,0.22);
-      border-radius: 22px;
-      padding: 28px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 20px 80px rgba(0,0,0,0.35);
-    }
-
-    .profile-img {
-      width: 138px;
-      height: 138px;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-      border: 3px solid rgba(0,200,255,0.55);
-      box-shadow: 0 0 34px rgba(0,200,255,0.18);
-      margin-bottom: 20px;
-      background: var(--surface2);
-    }
-
-    .profile-card h2 {
-      font-size: 1.45rem;
-      line-height: 1.1;
-      margin-bottom: 8px;
-    }
-
-    .profile-role {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--cyan);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-
-    .profile-card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.65;
-      margin-bottom: 18px;
-    }
-
-    main {
-      position: relative;
-      z-index: 1;
-    }
-
-    section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 92px 40px;
-    }
-
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: var(--cyan);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-      max-width: 90px;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-
-    .section-sub {
-      font-size: 1rem;
-      color: var(--muted);
-      font-weight: 300;
-      max-width: 620px;
-      line-height: 1.7;
-      margin-bottom: 48px;
-    }
-
-    .intro-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 24px;
-    }
-
-    .glass-card,
-    .episode-card,
-    .empty-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 30px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .glass-card::before,
-    .episode-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--blue), var(--cyan), transparent);
-      opacity: 0.85;
-    }
-
-    .glass-card h3,
-    .empty-card h3 {
-      font-size: 1.35rem;
-      margin-bottom: 14px;
-    }
-
-    .glass-card p,
-    .empty-card p,
-    .episode-card p {
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 0.95rem;
-    }
-
-    .feature-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .feature-list li {
-      list-style: none;
-      color: #b7d6e8;
-      font-size: 0.94rem;
-      line-height: 1.45;
-      padding-left: 22px;
-      position: relative;
-    }
-
-    .feature-list li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--cyan);
-    }
-
-    .episodes-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-    }
-
-    .episode-meta {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid rgba(0,200,255,0.22);
-      background: rgba(0,200,255,0.07);
-      color: var(--cyan);
-      border-radius: 100px;
-      padding: 5px 10px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .episode-card h3 {
-      font-size: 1.45rem;
-      line-height: 1.2;
-      margin-bottom: 12px;
-    }
-
-    .script-box {
-      margin: 22px 0;
-      padding: 18px;
-      border-radius: 14px;
-      background: rgba(0,5,8,0.42);
-      border: 1px solid rgba(13,42,64,0.85);
-    }
-
-    .script-box strong {
-      display: block;
-      font-family: 'JetBrains Mono', monospace;
-      color: var(--cyan);
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .script-box p {
-      color: #b8d6e7;
-    }
-
-    .empty-card {
-      border-style: dashed;
-      background: rgba(4,13,20,0.55);
-      min-height: 240px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .code-note {
-      margin-top: 18px;
-      display: block;
-      font-family: 'JetBrains Mono', monospace;
-      color: rgba(74,122,153,0.8);
-      font-size: 11px;
-      line-height: 1.7;
-    }
-
-    .app-section {
-      background: linear-gradient(135deg, rgba(0,119,255,0.12), rgba(0,200,255,0.06));
-      border: 1px solid rgba(0,200,255,0.22);
-      border-radius: 22px;
-      padding: 44px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 28px;
-      align-items: center;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .app-section::after {
-      content: '';
-      position: absolute;
-      width: 360px;
-      height: 360px;
-      right: -120px;
-      top: -120px;
-      background: radial-gradient(circle, rgba(0,200,255,0.14) 0%, transparent 68%);
-      border-radius: 50%;
-    }
-
-    .app-section > * { position: relative; z-index: 1; }
-
-    .app-section h2 {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      margin-bottom: 10px;
-    }
-
-    .app-section p {
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 640px;
-    }
-
-    .store-badge {
-      display: block;
-      width: min(220px, 100%);
-      height: auto;
-      transition: transform 0.18s, opacity 0.2s;
-    }
-
-    .store-badge:hover {
-      transform: translateY(-2px);
-      opacity: 0.9;
-    }
-
-    footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--border);
-      padding: 48px 40px;
-      text-align: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      line-height: 2;
-    }
-
-    footer a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    footer a:hover { color: var(--cyan); }
-
-    .footer-logo {
-      font-family: 'Exo 2', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 900;
-      color: var(--text);
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
-    }
-
-    .footer-logo span {
-      background: linear-gradient(90deg, var(--blue), var(--cyan2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 12px 0;
-    }
-
-    .footer-trademark {
-      font-size: 10px;
-      color: rgba(74,122,153,0.5);
-      margin-top: 16px;
-    }
-
-    @media (max-width: 860px) {
-      nav { padding: 14px 20px; }
-      .nav-links { display: none; }
-      .hero-inner,
-      .intro-grid,
-      .app-section {
-        grid-template-columns: 1fr;
-      }
-      .hero-inner {
-        padding: 120px 22px 56px;
-      }
-      .profile-card {
-        max-width: 380px;
-      }
-      section { padding: 64px 22px; }
-      .app-section { padding: 30px; }
-      footer { padding: 40px 20px; }
-    }
-  </style>
-</head>
-<body>
-
+:root{--bg:#fff;--surface:#f8f7f2;--line:#e7e2d6;--text:#161616;--muted:#6f6a61;--gold:#c99b2e;--gold2:#a87813;--dark:#0b0b0b}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:#fff;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;overflow-x:hidden}a{color:inherit}img{display:block;max-width:100%}
+nav{position:sticky;top:0;z-index:100;height:64px;padding:0 3.5vw;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.94);border-bottom:1px solid rgba(17,24,39,.08);backdrop-filter:blur(18px)}.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}.nav-logo-mark{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,#c99b2e,#f1d47a);color:#111;font-weight:900}.nav-logo-text{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}.nav-logo-text span{color:var(--gold2)}.nav-links{display:flex;gap:24px;align-items:center}.nav-links a{text-decoration:none;text-transform:uppercase;font-size:10px;font-weight:700;letter-spacing:.08em;color:#2f2d29}.nav-links a:hover{color:var(--gold2)}.nav-cta{padding:7px 13px;border:1px solid #d9d3c8;border-radius:999px}
+.page-hero{min-height:calc(100vh - 64px);padding:50px 3.5vw 28px;display:grid;grid-template-columns:minmax(380px,.78fr) minmax(650px,1.22fr);gap:2vw;align-items:center;background:radial-gradient(circle at 72% 34%,rgba(201,155,46,.13),transparent 28%),linear-gradient(180deg,#fff,#fffdf8)}.hero-copy{padding-left:1vw}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#6c665b;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}h1{font-size:clamp(4rem,8vw,8rem);line-height:.86;letter-spacing:-.06em;margin-bottom:22px}h1 span{color:var(--gold2)}.hero-sub{max-width:650px;color:#645f56;font-size:clamp(1rem,1.7vw,1.25rem);line-height:1.6}.hero-actions,.episode-actions,.profile-links{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.hero-actions{margin-top:28px}.btn-primary,.btn-outline,.btn-soft{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:10px 17px;border-radius:8px;text-decoration:none;font-size:11px;font-weight:800;transition:.18s ease}.btn-primary{background:linear-gradient(135deg,#d5a638,#b8800e);color:#fff}.btn-outline{border:1px solid #ded8cd;background:#fff;color:#37332d}.btn-soft{border:1px solid #e5d8b5;background:#fffaf0;color:#9a6b0a}.btn-primary:hover,.btn-outline:hover,.btn-soft:hover{transform:translateY(-1px)}
+.hero-visual{min-height:600px;position:relative;display:flex;align-items:center;justify-content:center}.hero-visual img{width:100%;max-width:1000px;filter:drop-shadow(0 30px 55px rgba(76,58,18,.13))}.hero-glow{position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(201,155,46,.16),rgba(201,155,46,.04) 42%,transparent 70%);z-index:-1}
+.product-intro,.episodes-section{max-width:1500px;margin:0 auto;padding:88px 3.5vw 90px}.section-label{color:#81796c;font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px}.section-title{font-size:clamp(2.2rem,4vw,4rem);line-height:1;letter-spacing:-.045em;margin-bottom:15px}.section-sub{color:var(--muted);max-width:720px;line-height:1.65;font-size:1rem;margin-bottom:35px}.intro-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.glass-card,.product-note{border:1px solid var(--line);border-radius:18px;padding:34px;background:#fff;box-shadow:0 12px 35px rgba(65,56,37,.05)}.glass-card h3{font-size:1.45rem;margin-bottom:12px}.glass-card p,.product-note p{color:var(--muted);line-height:1.65}.feature-list{display:grid;gap:12px;margin-top:18px}.feature-list li{list-style:none;color:#4f4b44;line-height:1.5;padding-left:22px;position:relative;font-size:.93rem}.feature-list li:before{content:"✓";position:absolute;left:0;color:var(--gold2);font-weight:900}.product-note{background:linear-gradient(135deg,#fffdf7,#f7f0dd);display:flex;flex-direction:column;justify-content:center}.product-note strong{font-size:2rem;letter-spacing:-.04em}.product-note p{margin-top:10px}
+.stories-hero{position:relative;min-height:72vh;display:flex;align-items:flex-end;overflow:hidden;background:#090909}.stories-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.stories-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.04) 20%,rgba(0,0,0,.20) 55%,rgba(0,0,0,.84) 100%)}.stories-copy{position:relative;z-index:2;width:100%;padding:54px 5vw;color:#fff}.stories-copy .section-label{color:#d8c18d}.stories-copy h2{font-size:clamp(2.6rem,6vw,6rem);line-height:.9;letter-spacing:-.05em}.stories-copy h2 span{color:#d3a33a}.stories-copy p{margin-top:16px;max-width:620px;color:#e2ddd4;line-height:1.6}
+.profile-strip{background:var(--dark);color:#fff;padding:0 5vw 70px}.profile-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center;border-top:1px solid rgba(255,255,255,.10);padding-top:46px}.profile-name{font-size:clamp(2rem,4vw,4rem);letter-spacing:-.045em}.profile-role{margin-top:8px;color:#d3a33a;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.profile-text{color:#c3bbb0;line-height:1.7;max-width:680px}
+.episodes-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.episode-card{position:relative;border:1px solid var(--line);border-radius:18px;background:#fff;padding:28px;box-shadow:0 12px 35px rgba(65,56,37,.045)}.episode-card:nth-child(odd){border-top:3px solid #c99b2e}.episode-card:nth-child(even){border-top:3px solid #2d2d2d}.episode-meta{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px}.chip{display:inline-flex;padding:5px 9px;border:1px solid #e5dfd5;border-radius:999px;background:#fbfaf7;font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#746d62}.episode-card h3{font-size:1.45rem;line-height:1.2;letter-spacing:-.02em;margin-bottom:14px}.script-box{margin:18px 0;padding:17px 18px;border-radius:12px;background:#faf8f3;border:1px solid #ece5d8}.script-box strong{display:block;margin-bottom:7px;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#7d7468}.script-box p{color:#514d46;line-height:1.58;font-size:.92rem}.episode-actions{gap:7px}.episode-actions .btn-soft,.episode-actions .btn-outline{font-size:9px;padding:8px 10px;min-height:34px}.episode-card [aria-disabled="true"]{opacity:.38;pointer-events:none}
+.app-cta{max-width:1500px;margin:0 auto 90px;padding:0 3.5vw}.app-section{border-radius:20px;background:linear-gradient(135deg,#fff9eb,#fbf7ef);border:1px solid #e9dec1;padding:46px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}.app-section h2{font-size:clamp(2rem,3vw,3rem);letter-spacing:-.04em;margin-bottom:10px}.app-section p{color:var(--muted);line-height:1.65;max-width:700px}.store-link{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:10px;background:#111;color:#fff;text-decoration:none;font-weight:800;font-size:12px}
+footer{border-top:1px solid #ece7df;padding:42px 4vw;text-align:center;color:#827b70;font-size:10px;line-height:1.9}.footer-logo{font-size:1rem;font-weight:800;color:#211f1b;margin-bottom:12px}.footer-logo span{color:var(--gold2)}.footer-links{display:flex;gap:17px;flex-wrap:wrap;justify-content:center;margin:12px 0}.footer-links a{text-decoration:none}.footer-links a:hover{color:var(--gold2)}.footer-trademark{margin-top:12px;color:#aaa298}
+@media(max-width:980px){.nav-links{display:none}.page-hero{grid-template-columns:1fr;padding-top:46px}.hero-copy{text-align:center;padding-left:0}.hero-sub{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-visual{min-height:420px}.intro-grid,.profile-inner,.app-section{grid-template-columns:1fr}.episodes-grid{grid-template-columns:1fr}}
+@media(max-width:650px){nav{padding:0 18px}.page-hero{padding:38px 18px 18px;min-height:auto}h1{font-size:4.3rem}.hero-visual{min-height:300px}.hero-visual img{width:115%;max-width:none}.product-intro,.episodes-section{padding:64px 18px}.stories-hero{min-height:58vh}.stories-copy{padding:38px 22px}.profile-strip{padding:0 22px 54px}.episode-card{padding:22px}.app-cta{padding:0 18px;margin-bottom:60px}.app-section{padding:28px}}
+</style></head><body>
 <nav>
-  <a href="/" class="nav-logo">
-    <div class="nav-logo-mark">M</div>
-    <span class="nav-logo-text">Memmola<span>Labs</span>®</span>
-  </a>
-  <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="#episodi">Episodi</a>
-    <a href="#app">App</a>
-    <a href="/autobit/">AutoBit</a>
-    <a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a>
-  </div>
+<a href="/" class="nav-logo"><div class="nav-logo-mark">M</div><span class="nav-logo-text">Memmola<span>Labs</span>®</span></a>
+<div class="nav-links"><a href="/">Home</a><a href="#prodotto">ImmoBit</a><a href="#stories">Stories</a><a href="#episodi">Episodi</a><a href="/viewer/">Viewer</a><a href="/autobit/">AutoBit</a><a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a></div>
 </nav>
 
 <header class="page-hero">
-  <div class="hero-inner">
-    <div>
-      <div class="eyebrow"><span class="eyebrow-dot"></span> Serie ufficiale Memmola Labs</div>
-      <h1>Immo<span>Bit</span></h1>
-      <p class="hero-sub">Storie brevi, casi immobiliari e contenuti visuali dedicati a chi vuole capire meglio un immobile prima di acquistare, vendere o valutare.</p>
-      <div class="hero-actions">
-        <a href="#episodi" class="btn-primary">Guarda gli episodi →</a>
-        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" class="btn-outline">Scarica l'app</a>
-        <a href="https://memmolalabs.com/viewer" target="_blank" class="btn-outline">Usa il viewer Free</a>
-      </div>
-    </div>
-
-    <aside class="profile-card" aria-label="Profilo Elena Moretti">
-      <img src="immagine-piccola_immobit.png" alt="Elena Moretti, protagonista della serie ImmoBit" class="profile-img" />
-      <h2>Elena Moretti</h2>
-      <div class="profile-role">Property analyst · ImmoBit</div>
-      <p>Elena osserva dettagli, contesto e segnali spesso ignorati. Ogni episodio racconta un piccolo caso immobiliare con taglio narrativo e pratico.</p>
-      <div class="profile-links">
-        <a href="#episodi" class="btn-soft">Archivio episodi</a>
-      </div>
-    </aside>
-  </div>
+<div class="hero-copy">
+<div class="eyebrow"><span class="eyebrow-dot"></span> ImmoBit · Android</div>
+<h1>Osserva meglio.<br>Prima di <span>scegliere.</span></h1>
+<p class="hero-sub">Controlli guidati, punteggio 0–100, costi, comfort e confronto per valutare un immobile con più metodo prima dell'acquisto o dell'affitto.</p>
+<div class="hero-actions"><a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" class="btn-primary">Scarica su Google Play</a><a href="https://memmolalabs.com/viewer" target="_blank" class="btn-outline">Apri il Viewer</a><a href="#stories" class="btn-outline">ImmoBit Stories ↓</a></div>
+</div>
+<div class="hero-visual"><div class="hero-glow"></div><img src="/images/immobit/immobit.png" alt="ImmoBit su smartphone"></div>
 </header>
 
 <main>
-  <section id="intro">
-    <div class="section-label">// ImmoBit Universe</div>
-    <h2 class="section-title">Una pagina ufficiale per ogni storia</h2>
-    <p class="section-sub">Questa sezione nasce come archivio editoriale della serie: ogni nuova puntata potrà avere testo, link social, PDF consultabile e collegamento all'app.</p>
+<section class="product-intro" id="prodotto">
+<div class="section-label"> Il prodotto</div>
+<h2 class="section-title">Una valutazione ordinata, prima della decisione.</h2>
+<p class="section-sub">ImmoBit raccoglie in un unico percorso controlli, condizioni dell'immobile, costi, comfort, fotografie, punteggi e confronto fra più proprietà.</p>
+<div class="intro-grid">
+<div class="glass-card"><h3>Cosa puoi fare con ImmoBit</h3><p>Un metodo guidato per trasformare una visita immobiliare in una valutazione più leggibile e confrontabile.</p><ul class="feature-list"><li>Oltre 60 controlli guidati per analizzare l'immobile.</li><li>Punteggio complessivo da 0 a 100 e risultati per categoria.</li><li>Confronto diretto fra più immobili salvati.</li><li>Report PDF professionali, fotografie, note e archivio.</li><li>Uso locale, senza account e senza caricamento dei dati.</li></ul></div>
+<div class="product-note"><strong>Prima osserva.<br>Poi confronta.</strong><p>ImmoBit non sostituisce un tecnico o un professionista: ti aiuta a raccogliere e organizzare gli elementi che meritano attenzione prima di scegliere.</p></div>
+</div>
+</section>
 
-    <div class="intro-grid">
-      <div class="glass-card">
-        <h3>Cosa troverai qui</h3>
-        <p>La pagina raccoglie gli episodi pubblicati sui social e li trasforma in contenuti ordinati, consultabili e condivisibili anche fuori dalle piattaforme.</p>
-        <ul class="feature-list">
-          <li>Sceneggiatura breve o descrizione narrativa della puntata.</li>
-          <li>Link diretto allo Short o al contenuto social pubblicato.</li>
-          <li>PDF ufficiale consultabile o scaricabile.</li>
-          <li>Collegamento all'app ImmoBit su Google Play.</li>
-        </ul>
-      </div>
+<section class="stories-hero" id="stories">
+<img src="/images/immobit/immobit_origins.png" alt="ImmoBit Stories con Elena Moretti">
+<div class="stories-copy"><div class="section-label"> ImmoBit Stories</div><h2>IMMO<span>BIT</span><br>STORIES</h2><p>Una casa può sembrare perfetta. Spesso sono i dettagli a raccontare il resto. Elena Moretti osserva, analizza e trasforma casi immobiliari in episodi brevi e documenti di approfondimento.</p></div>
+</section>
 
-    </div>
-  </section>
+<section class="profile-strip">
+<div class="profile-inner">
+<div><div class="section-label">Elena Moretti</div><div class="profile-name">Property analyst.<br>Story character.</div><div class="profile-role">ImmoBit Stories</div></div>
+<p class="profile-text">Elena osserva dettagli, contesto e segnali spesso ignorati. Ogni episodio parte da una situazione concreta e la trasforma in una storia breve, accompagnata quando disponibile da Shorts, Inspection Report e Creation Notes in italiano e inglese.</p>
+</div>
+</section>
 
-  <section id="episodi">
-    <div class="section-label">// Episodi</div>
-    <h2 class="section-title">Archivio episodi ImmoBit - Ita/Eng</h2>
-    <p class="section-sub"></p>
-
-    <div class="episodes-grid">
-      
-      <article class="episode-card">
+<section class="episodes-section" id="episodi">
+<div class="section-label"> Archivio</div>
+<h2 class="section-title">Episodi ImmoBit Stories</h2>
+<p class="section-sub">Tutti gli episodi e i materiali già pubblicati restano accessibili: video, report di ispezione e note di creazione.</p>
+<div class="episodes-grid"><article class="episode-card">
         <div class="episode-meta">
           <span class="chip">Episodio 01</span>
           <span class="chip">Online</span>
@@ -711,8 +96,7 @@
           <a href="Creation Notes Eng/Episode-1-Special-How-Immobit-Was-Born-the-Perfect-Apartment.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
         </div>
       </article>
-
-      <article class="episode-card">
+<article class="episode-card">
         <div class="episode-meta">
           <span class="chip">Episodio 02</span>
           <span class="chip">Online</span>
@@ -738,8 +122,7 @@
           <a href="Creation Notes Eng/Episode-2-The-noise-behind-the-wall.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
         </div>
       </article>
-
-       <article class="episode-card">
+<article class="episode-card">
         <div class="episode-meta">
           <span class="chip">Episodio 03</span>
           <span class="chip">Online</span>
@@ -761,8 +144,7 @@
           <a href="Creation Notes Eng/Episode-3-The-too-perfect- house.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
         </div>
       </article>
-
-      <article class="episode-card">
+<article class="episode-card">
         <div class="episode-meta">
           <span class="chip">Episodio 04</span>
           <span class="chip">Online</span>
@@ -785,8 +167,7 @@
           <a href="Creation Notes Eng/Episode-4-The first-time-Elena-ignored-a-signal.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
         </div>
       </article>
-
-      <article class="episode-card">
+<article class="episode-card">
         <div class="episode-meta">
           <span class="chip">Episodio 05</span>
           <span class="chip">Online</span>
@@ -811,8 +192,7 @@
           <a href="Creation Notes Eng/Episode-5-The-offer-expires-tonight.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
         </div>
       </article>
-
-      <article class="episode-card">
+<article class="episode-card">
         <div class="episode-meta">
           <span class="chip">Episodio 06</span>
           <span class="chip">Online</span>
@@ -838,8 +218,7 @@
           <a href="Creation Notes Eng/Episode-6-Too-perfect.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
         </div>
       </article>
-
-      <article class="episode-card">
+<article class="episode-card">
         <div class="episode-meta">
           <span class="chip">Episodio 07</span>
           <span class="chip">Online</span>
@@ -861,8 +240,7 @@
           <a href="Creation Notes Eng/Episode-7-The-disappeared-Listing.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
         </div>
       </article>
-
-      <article class="episode-card">
+<article class="episode-card">
         <div class="episode-meta">
           <span class="chip">Episodio 08</span>
           <span class="chip">Online</span>
@@ -885,8 +263,7 @@
           <a href="Creation Notes Eng/Episode-8-The perfect-place.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
         </div>
       </article>
-
-      <article class="episode-card">
+<article class="episode-card">
         <div class="episode-meta">
           <span class="chip">Episodio 09</span>
           <span class="chip">In arrivo</span>
@@ -908,8 +285,7 @@
           <a href="Creation Notes Eng/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Eng</a>
         </div>
       </article>
-
-       <article class="episode-card">
+<article class="episode-card">
         <div class="episode-meta">
           <span class="chip">Episodio 10</span>
           <span class="chip">In arrivo</span>
@@ -931,8 +307,7 @@
           <a href="Creation Notes Eng/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Eng</a>
         </div>
       </article>
-
-       <article class="episode-card">
+<article class="episode-card">
         <div class="episode-meta">
           <span class="chip">Episodio 11</span>
           <span class="chip">In arrivo</span>
@@ -953,42 +328,21 @@
           <a href="Creation Notes Ita/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Ita</a>
           <a href="Creation Notes Eng/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Eng</a>
         </div>
-      </article>
-        
-    </div>
-  </section>
+      </article></div>
+</section>
 
-  <section id="app">
-    <div class="app-section">
-      <div>
-        <div class="section-label" style="margin-bottom:14px;">// App ufficiale</div>
-        <h2>Valuta un immobile con ImmoBit</h2>
-        <p>La serie racconta casi e situazioni. L'app ti aiuta a trasformare quei controlli in una valutazione più ordinata, chiara e ripetibile.</p>
-      </div>
-      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" aria-label="Scarica ImmoBit su Google Play">
-        <img src="/image/playstore_immobit.png" alt="ImmoBit disponibile su Google Play" class="store-badge" />
-      </a>
-    </div>
-  </section>
+<section class="app-cta" id="app">
+<div class="app-section">
+<div><div class="section-label"> App ufficiale</div><h2>Le storie mostrano i segnali.<br>ImmoBit ti aiuta a valutarli.</h2><p>Porta la stessa logica di osservazione dentro una valutazione guidata, salvabile, confrontabile ed esportabile.</p></div>
+<div class="hero-actions"><a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" class="store-link">Google Play →</a><a href="https://memmolalabs.com/viewer" target="_blank" class="btn-outline">Viewer Free</a></div>
+</div>
+</section>
 </main>
 
 <footer>
-  <div class="footer-logo">Memmola<span>Labs®</span></div>
-  <div class="footer-links">
-    <a href="/">Home</a>
-    <a href="/autobit/">AutoBit</a>
-    <a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a>
-    <a href="https://github.com/alessandromemmola" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a>
-    <a href="https://x.com/MemmolaLabs" target="_blank">X</a>
-    <a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a>
-  </div>
-  <div>
-    © 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br>
-    Nessun tracciamento personale o cookie di profilazione
-  </div>
-  <div class="footer-trademark">Memmola Labs® è un marchio registrato di Alessandro Memmola</div>
+<div class="footer-logo">Memmola<span>Labs®</span></div>
+<div class="footer-links"><a href="/">Home</a><a href="/autobit/">AutoBit</a><a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a><a href="https://github.com/alessandromemmola" target="_blank">GitHub</a><a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a><a href="https://x.com/MemmolaLabs" target="_blank">X</a><a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a></div>
+<div>© 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br>Nessun tracciamento personale o cookie di profilazione</div>
+<div class="footer-trademark">Memmola Labs® è un marchio registrato di Alessandro Memmola</div>
 </footer>
-
-</body>
-</html>
+</body></html>
