@@ -444,6 +444,386 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
   .radar-wrap{height:330px;}
 }
 
+
+/* =========================================================
+   MEMMOLA LABS VIEWER — LIGHT 2026
+   Visual refresh only: the Viewer logic and JavaScript stay unchanged.
+   ========================================================= */
+:root{
+  --gold:#C99A24;
+  --gold-light:#D9B24F;
+  --gold-dim:rgba(201,154,36,.10);
+  --blue:#2F7BFF;
+  --blue-light:#4D91FF;
+  --blue-dim:rgba(47,123,255,.09);
+  --bg:#F7FAFE;
+  --card:#FFFFFF;
+  --field:#F2F6FB;
+  --text:#10213A;
+  --text-sec:#536277;
+  --text-hint:#8A98A9;
+  --border:#DFE7F0;
+  --border2:#D4DFEA;
+  --green:#159B68;
+  --green-dim:rgba(21,155,104,.09);
+  --red:#D84C4C;
+  --red-dim:rgba(216,76,76,.09);
+  --accent:#2F7BFF;
+  --accent-dim:rgba(47,123,255,.09);
+}
+
+body{
+  background:
+    radial-gradient(circle at 78% 4%,rgba(47,123,255,.075),transparent 27%),
+    linear-gradient(180deg,#fff 0,#F8FBFF 42%,#F5F8FC 100%);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+}
+
+.dz-logo,.dz-title,.tb-brand,.hero-name,.score-num,.vf-text,
+.auto-schema-title,.schema-popup-score,.schema-score,.compare-score,
+.scent-stat-value{
+  font-family:inherit!important;
+}
+
+/* HOME / DROP ZONE */
+.lang-switch{
+  background:rgba(255,255,255,.84);
+  border-color:var(--border);
+  box-shadow:0 8px 28px rgba(44,70,102,.08);
+}
+.lang-btn{color:var(--text-hint)}
+.lang-btn.active{
+  border-color:rgba(47,123,255,.28);
+  color:var(--blue);
+  background:var(--blue-dim);
+}
+
+#dropZone{
+  min-height:100vh;
+  padding:72px 24px;
+  background:
+    radial-gradient(circle at 50% 30%,rgba(47,123,255,.07),transparent 28%);
+}
+.dz-inner{
+  position:relative;
+  max-width:980px;
+  padding:64px 70px;
+  border:1px solid var(--border);
+  border-radius:28px;
+  background:rgba(255,255,255,.88);
+  box-shadow:
+    0 30px 80px rgba(34,58,88,.10),
+    0 2px 8px rgba(34,58,88,.04);
+  backdrop-filter:blur(18px);
+  overflow:hidden;
+}
+.dz-inner::before{
+  content:"";
+  position:absolute;
+  width:560px;height:560px;
+  left:50%;top:-360px;
+  transform:translateX(-50%);
+  background:radial-gradient(circle,rgba(47,123,255,.12),transparent 66%);
+  pointer-events:none;
+}
+.dz-inner:hover{border-color:#C9D7E6}
+.dz-logo{
+  color:var(--text);
+  font-size:34px;
+  font-weight:800;
+  letter-spacing:-.035em;
+  margin-bottom:30px;
+}
+.dz-logo span{
+  color:var(--text-sec);
+  font-family:inherit;
+  font-size:15px;
+  font-weight:400;
+  letter-spacing:0;
+}
+.dz-logo img{
+  box-shadow:0 10px 30px rgba(47,123,255,.14);
+}
+.dz-badges{margin-bottom:28px}
+.dz-badge{
+  background:#fff;
+  border:1px solid var(--border);
+  color:var(--text-sec);
+  box-shadow:0 4px 14px rgba(36,58,84,.04);
+}
+.dz-badge.immobit{color:#A77710;border-color:rgba(201,154,36,.25);background:#FFFDF7}
+.dz-badge.autobit{color:#245FD8;border-color:rgba(47,123,255,.22);background:#F7FAFF}
+.dz-badge.scentweave{color:#8657BF;border-color:rgba(145,92,197,.22);background:#FCF9FF}
+
+.dz-title{
+  color:var(--text);
+  font-size:30px;
+  font-weight:800;
+  letter-spacing:-.035em;
+}
+.dz-sub{
+  color:var(--text-sec);
+  font-size:14px;
+}
+.dz-btn{
+  background:#fff;
+  border:1px solid var(--border2);
+  color:var(--text);
+  border-radius:10px;
+  box-shadow:0 4px 14px rgba(38,58,82,.04);
+}
+#loadBtn{
+  background:linear-gradient(135deg,#2F7BFF,#51A1FF);
+  border-color:transparent;
+  color:#fff;
+  font-weight:700;
+  box-shadow:0 12px 28px rgba(47,123,255,.20);
+}
+.dz-btn:hover{
+  background:#F5F8FC;
+  border-color:#C8D5E3;
+}
+#loadBtn:hover{
+  background:linear-gradient(135deg,#246FEF,#438FEA);
+}
+.dz-hint{color:var(--text-hint)}
+
+.dz-info-grid{gap:14px}
+.dz-info-card{
+  background:linear-gradient(180deg,#fff,#FAFCFE);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px;
+  box-shadow:0 8px 24px rgba(41,62,88,.04);
+}
+.dz-info-icon{filter:none}
+.dz-info-title{color:var(--text);font-weight:700}
+.dz-info-text{color:var(--text-sec)}
+.privacy-note{
+  color:var(--text-sec);
+  background:#F4FBF7;
+  border-color:#D6EEE2;
+}
+.privacy-note strong{color:var(--green)}
+#installBtn{
+  background:#F4FBF7;
+  border-color:#CDE9DB;
+  color:var(--green);
+}
+
+/* APP SHELL */
+#presentation{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 86% 0,rgba(47,123,255,.055),transparent 24%),
+    #F7F9FC;
+}
+.top-bar{
+  min-height:66px;
+  padding:12px 28px;
+  background:rgba(255,255,255,.94);
+  border-bottom:1px solid var(--border);
+  box-shadow:0 3px 18px rgba(36,57,83,.04);
+  backdrop-filter:blur(18px);
+}
+.tb-brand{
+  color:var(--accent);
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:-.02em;
+}
+.tb-name{color:var(--text-sec)}
+.nav-btn,.tb-close{
+  background:#fff;
+  border:1px solid var(--border);
+  color:var(--text-sec);
+  border-radius:9px;
+}
+.nav-btn.active{
+  border-color:rgba(47,123,255,.25);
+  color:var(--accent);
+  background:var(--accent-dim);
+}
+.nav-btn:hover:not(.active),.tb-close:hover{
+  background:#F3F6FA;
+  color:var(--text);
+}
+#newBtn{
+  color:var(--accent)!important;
+  border-color:rgba(47,123,255,.22)!important;
+  background:var(--accent-dim)!important;
+}
+
+.section{background:transparent}
+
+/* MAIN PRESENTATION */
+.hero-name{
+  color:var(--text);
+  font-weight:850;
+  letter-spacing:-.045em;
+}
+.hero-sub{color:var(--text-hint)}
+.meta-item,.score-card,.detail-card,.note-box,.emoji-card,.full-card,
+.loaded-panel,.auto-schema-card,.memory-card,.connection-card,.scent-stat{
+  background:#fff;
+  border:1px solid var(--border);
+  box-shadow:0 10px 28px rgba(38,61,89,.045);
+}
+.meta-label,.sec-heading,.note-label,.detail-card h4,.tech-label,
+.loaded-panel-title,.compare-small,.compare-bar-label,.scent-stat-label{
+  color:var(--text-hint);
+}
+.meta-value,.tech-value,.loaded-name,.memory-title,.connection-card strong{
+  color:var(--text);
+}
+.score-card{
+  border-color:#D9E3EE;
+  border-radius:20px;
+}
+.score-num{letter-spacing:-.06em}
+.score-max,.loaded-meta,.memory-body{color:var(--text-sec)}
+
+.bar-track,.compare-bar-track{
+  background:#EAF0F6;
+}
+.verdict-footer{
+  background:var(--accent-dim);
+  border-color:rgba(47,123,255,.14);
+}
+.detail-card,.full-card,.note-box,.emoji-card{
+  border-radius:16px;
+}
+.rating-row,.bool-row,.costi-table td,.compare-table th,.compare-table td,
+.schema-popup-item{
+  border-bottom-color:#EDF1F5;
+}
+.r-label,.costi-table .cl,.note-box,.loaded-panel-sub,.compare-table td,
+.schema-note,.connection-card,.memory-body{
+  color:var(--text-sec);
+}
+.rb-na{background:#F2F5F8;color:var(--text-hint);border-color:#E1E7EE}
+
+.tech-item,.emoji-row,.loaded-item,.schema-row,.chip{
+  background:#F5F8FB;
+  border-color:#E3E9F0;
+}
+.emoji-label,.schema-label{color:var(--text)}
+.loaded-mini-btn{
+  background:#fff;border-color:var(--border);color:var(--text-sec)
+}
+.loaded-mini-btn:hover{background:#F4F7FA;color:var(--text)}
+.compare-btn{
+  background:var(--accent-dim);
+  border-color:rgba(47,123,255,.22);
+  color:var(--accent);
+}
+.compare-btn:hover{background:rgba(47,123,255,.14)}
+
+.compare-table{
+  background:#fff;
+  border-color:var(--border);
+  box-shadow:0 10px 28px rgba(38,61,89,.04);
+}
+.compare-table th{background:#F7F9FC;color:var(--text-hint)}
+.compare-name{color:var(--text)}
+
+/* PHOTOS */
+.photo-item{
+  background:#EEF3F8;
+  border-color:#DEE6EE;
+  box-shadow:0 6px 18px rgba(38,61,89,.035);
+}
+.photo-item:hover{
+  border-color:rgba(47,123,255,.35);
+  box-shadow:0 14px 30px rgba(38,61,89,.10);
+}
+.photo-placeholder{color:var(--text-hint)}
+
+/* AUTOBIT SCHEMA */
+.auto-schema-card{
+  border-radius:20px;
+}
+.auto-schema-title{color:var(--text);letter-spacing:-.035em}
+.auto-schema-sub{color:var(--text-sec)}
+.vista-btn{
+  background:#F4F7FA;
+  border-color:var(--border);
+  color:var(--text-sec);
+}
+.vista-btn.active{
+  background:var(--blue-dim);
+  border-color:rgba(47,123,255,.28);
+  color:var(--blue);
+}
+.schema-row:hover{border-color:#C9D5E1}
+.schema-row.active-row{
+  border-color:rgba(47,123,255,.28);
+  background:rgba(47,123,255,.05)
+}
+.schema-note{background:#F7F9FC;border-color:var(--border)}
+.schema-popup{
+  background:#fff;
+  border-color:rgba(47,123,255,.28);
+  box-shadow:0 18px 45px rgba(35,57,85,.18);
+}
+.schema-popup-title{color:var(--text)}
+.schema-popup-close{color:var(--text-hint)}
+
+/* SCENTWEAVE */
+.scent-map-card{
+  background:
+    radial-gradient(circle at top,rgba(201,168,76,.08),transparent 42%),
+    #fff;
+  border-color:#E6DDC6;
+  box-shadow:0 10px 30px rgba(61,54,39,.05);
+}
+.scent-map{
+  background:
+    radial-gradient(circle at 50% 16%,rgba(201,168,76,.07),transparent 36%),
+    linear-gradient(135deg,#FFFDF8,#F8F5EF);
+}
+.scent-map::before{
+  background-image:radial-gradient(rgba(201,168,76,.24) 1px,transparent 1px);
+  opacity:.35;
+}
+.scent-line{stroke:rgba(176,138,42,.40)}
+.scent-node{
+  background:rgba(255,255,255,.92);
+  border-color:#E5DDCA;
+  box-shadow:0 16px 34px rgba(71,58,28,.12);
+}
+.scent-node-title{color:var(--text)}
+.scent-node-sub{color:var(--text-hint)}
+
+/* LIGHTBOX intentionally remains dark for photo focus */
+.photo-lightbox{
+  background:rgba(8,13,20,.94)
+}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  #dropZone{padding:74px 14px 30px}
+  .dz-inner{padding:44px 20px;border-radius:20px}
+  .dz-logo{font-size:27px}
+  .dz-title{font-size:24px}
+  .dz-info-grid{grid-template-columns:1fr}
+  .top-bar{padding:10px 12px}
+  .tb-name{display:none}
+  .section{padding:22px 14px}
+}
+@media(min-width:1200px){
+  #dropZone{padding:72px 40px}
+  .dz-inner{max-width:1080px;padding:72px 84px}
+  .dz-logo{font-size:40px}
+  .dz-title{font-size:34px}
+  .dz-sub{font-size:17px}
+  .dz-btn{font-size:16px}
+  .dz-info-title{font-size:16px}
+  .dz-info-text{font-size:14px}
+  .top-bar{padding:14px 38px}
+}
+
 </style>
 </head>
 <body>
@@ -458,7 +838,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
     <div class="dz-logo" style="display:flex;align-items:center;justify-content:center;gap:12px">
   <img src="icons/icon-21.png"
        alt="Viewer"
-       style="width:48px;height:48px;border-radius:12px">
+       style="width:56px;height:56px;border-radius:14px">
 
   <div>
     Memmola Labs Viewer
