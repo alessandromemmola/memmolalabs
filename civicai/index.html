@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8">
 
@@ -8,734 +8,385 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>CivicAI — Local AI for Civic Reports</title>
+  <title>CivicAI — AI locale per segnalazioni civiche</title>
 
-  <meta
-    name="description"
-    content="CivicAI turns selected web text into structured civic reports using entirely local, on-device AI."
-  >
+  <meta name="description" content="CivicAI trasforma il testo selezionato sul web in una bozza strutturata di segnalazione civica usando AI locale direttamente nel browser. Open source, senza cloud e senza tracciamento.">
 
-  <meta name="theme-color" content="#0b1020">
+  <meta name="theme-color" content="#ffffff">
 
   <style>
-    :root {
-      --background: #080c18;
-      --surface: #11182a;
-      --surface-soft: #161f35;
-      --text: #f4f7ff;
-      --muted: #aab4cb;
-      --border: rgba(255, 255, 255, 0.1);
-      --primary: #79a7ff;
-      --primary-strong: #4f83ea;
-      --success: #7ee2b8;
-      --max-width: 1120px;
-    }
+:root{
+  --bg:#ffffff;
+  --surface:#f8fafc;
+  --surface2:#eef5ff;
+  --line:#dce5f0;
+  --text:#101828;
+  --muted:#667085;
+  --blue:#2f73ff;
+  --cyan:#20bfe8;
+  --green:#18a66a;
+  --violet:#7057e8;
+  --dark:#07111b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:#fff;color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  overflow-x:hidden;line-height:1.6
+}
+a{color:inherit}img{display:block;max-width:100%}
 
-    * {
-      box-sizing: border-box;
-    }
+/* FULL WIDTH SYSTEM */
+.container{width:100%;max-width:none;margin:0;padding:0 2.8vw}
 
-    html {
-      scroll-behavior: smooth;
-    }
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.94);
+  border-bottom:1px solid rgba(16,24,40,.08);
+  backdrop-filter:blur(18px)
+}
+.nav{
+  min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px
+}
+.brand{
+  text-decoration:none;font-size:15px;font-weight:850;letter-spacing:-.03em
+}
+.brand span{color:var(--blue)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{
+  color:#344054;text-decoration:none;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase
+}
+.nav-links a:hover{color:var(--blue)}
 
-    body {
-      margin: 0;
-      background:
-        radial-gradient(
-          circle at 50% 0%,
-          rgba(79, 131, 234, 0.2),
-          transparent 34rem
-        ),
-        var(--background);
-      color: var(--text);
-      font-family:
-        Inter,
-        ui-sans-serif,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-      line-height: 1.6;
-    }
+.hero{
+  min-height:calc(100vh - 64px);
+  padding:52px 0 26px;
+  display:grid;
+  grid-template-columns:minmax(430px,.66fr) minmax(820px,1.34fr);
+  gap:1.2vw;align-items:center;
+  background:
+    radial-gradient(circle at 75% 26%,rgba(47,115,255,.11),transparent 23%),
+    radial-gradient(circle at 84% 68%,rgba(32,191,232,.10),transparent 24%),
+    linear-gradient(180deg,#fff,#fbfdff)
+}
+.hero > .container{
+  display:contents
+}
+.hero-copy{
+  padding-left:3.4vw;
+  max-width:760px
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-bottom:18px;padding:7px 11px;border:1px solid #dbe5f0;border-radius:999px;
+  background:#f7fbff;color:#587088;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase
+}
+h1{
+  max-width:760px;margin:0;
+  font-size:clamp(4.6rem,7.5vw,9rem);
+  line-height:.88;letter-spacing:-.065em
+}
+h1 span{
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--violet));
+  -webkit-background-clip:text;background-clip:text;color:transparent
+}
+.hero-subtitle{
+  max-width:680px;margin:24px 0 0;color:#5f6b7b;
+  font-size:clamp(1.02rem,1.35vw,1.25rem)
+}
+.hero-actions{
+  display:flex;justify-content:flex-start;flex-wrap:wrap;gap:10px;margin-top:28px
+}
+.button{
+  display:inline-flex;min-height:42px;align-items:center;justify-content:center;
+  padding:10px 17px;border:1px solid #d5dee8;border-radius:9px;
+  text-decoration:none;font-weight:800;font-size:11px;transition:.18s ease
+}
+.button:hover{transform:translateY(-1px)}
+.button-primary{border-color:transparent;background:var(--blue);color:#fff;box-shadow:0 12px 28px rgba(47,115,255,.18)}
+.button-primary:hover{background:#2767ea}
+.button-secondary{background:#fff;color:#344054}
+.button-secondary:hover{background:#f6f8fb}
 
-    a {
-      color: inherit;
-    }
+.trust-line{
+  display:flex;justify-content:flex-start;flex-wrap:wrap;gap:10px 18px;margin-top:22px;
+  color:#657387;font-size:.86rem
+}
+.trust-line span::before{content:"✓";margin-right:7px;color:var(--green)}
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
+.hero-visual{
+  min-height:calc(100vh - 90px);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;padding-right:1.8vw
+}
+.hero-visual::before{
+  content:"";position:absolute;width:78%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(47,115,255,.12),rgba(32,191,232,.05) 45%,transparent 70%);
+  z-index:-1
+}
+.hero-visual img{
+  width:112%;max-width:none;
+  filter:drop-shadow(0 35px 70px rgba(42,63,91,.13))
+}
 
-    .container {
-      width: min(calc(100% - 40px), var(--max-width));
-      margin: 0 auto;
-    }
+section{padding:64px 0}
+.section-heading{max-width:1000px;margin-bottom:30px}
+.section-heading h2{
+  margin:0;font-size:clamp(2.7rem,4.4vw,5rem);line-height:.98;letter-spacing:-.05em
+}
+.section-heading p{
+  margin:14px 0 0;color:var(--muted);font-size:1rem;max-width:820px
+}
 
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      border-bottom: 1px solid var(--border);
-      background: rgba(8, 12, 24, 0.88);
-      backdrop-filter: blur(14px);
-    }
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{
+  padding:26px;border:1px solid var(--line);border-radius:18px;background:#fff;
+  box-shadow:0 12px 34px rgba(38,59,84,.045)
+}
+.step-number{
+  width:38px;height:38px;display:grid;place-items:center;margin-bottom:20px;
+  border-radius:10px;background:#f1f6ff;color:var(--blue);font-weight:900
+}
+.card h3{margin:0 0 10px;font-size:1.16rem}
+.card p{margin:0;color:var(--muted)}
 
-    .nav {
-      min-height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
+.screenshot-wrap{
+  background:var(--dark);color:#fff
+}
+.screenshot-wrap .section-heading h2{color:#fff}
+.screenshot-wrap .section-heading p{color:#aeb8c6}
+.screenshots{
+  display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px
+}
+.screenshot{
+  min-width:min(46vw,760px);overflow:hidden;padding:10px;border:1px solid rgba(255,255,255,.10);
+  border-radius:18px;background:#0c1722;scroll-snap-align:start
+}
+.screenshot img{width:100%;border-radius:12px}
 
-    .brand {
-      text-decoration: none;
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-    }
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feature-card{min-height:190px}
+.feature-card:nth-child(1){border-top:3px solid var(--blue)}
+.feature-card:nth-child(2){border-top:3px solid var(--cyan)}
+.feature-card:nth-child(3){border-top:3px solid var(--violet)}
+.feature-card:nth-child(4){border-top:3px solid #5f89ff}
+.feature-card:nth-child(5){border-top:3px solid #7f6bef}
+.feature-card:nth-child(6){border-top:3px solid var(--green)}
 
-    .brand span {
-      color: var(--primary);
-    }
+.privacy{
+  padding:42px 3vw;border:1px solid #d7e9df;border-radius:22px;
+  background:
+    radial-gradient(circle at 86% 14%,rgba(24,166,106,.09),transparent 20%),
+    linear-gradient(135deg,#f7fcf9,#f7fbff)
+}
+.privacy h2{
+  margin:0;font-size:clamp(2.4rem,4.5vw,4.5rem);letter-spacing:-.05em;line-height:1
+}
+.privacy p{max-width:900px;margin:14px 0 0;color:var(--muted)}
+.privacy-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.privacy-list span{
+  padding:8px 12px;border:1px solid #dbe7e1;border-radius:999px;background:#fff;
+  font-size:.84rem;font-weight:800;color:#49685b
+}
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-    }
+.stores{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px
+}
+.store-card{
+  border:1px solid var(--line);border-radius:18px;padding:28px;background:#fff;
+  box-shadow:0 12px 34px rgba(38,59,84,.045)
+}
+.store-card h3{font-size:1.35rem;margin-bottom:10px}
+.store-card p{color:var(--muted);margin-bottom:18px}
+.store-card .button{width:100%}
 
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.95rem;
-    }
+.cta{text-align:left}
+.cta-box{
+  padding:48px 3vw;border:1px solid #dce5ef;border-radius:22px;
+  background:
+    radial-gradient(circle at 84% 16%,rgba(47,115,255,.12),transparent 23%),
+    linear-gradient(135deg,#f8fbff,#fff)
+}
+.cta-box h2{
+  max-width:900px;margin:0;font-size:clamp(2.6rem,4.7vw,5rem);line-height:.98;letter-spacing:-.05em
+}
+.cta-box p{max-width:780px;margin:15px 0 0;color:var(--muted)}
 
-    .nav-links a:hover {
-      color: var(--text);
-    }
+footer{
+  padding:38px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem
+}
+.footer-content{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.footer-links{display:flex;flex-wrap:wrap;gap:18px}
+.footer-links a{text-decoration:none}.footer-links a:hover{color:var(--blue)}
 
-    .hero {
-      padding: 100px 0 80px;
-      text-align: center;
-    }
+@media(max-width:1050px){
+  .nav-links a:not(.nav-github){display:none}
+  .hero{grid-template-columns:1fr;padding:46px 0 18px}
+  .hero > .container{display:block}
+  .hero-copy{text-align:center;padding:0 18px;max-width:none}
+  h1,.hero-subtitle{margin-left:auto;margin-right:auto}
+  .hero-actions,.trust-line{justify-content:center}
+  .hero-visual{min-height:430px;padding-right:0}
+  .hero-visual img{width:110%}
+  .steps,.feature-grid,.stores{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:650px){
+  .container{padding:0 18px}
+  .hero{min-height:auto;padding-top:36px}
+  h1{font-size:4rem;line-height:.94}
+  .hero-visual{min-height:300px}
+  .hero-visual img{width:124%}
+  section{padding:52px 0}
+  .steps,.feature-grid,.stores{grid-template-columns:1fr}
+  .screenshot{min-width:82vw}
+  .privacy{padding:28px 22px}
+  .footer-content{align-items:flex-start;flex-direction:column}
+}
+</style>
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 20px;
-      padding: 7px 12px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--success);
-      font-size: 0.86rem;
-      font-weight: 700;
-    }
-
-    h1 {
-      max-width: 900px;
-      margin: 0 auto;
-      font-size: clamp(3rem, 9vw, 6.5rem);
-      line-height: 0.98;
-      letter-spacing: -0.065em;
-    }
-
-    .hero-subtitle {
-      max-width: 760px;
-      margin: 28px auto 0;
-      color: var(--muted);
-      font-size: clamp(1.08rem, 2.5vw, 1.35rem);
-    }
-
-    .hero-actions {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 34px;
-    }
-
-    .button {
-      display: inline-flex;
-      min-height: 48px;
-      align-items: center;
-      justify-content: center;
-      padding: 0 20px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 750;
-      transition:
-        transform 160ms ease,
-        background 160ms ease,
-        border-color 160ms ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-    }
-
-    .button-primary {
-      border-color: transparent;
-      background: var(--primary);
-      color: #061025;
-    }
-
-    .button-primary:hover {
-      background: #93b8ff;
-    }
-
-    .button-secondary {
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .button-secondary:hover {
-      border-color: rgba(255, 255, 255, 0.24);
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .trust-line {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px 22px;
-      margin-top: 34px;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .trust-line span::before {
-      content: "✓";
-      margin-right: 7px;
-      color: var(--success);
-    }
-
-    section {
-      padding: 78px 0;
-    }
-
-    .section-heading {
-      max-width: 720px;
-      margin-bottom: 38px;
-    }
-
-    .section-heading h2 {
-      margin: 0;
-      font-size: clamp(2rem, 5vw, 3.3rem);
-      line-height: 1.08;
-      letter-spacing: -0.045em;
-    }
-
-    .section-heading p {
-      margin: 16px 0 0;
-      color: var(--muted);
-      font-size: 1.06rem;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      padding: 26px;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: rgba(17, 24, 42, 0.82);
-    }
-
-    .step-number {
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      background: rgba(121, 167, 255, 0.14);
-      color: var(--primary);
-      font-weight: 800;
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 1.15rem;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .screenshots {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 28px;
-      align-items: start;
-    }
-
-    .screenshot {
-      overflow: hidden;
-      padding: 12px;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      background: var(--surface);
-    }
-
-    .screenshot img {
-      width: 100%;
-      border-radius: 14px;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .feature-card {
-      min-height: 170px;
-    }
-
-    .privacy {
-      padding: 38px;
-      border: 1px solid rgba(126, 226, 184, 0.25);
-      border-radius: 24px;
-      background:
-        linear-gradient(
-          135deg,
-          rgba(126, 226, 184, 0.1),
-          rgba(121, 167, 255, 0.08)
-        );
-    }
-
-    .privacy h2 {
-      margin: 0;
-      font-size: clamp(2rem, 5vw, 3rem);
-      letter-spacing: -0.04em;
-    }
-
-    .privacy p {
-      max-width: 720px;
-      margin: 14px 0 0;
-      color: var(--muted);
-    }
-
-    .privacy-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 26px;
-    }
-
-    .privacy-list span {
-      padding: 8px 12px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: rgba(8, 12, 24, 0.42);
-      font-size: 0.9rem;
-      font-weight: 700;
-    }
-
-    .cta {
-      text-align: center;
-    }
-
-    .cta-box {
-      padding: 55px 24px;
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      background: var(--surface);
-    }
-
-    .cta-box h2 {
-      max-width: 720px;
-      margin: 0 auto;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      line-height: 1.08;
-      letter-spacing: -0.05em;
-    }
-
-    .cta-box p {
-      max-width: 650px;
-      margin: 16px auto 0;
-      color: var(--muted);
-    }
-
-    footer {
-      padding: 36px 0;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .footer-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-    }
-
-    .footer-links a {
-      text-decoration: none;
-    }
-
-    .footer-links a:hover {
-      color: var(--text);
-    }
-
-    @media (max-width: 800px) {
-      .nav-links a:not(.nav-github) {
-        display: none;
-      }
-
-      .hero {
-        padding: 76px 0 58px;
-      }
-
-      .steps,
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .screenshots {
-        grid-template-columns: 1fr;
-      }
-
-      section {
-        padding: 58px 0;
-      }
-
-      .privacy {
-        padding: 28px 22px;
-      }
-
-      .footer-content {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-    }
-  </style>
 </head>
-
 <body>
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="#top">
-        Civic<span>AI</span>
-      </a>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="#top">Civic<span>AI</span></a>
+    <nav class="nav-links" aria-label="Navigazione principale">
+      <a href="#how-it-works">Come funziona</a>
+      <a href="#features">Funzioni</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#download">Download</a>
+      <a class="nav-github" href="https://github.com/memmolalabs/CivicAI" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+  </div>
+</header>
 
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#how-it-works">How it works</a>
-        <a href="#features">Features</a>
-        <a href="#privacy">Privacy</a>
-
-        <a
-          class="nav-github"
-          href="https://github.com/memmolalabs/CivicAI"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub
-        </a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="container">
-        <div class="eyebrow">
-          Open source · Local AI · Privacy first
-        </div>
-
-        <h1>
-          Turn web text into structured civic reports.
-        </h1>
-
-        <p class="hero-subtitle">
-          Select civic-related text on any webpage and transform it into
-          an editable report using entirely local, on-device AI.
-        </p>
-
+<main id="top">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-copy">
+        <div class="eyebrow">Open source · AI locale · Privacy first</div>
+        <h1>Trasforma il testo del web in <span>segnalazioni civiche strutturate.</span></h1>
+        <p class="hero-subtitle">Seleziona un testo relativo a un problema civico e trasformalo in una bozza modificabile direttamente nel browser, usando AI locale sul dispositivo.</p>
         <div class="hero-actions">
-          <a
-            class="button button-primary"
-            href="https://github.com/memmolalabs/CivicAI/releases/tag/v0.3.1"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Download CivicAI
-          </a>
-
-          <a
-            class="button button-secondary"
-            href="https://github.com/memmolalabs/CivicAI"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View source code
-          </a>
+          <a class="button button-primary" href="#download">Installa CivicAI</a>
+          <a class="button button-secondary" href="https://github.com/memmolalabs/CivicAI" target="_blank" rel="noopener noreferrer">Codice sorgente</a>
         </div>
-
         <div class="trust-line">
-          <span>No backend</span>
-          <span>No API key</span>
-          <span>No telemetry</span>
-          <span>No cloud inference</span>
+          <span>Nessun backend</span><span>Nessuna API key</span><span>Nessuna telemetria</span><span>Nessuna inferenza cloud</span>
         </div>
       </div>
-    </section>
-
-    <section id="how-it-works">
-      <div class="container">
-        <div class="section-heading">
-          <h2>From selected text to an editable report.</h2>
-
-          <p>
-            CivicAI works directly inside Chrome and Microsoft Edge,
-            without sending selected text to an external AI service.
-          </p>
-        </div>
-
-        <div class="steps">
-          <article class="card">
-            <div class="step-number">1</div>
-
-            <h3>Select the text</h3>
-
-            <p>
-              Highlight a civic issue described on a website,
-              local news page, forum, or social platform.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="step-number">2</div>
-
-            <h3>Analyze locally</h3>
-
-            <p>
-              Right-click and choose “Analyze with CivicAI” to open
-              the side panel and run the on-device model.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="step-number">3</div>
-
-            <h3>Review the report</h3>
-
-            <p>
-              Check the category, urgency, suggested recipient,
-              missing details, and editable report draft.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section aria-labelledby="screenshots-title">
-      <div class="container">
-        <div class="section-heading">
-          <h2 id="screenshots-title">A focused browser workflow.</h2>
-
-          <p>
-            CivicAI stays out of the way until you need it, then
-            presents the analysis inside a compact side panel.
-          </p>
-        </div>
-
-        <div class="screenshots">
-          <figure class="screenshot">
-            <img
-              src="images/1.png"
-              alt="CivicAI browser extension showing a selected civic issue"
-              loading="lazy"
-            >
-          </figure>
-
-          <figure class="screenshot">
-            <img
-              src="images/2.png"
-              alt="CivicAI structured civic report analysis"
-              loading="lazy"
-            >
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <section id="features">
-      <div class="container">
-        <div class="section-heading">
-          <h2>Useful structure, without automatic decisions.</h2>
-
-          <p>
-            CivicAI helps organize information. The user always reviews
-            and edits the result before using it.
-          </p>
-        </div>
-
-        <div class="feature-grid">
-          <article class="card feature-card">
-            <h3>Issue classification</h3>
-
-            <p>
-              Identifies the most relevant civic category using
-              multilingual semantic similarity.
-            </p>
-          </article>
-
-          <article class="card feature-card">
-            <h3>Urgency and recipient</h3>
-
-            <p>
-              Estimates urgency and suggests a possible public
-              recipient for the report.
-            </p>
-          </article>
-
-          <article class="card feature-card">
-            <h3>Missing information</h3>
-
-            <p>
-              Highlights details that may be useful before submitting
-              the report through an official channel.
-            </p>
-          </article>
-
-          <article class="card feature-card">
-            <h3>Editable report draft</h3>
-
-            <p>
-              Produces a structured draft that remains fully editable
-              and controlled by the user.
-            </p>
-          </article>
-
-          <article class="card feature-card">
-            <h3>Multilingual interface</h3>
-
-            <p>
-              Available in English, Italian, Spanish, French,
-              and German.
-            </p>
-          </article>
-
-          <article class="card feature-card">
-            <h3>Open source</h3>
-
-            <p>
-              Source code, dependencies, model information, privacy
-              documentation, and licenses are publicly available.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="privacy">
-      <div class="container">
-        <div class="privacy">
-          <h2>Your selected text stays on your device.</h2>
-
-          <p>
-            The multilingual model and ONNX Runtime are loaded from
-            local extension files. CivicAI does not use a backend,
-            analytics service, cloud AI API, or user account.
-          </p>
-
-          <div class="privacy-list">
-            <span>Local inference</span>
-            <span>No tracking</span>
-            <span>No API key</span>
-            <span>No host permissions</span>
-            <span>No automatic submission</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta">
-      <div class="container">
-        <div class="cta-box">
-          <h2>
-            Make civic information easier to organize.
-          </h2>
-
-          <p>
-            Download the ready-to-run release for Chrome and Microsoft
-            Edge, or inspect and reproduce the project from source.
-          </p>
-
-          <div class="hero-actions">
-            <a
-              class="button button-primary"
-              href="https://github.com/memmolalabs/CivicAI/releases/tag/v0.3.1"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Download v0.3.1
-            </a>
-
-            <a
-              class="button button-secondary"
-              href="https://github.com/memmolalabs/CivicAI"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Explore the repository
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-content">
-      <div>
-        CivicAI · Built by Memmola Labs
-      </div>
-
-      <div class="footer-links">
-        <a
-          href="https://github.com/memmolalabs/CivicAI"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub
-        </a>
-
-        <a
-          href="https://github.com/memmolalabs/CivicAI/blob/main/PRIVACY.md"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Privacy
-        </a>
-
-        <a
-          href="https://github.com/memmolalabs/CivicAI/blob/main/LICENSE"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          License
-        </a>
+      <div class="hero-visual">
+        <img src="/images/civicai/civicai.png" alt="CivicAI nel browser">
       </div>
     </div>
-  </footer>
+  </section>
+
+  <section id="how-it-works">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Dal testo selezionato a una bozza modificabile.</h2>
+        <p>CivicAI lavora direttamente in Chrome e Microsoft Edge senza inviare il testo selezionato a un servizio AI esterno.</p>
+      </div>
+      <div class="steps">
+        <article class="card"><div class="step-number">1</div><h3>Seleziona il testo</h3><p>Evidenzia un problema civico descritto su un sito, una pagina di notizie locali, un forum o una piattaforma social.</p></article>
+        <article class="card"><div class="step-number">2</div><h3>Analizza localmente</h3><p>Fai clic con il tasto destro e scegli “Analizza con CivicAI” per aprire il pannello laterale ed eseguire il modello sul dispositivo.</p></article>
+        <article class="card"><div class="step-number">3</div><h3>Controlla il report</h3><p>Verifica categoria, urgenza, possibile destinatario, informazioni mancanti e bozza della segnalazione prima di usarla.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="screenshot-wrap" aria-labelledby="screenshots-title">
+    <div class="container">
+      <div class="section-heading">
+        <h2 id="screenshots-title">Un workflow nel browser, senza rumore.</h2>
+        <p>CivicAI rimane fuori dalla vista finché non serve, poi concentra l’analisi in un pannello laterale compatto.</p>
+      </div>
+      <div class="screenshots">
+        <figure class="screenshot"><img src="images/1.png" alt="CivicAI con un problema civico selezionato nel browser" loading="lazy"></figure>
+        <figure class="screenshot"><img src="images/2.png" alt="Analisi strutturata di CivicAI" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Struttura utile, senza decisioni automatiche.</h2>
+        <p>CivicAI organizza le informazioni. L’utente controlla, modifica e decide sempre cosa fare con il risultato.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="card feature-card"><h3>Classificazione del problema</h3><p>Individua la categoria civica più pertinente usando similarità semantica multilingue.</p></article>
+        <article class="card feature-card"><h3>Urgenza e destinatario</h3><p>Stima il livello di urgenza e suggerisce un possibile destinatario pubblico per la segnalazione.</p></article>
+        <article class="card feature-card"><h3>Informazioni mancanti</h3><p>Evidenzia i dettagli che potrebbero essere utili prima di inviare la segnalazione attraverso un canale ufficiale.</p></article>
+        <article class="card feature-card"><h3>Bozza completamente modificabile</h3><p>Genera una struttura iniziale che resta interamente sotto il controllo dell’utente.</p></article>
+        <article class="card feature-card"><h3>Interfaccia multilingue</h3><p>Disponibile in inglese, italiano, spagnolo, francese e tedesco.</p></article>
+        <article class="card feature-card"><h3>Open source</h3><p>Codice sorgente, dipendenze, informazioni sul modello, privacy e licenze sono pubblicamente consultabili.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="container">
+      <div class="privacy">
+        <h2>Il testo selezionato resta sul tuo dispositivo.</h2>
+        <p>Il modello multilingue e ONNX Runtime vengono caricati dai file locali dell’estensione. CivicAI non usa backend, servizi di analytics, API AI cloud o account utente.</p>
+        <div class="privacy-list">
+          <span>Inferenza locale</span><span>Nessun tracciamento</span><span>Nessuna API key</span><span>Nessun host permission</span><span>Nessun invio automatico</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="download">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Disponibile dove lavori già.</h2>
+        <p>Installa CivicAI dallo store del tuo browser oppure consulta direttamente il progetto open source.</p>
+      </div>
+      <div class="stores">
+        <article class="store-card">
+          <h3>Chrome Web Store</h3>
+          <p>Installa CivicAI direttamente su Google Chrome.</p>
+          <a class="button button-primary" href="https://chromewebstore.google.com/detail/civicai/ofjfnjmkedmfkpoopbbknhnfgdebfbco?hl=it" target="_blank" rel="noopener noreferrer">Apri Chrome Web Store</a>
+        </article>
+        <article class="store-card">
+          <h3>Microsoft Edge Add-ons</h3>
+          <p>Installa CivicAI direttamente su Microsoft Edge.</p>
+          <a class="button button-primary" href="https://microsoftedge.microsoft.com/addons/detail/civicai/pnfpiedpminionepclimahabkiddopja" target="_blank" rel="noopener noreferrer">Apri Edge Add-ons</a>
+        </article>
+        <article class="store-card">
+          <h3>GitHub</h3>
+          <p>Esamina il codice, le dipendenze, la documentazione e le release del progetto.</p>
+          <a class="button button-secondary" href="https://github.com/memmolalabs/CivicAI" target="_blank" rel="noopener noreferrer">Apri il repository</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Rendi più semplice organizzare un problema civico.</h2>
+        <p>CivicAI non pubblica né invia nulla automaticamente. Analizza il testo localmente e prepara una bozza che puoi controllare e modificare prima di utilizzarla.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://chromewebstore.google.com/detail/civicai/ofjfnjmkedmfkpoopbbknhnfgdebfbco?hl=it" target="_blank" rel="noopener noreferrer">Chrome</a>
+          <a class="button button-secondary" href="https://microsoftedge.microsoft.com/addons/detail/civicai/pnfpiedpminionepclimahabkiddopja" target="_blank" rel="noopener noreferrer">Edge</a>
+          <a class="button button-secondary" href="https://github.com/memmolalabs/CivicAI" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-content">
+    <div>CivicAI · Memmola Labs®</div>
+    <div class="footer-links">
+      <a href="https://github.com/memmolalabs/CivicAI" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://github.com/memmolalabs/CivicAI/blob/main/PRIVACY.md" target="_blank" rel="noopener noreferrer">Privacy</a>
+      <a href="https://github.com/memmolalabs/CivicAI/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Licenza</a>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
