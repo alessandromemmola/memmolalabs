@@ -485,6 +485,97 @@
   .carousel-btn{display:none}
 }
 
+
+
+/* ===== IMAGE FIT + CAROUSEL REFINEMENT ===== */
+
+/* Android cards: match the 3:2 promotional artwork instead of cropping it */
+.product-card.square{
+  aspect-ratio:3/2 !important;
+  background:#fff;
+}
+
+.product-card.square img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center !important;
+}
+
+/* Viewer must remain completely visible */
+.product-card.viewer-wide{
+  background:#fff;
+}
+
+.product-card.viewer-wide img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center !important;
+}
+
+/* SlangBit remains a wide banner, but with a slightly taller frame
+   so less of the original artwork is lost */
+.product-card.wide{
+  aspect-ratio:2.35/1 !important;
+}
+
+#slangbit img{
+  object-position:center !important;
+}
+
+/* Carousel: smaller and safer for 1080p / 27-inch screens */
+.carousel{
+  padding-left:9vw !important;
+  padding-right:9vw !important;
+}
+
+.slide{
+  flex-basis:min(58vw,1040px) !important;
+  aspect-ratio:3/2 !important;
+  background:#fff;
+}
+
+.slide img{
+  object-fit:contain !important;
+  object-position:center !important;
+  background:#fff;
+}
+
+@media(max-width:1050px){
+  .product-card.square{
+    aspect-ratio:3/2 !important;
+  }
+
+  .product-card.viewer-wide,
+  .product-card.wide{
+    aspect-ratio:16/9 !important;
+  }
+
+  .slide{
+    flex-basis:76vw !important;
+  }
+}
+
+@media(max-width:700px){
+  .product-card.square,
+  .product-card.viewer-wide,
+  .product-card.wide{
+    aspect-ratio:auto !important;
+  }
+
+  .product-card img{
+    width:100% !important;
+    height:auto !important;
+    object-fit:contain !important;
+  }
+
+  .slide{
+    flex-basis:88vw !important;
+    aspect-ratio:3/2 !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -707,40 +798,110 @@
   const prev = document.querySelector('.carousel-btn.prev');
   const next = document.querySelector('.carousel-btn.next');
 
-  function slideStep() {
-    if (!slides.length) return carousel.clientWidth * .75;
-    return slides[0].getBoundingClientRect().width + 14;
-  }
+  let activeIndex = 0;
+  let autoplayTimer = null;
+  let resumeTimer = null;
+  const AUTOPLAY_DELAY = 5000;
 
-  function goTo(index) {
-    const i = Math.max(0, Math.min(slides.length - 1, index));
-    carousel.scrollTo({ left: slides[i].offsetLeft - carousel.offsetLeft - 20, behavior: 'smooth' });
-    dots.forEach((dot, n) => dot.classList.toggle('active', n === i));
-  }
+  function goTo(index, behavior = 'smooth') {
+    if (!slides.length) return;
 
-  function currentIndex() {
-    const center = carousel.scrollLeft + carousel.clientWidth / 2;
-    let best = 0, dist = Infinity;
-    slides.forEach((slide, i) => {
-      const c = slide.offsetLeft + slide.offsetWidth / 2;
-      const d = Math.abs(c - center);
-      if (d < dist) { dist = d; best = i; }
+    activeIndex = (index + slides.length) % slides.length;
+
+    const slide = slides[activeIndex];
+    const target =
+      slide.offsetLeft -
+      carousel.offsetLeft -
+      (carousel.clientWidth - slide.offsetWidth) / 2;
+
+    carousel.scrollTo({
+      left: Math.max(0, target),
+      behavior
     });
-    return best;
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === activeIndex);
+    });
   }
 
-  prev?.addEventListener('click', () => goTo(currentIndex() - 1));
-  next?.addEventListener('click', () => goTo(currentIndex() + 1));
-  dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+  function detectCurrentIndex() {
+    const viewportCenter = carousel.scrollLeft + carousel.clientWidth / 2;
+    let bestIndex = 0;
+    let bestDistance = Infinity;
+
+    slides.forEach((slide, i) => {
+      const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+      const distance = Math.abs(slideCenter - viewportCenter);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestIndex = i;
+      }
+    });
+
+    activeIndex = bestIndex;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === activeIndex);
+    });
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(() => {
+      goTo(activeIndex + 1);
+    }, AUTOPLAY_DELAY);
+  }
+
+  function stopAutoplay() {
+    if (autoplayTimer) {
+      clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+  }
+
+  function pauseThenResume() {
+    stopAutoplay();
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(startAutoplay, 7000);
+  }
+
+  prev?.addEventListener('click', () => {
+    goTo(activeIndex - 1);
+    pauseThenResume();
+  });
+
+  next?.addEventListener('click', () => {
+    goTo(activeIndex + 1);
+    pauseThenResume();
+  });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      goTo(i);
+      pauseThenResume();
+    });
+  });
 
   let raf;
   carousel.addEventListener('scroll', () => {
     cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(() => {
-      const i = currentIndex();
-      dots.forEach((dot, n) => dot.classList.toggle('active', n === i));
-    });
+    raf = requestAnimationFrame(detectCurrentIndex);
   }, { passive:true });
+
+  carousel.addEventListener('mouseenter', stopAutoplay);
+  carousel.addEventListener('mouseleave', startAutoplay);
+  carousel.addEventListener('focusin', stopAutoplay);
+  carousel.addEventListener('focusout', startAutoplay);
+  carousel.addEventListener('touchstart', pauseThenResume, { passive:true });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopAutoplay();
+    else startAutoplay();
+  });
+
+  window.addEventListener('load', () => {
+    goTo(0, 'auto');
+    startAutoplay();
+  });
 })();
 </script>
 
