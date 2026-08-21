@@ -292,6 +292,7 @@
 }
 
 
+   
 .products{
   padding:0 2.4vw 54px;
 }
@@ -514,7 +515,7 @@
 }
 
 
-   
+  
 .product-card.wide{
   aspect-ratio:2.35/1 !important;
 }
@@ -790,7 +791,6 @@
 
 
 
-
 .product-card.square{
   position:relative !important;
   aspect-ratio:1 / 1 !important;
@@ -856,9 +856,9 @@
 
 
 
-  
    
-  
+   
+   
 .product-card.square{
   aspect-ratio:3 / 2 !important;
   overflow:hidden !important;
@@ -901,22 +901,116 @@
   }
 }
 
+
+
+
+nav{
+  position:sticky !important;
+  top:0 !important;
+  z-index:100 !important;
+  height:54px !important;
+  padding:0 18px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:rgba(255,255,255,.94) !important;
+  border-bottom:1px solid rgba(11,20,36,.08) !important;
+  backdrop-filter:blur(18px) !important;
+}
+
+.nav-inner{
+  width:min(980px, calc(100vw - 36px)) !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:34px !important;
+}
+
+.nav-logo{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-decoration:none !important;
+  flex:0 0 auto !important;
+}
+
+.nav-logo-mark{
+  width:30px !important;
+  height:30px !important;
+  border-radius:8px !important;
+  display:grid !important;
+  place-items:center !important;
+  background:linear-gradient(135deg,#2f6fff,#55d5f4) !important;
+  color:#fff !important;
+  font-weight:800 !important;
+  font-size:14px !important;
+}
+
+.nav-logo-text{
+  display:none !important;
+}
+
+.nav-links{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:30px !important;
+}
+
+.nav-links a{
+  text-decoration:none !important;
+  text-transform:none !important;
+  font-size:12px !important;
+  font-weight:500 !important;
+  letter-spacing:0 !important;
+  color:#263244 !important;
+  white-space:nowrap !important;
+}
+
+.nav-links a:hover{
+  color:var(--blue) !important;
+}
+
+.nav-cta{
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+}
+
+@media(max-width:1050px){
+  nav{
+    height:56px !important;
+    padding:0 14px !important;
+  }
+
+  .nav-inner{
+    width:100% !important;
+    justify-content:flex-start !important;
+  }
+
+  .nav-links{
+    display:none !important;
+  }
+}
+
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="/" class="nav-logo">
-    <div class="nav-logo-mark">M</div>
-    <span class="nav-logo-text">Memmola<span>Labs</span>®</span>
-  </a>
-  <div class="nav-links">
-    <a href="#progetti">Prodotti</a>
-    <a href="#scopri">Scopri</a>
-    <a href="/origins/">Origins</a>
-    <a href="/viewer/">Viewer</a>
-    <a href="https://alessandromemmola.com" target="_blank" rel="noopener noreferrer">Chi sono</a>
-    <a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="Memmola Labs">
+      <div class="nav-logo-mark">M</div>
+    </a>
+    <div class="nav-links">
+      <a href="#progetti">Prodotti</a>
+      <a href="#scopri">Scopri</a>
+      <a href="/origins/">Origins</a>
+      <a href="/viewer/">Viewer</a>
+      <a href="https://alessandromemmola.com" target="_blank" rel="noopener noreferrer">Chi sono</a>
+      <a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a>
+    </div>
   </div>
 </nav>
 
@@ -927,7 +1021,7 @@
     <p class="hero-copy">
       App, strumenti web e software desktop costruiti per semplificare il lavoro,
       le decisioni e le piccole cose di ogni giorno. Offline quando possibile,
-      privati per scelta, senza complicazioni.
+      privati per scelta, senza complicazioni inutili.
     </p>
     <div class="platforms">
       <span>▣ Windows</span><span>● Android</span><span>◎ Web</span><span>&lt;/&gt; Open Source</span>
