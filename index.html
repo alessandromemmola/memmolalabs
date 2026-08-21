@@ -281,7 +281,211 @@
       .studio-strip{padding:46px 18px}
       footer{padding:34px 18px}
     }
-  </style>
+  
+
+/* ===== REVISED HOME LAYOUT ===== */
+
+/* Hero remains clean and image-free */
+.hero{
+  min-height:470px;
+  padding:76px 5vw 58px;
+}
+
+/* Product section goes back to the successful card logic:
+   SlangBit wide, Android apps in a 2x2 large grid, Viewer wide. */
+.products{
+  padding:0 2.4vw 54px;
+}
+
+.product-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.product-card{
+  position:relative;
+  overflow:hidden;
+  border:1px solid #e1e7ef;
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 12px 35px rgba(47,64,84,.06);
+}
+
+.product-card.wide{
+  grid-column:1/-1;
+  aspect-ratio:2.75/1;
+}
+
+.product-card.square{
+  aspect-ratio:1.2/1;
+}
+
+.product-card.viewer-wide{
+  grid-column:1/-1;
+  aspect-ratio:2.55/1;
+}
+
+.product-card .card-image-link{
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+.product-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+
+.product-card .card-actions{
+  position:absolute;
+  left:20px;
+  bottom:18px;
+  z-index:4;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.product-card .card-actions a{
+  text-decoration:none;
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:10px;
+  font-weight:850;
+  background:rgba(255,255,255,.94);
+  border:1px solid rgba(255,255,255,.9);
+  color:#182235;
+  box-shadow:0 7px 22px rgba(14,25,43,.10);
+  backdrop-filter:blur(10px);
+}
+
+.product-card .card-actions a.primary{
+  background:#111827;
+  color:#fff;
+  border-color:#111827;
+}
+
+#slangbit .card-actions a.primary{background:#03bde5;border-color:#03bde5;color:#04131c}
+#autobit .card-actions a.primary{background:#286cff;border-color:#286cff}
+#immobit .card-actions a.primary{background:#d6a62f;border-color:#d6a62f;color:#18120a}
+#scentweave .card-actions a.primary{background:#d7ad3f;border-color:#d7ad3f;color:#18120a}
+#dottap .card-actions a.primary{background:#ef438c;border-color:#ef438c}
+#viewer .card-actions a.primary{background:#237bdc;border-color:#237bdc}
+
+/* Smaller, contained carousel */
+.discover{
+  padding:14px 0 74px;
+  background:#f7f9fc;
+  border-top:1px solid #edf1f5;
+}
+
+.discover-head{
+  padding:56px 3vw 22px;
+}
+
+.carousel-wrap{
+  position:relative;
+}
+
+.carousel{
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  scrollbar-width:none;
+  padding:0 7vw 10px;
+}
+
+.carousel::-webkit-scrollbar{display:none}
+
+.slide{
+  flex:0 0 min(64vw,1120px);
+  aspect-ratio:7/4;
+  border-radius:18px;
+  scroll-snap-align:center;
+}
+
+.slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.carousel-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:8;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:1px solid #d8e0ea;
+  background:rgba(255,255,255,.94);
+  color:#1d2a3d;
+  font-size:22px;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(28,43,63,.10);
+}
+
+.carousel-btn.prev{left:18px}
+.carousel-btn.next{right:18px}
+
+.carousel-dots button{
+  width:7px;
+  height:7px;
+  border:0;
+  border-radius:50%;
+  background:#c5ced9;
+  cursor:pointer;
+  padding:0;
+}
+
+.carousel-dots button.active{
+  width:26px;
+  border-radius:999px;
+  background:#273244;
+}
+
+/* responsive */
+@media(max-width:1050px){
+  .product-grid{grid-template-columns:1fr}
+  .product-card.wide,
+  .product-card.square,
+  .product-card.viewer-wide{
+    grid-column:auto;
+    aspect-ratio:16/9;
+  }
+  .slide{flex-basis:78vw}
+}
+
+@media(max-width:700px){
+  .products{padding:0 12px 46px}
+  .product-card.wide,
+  .product-card.square,
+  .product-card.viewer-wide{
+    aspect-ratio:auto;
+  }
+  .product-card img{
+    height:auto;
+    object-fit:contain;
+  }
+  .product-card .card-actions{
+    left:12px;
+    bottom:10px;
+  }
+  .carousel{padding-left:12px;padding-right:12px}
+  .slide{
+    flex-basis:88vw;
+    aspect-ratio:7/4;
+  }
+  .carousel-btn{display:none}
+}
+
+</style>
 </head>
 <body>
 
@@ -333,54 +537,68 @@
 </section>
 
 <main class="products">
-  <article class="product-stage" id="slangbit">
-    <a class="product-image-link" href="https://slangbit.com" target="_blank" rel="noopener noreferrer">
-      <img src="images/slangbit/slangbit.png" alt="SlangBit per Windows" loading="eager">
-    </a>
-    <div class="product-float">
-      <a class="primary" href="https://slangbit.com" target="_blank" rel="noopener noreferrer">Scopri SlangBit →</a>
-    </div>
-  </article>
+  <div class="product-grid">
 
-  <article class="product-stage" id="autobit">
-    <a class="product-image-link" href="/autobit/">
-      <img src="images/autobit/autobit.png" alt="AutoBit" loading="lazy">
-    </a>
-    <div class="product-float">
-      <a class="primary" href="/autobit/">Scopri AutoBit →</a>
-      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" rel="noopener noreferrer">Google Play</a>
-    </div>
-  </article>
+    <article class="product-card wide" id="slangbit">
+      <a class="card-image-link" href="https://slangbit.com" target="_blank" rel="noopener noreferrer">
+        <img src="images/slangbit/slangbit.png" alt="SlangBit per Windows" loading="eager">
+      </a>
+      <div class="card-actions">
+        <a class="primary" href="https://slangbit.com" target="_blank" rel="noopener noreferrer">Scopri SlangBit →</a>
+      </div>
+    </article>
 
-  <article class="product-stage" id="immobit">
-    <a class="product-image-link" href="/immobit/">
-      <img src="images/immobit/immobit.png" alt="ImmoBit" loading="lazy">
-    </a>
-    <div class="product-float">
-      <a class="primary" href="/immobit/">Scopri ImmoBit →</a>
-      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" rel="noopener noreferrer">Google Play</a>
-    </div>
-  </article>
+    <article class="product-card square" id="autobit">
+      <a class="card-image-link" href="/autobit/">
+        <img src="images/autobit/autobit.png" alt="AutoBit" loading="lazy">
+      </a>
+      <div class="card-actions">
+        <a class="primary" href="/autobit/">Scopri AutoBit →</a>
+        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" rel="noopener noreferrer">Google Play</a>
+      </div>
+    </article>
 
-  <article class="product-stage" id="scentweave">
-    <a class="product-image-link" href="/scentweave/">
-      <img src="images/scentweave/scentweave.png" alt="ScentWeave" loading="lazy">
-    </a>
-    <div class="product-float">
-      <a class="primary" href="/scentweave/">Scopri ScentWeave →</a>
-      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.scentweave" target="_blank" rel="noopener noreferrer">Google Play</a>
-    </div>
-  </article>
+    <article class="product-card square" id="immobit">
+      <a class="card-image-link" href="/immobit/">
+        <img src="images/immobit/immobit.png" alt="ImmoBit" loading="lazy">
+      </a>
+      <div class="card-actions">
+        <a class="primary" href="/immobit/">Scopri ImmoBit →</a>
+        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" rel="noopener noreferrer">Google Play</a>
+      </div>
+    </article>
 
-  <article class="product-stage" id="dottap">
-    <a class="product-image-link" href="/dottap/">
-      <img src="images/dottap/dottap.png" alt="DotTap" loading="lazy">
-    </a>
-    <div class="product-float">
-      <a class="primary" href="/dottap/">Scopri DotTap →</a>
-      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.dottapgame" target="_blank" rel="noopener noreferrer">Google Play</a>
-    </div>
-  </article>
+    <article class="product-card square" id="scentweave">
+      <a class="card-image-link" href="/scentweave/">
+        <img src="images/scentweave/scentweave.png" alt="ScentWeave" loading="lazy">
+      </a>
+      <div class="card-actions">
+        <a class="primary" href="/scentweave/">Scopri ScentWeave →</a>
+        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.scentweave" target="_blank" rel="noopener noreferrer">Google Play</a>
+      </div>
+    </article>
+
+    <article class="product-card square" id="dottap">
+      <a class="card-image-link" href="/dottap/">
+        <img src="images/dottap/dottap.png" alt="DotTap" loading="lazy">
+      </a>
+      <div class="card-actions">
+        <a class="primary" href="/dottap/">Scopri DotTap →</a>
+        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.dottapgame" target="_blank" rel="noopener noreferrer">Google Play</a>
+      </div>
+    </article>
+
+    <article class="product-card viewer-wide" id="viewer">
+      <a class="card-image-link" href="/viewer/">
+        <img src="images/viewer/viewer.png" alt="Memmola Labs Viewer" loading="lazy">
+      </a>
+      <div class="card-actions">
+        <a class="primary" href="/viewer/">Apri Viewer →</a>
+        <a href="/viewer/">Installa come App</a>
+      </div>
+    </article>
+
+  </div>
 </main>
 
 <section class="discover" id="scopri">
@@ -390,45 +608,50 @@
       <h2>Continua a esplorare.</h2>
     </div>
     <p>
-      Tool web, progetti open source, esperimenti e storie dietro ai prodotti.
-      Scorri lateralmente per passare da un progetto all'altro.
+      ReIndexMe, AskingStars, CivicAI e le storie Origins.
+      Scorri lateralmente oppure usa le frecce per passare da un progetto all'altro.
     </p>
   </div>
 
-  <div class="carousel" aria-label="Altri progetti Memmola Labs">
-    <a class="slide" href="https://reindexme.com" target="_blank" rel="noopener noreferrer">
-      <img src="images/reindexme/reindexme.png" alt="ReIndexMe" loading="lazy">
-      <div class="slide-caption"><span>ReIndexMe · Website & LinkedIn discovery</span></div>
-    </a>
+  <div class="carousel-wrap">
+    <button class="carousel-btn prev" type="button" aria-label="Slide precedente">‹</button>
 
-    <a class="slide" href="https://askingstars.com" target="_blank" rel="noopener noreferrer">
-      <img src="images/askingstars/askingstars.png" alt="AskingStars" loading="lazy">
-      <div class="slide-caption"><span>AskingStars · Oroscopo Q&A</span></div>
-    </a>
+    <div class="carousel" id="homeCarousel">
+      <a class="slide" href="https://reindexme.com" target="_blank" rel="noopener noreferrer">
+        <img src="images/reindexme/reindexme.png" alt="ReIndexMe" loading="lazy">
+        <div class="slide-caption"><span>ReIndexMe · Website & LinkedIn discovery</span></div>
+      </a>
 
-    <a class="slide" href="/civicai/">
-      <img src="images/civicai/civicai.png" alt="CivicAI" loading="lazy">
-      <div class="slide-caption"><span>CivicAI · Open source · AI locale</span></div>
-    </a>
+      <a class="slide" href="https://askingstars.com" target="_blank" rel="noopener noreferrer">
+        <img src="images/askingstars/askingstars.png" alt="AskingStars" loading="lazy">
+        <div class="slide-caption"><span>AskingStars · Oroscopo Q&A</span></div>
+      </a>
 
-    <a class="slide" href="/viewer/">
-      <img src="images/viewer/viewer.png" alt="Memmola Labs Viewer" loading="lazy">
-      <div class="slide-caption"><span>Viewer · I tuoi file, sul desktop</span></div>
-    </a>
+      <a class="slide" href="/civicai/">
+        <img src="images/civicai/civicai.png" alt="CivicAI" loading="lazy">
+        <div class="slide-caption"><span>CivicAI · Open source · AI locale</span></div>
+      </a>
 
-    <a class="slide" href="/origins/">
-      <img src="images/autobit/autobit_origins.png" alt="AutoBit Stories" loading="lazy">
-      <div class="slide-caption"><span>Origins · AutoBit Stories</span></div>
-    </a>
+      <a class="slide" href="/origins/">
+        <img src="images/autobit/autobit_origins.png" alt="AutoBit Stories" loading="lazy">
+        <div class="slide-caption"><span>Origins · AutoBit Stories</span></div>
+      </a>
 
-    <a class="slide" href="/origins/">
-      <img src="images/immobit/immobit_origins.png" alt="ImmoBit Stories" loading="lazy">
-      <div class="slide-caption"><span>Origins · ImmoBit Stories</span></div>
-    </a>
+      <a class="slide" href="/origins/">
+        <img src="images/immobit/immobit_origins.png" alt="ImmoBit Stories" loading="lazy">
+        <div class="slide-caption"><span>Origins · ImmoBit Stories</span></div>
+      </a>
+    </div>
+
+    <button class="carousel-btn next" type="button" aria-label="Slide successiva">›</button>
   </div>
 
-  <div class="carousel-dots" aria-hidden="true">
-    <span class="active"></span><span></span><span></span><span></span><span></span><span></span>
+  <div class="carousel-dots" id="carouselDots" aria-label="Navigazione carosello">
+    <button class="active" type="button" aria-label="Vai a ReIndexMe"></button>
+    <button type="button" aria-label="Vai ad AskingStars"></button>
+    <button type="button" aria-label="Vai a CivicAI"></button>
+    <button type="button" aria-label="Vai ad AutoBit Stories"></button>
+    <button type="button" aria-label="Vai a ImmoBit Stories"></button>
   </div>
 </section>
 
@@ -472,6 +695,54 @@
     Nessun tracciamento personale o cookie di profilazione
   </div>
 </footer>
+
+
+<script>
+(() => {
+  const carousel = document.getElementById('homeCarousel');
+  if (!carousel) return;
+
+  const slides = Array.from(carousel.querySelectorAll('.slide'));
+  const dots = Array.from(document.querySelectorAll('#carouselDots button'));
+  const prev = document.querySelector('.carousel-btn.prev');
+  const next = document.querySelector('.carousel-btn.next');
+
+  function slideStep() {
+    if (!slides.length) return carousel.clientWidth * .75;
+    return slides[0].getBoundingClientRect().width + 14;
+  }
+
+  function goTo(index) {
+    const i = Math.max(0, Math.min(slides.length - 1, index));
+    carousel.scrollTo({ left: slides[i].offsetLeft - carousel.offsetLeft - 20, behavior: 'smooth' });
+    dots.forEach((dot, n) => dot.classList.toggle('active', n === i));
+  }
+
+  function currentIndex() {
+    const center = carousel.scrollLeft + carousel.clientWidth / 2;
+    let best = 0, dist = Infinity;
+    slides.forEach((slide, i) => {
+      const c = slide.offsetLeft + slide.offsetWidth / 2;
+      const d = Math.abs(c - center);
+      if (d < dist) { dist = d; best = i; }
+    });
+    return best;
+  }
+
+  prev?.addEventListener('click', () => goTo(currentIndex() - 1));
+  next?.addEventListener('click', () => goTo(currentIndex() + 1));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+  let raf;
+  carousel.addEventListener('scroll', () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      const i = currentIndex();
+      dots.forEach((dot, n) => dot.classList.toggle('active', n === i));
+    });
+  }, { passive:true });
+})();
+</script>
 
 </body>
 </html>
