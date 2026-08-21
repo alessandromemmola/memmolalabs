@@ -789,6 +789,71 @@
   }
 }
 
+
+
+/* ===== SQUARE APP CARDS: FULL ARTWORK, NO EMPTY BANDS ===== */
+.product-card.square{
+  position:relative !important;
+  aspect-ratio:1 / 1 !important;
+  overflow:hidden !important;
+  background:#f7f9fc !important;
+}
+
+/* Fill the square with a very soft enlarged copy of the artwork */
+.product-card.square::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:-5% !important;
+  z-index:0 !important;
+  background-image:var(--card-bg) !important;
+  background-size:cover !important;
+  background-position:center !important;
+  filter:blur(18px) saturate(.85) brightness(1.08) !important;
+  transform:scale(1.08) !important;
+  opacity:.42 !important;
+}
+
+/* White veil keeps the premium/light visual language */
+.product-card.square::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:1 !important;
+  background:rgba(255,255,255,.68) !important;
+  pointer-events:none !important;
+}
+
+.product-card.square .card-image-link{
+  position:relative !important;
+  z-index:2 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:100% !important;
+  height:100% !important;
+  padding:0 !important;
+  overflow:hidden !important;
+}
+
+.product-card.square img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  display:block !important;
+}
+
+/* Keep buttons above both artwork layers */
+.product-card.square .card-actions{
+  z-index:5 !important;
+}
+
+@media(max-width:700px){
+  .product-card.square{
+    aspect-ratio:1 / 1 !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -811,7 +876,7 @@
 <header class="hero">
   <div class="hero-inner">
     <div class="eyebrow">Software studio · Latina, Italia</div>
-    <h1>Software.<span>Pensato per essere utile.</span></h1>
+    <h1>Software<span>Pensato per essere utile.</span></h1>
     <p class="hero-copy">
       App, strumenti web e software desktop costruiti per semplificare il lavoro,
       le decisioni e le piccole cose di ogni giorno. Offline quando possibile,
@@ -852,7 +917,7 @@
       </div>
     </article>
 
-    <article class="product-card square" id="autobit">
+    <article class="product-card square" id="autobit" style="--card-bg:url('images/autobit/autobit.png')">
       <a class="card-image-link" href="/autobit/">
         <img src="images/autobit/autobit.png" alt="AutoBit" loading="lazy">
       </a>
@@ -862,7 +927,7 @@
       </div>
     </article>
 
-    <article class="product-card square" id="immobit">
+    <article class="product-card square" id="immobit" style="--card-bg:url('images/immobit/immobit.png')">
       <a class="card-image-link" href="/immobit/">
         <img src="images/immobit/immobit.png" alt="ImmoBit" loading="lazy">
       </a>
@@ -872,7 +937,7 @@
       </div>
     </article>
 
-    <article class="product-card square" id="scentweave">
+    <article class="product-card square" id="scentweave" style="--card-bg:url('images/scentweave/scentweave.png')">
       <a class="card-image-link" href="/scentweave/">
         <img src="images/scentweave/scentweave.png" alt="ScentWeave" loading="lazy">
       </a>
@@ -882,7 +947,7 @@
       </div>
     </article>
 
-    <article class="product-card square" id="dottap">
+    <article class="product-card square" id="dottap" style="--card-bg:url('images/dottap/dottap.png')">
       <a class="card-image-link" href="/dottap/">
         <img src="images/dottap/dottap.png" alt="DotTap" loading="lazy">
       </a>
