@@ -854,6 +854,54 @@
   }
 }
 
+
+
+/* ===== REMOVE VISUAL DEAD SPACE FROM APP CARDS =====
+   The promotional artwork is natively 3:2.
+   Forcing it into a 1:1 square inevitably creates empty bands or crops content.
+   Keep the 2x2 grid, but let each card use the artwork's native ratio. */
+.product-card.square{
+  aspect-ratio:3 / 2 !important;
+  overflow:hidden !important;
+  background:#fff !important;
+}
+
+/* Disable the artificial filler layers */
+.product-card.square::before,
+.product-card.square::after{
+  display:none !important;
+  content:none !important;
+}
+
+.product-card.square .card-image-link{
+  position:relative !important;
+  z-index:2 !important;
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  padding:0 !important;
+  overflow:hidden !important;
+}
+
+.product-card.square img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  display:block !important;
+}
+
+/* Keep the strong, squared editorial look */
+.product-card{
+  border-radius:0 !important;
+}
+
+@media(max-width:700px){
+  .product-card.square{
+    aspect-ratio:3 / 2 !important;
+  }
+}
+
 </style>
 </head>
 <body>
