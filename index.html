@@ -576,6 +576,133 @@
   }
 }
 
+
+/* ===== FINAL HOME REFINEMENT ===== */
+.product-card{border-radius:0 !important;}
+
+.product-card.wide,
+.product-card.viewer-wide{
+  grid-column:1/-1 !important;
+  aspect-ratio:auto !important;
+  min-height:0 !important;
+  background:#fff !important;
+}
+
+.product-card.wide .card-image-link,
+.product-card.viewer-wide .card-image-link{
+  display:block !important;
+  width:100% !important;
+  height:auto !important;
+}
+
+.product-card.wide img,
+.product-card.viewer-wide img{
+  display:block !important;
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  object-fit:contain !important;
+  object-position:center !important;
+}
+
+.product-card.square{
+  aspect-ratio:1/1 !important;
+  background:#fff !important;
+}
+
+.product-card.square .card-image-link{
+  width:100% !important;
+  height:100% !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+}
+
+.product-card.square img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center !important;
+}
+
+.product-card .card-actions{
+  left:18px !important;
+  bottom:16px !important;
+}
+
+.discover{overflow:hidden !important;}
+
+.carousel{
+  display:flex !important;
+  align-items:stretch !important;
+  gap:16px !important;
+  overflow-x:auto !important;
+  scroll-snap-type:x mandatory !important;
+  scroll-behavior:smooth !important;
+  padding:0 10vw 12px !important;
+  scrollbar-width:none !important;
+}
+
+.carousel::-webkit-scrollbar{display:none !important;}
+
+.slide{
+  flex:0 0 min(66vw,1180px) !important;
+  aspect-ratio:16/9 !important;
+  height:auto !important;
+  max-width:none !important;
+  border-radius:0 !important;
+  overflow:hidden !important;
+  background:#fff !important;
+  scroll-snap-align:center !important;
+  box-shadow:0 14px 36px rgba(30,45,65,.08) !important;
+}
+
+.slide img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  object-position:center !important;
+  display:block !important;
+}
+
+.slide-caption{
+  left:16px !important;
+  bottom:14px !important;
+}
+
+@media(max-width:1050px){
+  .product-grid{grid-template-columns:1fr 1fr !important;}
+  .product-card.wide,
+  .product-card.viewer-wide{grid-column:1/-1 !important;}
+  .product-card.square{aspect-ratio:1/1 !important;}
+  .slide{flex-basis:78vw !important;}
+}
+
+@media(max-width:700px){
+  .product-grid{grid-template-columns:1fr !important;}
+  .product-card.square{aspect-ratio:1/1 !important;}
+  .product-card.wide,
+  .product-card.viewer-wide{grid-column:auto !important;}
+
+  .product-card.wide img,
+  .product-card.viewer-wide img{
+    width:100% !important;
+    height:auto !important;
+  }
+
+  .carousel{
+    padding-left:12px !important;
+    padding-right:12px !important;
+    gap:10px !important;
+  }
+
+  .slide{
+    flex-basis:88vw !important;
+    aspect-ratio:16/9 !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -632,7 +759,7 @@
 
     <article class="product-card wide" id="slangbit">
       <a class="card-image-link" href="https://slangbit.com" target="_blank" rel="noopener noreferrer">
-        <img src="images/slangbit/slangbit.png" alt="SlangBit per Windows" loading="eager">
+        <img src="images/slangbit/slangbit_banner.png" alt="SlangBit per Windows" loading="eager">
       </a>
       <div class="card-actions">
         <a class="primary" href="https://slangbit.com" target="_blank" rel="noopener noreferrer">Scopri SlangBit →</a>
@@ -681,7 +808,7 @@
 
     <article class="product-card viewer-wide" id="viewer">
       <a class="card-image-link" href="/viewer/">
-        <img src="images/viewer/viewer.png" alt="Memmola Labs Viewer" loading="lazy">
+        <img src="images/viewer/viewer_banner.png" alt="Memmola Labs Viewer" loading="lazy">
       </a>
       <div class="card-actions">
         <a class="primary" href="/viewer/">Apri Viewer →</a>
@@ -723,12 +850,12 @@
         <div class="slide-caption"><span>CivicAI · Open source · AI locale</span></div>
       </a>
 
-      <a class="slide" href="/origins/">
+      <a class="slide origins-slide" href="/origins/">
         <img src="images/autobit/autobit_origins.png" alt="AutoBit Stories" loading="lazy">
         <div class="slide-caption"><span>Origins · AutoBit Stories</span></div>
       </a>
 
-      <a class="slide" href="/origins/">
+      <a class="slide origins-slide" href="/origins/">
         <img src="images/immobit/immobit_origins.png" alt="ImmoBit Stories" loading="lazy">
         <div class="slide-caption"><span>Origins · ImmoBit Stories</span></div>
       </a>
@@ -803,52 +930,37 @@
   let resumeTimer = null;
   const AUTOPLAY_DELAY = 5000;
 
+  function targetLeft(slide) {
+    return Math.max(0, slide.offsetLeft - carousel.offsetLeft - (carousel.clientWidth - slide.offsetWidth) / 2);
+  }
+
+  function updateDots() {
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
+  }
+
   function goTo(index, behavior = 'smooth') {
     if (!slides.length) return;
-
     activeIndex = (index + slides.length) % slides.length;
-
-    const slide = slides[activeIndex];
-    const target =
-      slide.offsetLeft -
-      carousel.offsetLeft -
-      (carousel.clientWidth - slide.offsetWidth) / 2;
-
-    carousel.scrollTo({
-      left: Math.max(0, target),
-      behavior
-    });
-
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === activeIndex);
-    });
+    carousel.scrollTo({left: targetLeft(slides[activeIndex]), behavior});
+    updateDots();
   }
 
   function detectCurrentIndex() {
-    const viewportCenter = carousel.scrollLeft + carousel.clientWidth / 2;
-    let bestIndex = 0;
-    let bestDistance = Infinity;
+    const center = carousel.scrollLeft + carousel.clientWidth / 2;
+    let nearest = 0;
+    let distance = Infinity;
 
     slides.forEach((slide, i) => {
       const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
-      const distance = Math.abs(slideCenter - viewportCenter);
-      if (distance < bestDistance) {
-        bestDistance = distance;
-        bestIndex = i;
+      const d = Math.abs(slideCenter - center);
+      if (d < distance) {
+        distance = d;
+        nearest = i;
       }
     });
 
-    activeIndex = bestIndex;
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === activeIndex);
-    });
-  }
-
-  function startAutoplay() {
-    stopAutoplay();
-    autoplayTimer = setInterval(() => {
-      goTo(activeIndex + 1);
-    }, AUTOPLAY_DELAY);
+    activeIndex = nearest;
+    updateDots();
   }
 
   function stopAutoplay() {
@@ -856,6 +968,11 @@
       clearInterval(autoplayTimer);
       autoplayTimer = null;
     }
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(() => goTo(activeIndex + 1), AUTOPLAY_DELAY);
   }
 
   function pauseThenResume() {
@@ -885,13 +1002,13 @@
   carousel.addEventListener('scroll', () => {
     cancelAnimationFrame(raf);
     raf = requestAnimationFrame(detectCurrentIndex);
-  }, { passive:true });
+  }, {passive:true});
 
   carousel.addEventListener('mouseenter', stopAutoplay);
   carousel.addEventListener('mouseleave', startAutoplay);
   carousel.addEventListener('focusin', stopAutoplay);
   carousel.addEventListener('focusout', startAutoplay);
-  carousel.addEventListener('touchstart', pauseThenResume, { passive:true });
+  carousel.addEventListener('touchstart', pauseThenResume, {passive:true});
 
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) stopAutoplay();
@@ -902,6 +1019,8 @@
     goTo(0, 'auto');
     startAutoplay();
   });
+
+  window.addEventListener('resize', () => goTo(activeIndex, 'auto'));
 })();
 </script>
 
