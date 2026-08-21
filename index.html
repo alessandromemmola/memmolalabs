@@ -59,7 +59,7 @@
     .nav-links a:hover{color:var(--blue)}
     .nav-cta{padding:7px 13px;border:1px solid #d2dae5;border-radius:999px}
 
-    /* HERO: no repeated product image */
+    
     .hero{
       min-height:500px;
       padding:88px 5vw 70px;
@@ -129,7 +129,7 @@
     }
     .section-head p{color:#667284;line-height:1.65;max-width:760px;margin-top:12px;font-size:1rem}
 
-    /* FULL-SCREEN PRODUCT STAGES */
+    
     .products{padding-bottom:36px}
     .product-stage{
       position:relative;
@@ -176,7 +176,7 @@
     #scentweave .product-float a.primary{background:#d7ad3f;border-color:#d7ad3f;color:#19140b}
     #dottap .product-float a.primary{background:#ef438c;border-color:#ef438c}
 
-    /* HORIZONTAL DISCOVERY CAROUSEL */
+    
     .discover{
       padding:18px 0 86px;
       background:#f7f9fc;
@@ -232,7 +232,7 @@
     .carousel-dots span{width:6px;height:6px;border-radius:50%;background:#c5ced9}
     .carousel-dots span.active{width:24px;border-radius:999px;background:#273244}
 
-    /* Small studio / support strip */
+    
     .studio-strip{
       padding:56px 4vw;
       display:grid;grid-template-columns:1.2fr .8fr;
@@ -283,16 +283,15 @@
     }
   
 
-/* ===== REVISED HOME LAYOUT ===== */
 
-/* Hero remains clean and image-free */
+
+
 .hero{
   min-height:470px;
   padding:76px 5vw 58px;
 }
 
-/* Product section goes back to the successful card logic:
-   SlangBit wide, Android apps in a 2x2 large grid, Viewer wide. */
+
 .products{
   padding:0 2.4vw 54px;
 }
@@ -375,7 +374,7 @@
 #dottap .card-actions a.primary{background:#ef438c;border-color:#ef438c}
 #viewer .card-actions a.primary{background:#237bdc;border-color:#237bdc}
 
-/* Smaller, contained carousel */
+
 .discover{
   padding:14px 0 74px;
   background:#f7f9fc;
@@ -450,7 +449,7 @@
   background:#273244;
 }
 
-/* responsive */
+
 @media(max-width:1050px){
   .product-grid{grid-template-columns:1fr}
   .product-card.wide,
@@ -487,9 +486,9 @@
 
 
 
-/* ===== IMAGE FIT + CAROUSEL REFINEMENT ===== */
 
-/* Android cards: match the 3:2 promotional artwork instead of cropping it */
+
+
 .product-card.square{
   aspect-ratio:3/2 !important;
   background:#fff;
@@ -502,7 +501,7 @@
   object-position:center !important;
 }
 
-/* Viewer must remain completely visible */
+
 .product-card.viewer-wide{
   background:#fff;
 }
@@ -514,8 +513,8 @@
   object-position:center !important;
 }
 
-/* SlangBit remains a wide banner, but with a slightly taller frame
-   so less of the original artwork is lost */
+
+   
 .product-card.wide{
   aspect-ratio:2.35/1 !important;
 }
@@ -524,7 +523,7 @@
   object-position:center !important;
 }
 
-/* Carousel: smaller and safer for 1080p / 27-inch screens */
+
 .carousel{
   padding-left:9vw !important;
   padding-right:9vw !important;
@@ -577,7 +576,7 @@
 }
 
 
-/* ===== FINAL HOME REFINEMENT ===== */
+
 .product-card{border-radius:0 !important;}
 
 .product-card.wide,
@@ -705,9 +704,9 @@
 
 
 
-/* ===== FINAL POLISH ===== */
 
-/* Android app cards: remove the empty white bands */
+
+
 .product-card.square{
   aspect-ratio:1/1 !important;
   overflow:hidden !important;
@@ -728,7 +727,7 @@
   object-position:center !important;
 }
 
-/* Center the products introduction and remove the small kicker */
+
 .section-head#progetti{
   text-align:center !important;
   padding-top:72px !important;
@@ -748,7 +747,7 @@
   max-width:760px !important;
 }
 
-/* Remove the discover heading block completely */
+
 .discover-head{
   display:none !important;
 }
@@ -757,7 +756,7 @@
   padding-top:54px !important;
 }
 
-/* Origins slides: show the complete native artwork instead of cropping */
+
 .slide.origins-slide{
   background:#07111b !important;
 }
@@ -768,7 +767,7 @@
   background:#07111b !important;
 }
 
-/* General carousel consistency */
+
 .slide{
   background:#fff !important;
 }
@@ -791,7 +790,7 @@
 
 
 
-/* ===== SQUARE APP CARDS: FULL ARTWORK, NO EMPTY BANDS ===== */
+
 .product-card.square{
   position:relative !important;
   aspect-ratio:1 / 1 !important;
@@ -799,7 +798,7 @@
   background:#f7f9fc !important;
 }
 
-/* Fill the square with a very soft enlarged copy of the artwork */
+
 .product-card.square::before{
   content:"" !important;
   position:absolute !important;
@@ -813,7 +812,7 @@
   opacity:.42 !important;
 }
 
-/* White veil keeps the premium/light visual language */
+
 .product-card.square::after{
   content:"" !important;
   position:absolute !important;
@@ -843,7 +842,7 @@
   display:block !important;
 }
 
-/* Keep buttons above both artwork layers */
+
 .product-card.square .card-actions{
   z-index:5 !important;
 }
@@ -856,17 +855,17 @@
 
 
 
-/* ===== REMOVE VISUAL DEAD SPACE FROM APP CARDS =====
-   The promotional artwork is natively 3:2.
-   Forcing it into a 1:1 square inevitably creates empty bands or crops content.
-   Keep the 2x2 grid, but let each card use the artwork's native ratio. */
+
+  
+   
+  
 .product-card.square{
   aspect-ratio:3 / 2 !important;
   overflow:hidden !important;
   background:#fff !important;
 }
 
-/* Disable the artificial filler layers */
+
 .product-card.square::before,
 .product-card.square::after{
   display:none !important;
@@ -891,7 +890,7 @@
   display:block !important;
 }
 
-/* Keep the strong, squared editorial look */
+
 .product-card{
   border-radius:0 !important;
 }
@@ -928,7 +927,7 @@
     <p class="hero-copy">
       App, strumenti web e software desktop costruiti per semplificare il lavoro,
       le decisioni e le piccole cose di ogni giorno. Offline quando possibile,
-      privati per scelta, senza complicazioni inutili.
+      privati per scelta, senza complicazioni.
     </p>
     <div class="platforms">
       <span>▣ Windows</span><span>● Android</span><span>◎ Web</span><span>&lt;/&gt; Open Source</span>
