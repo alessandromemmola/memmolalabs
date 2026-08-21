@@ -703,6 +703,92 @@
   }
 }
 
+
+
+/* ===== FINAL POLISH ===== */
+
+/* Android app cards: remove the empty white bands */
+.product-card.square{
+  aspect-ratio:1/1 !important;
+  overflow:hidden !important;
+  background:#fff !important;
+}
+
+.product-card.square .card-image-link{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  overflow:hidden !important;
+}
+
+.product-card.square img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  object-position:center !important;
+}
+
+/* Center the products introduction and remove the small kicker */
+.section-head#progetti{
+  text-align:center !important;
+  padding-top:72px !important;
+}
+
+.section-head#progetti .section-label{
+  display:none !important;
+}
+
+.section-head#progetti h2,
+.section-head#progetti p{
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+.section-head#progetti p{
+  max-width:760px !important;
+}
+
+/* Remove the discover heading block completely */
+.discover-head{
+  display:none !important;
+}
+
+.discover{
+  padding-top:54px !important;
+}
+
+/* Origins slides: show the complete native artwork instead of cropping */
+.slide.origins-slide{
+  background:#07111b !important;
+}
+
+.slide.origins-slide img{
+  object-fit:contain !important;
+  object-position:center !important;
+  background:#07111b !important;
+}
+
+/* General carousel consistency */
+.slide{
+  background:#fff !important;
+}
+
+.slide:not(.origins-slide) img{
+  object-fit:cover !important;
+  object-position:center !important;
+}
+
+@media(max-width:700px){
+  .section-head#progetti{
+    padding-left:18px !important;
+    padding-right:18px !important;
+  }
+
+  .discover{
+    padding-top:34px !important;
+  }
+}
+
 </style>
 </head>
 <body>
