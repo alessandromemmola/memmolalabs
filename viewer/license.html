@@ -1,199 +1,603 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>License - Memmola Labs Viewer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <title>Licenza — Memmola Labs Viewer</title>
+  <meta name="description" content="Licenza d'uso di Memmola Labs Viewer: utilizzo consentito, proprietà intellettuale, privacy, limitazioni e contatti." />
 
-<style>
-body{
-    background:#0F0E0C;
-    color:#EAEAEA;
-    font-family:Arial,Helvetica,sans-serif;
-    max-width:900px;
-    margin:auto;
-    padding:40px 20px;
-    line-height:1.7;
-}
+  <style>
+    :root{
+      --bg:#ffffff;
+      --surface:#f7f9fc;
+      --surface2:#eef5ff;
+      --line:#e1e7ef;
+      --text:#0b1730;
+      --muted:#667085;
+      --blue:#2f73ff;
+      --cyan:#24bde7;
+      --green:#18a66a;
+      --red:#d84a4a;
+      --dark:#0a1422;
+    }
 
-h1,h2{
-    color:#C9A84C;
-}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
 
-.card{
-    border:1px solid #2a2a2a;
-    background:#171615;
-    padding:20px;
-    margin-bottom:20px;
-    border-radius:10px;
-}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.7;
+      overflow-x:hidden;
+    }
 
-.allowed{
-    border-left:4px solid #3ddc84;
-}
+    a{color:inherit}
 
-.forbidden{
-    border-left:4px solid #ff5c5c;
-}
+    /* Header, aligned with the current Memmola Labs visual language */
+    nav{
+      position:sticky;
+      top:0;
+      z-index:100;
+      height:54px;
+      padding:0 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(255,255,255,.95);
+      border-bottom:1px solid rgba(11,23,48,.08);
+      backdrop-filter:blur(18px);
+    }
 
-ul{
-    padding-left:20px;
-}
+    .nav-inner{
+      width:min(980px,calc(100vw - 36px));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:34px;
+    }
 
-a{
-    color:#C9A84C;
-}
+    .nav-logo{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+    }
 
-.footer{
-    margin-top:50px;
-    font-size:0.9rem;
-    opacity:0.8;
-    border-top:1px solid #2a2a2a;
-    padding-top:20px;
-}
-</style>
+    .nav-logo-mark{
+      width:30px;
+      height:30px;
+      display:grid;
+      place-items:center;
+      border-radius:8px;
+      background:linear-gradient(135deg,#2f6fff,#55d5f4);
+      color:#fff;
+      font-size:14px;
+      font-weight:800;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:30px;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:#263244;
+      font-size:12px;
+      font-weight:500;
+      white-space:nowrap;
+    }
+
+    .nav-links a:hover{color:var(--blue)}
+
+    .hero{
+      padding:88px 5vw 76px;
+      text-align:center;
+      background:
+        radial-gradient(circle at 20% 20%,rgba(47,115,255,.10),transparent 24%),
+        radial-gradient(circle at 82% 24%,rgba(36,189,231,.10),transparent 22%),
+        linear-gradient(180deg,#fff,#fbfdff);
+      border-bottom:1px solid var(--line);
+    }
+
+    .hero-inner{
+      max-width:1080px;
+      margin:0 auto;
+    }
+
+    .eyebrow{
+      margin-bottom:16px;
+      color:#7d8998;
+      font-size:10px;
+      font-weight:850;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+
+    h1{
+      font-size:clamp(3rem,5.2vw,5.8rem);
+      line-height:.96;
+      letter-spacing:-.057em;
+    }
+
+    h1 span{
+      display:block;
+      background:linear-gradient(90deg,var(--blue),var(--cyan),#6a5df1);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero p{
+      max-width:760px;
+      margin:22px auto 0;
+      color:var(--muted);
+      font-size:1.03rem;
+    }
+
+    .meta{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      margin-top:22px;
+      padding:7px 11px;
+      border:1px solid #dfe6ef;
+      border-radius:999px;
+      background:#fff;
+      color:#7b8798;
+      font-size:.76rem;
+      font-weight:700;
+    }
+
+    .meta::before{
+      content:"";
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background:var(--green);
+    }
+
+    .layout{
+      width:min(1480px,100%);
+      margin:0 auto;
+      padding:64px 4vw 96px;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 280px;
+      gap:6vw;
+      align-items:start;
+    }
+
+    .content{
+      max-width:980px;
+    }
+
+    .summary-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-bottom:48px;
+    }
+
+    .summary-card{
+      padding:24px;
+      border:1px solid var(--line);
+      background:#fff;
+    }
+
+    .summary-card.allowed{border-left:4px solid var(--green)}
+    .summary-card.forbidden{border-left:4px solid var(--red)}
+
+    .summary-card h2{
+      margin-bottom:12px;
+      font-size:1.25rem;
+      letter-spacing:-.025em;
+    }
+
+    .summary-card ul{
+      padding-left:20px;
+      color:#566376;
+    }
+
+    .summary-card li{
+      margin:7px 0;
+    }
+
+    section{
+      padding-bottom:40px;
+      margin-bottom:40px;
+      border-bottom:1px solid var(--line);
+    }
+
+    section:last-child{
+      border-bottom:0;
+      margin-bottom:0;
+    }
+
+    .section-no{
+      display:block;
+      margin-bottom:6px;
+      color:var(--blue);
+      font-size:.7rem;
+      font-weight:850;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    section h2{
+      margin-bottom:16px;
+      font-size:clamp(1.7rem,2.5vw,2.45rem);
+      line-height:1.08;
+      letter-spacing:-.04em;
+    }
+
+    p{
+      margin-bottom:14px;
+      color:#566376;
+    }
+
+    ul{
+      padding-left:22px;
+      margin:8px 0 16px;
+      color:#566376;
+    }
+
+    li{margin:6px 0}
+
+    strong{color:#182337}
+
+    .notice{
+      padding:18px 20px;
+      margin:20px 0;
+      border:1px solid #dce5f1;
+      background:linear-gradient(135deg,#f8fbff,#fff);
+      color:#556376;
+    }
+
+    .notice strong{
+      display:block;
+      margin-bottom:5px;
+    }
+
+    aside{
+      position:sticky;
+      top:86px;
+    }
+
+    .toc{
+      padding:20px;
+      border:1px solid var(--line);
+      background:#fff;
+    }
+
+    .toc-title{
+      margin-bottom:12px;
+      color:#8a95a4;
+      font-size:.66rem;
+      font-weight:850;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+    }
+
+    .toc a{
+      display:block;
+      padding:7px 0;
+      border-bottom:1px solid #eef2f5;
+      color:#526074;
+      text-decoration:none;
+      font-size:.81rem;
+    }
+
+    .toc a:last-child{border-bottom:0}
+    .toc a:hover{color:var(--blue)}
+
+    .contact-card{
+      margin-top:14px;
+      padding:20px;
+      background:var(--dark);
+      color:#fff;
+    }
+
+    .contact-card small{
+      color:#9aabbd;
+      font-size:.64rem;
+      font-weight:850;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .contact-card p{
+      margin:10px 0 14px;
+      color:#c4ced9;
+      font-size:.83rem;
+    }
+
+    .contact-card a{
+      color:#7bdaf1;
+      text-decoration:none;
+      font-size:.82rem;
+      font-weight:750;
+    }
+
+    footer{
+      padding:38px 4vw;
+      border-top:1px solid var(--line);
+      text-align:center;
+      color:#7c8796;
+      font-size:.74rem;
+      line-height:1.9;
+    }
+
+    .footer-links{
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+
+    .footer-links a{text-decoration:none}
+    .footer-links a:hover{color:var(--blue)}
+
+    @media(max-width:1000px){
+      .layout{
+        grid-template-columns:1fr;
+      }
+      aside{position:static}
+      .toc{display:none}
+    }
+
+    @media(max-width:700px){
+      nav{
+        height:56px;
+        padding:0 14px;
+      }
+      .nav-inner{
+        width:100%;
+        justify-content:flex-start;
+      }
+      .nav-links{display:none}
+      .hero{
+        padding:70px 20px 56px;
+      }
+      .layout{
+        padding:46px 20px 72px;
+      }
+      .summary-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<h1>Memmola Labs Viewer License</h1>
+<nav>
+  <div class="nav-inner">
+    <a href="https://memmolalabs.com/" class="nav-logo" aria-label="Memmola Labs">
+      <div class="nav-logo-mark">M</div>
+    </a>
+    <div class="nav-links">
+      <a href="https://memmolalabs.com/">Home</a>
+      <a href="/viewer/">Viewer</a>
+      <a href="#uso">Uso</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#contatti">Contatti</a>
+    </div>
+  </div>
+</nav>
 
-<p>
-Version 1.0 – Effective June 2026<br>
-Author: Alessandro Memmola
-</p>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Memmola Labs Viewer · Licenza d'uso</div>
+    <h1>Gratuito da usare.<span>Non da copiare.</span></h1>
+    <p>
+      Viewer può essere utilizzato liberamente per aprire, analizzare e confrontare
+      i file supportati. Il software, il codice, il design e il marchio restano però
+      protetti e non possono essere ridistribuiti o ripubblicati come prodotto derivato.
+    </p>
+    <div class="meta">Versione 1.1 · Aggiornata ad agosto 2026</div>
+  </div>
+</header>
 
-<div class="card allowed">
-<h2>✅ What you can do</h2>
+<div class="layout">
 
-<ul>
-<li>Use Memmola Labs Viewer free of charge.</li>
-<li>Open and analyze .immobit and .autobit files.</li>
-<li>Install the Viewer as a desktop or web application.</li>
-<li>Share links to the official Viewer website.</li>
-<li>Use the Viewer for personal or professional purposes.</li>
-</ul>
+  <main class="content">
+
+    <div class="summary-grid">
+      <div class="summary-card allowed">
+        <h2>✓ Cosa puoi fare</h2>
+        <ul>
+          <li>Usare Memmola Labs Viewer gratuitamente.</li>
+          <li>Aprire, analizzare e confrontare file supportati da Viewer.</li>
+          <li>Usare Viewer per finalità personali o professionali.</li>
+          <li>Installare Viewer come PWA o usarlo direttamente dal browser.</li>
+          <li>Condividere link alla pagina ufficiale di Viewer.</li>
+        </ul>
+      </div>
+
+      <div class="summary-card forbidden">
+        <h2>✕ Cosa non puoi fare</h2>
+        <ul>
+          <li>Ripubblicare o ridistribuire il codice sorgente come progetto autonomo.</li>
+          <li>Creare fork pubblici o prodotti derivati senza autorizzazione.</li>
+          <li>Rimuovere o sostituire il branding Memmola Labs / Viewer.</li>
+          <li>Rivendere Viewer o presentarlo come software proprio.</li>
+          <li>Usare marchi e identità dei prodotti Memmola Labs in modo da suggerire un'affiliazione non autorizzata.</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="uso">
+      <span class="section-no">01 · Licenza d'uso</span>
+      <h2>Viewer è gratuito, ma non open source per implicazione.</h2>
+      <p>
+        Memmola Labs Viewer può essere utilizzato gratuitamente secondo le condizioni
+        riportate in questa pagina. Il fatto che il codice possa essere visibile,
+        ispezionabile dal browser o presente in un repository pubblico non attribuisce
+        automaticamente il diritto di copiarlo, modificarlo, ridistribuirlo o commercializzarlo.
+      </p>
+      <p>
+        Salvo diversa licenza espressamente indicata in un repository o in un file di licenza,
+        tutti i diritti non concessi in modo esplicito restano riservati.
+      </p>
+    </section>
+
+    <section id="proprieta">
+      <span class="section-no">02 · Proprietà intellettuale</span>
+      <h2>Codice, interfaccia e identità restano di Memmola Labs.</h2>
+      <p>
+        Viewer, inclusi il codice sviluppato specificamente per il progetto, l'interfaccia,
+        la documentazione, gli asset grafici, il nome, il logo e i materiali promozionali originali,
+        è realizzato da <strong>Alessandro Memmola / Memmola Labs</strong>.
+      </p>
+      <p>
+        Librerie, componenti, icone, font o altri materiali di terze parti restano di proprietà
+        dei rispettivi titolari e sono soggetti alle relative licenze.
+      </p>
+    </section>
+
+    <section id="companion">
+      <span class="section-no">03 · Companion tool</span>
+      <h2>Viewer è il punto di incontro dei file Memmola Labs.</h2>
+      <p>
+        Viewer è progettato come strumento companion per aprire e consultare i file esportati
+        dai prodotti compatibili dell'ecosistema Memmola Labs.
+      </p>
+      <ul>
+        <li><strong>AutoBit</strong> — file <code>.autobit</code></li>
+        <li><strong>ImmoBit</strong> — file <code>.immobit</code></li>
+        <li><strong>ScentWeave</strong> — file <code>.scentweave</code></li>
+      </ul>
+      <div class="notice">
+        <strong>Compatibilità in evoluzione</strong>
+        Nuovi formati o funzionalità possono essere aggiunti nel tempo.
+        La documentazione e l'interfaccia corrente di Viewer indicano sempre i formati effettivamente supportati.
+      </div>
+    </section>
+
+    <section id="codice">
+      <span class="section-no">04 · Visibilità del codice</span>
+      <h2>Trasparenza non significa automaticamente diritto di riutilizzo.</h2>
+      <p>
+        Alcune parti del codice possono essere tecnicamente visibili, accessibili o ispezionabili
+        per ragioni di trasparenza, debug, revisione tecnica o funzionamento del web.
+      </p>
+      <p>
+        Tale visibilità, da sola, non autorizza copia, modifica, redistribuzione,
+        sublicenza, pubblicazione o uso commerciale del software.
+      </p>
+    </section>
+
+    <section id="privacy">
+      <span class="section-no">05 · Privacy</span>
+      <h2>I file vengono elaborati localmente.</h2>
+      <p>
+        Viewer è progettato per elaborare i file sul dispositivo dell'utente.
+        I file aperti non vengono caricati sui server Memmola Labs come parte del normale funzionamento del Viewer.
+      </p>
+      <p>
+        Viewer non richiede un account Memmola Labs per utilizzare le funzioni principali
+        e non è progettato per vendere i dati contenuti nei file.
+      </p>
+      <p>
+        Eventuali servizi esterni, librerie o funzionalità aggiuntive eventualmente introdotte
+        in futuro dovranno essere descritte nelle relative informative e nella documentazione aggiornata.
+      </p>
+    </section>
+
+    <section id="terze-parti">
+      <span class="section-no">06 · Componenti di terze parti</span>
+      <h2>Le licenze esterne continuano a valere.</h2>
+      <p>
+        Viewer può utilizzare librerie, componenti o risorse distribuite con licenze proprie.
+        Questa licenza non sostituisce né limita i diritti concessi direttamente da tali licenze.
+      </p>
+    </section>
+
+    <section id="garanzia">
+      <span class="section-no">07 · Garanzia</span>
+      <h2>Il software viene fornito nello stato in cui si trova.</h2>
+      <p>
+        Viewer viene fornito “così com'è”. Pur essendo sviluppato e mantenuto con attenzione,
+        non viene garantita compatibilità con ogni file, dispositivo, browser, versione futura
+        dei prodotti companion o ambiente operativo.
+      </p>
+      <p>
+        Memmola Labs non garantisce disponibilità ininterrotta,
+        assenza assoluta di errori o idoneità a uno specifico uso professionale.
+      </p>
+    </section>
+
+    <section id="responsabilita">
+      <span class="section-no">08 · Limitazione di responsabilità</span>
+      <h2>Viewer è uno strumento di consultazione e supporto.</h2>
+      <p>
+        Alessandro Memmola e Memmola Labs
+        non rispondono di perdite o danni indiretti derivanti dall'uso, dall'impossibilità di usare
+        il Viewer, da file corrotti, dati errati o incompatibilità con software o servizi di terzi.
+      </p>
+      <p>
+        Restano in ogni caso applicabili i diritti e le tutele inderogabili previsti dalla legge.
+      </p>
+    </section>
+
+    <section id="modifiche">
+      <span class="section-no">09 · Modifiche</span>
+      <h2>Viewer può evolvere nel tempo.</h2>
+      <p>
+        Funzioni, formati supportati, interfaccia e condizioni di utilizzo possono essere aggiornati.
+        La versione pubblicata su questa pagina rappresenta la licenza corrente.
+      </p>
+    </section>
+
+    <section id="contatti">
+      <span class="section-no">10 · Permessi e contatti</span>
+      <h2>Per usi diversi, basta chiedere.</h2>
+      <p>
+        Per richieste di licenza, autorizzazioni, partnership, integrazioni o utilizzi
+        non chiaramente coperti da questa pagina:
+      </p>
+      <p><a href="mailto:info@memmolalabs.com"><strong>info@memmolalabs.com</strong></a></p>
+    </section>
+
+  </main>
+
+  <aside>
+    <div class="toc">
+      <div class="toc-title">In questa pagina</div>
+      <a href="#uso">Licenza d'uso</a>
+      <a href="#proprieta">Proprietà</a>
+      <a href="#companion">Companion tool</a>
+      <a href="#codice">Codice</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#terze-parti">Terze parti</a>
+      <a href="#garanzia">Garanzia</a>
+      <a href="#responsabilita">Responsabilità</a>
+      <a href="#modifiche">Modifiche</a>
+      <a href="#contatti">Contatti</a>
+    </div>
+
+    <div class="contact-card">
+      <small>Licenza personalizzata?</small>
+      <p>Per integrazioni, partnership o autorizzazioni specifiche puoi contattare direttamente Memmola Labs.</p>
+      <a href="mailto:info@memmolalabs.com">info@memmolalabs.com →</a>
+    </div>
+  </aside>
+
 </div>
 
-<div class="card forbidden">
-<h2>❌ What you cannot do</h2>
-
-<ul>
-<li>Copy, redistribute or republish the source code.</li>
-<li>Create public forks or derivative products.</li>
-<li>Remove Memmola Labs branding.</li>
-<li>Sell the Viewer as your own software.</li>
-<li>Rebrand the Viewer under another name.</li>
-<li>Use the Memmola Labs, ImmoBit or AutoBit brands without permission.</li>
-</ul>
-</div>
-
-<h2>1. Intellectual Property</h2>
-
-<div class="card">
-<p>
-Memmola Labs Viewer, including its source code, interface,
-graphics, documentation and related materials, is the exclusive
-property of Alessandro Memmola and Memmola Labs.
-</p>
-
-<p>
-All rights not expressly granted by this license are reserved.
-</p>
-</div>
-
-<h2>2. Source Code Visibility</h2>
-
-<div class="card">
-<p>
-The source code may be publicly visible for transparency,
-educational review and security inspection purposes.
-</p>
-
-<p>
-Visibility of the code does not grant any right to copy,
-modify, redistribute, publish, sublicense or commercialize
-the software.
-</p>
-</div>
-
-<h2>3. Companion Tool Status</h2>
-
-<div class="card">
-<p>
-Memmola Labs Viewer is the official companion application for:
-</p>
-
-<ul>
-<li>ImmoBit</li>
-<li>AutoBit</li>
-</ul>
-
-<p>
-The Viewer is intended solely for viewing and comparing files
-generated by official Memmola Labs software.
-</p>
-</div>
-
-<h2>4. Privacy</h2>
-
-<div class="card">
-<p>
-The Viewer processes files locally on the user's device.
-</p>
-
-<p>
-No uploaded files are transmitted to Memmola Labs servers.
-</p>
-
-<p>
-No personal data is intentionally collected, stored or sold.
-</p>
-</div>
-
-<h2>5. Warranty Disclaimer</h2>
-
-<div class="card">
-<p>
-The software is provided "AS IS", without warranty of any kind,
-express or implied.
-</p>
-
-<p>
-The author makes no guarantees regarding compatibility,
-availability, accuracy or fitness for a particular purpose.
-</p>
-</div>
-
-<h2>6. Limitation of Liability</h2>
-
-<div class="card">
-<p>
-Under no circumstances shall Alessandro Memmola or Memmola Labs
-be liable for any direct, indirect, incidental or consequential
-damages resulting from the use or inability to use the Viewer.
-</p>
-</div>
-
-<h2>7. Permissions</h2>
-
-<div class="card">
-<p>
-For licensing requests, partnerships or permissions beyond the
-scope of this license, please contact:
-</p>
-
-<ul>
-<li>https://memmolalabs.com</li>
-<li>https://github.com/alessandromemmola</li>
-<li>https://x.com/MemmolaLabs</li>
-</ul>
-</div>
-
-<div class="footer">
-© 2026 Alessandro Memmola - Memmola Labs<br>
-All Rights Reserved.
-</div>
+<footer>
+  <div class="footer-links">
+    <a href="https://memmolalabs.com/">Memmola Labs</a>
+    <a href="/viewer/">Viewer</a>
+    <a href="https://github.com/alessandromemmola" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://x.com/MemmolaLabs" target="_blank" rel="noopener noreferrer">X</a>
+    <a href="mailto:info@memmolalabs.com">Contatti</a>
+  </div>
+  <div>© 2026 Alessandro Memmola · Memmola Labs · Tutti i diritti riservati.</div>
+</footer>
 
 </body>
 </html>
