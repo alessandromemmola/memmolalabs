@@ -44,10 +44,11 @@
       backdrop-filter:blur(18px);
     }
     .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-    .nav-logo-mark{
-      width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
-      background:linear-gradient(135deg,#2f6fff,#55d5f4);
-      color:#fff;font-weight:800;font-size:15px;
+    .nav-logo-img {
+        width: 34px;
+        height: 34px;
+        display: block;
+        object-fit: contain;
     }
     .nav-logo-text{font-weight:850;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
     .nav-logo-text span{color:var(--blue)}
@@ -1001,7 +1002,7 @@ nav{
 <nav>
   <div class="nav-inner">
     <a href="/" class="nav-logo" aria-label="Memmola Labs">
-      <div class="nav-logo-mark">M</div>
+      <img src="/images/logo/logo.png" alt="Memmola Labs" class="nav-logo-img">
     </a>
     <div class="nav-links">
       <a href="#progetti">Prodotti</a>
