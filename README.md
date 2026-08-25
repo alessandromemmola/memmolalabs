@@ -1,6 +1,6 @@
-# Memmola Labs® - Independent Software Lab
+# Memmola Labs® - Software Lab
 
-*Memmola Labs** is an independent software development laboratory founded by Alessandro Memmola.
+*Memmola Labs** is an software development laboratory founded by Alessandro Memmola.
 
 We design and develop mobile applications, desktop utilities and web tools with a precise goal: to create useful, accessible and problem-solving software.
 
