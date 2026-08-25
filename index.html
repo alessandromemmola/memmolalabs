@@ -13,6 +13,18 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://memmolalabs.com/" />
 
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Memmola Labs">
+  <meta property="og:url" content="https://memmolalabs.com/">
+  <meta property="og:title" content="Memmola Labs — Software. Pensato per essere utile.">
+  <meta property="og:description" content="App, strumenti web e software desktop costruiti per semplificare il lavoro, le decisioni e le piccole cose di ogni giorno.">
+  <meta property="og:image" content="https://memmolalabs.com/images/social/social_card.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Memmola Labs — Software. Pensato per essere utile.">
+  <meta name="twitter:description" content="App, strumenti web e software desktop costruiti per semplificare il lavoro, le decisioni e le piccole cose di ogni giorno.">
+  <meta name="twitter:image" content="https://memmolalabs.com/images/social/social_card.png">
+
   <style>
     :root{
       --bg:#fff;
@@ -993,6 +1005,92 @@ nav{
   .nav-links{
     display:none !important;
   }
+.footer-share {
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(15, 23, 42, 0.08);
+    text-align: center;
+}
+
+.footer-share-title {
+    margin: 0 0 6px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #07152d;
+}
+
+.footer-share-text {
+    margin: 0 0 16px;
+    font-size: 0.82rem;
+    color: #64748b;
+}
+
+.footer-share-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.share-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    min-height: 36px;
+    padding: 7px 12px;
+
+    border: 1px solid #dbe3ee;
+    border-radius: 999px;
+
+    background: #fff;
+    color: #07152d;
+
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.share-button img {
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+}
+
+.share-link-icon {
+    font-size: 15px;
+    line-height: 1;
+}
+
+.share-button:hover {
+    transform: translateY(-1px);
+    border-color: #2580ff;
+    box-shadow: 0 5px 16px rgba(37, 128, 255, 0.10);
+}
+
+@media (max-width: 600px) {
+    .footer-share {
+        margin-top: 28px;
+        padding-top: 24px;
+    }
+
+    .footer-share-actions {
+        gap: 7px;
+    }
+
+    .share-button {
+        font-size: 0.75rem;
+        padding: 7px 10px;
+    }
 }
 
 </style>
@@ -1196,6 +1294,59 @@ nav{
     © 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br>
     Nessun tracciamento personale o cookie di profilazione
   </div>
+  <div class="footer-share">
+  <p class="footer-share-title">Condividi Memmola Labs</p>
+  <p class="footer-share-text">
+    Se pensi possa essere utile anche a qualcun altro.
+  </p>
+
+  <div class="footer-share-actions">
+
+    <a
+      href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fmemmolalabs.com%2F&text=Memmola%20Labs%20%E2%80%94%20Software.%20Pensato%20per%20essere%20utile."
+      target="_blank"
+      rel="noopener noreferrer"
+      class="share-button"
+      aria-label="Condividi Memmola Labs su X"
+    >
+      <img src="/images/social/logo_x.png" alt="">
+      <span>X</span>
+    </a>
+
+    <a
+      href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmemmolalabs.com%2F"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="share-button"
+      aria-label="Condividi Memmola Labs su Facebook"
+    >
+      <img src="/images/social/logo_facebook.png" alt="">
+      <span>Facebook</span>
+    </a>
+
+    <a
+      href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmemmolalabs.com%2F"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="share-button"
+      aria-label="Condividi Memmola Labs su LinkedIn"
+    >
+      <img src="/images/social/logo_linkedin.png" alt="">
+      <span>LinkedIn</span>
+    </a>
+
+    <button
+      type="button"
+      class="share-button"
+      id="copy-share-link"
+      aria-label="Copia il link di Memmola Labs"
+    >
+      <span class="share-link-icon">↗</span>
+      <span id="copy-share-text">Copia link</span>
+    </button>
+
+  </div>
+</div>
 </footer>
 
 
