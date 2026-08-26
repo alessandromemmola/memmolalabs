@@ -1468,6 +1468,211 @@ body{
   .viewer-upload-zone .vhome-primary{width:100%}
 }
 
+
+/* =========================================================
+   DASHBOARD V5 — product archive + routes
+   ========================================================= */
+.viewer-dashboard-view{display:none}
+.viewer-dashboard-view.active{display:block}
+
+.product-archive-card{min-width:0}
+.product-archive-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+.product-space{
+  min-width:0;
+  border:1px solid #E0E8F1;
+  border-radius:16px;
+  overflow:hidden;
+  background:#fff;
+}
+.product-space-visual{
+  height:118px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.autobit-space .product-space-visual{
+  background:
+    radial-gradient(circle at 72% 24%,rgba(47,123,255,.22),transparent 30%),
+    linear-gradient(135deg,#EAF4FF,#F8FBFF);
+}
+.immobit-space .product-space-visual{
+  background:
+    radial-gradient(circle at 72% 24%,rgba(201,154,36,.22),transparent 30%),
+    linear-gradient(135deg,#FFF6DC,#FFFDF7);
+}
+.scent-space .product-space-visual{
+  background:
+    radial-gradient(circle at 72% 24%,rgba(143,92,197,.20),transparent 30%),
+    linear-gradient(135deg,#F5EAFF,#FCF8FF);
+}
+.product-space-icon{
+  font-size:46px;
+  filter:drop-shadow(0 12px 20px rgba(30,55,85,.10));
+}
+.product-space-badge{
+  position:absolute;
+  left:12px;top:11px;
+  padding:4px 7px;
+  border-radius:999px;
+  background:rgba(255,255,255,.82);
+  border:1px solid rgba(255,255,255,.9);
+  color:#65778E;
+  font-size:8px;
+  letter-spacing:.11em;
+  font-weight:850;
+}
+.product-space-body{padding:12px}
+.product-space-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  margin-bottom:9px;
+}
+.product-space-head strong{font-size:13px;color:#1D324C}
+.product-space-head span{font-size:9px;color:#98A5B4}
+.product-space-list{display:flex;flex-direction:column;gap:6px}
+.product-file-row{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-height:34px;
+  padding:7px 8px;
+  border:1px solid #EDF1F5;
+  border-radius:9px;
+  background:#FBFCFE;
+  cursor:pointer;
+  text-align:left;
+}
+.product-file-row:hover{border-color:#CFE0F0;background:#F7FAFE}
+.product-file-row-icon{font-size:14px}
+.product-file-row-copy{min-width:0;flex:1}
+.product-file-row-name{
+  font-size:10px;font-weight:750;color:#344A63;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.product-file-row-date{font-size:8px;color:#9AA7B5;margin-top:1px}
+.product-space-empty{
+  padding:11px 8px;
+  border:1px dashed #E0E7EF;
+  border-radius:9px;
+  color:#9AA7B5;
+  font-size:9px;
+  text-align:center;
+}
+
+.dashboard-page-card{
+  min-height:610px;
+  border:1px solid #DFE7F0;
+  border-radius:18px;
+  background:#fff;
+  padding:22px;
+  box-shadow:0 9px 28px rgba(34,57,84,.04);
+}
+.dashboard-page-head{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:18px;margin-bottom:20px
+}
+.dashboard-page-head h2{
+  margin-top:3px;color:#172A43;font-size:22px;letter-spacing:-.035em
+}
+.dashboard-file-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+.dashboard-evaluation-groups{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+.dashboard-product-group{
+  border:1px solid #E2E8F0;
+  border-radius:15px;
+  padding:15px;
+  background:#FBFCFE;
+}
+.dashboard-product-group h3{font-size:14px;color:#263B55;margin-bottom:9px}
+.dashboard-product-group p{font-size:11px;color:#8291A3;line-height:1.55;margin-bottom:10px}
+.dashboard-stat-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+.dashboard-stat-card{
+  min-height:125px;
+  border:1px solid #E2E8F0;
+  border-radius:15px;
+  padding:18px;
+  background:linear-gradient(180deg,#fff,#FAFCFE);
+}
+.dashboard-stat-card span{display:block;font-size:10px;color:#8A99AA;margin-bottom:10px}
+.dashboard-stat-card strong{display:block;font-size:34px;color:#10213A;letter-spacing:-.05em}
+.dashboard-timeline{display:flex;flex-direction:column}
+.timeline-row{
+  display:grid;
+  grid-template-columns:120px 30px minmax(0,1fr);
+  align-items:center;
+  min-height:62px;
+}
+.timeline-date{font-size:10px;color:#8796A7}
+.timeline-dot{
+  width:11px;height:11px;border-radius:50%;
+  background:#2F7BFF;box-shadow:0 0 0 5px rgba(47,123,255,.08)
+}
+.timeline-main{
+  border-left:1px solid #E4EBF2;
+  padding:12px 0 12px 18px;
+}
+.timeline-main strong{font-size:12px;color:#2B415B}
+.timeline-main span{display:block;font-size:9px;color:#93A0AF;margin-top:2px}
+.dashboard-empty-state{
+  min-height:360px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  border:1px dashed #DDE6EF;
+  border-radius:16px;
+  background:#FAFCFE;
+  padding:30px;
+}
+.dashboard-empty-icon{
+  width:56px;height:56px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  background:#EEF5FF;color:#2F7BFF;
+  font-size:27px;margin-bottom:14px
+}
+.dashboard-empty-state strong{font-size:15px;color:#344B65;margin-bottom:5px}
+.dashboard-empty-state p{max-width:560px;font-size:11px;color:#8695A6;line-height:1.65}
+
+/* The sidebar belongs only to the dashboard/home. */
+body.viewer-presentation-open .viewer-home-sidebar{display:none!important}
+body.viewer-presentation-open .viewer-home-main{margin-left:0!important}
+body.viewer-presentation-open #dropZone{display:none!important}
+
+/* top-bar evaluation always above dashboard */
+#presentation{position:relative;z-index:200}
+
+@media(max-width:1180px){
+  .product-archive-grid{grid-template-columns:1fr 1fr}
+  .dashboard-file-grid,.dashboard-evaluation-groups{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .product-archive-grid,
+  .dashboard-file-grid,
+  .dashboard-evaluation-groups,
+  .dashboard-stat-grid{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -1658,11 +1863,16 @@ body{
     </div>
 
     <nav class="vhs-nav">
-      <button class="vhs-item active" type="button" data-home-target="overview"><span>▣</span>Panoramica</button>
-      <button class="vhs-item" type="button" data-home-target="files"><span>▤</span>I miei file</button>
-      <button class="vhs-item" type="button" data-home-target="upload"><span>＋</span>Importa file</button>
-      <button class="vhs-item" type="button" data-home-target="compare"><span>◇</span>Confronti</button>
-      <button class="vhs-item" type="button" data-home-target="info"><span>ⓘ</span>Guida</button>
+      <button class="vhs-item active" type="button" data-dashboard-view="overview"><span>▣</span>Panoramica</button>
+      <button class="vhs-item" type="button" data-dashboard-view="files"><span>▤</span>I miei file</button>
+      <button class="vhs-item" type="button" data-dashboard-view="evaluations"><span>✓</span>Valutazioni</button>
+      <button class="vhs-item" type="button" data-dashboard-view="comparisons"><span>◇</span>Confronti</button>
+      <button class="vhs-item" type="button" data-dashboard-view="stats"><span>⌁</span>Statistiche</button>
+      <button class="vhs-item" type="button" data-dashboard-view="maps"><span>⌖</span>Mappe</button>
+      <button class="vhs-item" type="button" data-dashboard-view="timeline"><span>◷</span>Timeline</button>
+      <button class="vhs-item" type="button" data-dashboard-view="notes"><span>□</span>Note</button>
+      <button class="vhs-item" type="button" data-dashboard-view="favorites"><span>☆</span>Preferiti</button>
+      <button class="vhs-item" type="button" data-dashboard-view="trash"><span>♲</span>Cestino</button>
     </nav>
 
     <div class="vhs-bottom">
@@ -1683,7 +1893,8 @@ body{
       </div>
     </div>
 
-    <section class="viewer-home-stats" id="viewerHomeStats">
+    <div class="viewer-dashboard-view active" data-view="overview">
+<section class="viewer-home-stats" id="viewerHomeStats">
       <div class="vhs-stat"><span>File totali</span><strong id="statFiles">0</strong></div>
       <div class="vhs-stat"><span>ImmoBit</span><strong id="statImmo">0</strong></div>
       <div class="vhs-stat"><span>AutoBit</span><strong id="statAuto">0</strong></div>
@@ -1692,15 +1903,58 @@ body{
     </section>
 
     <section class="viewer-home-grid">
-      <div class="viewer-home-files-card" id="homeFilesSection">
+      <div class="viewer-home-files-card product-archive-card" id="homeFilesSection">
         <div class="vhome-section-head">
           <div>
             <div class="vhome-section-kicker">I TUOI FILE</div>
-            <h2>Archivio recente</h2>
+            <h2>Archivio per prodotto</h2>
           </div>
           <button class="vhome-link-btn" id="homeImportBtn" type="button">+ Importa</button>
         </div>
-        <div class="viewer-home-files" id="viewerHomeFiles"></div>
+
+        <div class="product-archive-grid">
+          <section class="product-space autobit-space">
+            <div class="product-space-visual">
+              <div class="product-space-icon">🚙</div>
+              <div class="product-space-badge">AUTOBIT</div>
+            </div>
+            <div class="product-space-body">
+              <div class="product-space-head">
+                <strong>AutoBit</strong>
+                <span id="archiveAutoCount">0 file</span>
+              </div>
+              <div class="product-space-list" id="archiveAutoList"></div>
+            </div>
+          </section>
+
+          <section class="product-space immobit-space">
+            <div class="product-space-visual">
+              <div class="product-space-icon">🏠</div>
+              <div class="product-space-badge">IMMOBIT</div>
+            </div>
+            <div class="product-space-body">
+              <div class="product-space-head">
+                <strong>ImmoBit</strong>
+                <span id="archiveImmoCount">0 file</span>
+              </div>
+              <div class="product-space-list" id="archiveImmoList"></div>
+            </div>
+          </section>
+
+          <section class="product-space scent-space">
+            <div class="product-space-visual">
+              <div class="product-space-icon">🌿</div>
+              <div class="product-space-badge">SCENTWEAVE</div>
+            </div>
+            <div class="product-space-body">
+              <div class="product-space-head">
+                <strong>ScentWeave</strong>
+                <span id="archiveScentCount">0 file</span>
+              </div>
+              <div class="product-space-list" id="archiveScentList"></div>
+            </div>
+          </section>
+        </div>
       </div>
 
       <div class="viewer-home-quick-card">
@@ -1742,7 +1996,104 @@ body{
         <button type="button" id="homeDemoAuto">Demo AutoBit</button>
         <button type="button" id="homeDemoScent">Demo ScentWeave</button>
       </div>
-    </section>
+    
+</div>
+
+    <div class="viewer-dashboard-view" data-view="files">
+      <section class="dashboard-page-card">
+        <div class="dashboard-page-head">
+          <div><div class="vhome-section-kicker">ARCHIVIO</div><h2>I miei file</h2></div>
+          <button class="vhome-link-btn" data-import-file type="button">+ Importa</button>
+        </div>
+        <div class="dashboard-file-grid" id="allFilesGrid"></div>
+      </section>
+    </div>
+
+    <div class="viewer-dashboard-view" data-view="evaluations">
+      <section class="dashboard-page-card">
+        <div class="dashboard-page-head">
+          <div><div class="vhome-section-kicker">VALUTAZIONI</div><h2>Valutazioni disponibili</h2></div>
+        </div>
+        <div class="dashboard-evaluation-groups" id="evaluationGroups"></div>
+      </section>
+    </div>
+
+    <div class="viewer-dashboard-view" data-view="comparisons">
+      <section class="dashboard-page-card">
+        <div class="dashboard-page-head">
+          <div><div class="vhome-section-kicker">CONFRONTI</div><h2>Confronta valutazioni</h2></div>
+          <button class="vhome-link-btn" data-import-file type="button">+ Aggiungi file</button>
+        </div>
+        <div class="dashboard-empty-state">
+          <div class="dashboard-empty-icon">◇</div>
+          <strong>Confronti locali</strong>
+          <p>Apri almeno due file dello stesso prodotto. Il confronto viene generato nel browser e i dati restano sul dispositivo.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="viewer-dashboard-view" data-view="stats">
+      <section class="dashboard-page-card">
+        <div class="dashboard-page-head">
+          <div><div class="vhome-section-kicker">STATISTICHE</div><h2>Riepilogo archivio</h2></div>
+        </div>
+        <div class="dashboard-stat-grid" id="dashboardStatsGrid"></div>
+      </section>
+    </div>
+
+    <div class="viewer-dashboard-view" data-view="maps">
+      <section class="dashboard-page-card">
+        <div class="dashboard-page-head">
+          <div><div class="vhome-section-kicker">MAPPE</div><h2>Mappe e viste</h2></div>
+        </div>
+        <div class="dashboard-file-grid" id="mapsGrid"></div>
+      </section>
+    </div>
+
+    <div class="viewer-dashboard-view" data-view="timeline">
+      <section class="dashboard-page-card">
+        <div class="dashboard-page-head">
+          <div><div class="vhome-section-kicker">TIMELINE</div><h2>Cronologia dei file</h2></div>
+        </div>
+        <div class="dashboard-timeline" id="timelineList"></div>
+      </section>
+    </div>
+
+    <div class="viewer-dashboard-view" data-view="notes">
+      <section class="dashboard-page-card">
+        <div class="dashboard-page-head">
+          <div><div class="vhome-section-kicker">NOTE</div><h2>Note delle valutazioni</h2></div>
+        </div>
+        <div class="dashboard-empty-state">
+          <div class="dashboard-empty-icon">□</div>
+          <strong>Note collegate ai file</strong>
+          <p>Le note presenti in AutoBit, ImmoBit e ScentWeave restano dentro i rispettivi file. Nel prossimo passaggio possiamo indicizzarle qui per consultarle tutte insieme.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="viewer-dashboard-view" data-view="favorites">
+      <section class="dashboard-page-card">
+        <div class="dashboard-page-head">
+          <div><div class="vhome-section-kicker">PREFERITI</div><h2>File preferiti</h2></div>
+        </div>
+        <div class="dashboard-file-grid" id="favoritesGrid"></div>
+      </section>
+    </div>
+
+    <div class="viewer-dashboard-view" data-view="trash">
+      <section class="dashboard-page-card">
+        <div class="dashboard-page-head">
+          <div><div class="vhome-section-kicker">CESTINO</div><h2>Elementi eliminati</h2></div>
+        </div>
+        <div class="dashboard-empty-state">
+          <div class="dashboard-empty-icon">♲</div>
+          <strong>Cestino locale</strong>
+          <p>La sezione è pronta nell'interfaccia. Nel prossimo passaggio possiamo trasformare l'eliminazione definitiva dei file in spostamento nel cestino con ripristino.</p>
+        </div>
+      </section>
+    </div>
+</section>
 
     <div class="dz-inner viewer-legacy-home" id="dzInner">
     <div class="dz-logo" style="display:flex;align-items:center;justify-content:center;gap:12px">
@@ -2021,6 +2372,7 @@ async function renderProfileManager(){
 }
 
 function showProfileGate(){
+  document.body.classList.remove('viewer-presentation-open');
   activeProfile=null;activeProfileKey=null;
   loadedEvaluations=[];
   currentEvaluationId=null;
@@ -3924,6 +4276,7 @@ const DEMO_SCENT = {
 
 
 function loadData(data){
+  document.body.classList.add('viewer-presentation-open');
 
   const viewerTools=document.getElementById('viewerTools');
   const topRight=document.querySelector('#presentation .top-bar > div:last-child');
@@ -4052,6 +4405,7 @@ function loadFile(e){
 }
 
 function resetToHome(clearLoaded=false){
+  document.body.classList.remove('viewer-presentation-open');
 
   const viewerTools=document.getElementById('viewerTools');
   const homeControls=document.getElementById('homeTopControls');
@@ -4158,6 +4512,179 @@ window.addEventListener('appinstalled', () => {
 });
 
 
+
+
+
+/* =========================================================
+   DASHBOARD ROUTES + PRODUCT ARCHIVE
+   ========================================================= */
+let currentDashboardView='overview';
+
+function setDashboardView(view){
+  currentDashboardView=view||'overview';
+  document.querySelectorAll('.viewer-dashboard-view').forEach(el=>{
+    el.classList.toggle('active',el.dataset.view===currentDashboardView);
+  });
+  document.querySelectorAll('.vhs-item[data-dashboard-view]').forEach(btn=>{
+    btn.classList.toggle('active',btn.dataset.dashboardView===currentDashboardView);
+  });
+
+  const titleMap={
+    overview:'Panoramica',
+    files:'I miei file',
+    evaluations:'Valutazioni',
+    comparisons:'Confronti',
+    stats:'Statistiche',
+    maps:'Mappe',
+    timeline:'Timeline',
+    notes:'Note',
+    favorites:'Preferiti',
+    trash:'Cestino'
+  };
+  const title=document.querySelector('.viewer-home-header h1');
+  if(title) title.textContent=titleMap[currentDashboardView]||'Panoramica';
+  refreshHomeDashboard().catch(()=>{});
+}
+
+document.addEventListener('click',e=>{
+  const btn=e.target.closest('[data-dashboard-view]');
+  if(btn) setDashboardView(btn.dataset.dashboardView);
+
+  const importBtn=e.target.closest('[data-import-file]');
+  if(importBtn) document.getElementById('fileInput')?.click();
+});
+
+function productRows(records, app, targetId, countId){
+  const target=document.getElementById(targetId);
+  const count=document.getElementById(countId);
+  if(!target)return;
+
+  const rows=records
+    .filter(r=>r.app===app && !r.trashed)
+    .sort((a,b)=>String(b.createdAt||'').localeCompare(String(a.createdAt||'')));
+
+  if(count) count.textContent=`${rows.length} ${rows.length===1?'file':'file'}`;
+  target.innerHTML='';
+
+  if(!rows.length){
+    target.innerHTML='<div class="product-space-empty">Nessun file ancora</div>';
+    return;
+  }
+
+  rows.slice(0,3).forEach(rec=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='product-file-row';
+    b.innerHTML=`<span class="product-file-row-icon">${appEmoji(rec.app)}</span>
+      <span class="product-file-row-copy">
+        <span class="product-file-row-name">${escapeProfileHtml(rec.name||'File')}</span>
+        <span class="product-file-row-date">${rec.createdAt?new Date(rec.createdAt).toLocaleDateString():'locale'}</span>
+      </span>`;
+    b.onclick=()=>openStoredRecordFromDashboard(rec.id);
+    target.appendChild(b);
+  });
+}
+
+function dashboardCard(rec){
+  const el=document.createElement('button');
+  el.type='button';
+  el.className='viewer-file-card '+appClass(rec.app);
+  el.innerHTML=`<div class="viewer-file-thumb">${appEmoji(rec.app)}</div>
+    <div class="viewer-file-body">
+      <div class="viewer-file-name">${escapeProfileHtml(rec.name||'File')}</div>
+      <div class="viewer-file-meta">${escapeProfileHtml((rec.app||'').replace(/^./,c=>c.toUpperCase()))} · ${rec.createdAt?new Date(rec.createdAt).toLocaleDateString():'locale'}</div>
+    </div>`;
+  el.onclick=()=>openStoredRecordFromDashboard(rec.id);
+  return el;
+}
+
+function fillFileGrid(id,records){
+  const wrap=document.getElementById(id);
+  if(!wrap)return;
+  wrap.innerHTML='';
+  if(!records.length){
+    wrap.innerHTML='<div class="viewer-home-empty"><strong>Nessun file</strong><span>Importa un file per iniziare.</span></div>';
+    return;
+  }
+  records.forEach(rec=>wrap.appendChild(dashboardCard(rec)));
+}
+
+function fillEvaluationGroups(records){
+  const wrap=document.getElementById('evaluationGroups');
+  if(!wrap)return;
+  wrap.innerHTML='';
+  [
+    ['autobit','AutoBit','Valutazioni di auto usate'],
+    ['immobit','ImmoBit','Valutazioni immobiliari'],
+    ['scentweave','ScentWeave','Collezioni e ricordi olfattivi']
+  ].forEach(([app,title,desc])=>{
+    const subset=records.filter(r=>r.app===app && !r.trashed);
+    const box=document.createElement('section');
+    box.className='dashboard-product-group';
+    box.innerHTML=`<h3>${title}</h3><p>${desc}</p>
+      <div style="font-size:28px;font-weight:850;color:#10213A">${subset.length}</div>
+      <div style="font-size:9px;color:#95A3B2;margin-top:3px">${subset.length===1?'elemento':'elementi'} nel profilo</div>`;
+    wrap.appendChild(box);
+  });
+}
+
+function fillStats(records){
+  const wrap=document.getElementById('dashboardStatsGrid');
+  if(!wrap)return;
+  const active=records.filter(r=>!r.trashed);
+  const data=[
+    ['File totali',active.length],
+    ['AutoBit',active.filter(r=>r.app==='autobit').length],
+    ['ImmoBit',active.filter(r=>r.app==='immobit').length],
+    ['ScentWeave',active.filter(r=>r.app==='scentweave').length],
+    ['Preferiti',active.filter(r=>r.favorite).length],
+    ['Nel cestino',records.filter(r=>r.trashed).length],
+    ['Profilo',activeProfile?.name||'—'],
+    ['Ultimo file',active[0]?.createdAt?new Date(active[0].createdAt).toLocaleDateString():'—']
+  ];
+  wrap.innerHTML=data.map(([label,value])=>`<div class="dashboard-stat-card"><span>${escapeProfileHtml(label)}</span><strong>${escapeProfileHtml(value)}</strong></div>`).join('');
+}
+
+function fillTimeline(records){
+  const wrap=document.getElementById('timelineList');
+  if(!wrap)return;
+  const rows=records.filter(r=>!r.trashed).sort((a,b)=>String(b.createdAt||'').localeCompare(String(a.createdAt||'')));
+  if(!rows.length){
+    wrap.innerHTML='<div class="dashboard-empty-state"><div class="dashboard-empty-icon">◷</div><strong>Timeline vuota</strong><p>I file importati appariranno qui in ordine cronologico.</p></div>';
+    return;
+  }
+  wrap.innerHTML=rows.map(rec=>`<div class="timeline-row">
+    <div class="timeline-date">${rec.createdAt?new Date(rec.createdAt).toLocaleDateString():'—'}</div>
+    <div class="timeline-dot"></div>
+    <div class="timeline-main"><strong>${escapeProfileHtml(rec.name||'File')}</strong><span>${escapeProfileHtml(rec.app||'')}</span></div>
+  </div>`).join('');
+}
+
+const _refreshHomeDashboardV4=refreshHomeDashboard;
+refreshHomeDashboard=async function(){
+  if(!activeProfile||!mlDb)return;
+  const records=(await getProfileFiles(activeProfile.id)).sort((a,b)=>String(b.createdAt||'').localeCompare(String(a.createdAt||'')));
+  const active=records.filter(r=>!r.trashed);
+  const q=(document.getElementById('viewerHomeSearch')?.value||'').trim().toLowerCase();
+  const searched=active.filter(r=>!q || String(r.name||'').toLowerCase().includes(q) || String(r.app||'').toLowerCase().includes(q));
+
+  const sf=document.getElementById('statFiles'); if(sf)sf.textContent=active.length;
+  const si=document.getElementById('statImmo'); if(si)si.textContent=active.filter(r=>r.app==='immobit').length;
+  const sa=document.getElementById('statAuto'); if(sa)sa.textContent=active.filter(r=>r.app==='autobit').length;
+  const ss=document.getElementById('statScent'); if(ss)ss.textContent=active.filter(r=>r.app==='scentweave').length;
+  const sp=document.getElementById('statProfile'); if(sp)sp.textContent=activeProfile.name;
+
+  productRows(active,'autobit','archiveAutoList','archiveAutoCount');
+  productRows(active,'immobit','archiveImmoList','archiveImmoCount');
+  productRows(active,'scentweave','archiveScentList','archiveScentCount');
+
+  fillFileGrid('allFilesGrid',searched);
+  fillEvaluationGroups(active);
+  fillStats(records);
+  fillTimeline(records);
+  fillFileGrid('favoritesGrid',active.filter(r=>r.favorite));
+  fillFileGrid('mapsGrid',active.filter(r=>r.app==='scentweave'||r.app==='immobit'));
+};
 
 
 /* =========================================================
