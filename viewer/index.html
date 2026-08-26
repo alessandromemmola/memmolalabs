@@ -1009,6 +1009,22 @@ body{
 .profile-manager-meta{font-size:11px;color:#8896A7;margin-top:2px}
 .profile-manager-actions{display:flex;gap:6px;flex-wrap:wrap}
 
+.avatar-shell{overflow:hidden;position:relative}
+.avatar-shell img{width:100%;height:100%;object-fit:cover;display:block}
+.profile-avatar-picker{display:flex;align-items:center;gap:14px;margin:6px 0 18px;text-align:left}
+.profile-avatar-preview{
+  width:74px;height:74px;border-radius:50%;overflow:hidden;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#2F7BFF,#61A8FF);color:#fff;font-size:28px;font-weight:850;
+  border:1px solid #D8E3EF;box-shadow:0 10px 24px rgba(35,59,86,.08);
+}
+.profile-avatar-copy{min-width:0;flex:1}
+.profile-avatar-title{font-size:12px;font-weight:800;color:#1D3048;margin-bottom:4px;text-transform:uppercase;letter-spacing:.08em}
+.profile-avatar-help{font-size:12px;color:#7F8FA1;line-height:1.55;margin-bottom:10px}
+.profile-avatar-actions{display:flex;gap:8px;flex-wrap:wrap}
+.profile-avatar-chip{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border-radius:10px;border:1px solid #D9E3ED;background:#fff;color:#2B3C52;font:700 12px inherit;cursor:pointer}
+.profile-avatar-chip:hover{background:#F5F8FC}
+
 .guide-section{padding:18px 0;border-bottom:1px solid #EDF1F5;text-align:left}
 .guide-section:last-child{border-bottom:0}
 .guide-kicker{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#2F7BFF;font-weight:850;margin-bottom:5px}
@@ -1489,34 +1505,37 @@ body{
   background:#fff;
 }
 .product-space-visual{
-  height:118px;
+  height:144px;
   position:relative;
   display:flex;
-  align-items:center;
-  justify-content:center;
+  align-items:flex-end;
+  justify-content:flex-start;
   overflow:hidden;
+  isolation:isolate;
 }
-.autobit-space .product-space-visual{
-  background:
-    radial-gradient(circle at 72% 24%,rgba(47,123,255,.22),transparent 30%),
-    linear-gradient(135deg,#EAF4FF,#F8FBFF);
+.product-space-cover{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;display:block;
 }
-.immobit-space .product-space-visual{
-  background:
-    radial-gradient(circle at 72% 24%,rgba(201,154,36,.22),transparent 30%),
-    linear-gradient(135deg,#FFF6DC,#FFFDF7);
+.product-space-visual::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(8,20,38,.08));
 }
-.scent-space .product-space-visual{
-  background:
-    radial-gradient(circle at 72% 24%,rgba(143,92,197,.20),transparent 30%),
-    linear-gradient(135deg,#F5EAFF,#FCF8FF);
-}
-.product-space-icon{
-  font-size:46px;
-  filter:drop-shadow(0 12px 20px rgba(30,55,85,.10));
+.autobit-space .product-space-visual{background:linear-gradient(135deg,#EAF4FF,#F8FBFF)}
+.immobit-space .product-space-visual{background:linear-gradient(135deg,#FFF6DC,#FFFDF7)}
+.scent-space .product-space-visual{background:linear-gradient(135deg,#F5EAFF,#FCF8FF)}
+.product-space-logo{
+  position:relative;z-index:2;
+  width:56px;height:56px;object-fit:contain;
+  margin:0 0 12px 12px;
+  border-radius:14px;background:rgba(255,255,255,.92);
+  border:1px solid rgba(255,255,255,.95);
+  box-shadow:0 12px 28px rgba(19,34,57,.14);
+  padding:8px;
 }
 .product-space-badge{
   position:absolute;
+  z-index:2;
   left:12px;top:11px;
   padding:4px 7px;
   border-radius:999px;
@@ -1694,7 +1713,7 @@ body.viewer-presentation-open #dropZone{display:none!important}
 <div class="profile-gate" id="profileGate">
   <div class="profile-gate-inner">
     <div class="profile-brand">
-      <img src="icons/icon-21.png" alt="Viewer">
+      <img src="icons/memmolalabs.png" alt="Viewer">
       <div class="profile-brand-copy">
         <div class="profile-brand-title">Memmola Labs Viewer</div>
         <div class="profile-brand-sub">Locale · Offline · Multi-profilo</div>
@@ -1722,6 +1741,17 @@ body.viewer-presentation-open #dropZone{display:none!important}
       <button class="ml-modal-close" data-close-modal="createProfileModal" type="button">×</button>
     </div>
     <div class="ml-field"><label>Nome profilo</label><input id="newProfileName" maxlength="40" autocomplete="off" placeholder="Es. Mario, Agenzia Centro, Famiglia"></div>
+    <div class="profile-avatar-picker">
+      <div class="profile-avatar-preview avatar-shell" id="newProfileAvatarPreview">+</div>
+      <div class="profile-avatar-copy">
+        <div class="profile-avatar-title">Avatar del profilo</div>
+        <div class="profile-avatar-help">Puoi usare un avatar o una tua immagine. Resterà salvata solo in locale insieme al profilo.</div>
+        <div class="profile-avatar-actions">
+          <button class="profile-avatar-chip" id="chooseNewProfileAvatarBtn" type="button">Scegli immagine</button>
+          <button class="profile-avatar-chip" id="clearNewProfileAvatarBtn" type="button">Rimuovi</button>
+        </div>
+      </div>
+    </div>
     <div class="ml-field"><label>PIN</label><input id="newProfilePin" type="password" inputmode="numeric" maxlength="12" autocomplete="new-password" placeholder="Minimo 4 caratteri"></div>
     <div class="ml-field"><label>Ripeti PIN</label><input id="newProfilePin2" type="password" inputmode="numeric" maxlength="12" autocomplete="new-password"></div>
     <div class="ml-note"><strong>Importante:</strong> il PIN non viene inviato a Memmola Labs e non può essere recuperato online. Conservalo con cura.</div>
@@ -1848,6 +1878,7 @@ body.viewer-presentation-open #dropZone{display:none!important}
 
 <input type="file" id="profileImportInput" accept=".viewerprofile,application/json" hidden>
 <input type="file" id="viewerBackupInput" accept=".viewerbackup,application/json" hidden>
+<input type="file" id="profileAvatarInput" accept="image/*" hidden>
 
 
 <div class="lang-switch" id="homeLangSwitch">
@@ -1858,7 +1889,7 @@ body.viewer-presentation-open #dropZone{display:none!important}
 <div id="dropZone">
   <aside class="viewer-home-sidebar" aria-label="Navigazione Viewer">
     <div class="vhs-brand">
-      <img src="icons/icon-21.png" alt="">
+      <img src="icons/memmolalabs.png" alt="">
       <span>Viewer</span>
     </div>
 
@@ -1896,10 +1927,10 @@ body.viewer-presentation-open #dropZone{display:none!important}
     <div class="viewer-dashboard-view active" data-view="overview">
 <section class="viewer-home-stats" id="viewerHomeStats">
       <div class="vhs-stat"><span>File totali</span><strong id="statFiles">0</strong></div>
-      <div class="vhs-stat"><span>ImmoBit</span><strong id="statImmo">0</strong></div>
-      <div class="vhs-stat"><span>AutoBit</span><strong id="statAuto">0</strong></div>
-      <div class="vhs-stat"><span>ScentWeave</span><strong id="statScent">0</strong></div>
-      <div class="vhs-stat"><span>Profilo</span><strong id="statProfile">—</strong></div>
+      <div class="vhs-stat"><span>Valutazioni</span><strong id="statEvaluations">0</strong></div>
+      <div class="vhs-stat"><span>Confronti</span><strong id="statComparisons">0</strong></div>
+      <div class="vhs-stat"><span>Note</span><strong id="statNotes">0</strong></div>
+      <div class="vhs-stat"><span>Ultimo accesso</span><strong id="statLastAccess">—</strong></div>
     </section>
 
     <section class="viewer-home-grid">
@@ -1915,7 +1946,8 @@ body.viewer-presentation-open #dropZone{display:none!important}
         <div class="product-archive-grid">
           <section class="product-space autobit-space">
             <div class="product-space-visual">
-              <div class="product-space-icon">🚙</div>
+              <img class="product-space-cover" src="images/autobit-card.png" alt="AutoBit card">
+              <img class="product-space-logo" src="icons/autobit.png" alt="AutoBit">
               <div class="product-space-badge">AUTOBIT</div>
             </div>
             <div class="product-space-body">
@@ -1929,7 +1961,8 @@ body.viewer-presentation-open #dropZone{display:none!important}
 
           <section class="product-space immobit-space">
             <div class="product-space-visual">
-              <div class="product-space-icon">🏠</div>
+              <img class="product-space-cover" src="images/immobit-card.png" alt="ImmoBit card">
+              <img class="product-space-logo" src="icons/immobit.png" alt="ImmoBit">
               <div class="product-space-badge">IMMOBIT</div>
             </div>
             <div class="product-space-body">
@@ -1943,7 +1976,8 @@ body.viewer-presentation-open #dropZone{display:none!important}
 
           <section class="product-space scent-space">
             <div class="product-space-visual">
-              <div class="product-space-icon">🌿</div>
+              <img class="product-space-cover" src="images/scentweave-card.png" alt="ScentWeave card">
+              <img class="product-space-logo" src="icons/scentweave.png" alt="ScentWeave">
               <div class="product-space-badge">SCENTWEAVE</div>
             </div>
             <div class="product-space-body">
@@ -2097,7 +2131,7 @@ body.viewer-presentation-open #dropZone{display:none!important}
 
     <div class="dz-inner viewer-legacy-home" id="dzInner">
     <div class="dz-logo" style="display:flex;align-items:center;justify-content:center;gap:12px">
-  <img src="icons/icon-21.png"
+  <img src="icons/memmolalabs.png"
        alt="Viewer"
        style="width:56px;height:56px;border-radius:14px">
 
@@ -2199,6 +2233,8 @@ let activeProfile = null;
 let activeProfileKey = null;
 let pendingUnlockProfileId = null;
 let pendingDeleteProfileId = null;
+let pendingAvatarProfileId = null;
+let newProfileAvatarData = '';
 let failedUnlocks = 0;
 
 function b64FromBytes(bytes){
@@ -2328,6 +2364,85 @@ function initials(name){
 function escapeProfileHtml(v){
   return String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 }
+function avatarMarkup(profile,className){
+  const fallback=escapeProfileHtml(initials(profile?.name||'P'));
+  if(profile?.avatarData){
+    return `<div class="${className} avatar-shell"><img src="${profile.avatarData}" alt="Avatar ${escapeProfileHtml(profile.name||'profilo')}"></div>`;
+  }
+  return `<div class="${className}">${fallback}</div>`;
+}
+function setElementAvatar(el,profile,fallback){
+  if(!el) return;
+  if(profile?.avatarData){
+    el.innerHTML=`<img src="${profile.avatarData}" alt="Avatar ${escapeProfileHtml(profile.name||'profilo')}">`;
+  }else{
+    el.textContent=fallback||initials(profile?.name||'P');
+  }
+}
+function refreshNewProfileAvatarPreview(){
+  const el=document.getElementById('newProfileAvatarPreview');
+  if(!el) return;
+  if(newProfileAvatarData){
+    el.innerHTML=`<img src="${newProfileAvatarData}" alt="Nuovo avatar">`;
+  }else{
+    el.textContent='+';
+  }
+}
+async function imageFileToAvatarData(file){
+  if(!file) return '';
+  const dataUrl = await new Promise((resolve,reject)=>{
+    const fr=new FileReader();
+    fr.onload=()=>resolve(fr.result);
+    fr.onerror=()=>reject(fr.error||new Error("Impossibile leggere l'immagine."));
+    fr.readAsDataURL(file);
+  });
+  const img = await new Promise((resolve,reject)=>{
+    const im=new Image();
+    im.onload=()=>resolve(im);
+    im.onerror=()=>reject(new Error('Immagine non valida.'));
+    im.src=dataUrl;
+  });
+  const size=256;
+  const canvas=document.createElement('canvas');
+  canvas.width=size; canvas.height=size;
+  const ctx=canvas.getContext('2d');
+  const side=Math.min(img.naturalWidth,img.naturalHeight);
+  const sx=(img.naturalWidth-side)/2;
+  const sy=(img.naturalHeight-side)/2;
+  ctx.drawImage(img,sx,sy,side,side,0,0,size,size);
+  return canvas.toDataURL('image/png',0.92);
+}
+function formatLastAccessLabel(iso){
+  if(!iso) return '—';
+  const d=new Date(iso); const now=new Date();
+  const sameDay=d.toDateString()===now.toDateString();
+  if(sameDay) return 'Oggi';
+  const yesterday=new Date(); yesterday.setDate(now.getDate()-1);
+  if(d.toDateString()===yesterday.toDateString()) return 'Ieri';
+  return d.toLocaleDateString();
+}
+function countPossibleComparisons(records){
+  const byApp={autobit:0,immobit:0,scentweave:0};
+  records.filter(r=>!r.trashed).forEach(r=>{ if(byApp[r.app]!==undefined) byApp[r.app]++; });
+  return Object.values(byApp).reduce((sum,n)=>sum + (n>1 ? (n*(n-1))/2 : 0),0);
+}
+function countNotesInValue(value){
+  let total=0;
+  const visit=(val,key='')=>{
+    if(val==null) return;
+    if(Array.isArray(val)) return val.forEach(v=>visit(v,key));
+    if(typeof val==='object'){
+      Object.entries(val).forEach(([k,v])=>visit(v,k));
+      return;
+    }
+    if(typeof val==='string' && /^(note|notes|nota|annotazioni?)$/i.test(String(key||'')) && val.trim()) total++;
+  };
+  visit(value);
+  return total;
+}
+function countLoadedNotesForActiveProfile(){
+  return (loadedEvaluations||[]).reduce((sum,entry)=>sum+countNotesInValue(entry.data),0);
+}
 async function renderProfileGate(){
   const list=document.getElementById('profileList');
   const profiles=await getProfiles();
@@ -2336,7 +2451,7 @@ async function renderProfileGate(){
     const card=document.createElement('button');
     card.type='button';
     card.className='profile-card';
-    card.innerHTML=`<div class="profile-card-avatar">${escapeProfileHtml(initials(p.name))}</div>
+    card.innerHTML=`${avatarMarkup(p,'profile-card-avatar')}
       <div class="profile-card-name">${escapeProfileHtml(p.name)}</div>
       <div class="profile-card-lock">🔒 PIN locale</div>`;
     card.onclick=()=>requestUnlock(p.id);
@@ -2355,11 +2470,12 @@ async function renderProfileManager(){
     const row=document.createElement('div');
     row.className='profile-manager-item';
     row.innerHTML=`<div class="profile-manager-main">
-      <div class="profile-manager-avatar">${escapeProfileHtml(initials(p.name))}</div>
+      ${avatarMarkup(p,'profile-manager-avatar')}
       <div><div class="profile-manager-name">${escapeProfileHtml(p.name)}${activeProfile?.id===p.id?' · attivo':''}</div>
-      <div class="profile-manager-meta">${files.length} file archiviati · creato ${new Date(p.createdAt).toLocaleDateString()}</div></div>
+      <div class="profile-manager-meta">${files.length} file archiviati · creato ${new Date(p.createdAt).toLocaleDateString()}${p.lastAccessAt?` · ultimo accesso ${formatLastAccessLabel(p.lastAccessAt)}`:''}</div></div>
       </div>
       <div class="profile-manager-actions">
+        <button class="ml-btn" data-avatar="${p.id}">Avatar</button>
         ${activeProfile?.id!==p.id?`<button class="ml-btn" data-switch="${p.id}">Apri</button>`:''}
         <button class="ml-btn danger" data-delete="${p.id}">Elimina</button>
       </div>`;
@@ -2369,6 +2485,10 @@ async function renderProfileManager(){
     closeModal('profileManagerModal');requestUnlock(b.dataset.switch);
   });
   wrap.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>requestDeleteProfile(b.dataset.delete));
+  wrap.querySelectorAll('[data-avatar]').forEach(b=>b.onclick=()=>{
+    pendingAvatarProfileId=b.dataset.avatar;
+    document.getElementById('profileAvatarInput').click();
+  });
 }
 
 function showProfileGate(){
@@ -2390,9 +2510,11 @@ function showProfileGate(){
   renderProfileGate();
 }
 async function activateProfile(profile,key){
-  activeProfile=profile;
+  const updatedProfile={...profile,lastAccessAt:new Date().toISOString()};
+  await putProfile(updatedProfile);
+  activeProfile=updatedProfile;
   activeProfileKey=key;
-  localStorage.setItem('ml_viewer_last_profile',profile.id);
+  localStorage.setItem('ml_viewer_last_profile',updatedProfile.id);
   document.getElementById('profileGate').classList.add('hidden');
   const tools=document.getElementById('viewerTools');
   const homeControls=document.getElementById('homeTopControls');
@@ -2402,8 +2524,8 @@ async function activateProfile(profile,key){
     if(tools && tools.parentElement!==homeControls) homeControls.appendChild(tools);
   }
   tools.style.display='flex';
-  document.getElementById('viewerProfileName').textContent=profile.name;
-  document.getElementById('viewerProfileAvatar').textContent=initials(profile.name);
+  document.getElementById('viewerProfileName').textContent=updatedProfile.name;
+  setElementAvatar(document.getElementById('viewerProfileAvatar'),updatedProfile,initials(updatedProfile.name));
   document.getElementById('dropZone').style.display='flex';
   document.getElementById('presentation').style.display='none';
   document.getElementById('homeLangSwitch').style.display='flex';
@@ -2456,12 +2578,15 @@ async function createProfileUi(){
   const profile={
     id:'pr_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8),
     name,createdAt:new Date().toISOString(),
-    salt:b64FromBytes(salt),pinCheck
+    salt:b64FromBytes(salt),pinCheck,
+    avatarData:newProfileAvatarData||''
   };
   await putProfile(profile);
   document.getElementById('newProfileName').value='';
   document.getElementById('newProfilePin').value='';
   document.getElementById('newProfilePin2').value='';
+  newProfileAvatarData='';
+  refreshNewProfileAvatarPreview();
   closeModal('createProfileModal');
   await activateProfile(profile,key);
 }
@@ -2616,8 +2741,8 @@ async function initProfileSystem(){
   await renderProfileGate();
 }
 
-document.getElementById('createProfileBtn').onclick=()=>openModal('createProfileModal');
-document.getElementById('managerCreateProfileBtn').onclick=()=>{closeModal('profileManagerModal');openModal('createProfileModal')};
+document.getElementById('createProfileBtn').onclick=()=>{ newProfileAvatarData=''; refreshNewProfileAvatarPreview(); openModal('createProfileModal'); };
+document.getElementById('managerCreateProfileBtn').onclick=()=>{ closeModal('profileManagerModal'); newProfileAvatarData=''; refreshNewProfileAvatarPreview(); openModal('createProfileModal'); };
 document.getElementById('saveProfileBtn').onclick=createProfileUi;
 document.getElementById('unlockProfileBtn').onclick=unlockPendingProfile;
 document.getElementById('unlockProfilePin').addEventListener('keydown',e=>{if(e.key==='Enter')unlockPendingProfile()});
@@ -2631,6 +2756,37 @@ document.getElementById('exportActiveProfileBtn').onclick=()=>activeProfile&&exp
 document.getElementById('backupViewerBtn').onclick=exportViewerBackup;
 document.getElementById('importProfileBtn').onclick=()=>document.getElementById('profileImportInput').click();
 document.getElementById('managerImportProfileBtn').onclick=()=>document.getElementById('profileImportInput').click();
+document.getElementById('chooseNewProfileAvatarBtn').onclick=()=>{ pendingAvatarProfileId='__new__'; document.getElementById('profileAvatarInput').click(); };
+document.getElementById('clearNewProfileAvatarBtn').onclick=()=>{ newProfileAvatarData=''; refreshNewProfileAvatarPreview(); };
+document.getElementById('profileAvatarInput').onchange=async e=>{
+  const file=e.target.files?.[0];
+  e.target.value='';
+  if(!file) return;
+  try{
+    const avatarData=await imageFileToAvatarData(file);
+    if(pendingAvatarProfileId==='__new__'){
+      newProfileAvatarData=avatarData;
+      refreshNewProfileAvatarPreview();
+    }else if(pendingAvatarProfileId){
+      const p=await getProfile(pendingAvatarProfileId);
+      if(!p) return;
+      const updated={...p,avatarData};
+      await putProfile(updated);
+      if(activeProfile?.id===updated.id){
+        activeProfile=updated;
+        setElementAvatar(document.getElementById('viewerProfileAvatar'),updated,initials(updated.name));
+      }
+      await renderProfileManager();
+      await renderProfileGate();
+      await refreshHomeDashboard();
+    }
+  }catch(err){
+    console.error(err);
+    alert("Impossibile salvare l'avatar selezionato.");
+  }finally{
+    pendingAvatarProfileId=null;
+  }
+};
 document.getElementById('restoreViewerBtn').onclick=()=>document.getElementById('viewerBackupInput').click();
 document.getElementById('managerRestoreViewerBtn').onclick=()=>document.getElementById('viewerBackupInput').click();
 document.getElementById('profileImportInput').onchange=async e=>{
@@ -4669,10 +4825,10 @@ refreshHomeDashboard=async function(){
   const searched=active.filter(r=>!q || String(r.name||'').toLowerCase().includes(q) || String(r.app||'').toLowerCase().includes(q));
 
   const sf=document.getElementById('statFiles'); if(sf)sf.textContent=active.length;
-  const si=document.getElementById('statImmo'); if(si)si.textContent=active.filter(r=>r.app==='immobit').length;
-  const sa=document.getElementById('statAuto'); if(sa)sa.textContent=active.filter(r=>r.app==='autobit').length;
-  const ss=document.getElementById('statScent'); if(ss)ss.textContent=active.filter(r=>r.app==='scentweave').length;
-  const sp=document.getElementById('statProfile'); if(sp)sp.textContent=activeProfile.name;
+  const se=document.getElementById('statEvaluations'); if(se)se.textContent=active.length;
+  const sc=document.getElementById('statComparisons'); if(sc)sc.textContent=countPossibleComparisons(active);
+  const sn=document.getElementById('statNotes'); if(sn)sn.textContent=countLoadedNotesForActiveProfile();
+  const sl=document.getElementById('statLastAccess'); if(sl)sl.textContent=formatLastAccessLabel(activeProfile.lastAccessAt);
 
   productRows(active,'autobit','archiveAutoList','archiveAutoCount');
   productRows(active,'immobit','archiveImmoList','archiveImmoCount');
