@@ -1048,6 +1048,426 @@ body{
 .home-top-controls .viewer-tools{display:flex}
 @media(max-width:700px){.home-top-controls{top:12px;right:12px;gap:6px}}
 
+
+/* =========================================================
+   VIEWER 2026 — DASHBOARD HOME
+   ========================================================= */
+#dropZone{
+  min-height:100vh!important;
+  padding:0!important;
+  display:block!important;
+  background:#F5F8FC!important;
+}
+
+.viewer-home-sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  width:238px;
+  z-index:120;
+  background:rgba(255,255,255,.96);
+  border-right:1px solid #E2E9F1;
+  padding:24px 18px 20px;
+  display:flex;
+  flex-direction:column;
+  box-shadow:7px 0 28px rgba(34,58,87,.035);
+}
+
+.vhs-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:0 9px 26px;
+  font-size:18px;
+  font-weight:850;
+  color:#10213A;
+  letter-spacing:-.025em;
+}
+.vhs-brand img{
+  width:34px;
+  height:34px;
+  object-fit:contain;
+  border-radius:9px;
+}
+
+.vhs-nav{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.vhs-item{
+  width:100%;
+  height:42px;
+  border:0;
+  border-radius:10px;
+  background:transparent;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:0 12px;
+  color:#728196;
+  font:650 13px/1 inherit;
+  cursor:pointer;
+  text-align:left;
+}
+.vhs-item span{
+  width:20px;
+  text-align:center;
+  color:#8CA0B7;
+}
+.vhs-item:hover{
+  background:#F4F7FB;
+  color:#263A52;
+}
+.vhs-item.active{
+  background:#EBF3FF;
+  color:#246DEB;
+}
+.vhs-item.active span{color:#246DEB}
+
+.vhs-bottom{
+  margin-top:auto;
+  padding-top:16px;
+  border-top:1px solid #EEF2F6;
+}
+.vhs-home-link{
+  display:block;
+  margin:12px 12px 0;
+  color:#8B99AA;
+  text-decoration:none;
+  font-size:11px;
+}
+.vhs-home-link:hover{color:#2F7BFF}
+
+.viewer-home-main{
+  min-height:100vh;
+  margin-left:238px;
+  padding:27px 38px 50px;
+  background:
+    radial-gradient(circle at 82% 0,rgba(47,123,255,.055),transparent 24%),
+    linear-gradient(180deg,#F8FBFF,#F4F7FB);
+}
+
+.viewer-home-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  margin-bottom:24px;
+  padding-right:300px;
+}
+.viewer-home-kicker,.vhome-section-kicker{
+  font-size:10px;
+  letter-spacing:.13em;
+  font-weight:850;
+  color:#92A0B1;
+  text-transform:uppercase;
+}
+.viewer-home-header h1{
+  margin-top:3px;
+  color:#10213A;
+  font-size:30px;
+  line-height:1.1;
+  letter-spacing:-.045em;
+}
+.viewer-home-search{
+  width:min(300px,30vw);
+  height:40px;
+  border:1px solid #DFE7F0;
+  border-radius:999px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:0 14px;
+  color:#9AA7B7;
+}
+.viewer-home-search input{
+  width:100%;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#32445B;
+  font:500 12px inherit;
+}
+.viewer-home-search input::placeholder{color:#A3AFBD}
+
+.viewer-home-stats{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+  margin-bottom:18px;
+}
+.vhs-stat{
+  min-height:92px;
+  padding:17px 18px;
+  border:1px solid #DFE7F0;
+  border-radius:15px;
+  background:#fff;
+  box-shadow:0 8px 24px rgba(35,58,86,.035);
+}
+.vhs-stat span{
+  display:block;
+  color:#7C8CA0;
+  font-size:11px;
+  font-weight:600;
+  margin-bottom:9px;
+}
+.vhs-stat strong{
+  display:block;
+  color:#10213A;
+  font-size:25px;
+  line-height:1;
+  letter-spacing:-.04em;
+}
+
+.viewer-home-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.65fr) minmax(280px,.72fr);
+  gap:16px;
+  margin-bottom:16px;
+}
+.viewer-home-files-card,.viewer-home-quick-card,.viewer-home-upload{
+  border:1px solid #DFE7F0;
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 9px 28px rgba(34,57,84,.04);
+}
+.viewer-home-files-card,.viewer-home-quick-card{padding:20px}
+.viewer-home-upload{padding:20px 22px}
+
+.vhome-section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:16px;
+}
+.vhome-section-head h2,.viewer-home-quick-card h2{
+  margin-top:3px;
+  color:#172A43;
+  font-size:18px;
+  letter-spacing:-.03em;
+}
+.vhome-link-btn{
+  border:1px solid #DAE4EE;
+  background:#fff;
+  color:#2F7BFF;
+  border-radius:9px;
+  padding:8px 12px;
+  font:700 11px inherit;
+  cursor:pointer;
+}
+.vhome-link-btn:hover{background:#F4F8FF}
+
+.viewer-home-files{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+.viewer-file-card{
+  min-height:174px;
+  border:1px solid #E2E8F0;
+  border-radius:14px;
+  background:linear-gradient(180deg,#fff,#FBFCFE);
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform .16s,border-color .16s,box-shadow .16s;
+}
+.viewer-file-card:hover{
+  transform:translateY(-2px);
+  border-color:#BDD2EA;
+  box-shadow:0 12px 28px rgba(38,61,88,.08);
+}
+.viewer-file-thumb{
+  height:94px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:39px;
+  background:
+    radial-gradient(circle at 70% 20%,rgba(47,123,255,.13),transparent 35%),
+    linear-gradient(135deg,#EDF5FF,#F7FAFE);
+}
+.viewer-file-card.immo .viewer-file-thumb{
+  background:linear-gradient(135deg,#FFF8DF,#FFFDF7);
+}
+.viewer-file-card.scent .viewer-file-thumb{
+  background:linear-gradient(135deg,#F7ECFF,#FCF8FF);
+}
+.viewer-file-body{padding:10px 12px 12px}
+.viewer-file-name{
+  color:#1F334D;
+  font-size:12px;
+  font-weight:800;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.viewer-file-meta{
+  margin-top:4px;
+  color:#91A0B2;
+  font-size:10px;
+}
+.viewer-home-empty{
+  grid-column:1/-1;
+  min-height:174px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:#91A0B2;
+  border:1px dashed #D9E4EF;
+  border-radius:14px;
+  background:#FAFCFE;
+  font-size:12px;
+}
+.viewer-home-empty strong{
+  color:#52657B;
+  margin-bottom:5px;
+}
+
+.viewer-home-quick-card p{
+  color:#7C8B9E;
+  font-size:12px;
+  line-height:1.55;
+  margin:9px 0 15px;
+}
+.viewer-quick-visual{
+  position:relative;
+  width:150px;
+  height:150px;
+  margin:7px auto 13px;
+}
+.quick-ring{
+  position:absolute;
+  inset:25px;
+  border:2px solid rgba(47,123,255,.55);
+  transform:rotate(45deg);
+  border-radius:22px;
+}
+.quick-ring::after{
+  content:"";
+  position:absolute;
+  inset:17px;
+  border:2px solid rgba(201,154,36,.55);
+  border-radius:18px;
+}
+.quick-axis{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:1px;
+  height:67px;
+  background:#E6EDF4;
+  transform-origin:50% 0;
+}
+.qa1{transform:rotate(0deg)}
+.qa2{transform:rotate(72deg)}
+.qa3{transform:rotate(144deg)}
+.qa4{transform:rotate(216deg)}
+.qa5{transform:rotate(288deg)}
+.vhome-primary-small,.vhome-primary{
+  border:0;
+  border-radius:10px;
+  background:linear-gradient(135deg,#2F7BFF,#55A2FF);
+  color:#fff;
+  font:750 12px inherit;
+  cursor:pointer;
+  box-shadow:0 9px 22px rgba(47,123,255,.18);
+}
+.vhome-primary-small{width:100%;padding:10px 13px}
+.vhome-primary{padding:11px 18px;white-space:nowrap}
+
+.viewer-format-pills{display:flex;gap:7px;flex-wrap:wrap}
+.viewer-format-pills span{
+  padding:5px 9px;
+  border:1px solid #E0E7EF;
+  border-radius:999px;
+  color:#78889B;
+  background:#FBFCFE;
+  font-size:10px;
+  font-weight:700;
+}
+.viewer-upload-zone{
+  min-height:94px;
+  border:1.5px dashed #C8D8E8;
+  border-radius:15px;
+  background:#F9FBFE;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:16px 18px;
+}
+.upload-icon{
+  width:42px;height:42px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  background:#EBF3FF;color:#2F7BFF;
+  font-size:22px;font-weight:700;
+}
+.viewer-upload-zone>div:nth-child(2){flex:1}
+.viewer-upload-zone strong{
+  display:block;color:#2B3F57;font-size:13px;margin-bottom:3px
+}
+.viewer-upload-zone span{display:block;color:#8C9AAD;font-size:11px}
+.viewer-demo-row{
+  display:flex;
+  justify-content:flex-end;
+  gap:7px;
+  margin-top:10px;
+}
+.viewer-demo-row button{
+  border:1px solid #DFE7F0;
+  border-radius:8px;
+  background:#fff;
+  color:#66778C;
+  padding:7px 10px;
+  font:650 10px inherit;
+  cursor:pointer;
+}
+.viewer-demo-row button:hover{background:#F5F8FB}
+
+.viewer-legacy-home{
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  padding:0!important;
+  border:0!important;
+}
+
+.home-top-controls{
+  top:18px!important;
+  right:24px!important;
+}
+
+@media(max-width:1180px){
+  .viewer-home-sidebar{width:200px}
+  .viewer-home-main{margin-left:200px;padding:25px 24px 44px}
+  .viewer-home-stats{grid-template-columns:repeat(3,1fr)}
+  .viewer-home-files{grid-template-columns:repeat(2,1fr)}
+  .viewer-home-header{padding-right:250px}
+}
+@media(max-width:860px){
+  .viewer-home-sidebar{display:none}
+  .viewer-home-main{margin-left:0;padding:78px 16px 34px}
+  .viewer-home-header{padding-right:0}
+  .viewer-home-search{display:none}
+  .viewer-home-stats{grid-template-columns:repeat(2,1fr)}
+  .viewer-home-grid{grid-template-columns:1fr}
+  .viewer-home-files{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .viewer-home-stats{grid-template-columns:1fr 1fr}
+  .viewer-home-files{grid-template-columns:1fr}
+  .viewer-upload-zone{align-items:flex-start;flex-wrap:wrap}
+  .viewer-upload-zone .vhome-primary{width:100%}
+}
+
 </style>
 </head>
 <body>
@@ -1231,7 +1651,100 @@ body{
 </div>
 
 <div id="dropZone">
-  <div class="dz-inner" id="dzInner">
+  <aside class="viewer-home-sidebar" aria-label="Navigazione Viewer">
+    <div class="vhs-brand">
+      <img src="icons/icon-21.png" alt="">
+      <span>Viewer</span>
+    </div>
+
+    <nav class="vhs-nav">
+      <button class="vhs-item active" type="button" data-home-target="overview"><span>▣</span>Panoramica</button>
+      <button class="vhs-item" type="button" data-home-target="files"><span>▤</span>I miei file</button>
+      <button class="vhs-item" type="button" data-home-target="upload"><span>＋</span>Importa file</button>
+      <button class="vhs-item" type="button" data-home-target="compare"><span>◇</span>Confronti</button>
+      <button class="vhs-item" type="button" data-home-target="info"><span>ⓘ</span>Guida</button>
+    </nav>
+
+    <div class="vhs-bottom">
+      <button class="vhs-item" type="button" id="sidebarProfileBtn"><span>◉</span>Profilo</button>
+      <a class="vhs-home-link" href="https://memmolalabs.com/">← Memmola Labs</a>
+    </div>
+  </aside>
+
+  <main class="viewer-home-main">
+    <div class="viewer-home-header">
+      <div>
+        <div class="viewer-home-kicker">MEMMOLA LABS VIEWER</div>
+        <h1>Panoramica</h1>
+      </div>
+      <div class="viewer-home-search">
+        <span>⌕</span>
+        <input id="viewerHomeSearch" type="search" placeholder="Cerca nei file" autocomplete="off">
+      </div>
+    </div>
+
+    <section class="viewer-home-stats" id="viewerHomeStats">
+      <div class="vhs-stat"><span>File totali</span><strong id="statFiles">0</strong></div>
+      <div class="vhs-stat"><span>ImmoBit</span><strong id="statImmo">0</strong></div>
+      <div class="vhs-stat"><span>AutoBit</span><strong id="statAuto">0</strong></div>
+      <div class="vhs-stat"><span>ScentWeave</span><strong id="statScent">0</strong></div>
+      <div class="vhs-stat"><span>Profilo</span><strong id="statProfile">—</strong></div>
+    </section>
+
+    <section class="viewer-home-grid">
+      <div class="viewer-home-files-card" id="homeFilesSection">
+        <div class="vhome-section-head">
+          <div>
+            <div class="vhome-section-kicker">I TUOI FILE</div>
+            <h2>Archivio recente</h2>
+          </div>
+          <button class="vhome-link-btn" id="homeImportBtn" type="button">+ Importa</button>
+        </div>
+        <div class="viewer-home-files" id="viewerHomeFiles"></div>
+      </div>
+
+      <div class="viewer-home-quick-card">
+        <div class="vhome-section-kicker">CONFRONTO RAPIDO</div>
+        <h2>Apri e confronta</h2>
+        <p>Carica almeno due valutazioni dello stesso tipo per utilizzare il confronto locale.</p>
+        <div class="viewer-quick-visual">
+          <div class="quick-ring"></div>
+          <div class="quick-axis qa1"></div>
+          <div class="quick-axis qa2"></div>
+          <div class="quick-axis qa3"></div>
+          <div class="quick-axis qa4"></div>
+          <div class="quick-axis qa5"></div>
+        </div>
+        <button class="vhome-primary-small" id="homeCompareBtn" type="button">Aggiungi valutazioni</button>
+      </div>
+    </section>
+
+    <section class="viewer-home-upload" id="homeUploadSection">
+      <div class="vhome-section-head">
+        <div>
+          <div class="vhome-section-kicker">IMPORTA</div>
+          <h2>Aggiungi un nuovo file</h2>
+        </div>
+        <div class="viewer-format-pills">
+          <span>.immobit</span><span>.autobit</span><span>.scentweave</span>
+        </div>
+      </div>
+      <div class="viewer-upload-zone">
+        <div class="upload-icon">⇧</div>
+        <div>
+          <strong>Trascina qui il file</strong>
+          <span>oppure scegli un file dal computer</span>
+        </div>
+        <button class="vhome-primary" id="homeLoadBtn" type="button">Carica file</button>
+      </div>
+      <div class="viewer-demo-row">
+        <button type="button" id="homeDemoImmo">Demo ImmoBit</button>
+        <button type="button" id="homeDemoAuto">Demo AutoBit</button>
+        <button type="button" id="homeDemoScent">Demo ScentWeave</button>
+      </div>
+    </section>
+
+    <div class="dz-inner viewer-legacy-home" id="dzInner">
     <div class="dz-logo" style="display:flex;align-items:center;justify-content:center;gap:12px">
   <img src="icons/icon-21.png"
        alt="Viewer"
@@ -1288,6 +1801,7 @@ body{
 
     <input type="file" id="fileInput" accept=".immobit,.autobit,.scentweave,.json" multiple style="display:none">
   </div>
+  </main>
 </div>
 
 <div id="presentation">
@@ -1542,6 +2056,7 @@ async function activateProfile(profile,key){
   document.getElementById('presentation').style.display='none';
   document.getElementById('homeLangSwitch').style.display='flex';
   await loadStoredProfileFiles();
+  await refreshHomeDashboard();
 }
 function requestUnlock(profileId){
   pendingUnlockProfileId=profileId;
@@ -3550,6 +4065,7 @@ function resetToHome(clearLoaded=false){
   document.getElementById('dropZone').style.display='flex';
 
   document.getElementById('homeLangSwitch').style.display = 'flex';
+  refreshHomeDashboard().catch(()=>{});
   document.getElementById('topLangSwitch').style.display = 'none';
   
   document.getElementById('sectionsContainer').innerHTML='';
@@ -3642,6 +4158,106 @@ window.addEventListener('appinstalled', () => {
 });
 
 
+
+
+/* =========================================================
+   HOME DASHBOARD
+   ========================================================= */
+function appClass(app){
+  if(app==='immobit') return 'immo';
+  if(app==='scentweave') return 'scent';
+  return 'auto';
+}
+function appEmoji(app){
+  if(app==='immobit') return '🏠';
+  if(app==='scentweave') return '🌿';
+  return '🚙';
+}
+async function refreshHomeDashboard(){
+  if(!activeProfile || !mlDb) return;
+
+  const records=await getProfileFiles(activeProfile.id);
+  const statFiles=document.getElementById('statFiles');
+  const statImmo=document.getElementById('statImmo');
+  const statAuto=document.getElementById('statAuto');
+  const statScent=document.getElementById('statScent');
+  const statProfile=document.getElementById('statProfile');
+
+  if(statFiles) statFiles.textContent=records.length;
+  if(statImmo) statImmo.textContent=records.filter(r=>r.app==='immobit').length;
+  if(statAuto) statAuto.textContent=records.filter(r=>r.app==='autobit').length;
+  if(statScent) statScent.textContent=records.filter(r=>r.app==='scentweave').length;
+  if(statProfile) statProfile.textContent=activeProfile.name;
+
+  const wrap=document.getElementById('viewerHomeFiles');
+  if(!wrap) return;
+  const q=(document.getElementById('viewerHomeSearch')?.value||'').trim().toLowerCase();
+  const filtered=records
+    .filter(r=>!q || String(r.name||'').toLowerCase().includes(q) || String(r.app||'').toLowerCase().includes(q))
+    .sort((a,b)=>String(b.createdAt||'').localeCompare(String(a.createdAt||'')))
+    .slice(0,6);
+
+  if(!filtered.length){
+    wrap.innerHTML=`<div class="viewer-home-empty">
+      <strong>${q?'Nessun risultato':'Il tuo archivio è vuoto'}</strong>
+      <span>${q?'Prova con un altro termine.':'Importa un file AutoBit, ImmoBit o ScentWeave.'}</span>
+    </div>`;
+    return;
+  }
+
+  wrap.innerHTML='';
+  filtered.forEach(rec=>{
+    const card=document.createElement('button');
+    card.type='button';
+    card.className='viewer-file-card '+appClass(rec.app);
+    card.innerHTML=`<div class="viewer-file-thumb">${appEmoji(rec.app)}</div>
+      <div class="viewer-file-body">
+        <div class="viewer-file-name">${escapeProfileHtml(rec.name||'File')}</div>
+        <div class="viewer-file-meta">${escapeProfileHtml((rec.app||'').replace(/^./,c=>c.toUpperCase()))} · ${rec.createdAt?new Date(rec.createdAt).toLocaleDateString():'locale'}</div>
+      </div>`;
+    card.onclick=()=>openStoredRecordFromDashboard(rec.id);
+    wrap.appendChild(card);
+  });
+}
+async function openStoredRecordFromDashboard(id){
+  if(!activeProfile || !activeProfileKey) return;
+  const rec=await idbReq(idbTx('files').get(id));
+  if(!rec) return;
+  try{
+    const bytes=await decryptBytes(bytesFromB64(rec.cipher),bytesFromB64(rec.iv),activeProfileKey);
+    const file=new File([bytes],rec.name,{type:rec.type||'application/octet-stream'});
+    const data=await readEvaluationFromBlob(file);
+    const existing=loadedEvaluations.find(x=>x.id===rec.id);
+    if(!existing) loadedEvaluations.push({id:rec.id,app:rec.app,data,fileName:rec.name,persisted:true});
+    currentEvaluationId=rec.id;
+    loadData(data);
+  }catch(err){
+    console.error(err);
+    alert('Impossibile aprire il file archiviato.');
+  }
+}
+
+document.addEventListener('click',e=>{
+  const btn=e.target.closest('[data-home-target]');
+  if(!btn) return;
+  document.querySelectorAll('.vhs-item[data-home-target]').forEach(x=>x.classList.toggle('active',x===btn));
+  const target=btn.dataset.homeTarget;
+  if(target==='overview') window.scrollTo({top:0,behavior:'smooth'});
+  if(target==='files') document.getElementById('homeFilesSection')?.scrollIntoView({behavior:'smooth',block:'start'});
+  if(target==='upload') document.getElementById('homeUploadSection')?.scrollIntoView({behavior:'smooth',block:'center'});
+  if(target==='compare') document.getElementById('homeCompareBtn')?.click();
+  if(target==='info') openModal('infoModal');
+});
+document.getElementById('sidebarProfileBtn')?.addEventListener('click',async()=>{
+  await renderProfileManager();openModal('profileManagerModal');
+});
+document.getElementById('homeImportBtn')?.addEventListener('click',()=>document.getElementById('fileInput').click());
+document.getElementById('homeLoadBtn')?.addEventListener('click',()=>document.getElementById('fileInput').click());
+document.getElementById('homeCompareBtn')?.addEventListener('click',()=>document.getElementById('fileInput').click());
+document.getElementById('homeDemoImmo')?.addEventListener('click',()=>document.getElementById('demoImmo').click());
+document.getElementById('homeDemoAuto')?.addEventListener('click',()=>document.getElementById('demoAuto').click());
+document.getElementById('homeDemoScent')?.addEventListener('click',()=>document.getElementById('demoScent').click());
+document.getElementById('viewerHomeSearch')?.addEventListener('input',refreshHomeDashboard);
 
 initProfileSystem().catch(err=>{
   console.error('Viewer profile init failed',err);
