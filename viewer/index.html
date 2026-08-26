@@ -1041,9 +1041,19 @@ body{
   background:#fff;
 }
 
+
+/* Home top-right controls: language + profile + info */
+.home-top-controls{position:fixed;top:18px;right:22px;z-index:10030;display:flex;align-items:center;gap:8px}
+.home-top-controls .lang-switch,.home-top-controls .viewer-tools{position:static!important;top:auto!important;right:auto!important;margin:0!important}
+.home-top-controls .viewer-tools{display:flex}
+@media(max-width:700px){.home-top-controls{top:12px;right:12px;gap:6px}}
+
 </style>
 </head>
 <body>
+
+
+<div class="home-top-controls" id="homeTopControls"></div>
 
 <div class="viewer-tools" id="viewerTools" style="display:none">
   <button class="viewer-tool-btn" id="profileMenuBtn" type="button" aria-label="Profilo">
@@ -1501,7 +1511,12 @@ function showProfileGate(){
   loadedEvaluations=[];
   currentEvaluationId=null;
   const tools=document.getElementById('viewerTools');
-  if(tools.parentElement!==document.body) document.body.appendChild(tools);
+  const homeControls=document.getElementById('homeTopControls');
+  const homeLang=document.getElementById('homeLangSwitch');
+  if(homeControls){
+    if(homeLang && homeLang.parentElement!==homeControls) homeControls.appendChild(homeLang);
+    if(tools && tools.parentElement!==homeControls) homeControls.appendChild(tools);
+  }
   tools.style.display='none';
   document.getElementById('profileGate').classList.remove('hidden');
   document.getElementById('presentation').style.display='none';
@@ -1514,7 +1529,12 @@ async function activateProfile(profile,key){
   localStorage.setItem('ml_viewer_last_profile',profile.id);
   document.getElementById('profileGate').classList.add('hidden');
   const tools=document.getElementById('viewerTools');
-  if(tools.parentElement!==document.body) document.body.appendChild(tools);
+  const homeControls=document.getElementById('homeTopControls');
+  const homeLang=document.getElementById('homeLangSwitch');
+  if(homeControls){
+    if(homeLang && homeLang.parentElement!==homeControls) homeControls.appendChild(homeLang);
+    if(tools && tools.parentElement!==homeControls) homeControls.appendChild(tools);
+  }
   tools.style.display='flex';
   document.getElementById('viewerProfileName').textContent=profile.name;
   document.getElementById('viewerProfileAvatar').textContent=initials(profile.name);
@@ -1722,6 +1742,9 @@ async function initProfileSystem(){
     return;
   }
   mlDb=await openMlDb();
+  const homeControls=document.getElementById('homeTopControls');
+  const homeLang=document.getElementById('homeLangSwitch');
+  if(homeControls && homeLang && homeLang.parentElement!==homeControls) homeControls.appendChild(homeLang);
   document.getElementById('dropZone').style.display='none';
   await renderProfileGate();
 }
@@ -3389,6 +3412,9 @@ function loadData(data){
 
   const viewerTools=document.getElementById('viewerTools');
   const topRight=document.querySelector('#presentation .top-bar > div:last-child');
+  const homeControls=document.getElementById('homeTopControls');
+  const homeLang=document.getElementById('homeLangSwitch');
+  if(homeControls && homeLang && homeLang.parentElement!==homeControls) homeControls.appendChild(homeLang);
   if(viewerTools && topRight && viewerTools.parentElement!==topRight){
     topRight.appendChild(viewerTools);
     viewerTools.style.display='flex';
@@ -3513,10 +3539,13 @@ function loadFile(e){
 function resetToHome(clearLoaded=false){
 
   const viewerTools=document.getElementById('viewerTools');
-  if(viewerTools && viewerTools.parentElement!==document.body){
-    document.body.appendChild(viewerTools);
-    viewerTools.style.display=activeProfile?'flex':'none';
+  const homeControls=document.getElementById('homeTopControls');
+  const homeLang=document.getElementById('homeLangSwitch');
+  if(homeControls){
+    if(homeLang && homeLang.parentElement!==homeControls) homeControls.appendChild(homeLang);
+    if(viewerTools && viewerTools.parentElement!==homeControls) homeControls.appendChild(viewerTools);
   }
+  if(viewerTools) viewerTools.style.display=activeProfile?'flex':'none';
   document.getElementById('presentation').style.display='none';
   document.getElementById('dropZone').style.display='flex';
 
