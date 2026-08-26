@@ -1829,6 +1829,31 @@ body.viewer-presentation-open #dropZone{display:none!important}
 </div>
 
 
+
+<div class="ml-modal" id="avatarAuthModal" aria-hidden="true">
+  <div class="ml-modal-card" style="max-width:470px">
+    <div class="ml-modal-head">
+      <div>
+        <div class="ml-modal-title" id="avatarAuthTitle">Modifica avatar</div>
+        <div class="ml-modal-sub">Inserisci il PIN del profilo per autorizzare la modifica dell'avatar.</div>
+      </div>
+      <button class="ml-modal-close" data-close-modal="avatarAuthModal" type="button">×</button>
+    </div>
+
+    <div class="ml-field">
+      <label>PIN del profilo</label>
+      <input id="avatarAuthPin" type="password" inputmode="numeric" maxlength="12" autocomplete="current-password">
+    </div>
+
+    <div class="ml-error" id="avatarAuthError"></div>
+
+    <div class="ml-modal-actions">
+      <button class="ml-btn" data-close-modal="avatarAuthModal" type="button">Annulla</button>
+      <button class="ml-btn primary" id="confirmAvatarAuthBtn" type="button">Continua</button>
+    </div>
+  </div>
+</div>
+
 <div class="ml-modal" id="deleteProfileModal" aria-hidden="true">
   <div class="ml-modal-card" style="max-width:470px">
     <div class="ml-modal-head">
@@ -2261,6 +2286,7 @@ let activeProfileKey = null;
 let pendingUnlockProfileId = null;
 let pendingDeleteProfileId = null;
 let pendingAvatarProfileId = null;
+let pendingAvatarAuthProfileId = null;
 let newProfileAvatarData = '';
 let failedUnlocks = 0;
 
@@ -2513,8 +2539,7 @@ async function renderProfileManager(){
   });
   wrap.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>requestDeleteProfile(b.dataset.delete));
   wrap.querySelectorAll('[data-avatar]').forEach(b=>b.onclick=()=>{
-    pendingAvatarProfileId=b.dataset.avatar;
-    document.getElementById('profileAvatarInput').click();
+    requestAvatarChange(b.dataset.avatar);
   });
 }
 
@@ -2588,6 +2613,46 @@ async function unlockPendingProfile(){
   failedUnlocks=0;
   closeModal('unlockProfileModal');
   await activateProfile(p,result.key);
+}
+
+
+async function requestAvatarChange(profileId){
+  const p=await getProfile(profileId);
+  if(!p)return;
+
+  // The active profile is already authenticated for this session.
+  if(activeProfile?.id===profileId){
+    pendingAvatarProfileId=profileId;
+    document.getElementById('profileAvatarInput').click();
+    return;
+  }
+
+  pendingAvatarAuthProfileId=profileId;
+  document.getElementById('avatarAuthTitle').textContent='Modifica avatar di ' + p.name;
+  document.getElementById('avatarAuthPin').value='';
+  document.getElementById('avatarAuthError').classList.remove('show');
+  openModal('avatarAuthModal');
+  setTimeout(()=>document.getElementById('avatarAuthPin').focus(),80);
+}
+
+async function confirmAvatarAuthorization(){
+  const p=await getProfile(pendingAvatarAuthProfileId);
+  if(!p)return;
+
+  const pin=document.getElementById('avatarAuthPin').value;
+  const result=await verifyPin(p,pin);
+  const err=document.getElementById('avatarAuthError');
+
+  if(!result.ok){
+    err.textContent='PIN errato. Avatar non modificabile.';
+    err.classList.add('show');
+    return;
+  }
+
+  pendingAvatarProfileId=p.id;
+  pendingAvatarAuthProfileId=null;
+  closeModal('avatarAuthModal');
+  document.getElementById('profileAvatarInput').click();
 }
 
 async function createProfileUi(){
@@ -2773,6 +2838,8 @@ document.getElementById('managerCreateProfileBtn').onclick=()=>{ closeModal('pro
 document.getElementById('saveProfileBtn').onclick=createProfileUi;
 document.getElementById('unlockProfileBtn').onclick=unlockPendingProfile;
 document.getElementById('unlockProfilePin').addEventListener('keydown',e=>{if(e.key==='Enter')unlockPendingProfile()});
+document.getElementById('confirmAvatarAuthBtn').onclick=confirmAvatarAuthorization;
+document.getElementById('avatarAuthPin').addEventListener('keydown',e=>{if(e.key==='Enter')confirmAvatarAuthorization()});
 document.getElementById('confirmDeleteProfileBtn').onclick=confirmDeleteProfile;
 document.getElementById('deleteProfilePin').addEventListener('keydown',e=>{if(e.key==='Enter')confirmDeleteProfile()});
 document.getElementById('profileMenuBtn').onclick=async()=>{await renderProfileManager();openModal('profileManagerModal')};
@@ -2812,6 +2879,7 @@ document.getElementById('profileAvatarInput').onchange=async e=>{
     alert("Impossibile salvare l'avatar selezionato.");
   }finally{
     pendingAvatarProfileId=null;
+    pendingAvatarAuthProfileId=null;
   }
 };
 document.getElementById('restoreViewerBtn').onclick=()=>document.getElementById('viewerBackupInput').click();
