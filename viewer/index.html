@@ -1026,6 +1026,21 @@ body{
   .dz-inner{padding:92px 18px 46px!important}
 }
 
+
+/* Viewer tools placement */
+.top-bar .viewer-tools{
+  position:static;
+  top:auto;
+  right:auto;
+  z-index:auto;
+  display:flex;
+  box-shadow:none;
+}
+.top-bar .viewer-tool-btn{
+  box-shadow:none;
+  background:#fff;
+}
+
 </style>
 </head>
 <body>
@@ -1117,6 +1132,35 @@ body{
       <button class="ml-btn" id="backupViewerBtn" type="button">Backup Viewer</button>
       <button class="ml-btn" id="managerRestoreViewerBtn" type="button">Ripristina backup</button>
       <button class="ml-btn" id="lockViewerBtn" type="button">Blocca Viewer</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="ml-modal" id="deleteProfileModal" aria-hidden="true">
+  <div class="ml-modal-card" style="max-width:470px">
+    <div class="ml-modal-head">
+      <div>
+        <div class="ml-modal-title" id="deleteProfileTitle">Elimina profilo</div>
+        <div class="ml-modal-sub">Per eliminare il profilo inserisci il PIN del profilo stesso.</div>
+      </div>
+      <button class="ml-modal-close" data-close-modal="deleteProfileModal" type="button">×</button>
+    </div>
+
+    <div class="ml-note">
+      <strong>Attenzione:</strong> verranno eliminati il profilo e tutti i file locali associati. Questa operazione non può essere annullata.
+    </div>
+
+    <div class="ml-field">
+      <label>PIN del profilo</label>
+      <input id="deleteProfilePin" type="password" inputmode="numeric" maxlength="12" autocomplete="current-password">
+    </div>
+
+    <div class="ml-error" id="deleteProfileError"></div>
+
+    <div class="ml-modal-actions">
+      <button class="ml-btn" data-close-modal="deleteProfileModal" type="button">Annulla</button>
+      <button class="ml-btn danger" id="confirmDeleteProfileBtn" type="button">Elimina profilo</button>
     </div>
   </div>
 </div>
@@ -1279,6 +1323,7 @@ let mlDb = null;
 let activeProfile = null;
 let activeProfileKey = null;
 let pendingUnlockProfileId = null;
+let pendingDeleteProfileId = null;
 let failedUnlocks = 0;
 
 function b64FromBytes(bytes){
@@ -1448,14 +1493,16 @@ async function renderProfileManager(){
   wrap.querySelectorAll('[data-switch]').forEach(b=>b.onclick=()=>{
     closeModal('profileManagerModal');requestUnlock(b.dataset.switch);
   });
-  wrap.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>deleteProfileUi(b.dataset.delete));
+  wrap.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>requestDeleteProfile(b.dataset.delete));
 }
 
 function showProfileGate(){
   activeProfile=null;activeProfileKey=null;
   loadedEvaluations=[];
   currentEvaluationId=null;
-  document.getElementById('viewerTools').style.display='none';
+  const tools=document.getElementById('viewerTools');
+  if(tools.parentElement!==document.body) document.body.appendChild(tools);
+  tools.style.display='none';
   document.getElementById('profileGate').classList.remove('hidden');
   document.getElementById('presentation').style.display='none';
   document.getElementById('dropZone').style.display='none';
@@ -1466,7 +1513,9 @@ async function activateProfile(profile,key){
   activeProfileKey=key;
   localStorage.setItem('ml_viewer_last_profile',profile.id);
   document.getElementById('profileGate').classList.add('hidden');
-  document.getElementById('viewerTools').style.display='flex';
+  const tools=document.getElementById('viewerTools');
+  if(tools.parentElement!==document.body) document.body.appendChild(tools);
+  tools.style.display='flex';
   document.getElementById('viewerProfileName').textContent=profile.name;
   document.getElementById('viewerProfileAvatar').textContent=initials(profile.name);
   document.getElementById('dropZone').style.display='flex';
@@ -1529,16 +1578,43 @@ async function createProfileUi(){
   closeModal('createProfileModal');
   await activateProfile(profile,key);
 }
-async function deleteProfileUi(id){
+async function requestDeleteProfile(id){
   const p=await getProfile(id);
   if(!p)return;
-  if(!confirm(`Eliminare il profilo "${p.name}" e tutti i file locali associati? Questa operazione non può essere annullata.`))return;
-  await deleteProfileRecord(id);
-  if(activeProfile?.id===id){
+
+  pendingDeleteProfileId=id;
+  document.getElementById('deleteProfileTitle').textContent='Elimina ' + p.name;
+  document.getElementById('deleteProfilePin').value='';
+  document.getElementById('deleteProfileError').classList.remove('show');
+
+  openModal('deleteProfileModal');
+  setTimeout(()=>document.getElementById('deleteProfilePin').focus(),80);
+}
+
+async function confirmDeleteProfile(){
+  const p=await getProfile(pendingDeleteProfileId);
+  if(!p)return;
+
+  const pin=document.getElementById('deleteProfilePin').value;
+  const result=await verifyPin(p,pin);
+  const err=document.getElementById('deleteProfileError');
+
+  if(!result.ok){
+    err.textContent='PIN errato. Il profilo non è stato eliminato.';
+    err.classList.add('show');
+    return;
+  }
+
+  await deleteProfileRecord(p.id);
+  closeModal('deleteProfileModal');
+  pendingDeleteProfileId=null;
+
+  if(activeProfile?.id===p.id){
     closeModal('profileManagerModal');
     showProfileGate();
   }else{
-    await renderProfileManager();await renderProfileGate();
+    await renderProfileManager();
+    await renderProfileGate();
   }
 }
 
@@ -1655,6 +1731,8 @@ document.getElementById('managerCreateProfileBtn').onclick=()=>{closeModal('prof
 document.getElementById('saveProfileBtn').onclick=createProfileUi;
 document.getElementById('unlockProfileBtn').onclick=unlockPendingProfile;
 document.getElementById('unlockProfilePin').addEventListener('keydown',e=>{if(e.key==='Enter')unlockPendingProfile()});
+document.getElementById('confirmDeleteProfileBtn').onclick=confirmDeleteProfile;
+document.getElementById('deleteProfilePin').addEventListener('keydown',e=>{if(e.key==='Enter')confirmDeleteProfile()});
 document.getElementById('profileMenuBtn').onclick=async()=>{await renderProfileManager();openModal('profileManagerModal')};
 document.getElementById('infoBtn').onclick=()=>openModal('infoModal');
 document.getElementById('gateInfoBtn').onclick=()=>openModal('infoModal');
@@ -3308,6 +3386,13 @@ const DEMO_SCENT = {
 
 
 function loadData(data){
+
+  const viewerTools=document.getElementById('viewerTools');
+  const topRight=document.querySelector('#presentation .top-bar > div:last-child');
+  if(viewerTools && topRight && viewerTools.parentElement!==topRight){
+    topRight.appendChild(viewerTools);
+    viewerTools.style.display='flex';
+  }
   const app = normalizeApp(data);
   if(!app){ alert(trText('Formato file non riconosciuto.')); return; }
 
@@ -3426,6 +3511,12 @@ function loadFile(e){
 }
 
 function resetToHome(clearLoaded=false){
+
+  const viewerTools=document.getElementById('viewerTools');
+  if(viewerTools && viewerTools.parentElement!==document.body){
+    document.body.appendChild(viewerTools);
+    viewerTools.style.display=activeProfile?'flex':'none';
+  }
   document.getElementById('presentation').style.display='none';
   document.getElementById('dropZone').style.display='flex';
 
