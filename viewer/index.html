@@ -824,9 +824,352 @@ body{
   .top-bar{padding:14px 38px}
 }
 
+
+/* =========================================================
+   VIEWER 2026 — FULL SCREEN + LOCAL PROFILES
+   ========================================================= */
+#dropZone{
+  min-height:100vh!important;
+  padding:0!important;
+  align-items:stretch!important;
+  justify-content:stretch!important;
+}
+.dz-inner{
+  width:100%!important;
+  max-width:none!important;
+  min-height:100vh!important;
+  padding:110px 7vw 72px!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:
+    radial-gradient(circle at 18% 18%,rgba(47,123,255,.08),transparent 26%),
+    radial-gradient(circle at 82% 16%,rgba(53,189,233,.07),transparent 24%),
+    linear-gradient(180deg,#fff 0,#F8FBFF 62%,#F4F8FC 100%)!important;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  overflow:hidden;
+}
+.dz-inner::before{
+  width:760px!important;height:760px!important;
+  top:-520px!important;
+}
+.dz-info-grid{width:min(1180px,100%);margin-left:auto;margin-right:auto}
+.privacy-note{width:min(1180px,100%);margin-left:auto;margin-right:auto}
+.install-row{width:100%}
+
+.viewer-tools{
+  position:fixed;
+  top:18px;
+  right:22px;
+  z-index:10020;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.viewer-tool-btn{
+  height:38px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:0 13px;
+  border:1px solid #DCE5EF;
+  border-radius:999px;
+  background:rgba(255,255,255,.92);
+  color:#27374B;
+  box-shadow:0 7px 24px rgba(39,63,91,.08);
+  backdrop-filter:blur(14px);
+  font:700 12px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  cursor:pointer;
+}
+.viewer-tool-btn:hover{border-color:#BFD2E7;background:#fff;color:#2F7BFF}
+.viewer-profile-avatar{
+  width:25px;height:25px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#2F7BFF,#64A9FF);
+  color:#fff;font-weight:800;font-size:11px;
+}
+.viewer-info-icon{font-size:17px;line-height:1}
+
+.profile-gate{
+  position:fixed;inset:0;z-index:30000;
+  display:flex;align-items:center;justify-content:center;
+  padding:40px;
+  background:
+    radial-gradient(circle at 18% 14%,rgba(47,123,255,.11),transparent 28%),
+    radial-gradient(circle at 82% 14%,rgba(53,189,233,.10),transparent 26%),
+    linear-gradient(180deg,#fff,#F5F9FE);
+}
+.profile-gate.hidden{display:none}
+.profile-gate-inner{
+  width:min(1050px,100%);
+  text-align:center;
+}
+.profile-brand{
+  display:flex;align-items:center;justify-content:center;gap:13px;
+  margin-bottom:42px;
+}
+.profile-brand img{width:52px;height:52px;object-fit:contain}
+.profile-brand-copy{text-align:left}
+.profile-brand-title{font-size:19px;font-weight:850;color:#10213A;letter-spacing:-.025em}
+.profile-brand-sub{font-size:12px;color:#8190A3;margin-top:2px}
+.profile-title{
+  font-size:clamp(38px,5.2vw,72px);
+  line-height:.98;letter-spacing:-.055em;
+  font-weight:850;color:#0F1F36;margin-bottom:14px;
+}
+.profile-sub{
+  max-width:650px;margin:0 auto 34px;
+  color:#66778B;font-size:15px;line-height:1.7;
+}
+.profile-list{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:16px;
+  margin:0 auto 28px;
+}
+.profile-card{
+  width:190px;min-height:190px;
+  border:1px solid #DFE7F0;border-radius:24px;background:#fff;
+  box-shadow:0 14px 38px rgba(35,59,86,.07);
+  padding:24px 18px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:transform .18s,border-color .18s,box-shadow .18s;
+}
+.profile-card:hover{
+  transform:translateY(-3px);
+  border-color:#BFD4EE;
+  box-shadow:0 20px 48px rgba(35,59,86,.11);
+}
+.profile-card-avatar{
+  width:70px;height:70px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:850;font-size:26px;
+  background:linear-gradient(135deg,#2F7BFF,#61A8FF);
+  margin-bottom:15px;
+}
+.profile-card-name{font-size:15px;font-weight:800;color:#14253D}
+.profile-card-lock{font-size:11px;color:#8A98A9;margin-top:6px}
+.profile-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+
+.ml-modal{
+  position:fixed;inset:0;z-index:40000;
+  display:none;align-items:center;justify-content:center;padding:28px;
+  background:rgba(10,24,42,.42);backdrop-filter:blur(8px);
+}
+.ml-modal.active{display:flex}
+.ml-modal-card{
+  width:min(620px,100%);max-height:min(760px,88vh);overflow:auto;
+  background:#fff;border:1px solid #DFE7F0;border-radius:26px;
+  box-shadow:0 30px 90px rgba(13,36,64,.22);
+  padding:30px;
+}
+.ml-modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:22px}
+.ml-modal-title{font-size:26px;font-weight:850;letter-spacing:-.04em;color:#10213A}
+.ml-modal-sub{font-size:13px;color:#738398;margin-top:5px;line-height:1.6}
+.ml-modal-close{
+  width:36px;height:36px;border-radius:50%;border:1px solid #DFE7F0;
+  background:#fff;color:#65768B;cursor:pointer;font-size:20px;
+}
+.ml-field{margin-bottom:15px;text-align:left}
+.ml-field label{display:block;font-size:11px;font-weight:800;color:#66778B;margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em}
+.ml-field input{
+  width:100%;height:46px;border:1px solid #D9E3ED;border-radius:12px;
+  padding:0 14px;background:#FBFCFE;color:#14253D;font:500 14px inherit;outline:none;
+}
+.ml-field input:focus{border-color:#93BDF6;box-shadow:0 0 0 3px rgba(47,123,255,.08)}
+.ml-note{
+  padding:13px 14px;border-radius:12px;background:#F5F8FC;border:1px solid #E2E9F1;
+  color:#66778B;font-size:12px;line-height:1.6;margin:14px 0;
+}
+.ml-note strong{color:#21344C}
+.ml-modal-actions{display:flex;justify-content:flex-end;gap:9px;flex-wrap:wrap;margin-top:20px}
+.ml-btn{
+  min-height:40px;padding:8px 15px;border-radius:10px;
+  border:1px solid #D9E3ED;background:#fff;color:#26374C;
+  font:750 12px inherit;cursor:pointer;
+}
+.ml-btn:hover{background:#F5F8FC}
+.ml-btn.primary{background:#2F7BFF;border-color:#2F7BFF;color:#fff}
+.ml-btn.danger{color:#C94848;border-color:#F0CDCD;background:#FFF9F9}
+.ml-error{display:none;color:#C94848;font-size:12px;margin-top:8px}
+.ml-error.show{display:block}
+
+.profile-manager-list{display:flex;flex-direction:column;gap:9px}
+.profile-manager-item{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px;border:1px solid #E1E8F0;border-radius:14px;background:#FBFCFE;
+}
+.profile-manager-main{display:flex;align-items:center;gap:11px;min-width:0}
+.profile-manager-avatar{
+  width:38px;height:38px;border-radius:50%;background:#2F7BFF;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:800;
+}
+.profile-manager-name{font-size:13px;font-weight:800;color:#1D3048}
+.profile-manager-meta{font-size:11px;color:#8896A7;margin-top:2px}
+.profile-manager-actions{display:flex;gap:6px;flex-wrap:wrap}
+
+.guide-section{padding:18px 0;border-bottom:1px solid #EDF1F5;text-align:left}
+.guide-section:last-child{border-bottom:0}
+.guide-kicker{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#2F7BFF;font-weight:850;margin-bottom:5px}
+.guide-section h3{font-size:17px;color:#18304D;margin-bottom:6px}
+.guide-section p{font-size:13px;color:#68798D;line-height:1.7}
+.guide-section ul{margin:8px 0 0 18px;color:#68798D;font-size:13px;line-height:1.7}
+
+@media(max-width:700px){
+  .viewer-tools{top:12px;right:12px}
+  .viewer-tool-btn .tool-label{display:none}
+  .viewer-tool-btn{width:38px;padding:0}
+  .profile-gate{padding:24px 14px}
+  .profile-card{width:150px;min-height:160px}
+  .profile-title{font-size:42px}
+  .dz-inner{padding:92px 18px 46px!important}
+}
+
 </style>
 </head>
 <body>
+
+<div class="viewer-tools" id="viewerTools" style="display:none">
+  <button class="viewer-tool-btn" id="profileMenuBtn" type="button" aria-label="Profilo">
+    <span class="viewer-profile-avatar" id="viewerProfileAvatar">P</span>
+    <span class="tool-label" id="viewerProfileName">Profilo</span>
+  </button>
+  <button class="viewer-tool-btn" id="infoBtn" type="button" aria-label="Guida Viewer">
+    <span class="viewer-info-icon">ⓘ</span>
+    <span class="tool-label">Info</span>
+  </button>
+</div>
+
+<div class="profile-gate" id="profileGate">
+  <div class="profile-gate-inner">
+    <div class="profile-brand">
+      <img src="icons/icon-21.png" alt="Viewer">
+      <div class="profile-brand-copy">
+        <div class="profile-brand-title">Memmola Labs Viewer</div>
+        <div class="profile-brand-sub">Locale · Offline · Multi-profilo</div>
+      </div>
+    </div>
+    <div class="profile-title">Chi sta usando Viewer?</div>
+    <div class="profile-sub">Ogni profilo mantiene separati file e dati. Il PIN protegge l'accesso locale e i backup permettono di trasferire tutto su un altro computer.</div>
+    <div class="profile-list" id="profileList"></div>
+    <div class="profile-actions">
+      <button class="ml-btn primary" id="createProfileBtn" type="button">+ Nuovo profilo</button>
+      <button class="ml-btn" id="importProfileBtn" type="button">Importa profilo</button>
+      <button class="ml-btn" id="restoreViewerBtn" type="button">Ripristina backup Viewer</button>
+      <button class="ml-btn" id="gateInfoBtn" type="button">ⓘ Come funziona</button>
+    </div>
+  </div>
+</div>
+
+<div class="ml-modal" id="createProfileModal" aria-hidden="true">
+  <div class="ml-modal-card">
+    <div class="ml-modal-head">
+      <div>
+        <div class="ml-modal-title">Nuovo profilo</div>
+        <div class="ml-modal-sub">Il profilo e i suoi file rimangono su questo dispositivo.</div>
+      </div>
+      <button class="ml-modal-close" data-close-modal="createProfileModal" type="button">×</button>
+    </div>
+    <div class="ml-field"><label>Nome profilo</label><input id="newProfileName" maxlength="40" autocomplete="off" placeholder="Es. Mario, Agenzia Centro, Famiglia"></div>
+    <div class="ml-field"><label>PIN</label><input id="newProfilePin" type="password" inputmode="numeric" maxlength="12" autocomplete="new-password" placeholder="Minimo 4 caratteri"></div>
+    <div class="ml-field"><label>Ripeti PIN</label><input id="newProfilePin2" type="password" inputmode="numeric" maxlength="12" autocomplete="new-password"></div>
+    <div class="ml-note"><strong>Importante:</strong> il PIN non viene inviato a Memmola Labs e non può essere recuperato online. Conservalo con cura.</div>
+    <div class="ml-error" id="createProfileError"></div>
+    <div class="ml-modal-actions">
+      <button class="ml-btn" data-close-modal="createProfileModal" type="button">Annulla</button>
+      <button class="ml-btn primary" id="saveProfileBtn" type="button">Crea profilo</button>
+    </div>
+  </div>
+</div>
+
+<div class="ml-modal" id="unlockProfileModal" aria-hidden="true">
+  <div class="ml-modal-card" style="max-width:470px">
+    <div class="ml-modal-head">
+      <div>
+        <div class="ml-modal-title" id="unlockProfileTitle">Sblocca profilo</div>
+        <div class="ml-modal-sub">Inserisci il PIN locale.</div>
+      </div>
+      <button class="ml-modal-close" data-close-modal="unlockProfileModal" type="button">×</button>
+    </div>
+    <div class="ml-field"><label>PIN</label><input id="unlockProfilePin" type="password" inputmode="numeric" maxlength="12" autocomplete="current-password"></div>
+    <div class="ml-error" id="unlockProfileError"></div>
+    <div class="ml-modal-actions">
+      <button class="ml-btn primary" id="unlockProfileBtn" type="button">Sblocca</button>
+    </div>
+  </div>
+</div>
+
+<div class="ml-modal" id="profileManagerModal" aria-hidden="true">
+  <div class="ml-modal-card">
+    <div class="ml-modal-head">
+      <div>
+        <div class="ml-modal-title">Profilo e dati</div>
+        <div class="ml-modal-sub">Gestisci profili, backup e trasferimento su un altro computer.</div>
+      </div>
+      <button class="ml-modal-close" data-close-modal="profileManagerModal" type="button">×</button>
+    </div>
+    <div class="profile-manager-list" id="profileManagerList"></div>
+    <div class="ml-modal-actions" style="justify-content:flex-start">
+      <button class="ml-btn primary" id="managerCreateProfileBtn" type="button">+ Nuovo profilo</button>
+      <button class="ml-btn" id="exportActiveProfileBtn" type="button">Esporta profilo</button>
+      <button class="ml-btn" id="managerImportProfileBtn" type="button">Importa profilo</button>
+      <button class="ml-btn" id="backupViewerBtn" type="button">Backup Viewer</button>
+      <button class="ml-btn" id="managerRestoreViewerBtn" type="button">Ripristina backup</button>
+      <button class="ml-btn" id="lockViewerBtn" type="button">Blocca Viewer</button>
+    </div>
+  </div>
+</div>
+
+<div class="ml-modal" id="infoModal" aria-hidden="true">
+  <div class="ml-modal-card">
+    <div class="ml-modal-head">
+      <div>
+        <div class="ml-modal-title">Come funziona Viewer</div>
+        <div class="ml-modal-sub">Guida rapida a profili, privacy, file e backup.</div>
+      </div>
+      <button class="ml-modal-close" data-close-modal="infoModal" type="button">×</button>
+    </div>
+    <div class="guide-section">
+      <div class="guide-kicker">01 · Profili</div>
+      <h3>Uno spazio separato per ogni persona</h3>
+      <p>Ogni profilo mantiene separati i propri file AutoBit, ImmoBit e ScentWeave. È utile su computer condivisi, in famiglia o in piccoli team.</p>
+    </div>
+    <div class="guide-section">
+      <div class="guide-kicker">02 · PIN</div>
+      <h3>Protezione locale</h3>
+      <p>Il PIN serve per sbloccare il profilo sul dispositivo. Memmola Labs non riceve il PIN e non può recuperarlo. I dati archiviati dal Viewer vengono cifrati localmente.</p>
+    </div>
+    <div class="guide-section">
+      <div class="guide-kicker">03 · File</div>
+      <h3>I dati restano sul dispositivo</h3>
+      <p>I file vengono letti dal browser e salvati nello spazio locale del profilo. Non vengono caricati sui server Memmola Labs.</p>
+    </div>
+    <div class="guide-section">
+      <div class="guide-kicker">04 · Browser e app</div>
+      <h3>Stesso dispositivo, stesso spazio locale</h3>
+      <p>La versione browser e la PWA installata possono usare gli stessi dati quando appartengono allo stesso browser/profilo e allo stesso dominio. Browser diversi o computer diversi hanno archivi separati.</p>
+    </div>
+    <div class="guide-section">
+      <div class="guide-kicker">05 · Cambio computer</div>
+      <h3>Esporta o crea un backup</h3>
+      <ul>
+        <li><strong>Esporta profilo:</strong> trasferisce un singolo profilo con i suoi file cifrati.</li>
+        <li><strong>Backup Viewer:</strong> salva tutti i profili e i relativi archivi in un unico file.</li>
+        <li><strong>Importa/Ripristina:</strong> ricrea i dati sul nuovo computer.</li>
+      </ul>
+    </div>
+    <div class="guide-section">
+      <div class="guide-kicker">06 · Sicurezza</div>
+      <h3>Protezione pratica, non un account cloud</h3>
+      <p>Il Viewer è progettato per scoraggiare accessi casuali e proteggere i dati locali. Chi ha controllo completo del sistema operativo o del profilo browser può comunque intervenire sullo storage locale.</p>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="profileImportInput" accept=".viewerprofile,application/json" hidden>
+<input type="file" id="viewerBackupInput" accept=".viewerbackup,application/json" hidden>
+
 
 <div class="lang-switch" id="homeLangSwitch">
   <button class="lang-btn" data-lang="it" type="button">IT</button>
@@ -924,6 +1267,413 @@ body{
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
+
+/* =========================================================
+   LOCAL PROFILE SYSTEM — IndexedDB + PBKDF2 + AES-GCM
+   ========================================================= */
+const MLDB_NAME = 'memmola_viewer_2026';
+const MLDB_VERSION = 1;
+const PROFILE_ITERATIONS = 210000;
+
+let mlDb = null;
+let activeProfile = null;
+let activeProfileKey = null;
+let pendingUnlockProfileId = null;
+let failedUnlocks = 0;
+
+function b64FromBytes(bytes){
+  let bin = '';
+  const arr = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
+  for(let i=0;i<arr.length;i+=0x8000){
+    bin += String.fromCharCode(...arr.subarray(i, i+0x8000));
+  }
+  return btoa(bin);
+}
+function bytesFromB64(s){
+  const bin = atob(s);
+  const out = new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) out[i]=bin.charCodeAt(i);
+  return out;
+}
+function randomBytes(n){
+  const a = new Uint8Array(n);
+  crypto.getRandomValues(a);
+  return a;
+}
+async function deriveProfileKey(pin, salt){
+  const material = await crypto.subtle.importKey(
+    'raw', new TextEncoder().encode(pin), 'PBKDF2', false, ['deriveKey']
+  );
+  return crypto.subtle.deriveKey(
+    {name:'PBKDF2', salt, iterations:PROFILE_ITERATIONS, hash:'SHA-256'},
+    material,
+    {name:'AES-GCM', length:256},
+    false,
+    ['encrypt','decrypt']
+  );
+}
+async function encryptBytes(bytes, key){
+  const iv = randomBytes(12);
+  const plain = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
+  const cipher = await crypto.subtle.encrypt({name:'AES-GCM',iv}, key, plain);
+  return {iv, cipher:new Uint8Array(cipher)};
+}
+async function decryptBytes(cipher, iv, key){
+  const plain = await crypto.subtle.decrypt({name:'AES-GCM',iv}, key, cipher);
+  return new Uint8Array(plain);
+}
+function openMlDb(){
+  return new Promise((resolve,reject)=>{
+    const req = indexedDB.open(MLDB_NAME, MLDB_VERSION);
+    req.onupgradeneeded = ()=>{
+      const db=req.result;
+      if(!db.objectStoreNames.contains('profiles')){
+        db.createObjectStore('profiles',{keyPath:'id'});
+      }
+      if(!db.objectStoreNames.contains('files')){
+        const store=db.createObjectStore('files',{keyPath:'id'});
+        store.createIndex('profileId','profileId',{unique:false});
+      }
+    };
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error);
+  });
+}
+function idbTx(store, mode='readonly'){
+  return mlDb.transaction(store,mode).objectStore(store);
+}
+function idbReq(req){
+  return new Promise((resolve,reject)=>{
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error);
+  });
+}
+async function getProfiles(){
+  return (await idbReq(idbTx('profiles').getAll())).sort((a,b)=>(a.createdAt||'').localeCompare(b.createdAt||''));
+}
+async function getProfile(id){ return idbReq(idbTx('profiles').get(id)); }
+async function putProfile(p){ return idbReq(idbTx('profiles','readwrite').put(p)); }
+async function deleteProfileRecord(id){
+  const tx=mlDb.transaction(['profiles','files'],'readwrite');
+  tx.objectStore('profiles').delete(id);
+  const idx=tx.objectStore('files').index('profileId');
+  const range=IDBKeyRange.only(id);
+  await new Promise((resolve,reject)=>{
+    const req=idx.openCursor(range);
+    req.onsuccess=()=>{
+      const cur=req.result;
+      if(cur){cur.delete();cur.continue();} else resolve();
+    };
+    req.onerror=()=>reject(req.error);
+  });
+}
+async function getProfileFiles(profileId){
+  return idbReq(idbTx('files').index('profileId').getAll(profileId));
+}
+async function putStoredFile(record){ return idbReq(idbTx('files','readwrite').put(record)); }
+
+async function makePinCheck(key){
+  const enc = await encryptBytes(new TextEncoder().encode('MEMMOLA_VIEWER_PROFILE_OK'), key);
+  return {iv:b64FromBytes(enc.iv), cipher:b64FromBytes(enc.cipher)};
+}
+async function verifyPin(profile,pin){
+  try{
+    const salt=bytesFromB64(profile.salt);
+    const key=await deriveProfileKey(pin,salt);
+    const plain=await decryptBytes(bytesFromB64(profile.pinCheck.cipher),bytesFromB64(profile.pinCheck.iv),key);
+    return {ok:new TextDecoder().decode(plain)==='MEMMOLA_VIEWER_PROFILE_OK',key};
+  }catch{
+    return {ok:false,key:null};
+  }
+}
+
+function openModal(id){
+  const m=document.getElementById(id);
+  if(m){m.classList.add('active');m.setAttribute('aria-hidden','false');}
+}
+function closeModal(id){
+  const m=document.getElementById(id);
+  if(m){m.classList.remove('active');m.setAttribute('aria-hidden','true');}
+}
+document.addEventListener('click',e=>{
+  const btn=e.target.closest('[data-close-modal]');
+  if(btn) closeModal(btn.dataset.closeModal);
+  if(e.target.classList.contains('ml-modal')) closeModal(e.target.id);
+});
+
+function initials(name){
+  const parts=String(name||'P').trim().split(/\s+/).filter(Boolean);
+  return (parts.length>1?(parts[0][0]+parts[parts.length-1][0]):parts[0]?.slice(0,2)||'P').toUpperCase();
+}
+function escapeProfileHtml(v){
+  return String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+async function renderProfileGate(){
+  const list=document.getElementById('profileList');
+  const profiles=await getProfiles();
+  list.innerHTML='';
+  profiles.forEach(p=>{
+    const card=document.createElement('button');
+    card.type='button';
+    card.className='profile-card';
+    card.innerHTML=`<div class="profile-card-avatar">${escapeProfileHtml(initials(p.name))}</div>
+      <div class="profile-card-name">${escapeProfileHtml(p.name)}</div>
+      <div class="profile-card-lock">🔒 PIN locale</div>`;
+    card.onclick=()=>requestUnlock(p.id);
+    list.appendChild(card);
+  });
+  if(!profiles.length){
+    list.innerHTML='<div style="color:#8493A5;font-size:14px;padding:24px">Nessun profilo ancora creato.</div>';
+  }
+}
+async function renderProfileManager(){
+  const wrap=document.getElementById('profileManagerList');
+  const profiles=await getProfiles();
+  wrap.innerHTML='';
+  for(const p of profiles){
+    const files=await getProfileFiles(p.id);
+    const row=document.createElement('div');
+    row.className='profile-manager-item';
+    row.innerHTML=`<div class="profile-manager-main">
+      <div class="profile-manager-avatar">${escapeProfileHtml(initials(p.name))}</div>
+      <div><div class="profile-manager-name">${escapeProfileHtml(p.name)}${activeProfile?.id===p.id?' · attivo':''}</div>
+      <div class="profile-manager-meta">${files.length} file archiviati · creato ${new Date(p.createdAt).toLocaleDateString()}</div></div>
+      </div>
+      <div class="profile-manager-actions">
+        ${activeProfile?.id!==p.id?`<button class="ml-btn" data-switch="${p.id}">Apri</button>`:''}
+        <button class="ml-btn danger" data-delete="${p.id}">Elimina</button>
+      </div>`;
+    wrap.appendChild(row);
+  }
+  wrap.querySelectorAll('[data-switch]').forEach(b=>b.onclick=()=>{
+    closeModal('profileManagerModal');requestUnlock(b.dataset.switch);
+  });
+  wrap.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>deleteProfileUi(b.dataset.delete));
+}
+
+function showProfileGate(){
+  activeProfile=null;activeProfileKey=null;
+  loadedEvaluations=[];
+  currentEvaluationId=null;
+  document.getElementById('viewerTools').style.display='none';
+  document.getElementById('profileGate').classList.remove('hidden');
+  document.getElementById('presentation').style.display='none';
+  document.getElementById('dropZone').style.display='none';
+  renderProfileGate();
+}
+async function activateProfile(profile,key){
+  activeProfile=profile;
+  activeProfileKey=key;
+  localStorage.setItem('ml_viewer_last_profile',profile.id);
+  document.getElementById('profileGate').classList.add('hidden');
+  document.getElementById('viewerTools').style.display='flex';
+  document.getElementById('viewerProfileName').textContent=profile.name;
+  document.getElementById('viewerProfileAvatar').textContent=initials(profile.name);
+  document.getElementById('dropZone').style.display='flex';
+  document.getElementById('presentation').style.display='none';
+  document.getElementById('homeLangSwitch').style.display='flex';
+  await loadStoredProfileFiles();
+}
+function requestUnlock(profileId){
+  pendingUnlockProfileId=profileId;
+  getProfile(profileId).then(p=>{
+    document.getElementById('unlockProfileTitle').textContent='Sblocca ' + (p?.name||'profilo');
+    document.getElementById('unlockProfilePin').value='';
+    document.getElementById('unlockProfileError').classList.remove('show');
+    openModal('unlockProfileModal');
+    setTimeout(()=>document.getElementById('unlockProfilePin').focus(),80);
+  });
+}
+async function unlockPendingProfile(){
+  const p=await getProfile(pendingUnlockProfileId);
+  if(!p)return;
+  const pin=document.getElementById('unlockProfilePin').value;
+  const result=await verifyPin(p,pin);
+  const err=document.getElementById('unlockProfileError');
+  if(!result.ok){
+    failedUnlocks++;
+    err.textContent=failedUnlocks>=3?'PIN errato. Attendi qualche secondo prima di riprovare.':'PIN errato.';
+    err.classList.add('show');
+    if(failedUnlocks>=3){
+      document.getElementById('unlockProfileBtn').disabled=true;
+      setTimeout(()=>{document.getElementById('unlockProfileBtn').disabled=false;failedUnlocks=0;},4000);
+    }
+    return;
+  }
+  failedUnlocks=0;
+  closeModal('unlockProfileModal');
+  await activateProfile(p,result.key);
+}
+
+async function createProfileUi(){
+  const name=document.getElementById('newProfileName').value.trim();
+  const pin=document.getElementById('newProfilePin').value;
+  const pin2=document.getElementById('newProfilePin2').value;
+  const err=document.getElementById('createProfileError');
+  err.classList.remove('show');
+  if(!name){err.textContent='Inserisci un nome per il profilo.';err.classList.add('show');return;}
+  if(pin.length<4){err.textContent='Il PIN deve contenere almeno 4 caratteri.';err.classList.add('show');return;}
+  if(pin!==pin2){err.textContent='I due PIN non coincidono.';err.classList.add('show');return;}
+  const salt=randomBytes(16);
+  const key=await deriveProfileKey(pin,salt);
+  const pinCheck=await makePinCheck(key);
+  const profile={
+    id:'pr_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8),
+    name,createdAt:new Date().toISOString(),
+    salt:b64FromBytes(salt),pinCheck
+  };
+  await putProfile(profile);
+  document.getElementById('newProfileName').value='';
+  document.getElementById('newProfilePin').value='';
+  document.getElementById('newProfilePin2').value='';
+  closeModal('createProfileModal');
+  await activateProfile(profile,key);
+}
+async function deleteProfileUi(id){
+  const p=await getProfile(id);
+  if(!p)return;
+  if(!confirm(`Eliminare il profilo "${p.name}" e tutti i file locali associati? Questa operazione non può essere annullata.`))return;
+  await deleteProfileRecord(id);
+  if(activeProfile?.id===id){
+    closeModal('profileManagerModal');
+    showProfileGate();
+  }else{
+    await renderProfileManager();await renderProfileGate();
+  }
+}
+
+async function persistRawFileForProfile(file,app){
+  if(!activeProfile||!activeProfileKey)return;
+  const bytes=new Uint8Array(await file.arrayBuffer());
+  const enc=await encryptBytes(bytes,activeProfileKey);
+  const rec={
+    id:'pf_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,9),
+    profileId:activeProfile.id,
+    name:file.name,
+    app,
+    type:file.type||'application/octet-stream',
+    size:file.size,
+    createdAt:new Date().toISOString(),
+    iv:b64FromBytes(enc.iv),
+    cipher:b64FromBytes(enc.cipher)
+  };
+  await putStoredFile(rec);
+}
+async function loadStoredProfileFiles(){
+  loadedEvaluations=[];
+  currentEvaluationId=null;
+  const records=await getProfileFiles(activeProfile.id);
+  for(const rec of records){
+    try{
+      const bytes=await decryptBytes(bytesFromB64(rec.cipher),bytesFromB64(rec.iv),activeProfileKey);
+      const file=new File([bytes],rec.name,{type:rec.type||'application/octet-stream'});
+      const data=await readEvaluationFromBlob(file);
+      const app=normalizeApp(data);
+      if(!app)continue;
+      loadedEvaluations.push({id:rec.id,app,data,fileName:rec.name,persisted:true});
+    }catch(e){
+      console.warn('Viewer: impossibile aprire file locale',rec.name,e);
+    }
+  }
+}
+async function removePersistedFile(id){
+  try{await idbReq(idbTx('files','readwrite').delete(id));}catch(e){console.warn(e);}
+}
+
+function downloadJsonFile(name,data){
+  const blob=new Blob([JSON.stringify(data)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1200);
+}
+async function exportProfile(profileId){
+  const p=await getProfile(profileId);
+  if(!p)return;
+  const files=await getProfileFiles(profileId);
+  downloadJsonFile(`${p.name.replace(/[^\w\-]+/g,'_')||'profilo'}.viewerprofile`,{
+    format:'memmola-viewer-profile',version:1,exportedAt:new Date().toISOString(),profile:p,files
+  });
+}
+async function exportViewerBackup(){
+  const profiles=await getProfiles();
+  const files=await idbReq(idbTx('files').getAll());
+  downloadJsonFile(`memmola-viewer-backup-${new Date().toISOString().slice(0,10)}.viewerbackup`,{
+    format:'memmola-viewer-backup',version:1,exportedAt:new Date().toISOString(),profiles,files
+  });
+}
+async function importProfileFile(file){
+  const payload=JSON.parse(await file.text());
+  if(payload?.format!=='memmola-viewer-profile'||!payload.profile||!Array.isArray(payload.files))throw new Error('Backup profilo non valido.');
+  let p=payload.profile;
+  if(await getProfile(p.id)){
+    const oldId=p.id;
+    p={...p,id:'pr_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8),name:p.name+' (importato)'};
+    payload.files=payload.files.map(f=>({...f,id:'pf_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,9),profileId:p.id}));
+  }
+  await putProfile(p);
+  for(const rec of payload.files)await putStoredFile({...rec,profileId:p.id});
+  await renderProfileGate();
+  alert('Profilo importato. Aprilo e inserisci il suo PIN.');
+}
+async function importViewerBackupFile(file){
+  const payload=JSON.parse(await file.text());
+  if(payload?.format!=='memmola-viewer-backup'||!Array.isArray(payload.profiles)||!Array.isArray(payload.files))throw new Error('Backup Viewer non valido.');
+  if(!confirm('Il ripristino aggiungerà i profili del backup a quelli presenti. Continuare?'))return;
+  const idMap=new Map();
+  for(const original of payload.profiles){
+    let p={...original};
+    if(await getProfile(p.id)){
+      const old=p.id;
+      p.id='pr_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8);
+      p.name=p.name+' (ripristinato)';
+      idMap.set(old,p.id);
+    }
+    await putProfile(p);
+  }
+  for(const original of payload.files){
+    const rec={...original};
+    if(idMap.has(rec.profileId))rec.profileId=idMap.get(rec.profileId);
+    if(await idbReq(idbTx('files').get(rec.id)))rec.id='pf_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,9);
+    await putStoredFile(rec);
+  }
+  await renderProfileGate();
+  alert('Backup Viewer ripristinato.');
+}
+
+async function initProfileSystem(){
+  if(!window.indexedDB||!window.crypto?.subtle){
+    alert('Questo browser non supporta le funzioni di sicurezza locali richieste dal Viewer.');
+    return;
+  }
+  mlDb=await openMlDb();
+  document.getElementById('dropZone').style.display='none';
+  await renderProfileGate();
+}
+
+document.getElementById('createProfileBtn').onclick=()=>openModal('createProfileModal');
+document.getElementById('managerCreateProfileBtn').onclick=()=>{closeModal('profileManagerModal');openModal('createProfileModal')};
+document.getElementById('saveProfileBtn').onclick=createProfileUi;
+document.getElementById('unlockProfileBtn').onclick=unlockPendingProfile;
+document.getElementById('unlockProfilePin').addEventListener('keydown',e=>{if(e.key==='Enter')unlockPendingProfile()});
+document.getElementById('profileMenuBtn').onclick=async()=>{await renderProfileManager();openModal('profileManagerModal')};
+document.getElementById('infoBtn').onclick=()=>openModal('infoModal');
+document.getElementById('gateInfoBtn').onclick=()=>openModal('infoModal');
+document.getElementById('lockViewerBtn').onclick=()=>{closeModal('profileManagerModal');resetToHome(true);showProfileGate()};
+document.getElementById('exportActiveProfileBtn').onclick=()=>activeProfile&&exportProfile(activeProfile.id);
+document.getElementById('backupViewerBtn').onclick=exportViewerBackup;
+document.getElementById('importProfileBtn').onclick=()=>document.getElementById('profileImportInput').click();
+document.getElementById('managerImportProfileBtn').onclick=()=>document.getElementById('profileImportInput').click();
+document.getElementById('restoreViewerBtn').onclick=()=>document.getElementById('viewerBackupInput').click();
+document.getElementById('managerRestoreViewerBtn').onclick=()=>document.getElementById('viewerBackupInput').click();
+document.getElementById('profileImportInput').onchange=async e=>{
+  const f=e.target.files?.[0];e.target.value='';if(!f)return;
+  try{await importProfileFile(f)}catch(err){alert(err.message||'Importazione non riuscita.')}
+};
+document.getElementById('viewerBackupInput').onchange=async e=>{
+  const f=e.target.files?.[0];e.target.value='';if(!f)return;
+  try{await importViewerBackupFile(f)}catch(err){alert(err.message||'Ripristino non riuscito.')}
+};
+
 
 const I18N = {
   it: {
@@ -2206,8 +2956,9 @@ function viewLoadedEvaluation(id){
   loadData(item.data);
 }
 
-function removeLoadedEvaluation(id){
+async function removeLoadedEvaluation(id){
   const item = loadedEvaluations.find(x => x.id === id);
+  if(item?.persisted) await removePersistedFile(id);
   if(item && item.data && item.data._fotoUrls){
     Object.values(item.data._fotoUrls).forEach(url => { try{ URL.revokeObjectURL(url); }catch{} });
   }
@@ -2625,7 +3376,14 @@ async function readEvaluationFromBlob(file){
 async function loadFileFromBlob(file){
   try{
     const data = await readEvaluationFromBlob(file);
-    addAndLoadEvaluation(data, file.name);
+    const app = normalizeApp(data);
+    if(!app) throw new Error(trText('Formato file non riconosciuto.'));
+    await persistRawFileForProfile(file, app);
+    const records = await getProfileFiles(activeProfile.id);
+    const latest = records[records.length - 1];
+    loadedEvaluations.push({ id:latest?.id || ('ev_'+Date.now().toString(36)), app, data, fileName:file.name, persisted:true });
+    currentEvaluationId = loadedEvaluations[loadedEvaluations.length-1].id;
+    loadData(data);
   }catch(e){
     alert(trText('Errore apertura file: ') + (e && e.message ? e.message : trText('file non valido o corrotto.')));
   }
@@ -2644,9 +3402,13 @@ async function loadFiles(fileList){
       const app = normalizeApp(data);
       if(!app){ alert(file.name + ': ' + trText('Formato file non riconosciuto.')); continue; }
       const id = 'ev_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,8);
-      loadedEvaluations.push({ id, app, data, fileName: file.name });
+      await persistRawFileForProfile(file, app);
+      const storedRecords = await getProfileFiles(activeProfile.id);
+      const latestStored = storedRecords[storedRecords.length - 1];
+      const effectiveId = latestStored?.id || id;
+      loadedEvaluations.push({ id: effectiveId, app, data, fileName: file.name, persisted:true });
       lastData = data;
-      lastId = id;
+      lastId = effectiveId;
     }catch(e){
       alert(file.name + ': ' + (e && e.message ? e.message : trText('file non valido o corrotto.')));
     }
@@ -2698,7 +3460,7 @@ document.getElementById('fileInput').onchange=loadFile;
 document.getElementById('demoImmo').onclick=()=>addAndLoadEvaluation(JSON.parse(JSON.stringify(DEMO_IMMO)), 'Demo ImmoBit');
 document.getElementById('demoAuto').onclick=()=>addAndLoadEvaluation(JSON.parse(JSON.stringify(DEMO_AUTO)), 'Demo AutoBit');
 document.getElementById('demoScent').onclick=()=>addAndLoadEvaluation(JSON.parse(JSON.stringify(DEMO_SCENT)), 'Demo ScentWeave');
-document.getElementById('closeBtn').onclick=()=>resetToHome(true);
+document.getElementById('closeBtn').onclick=()=>resetToHome(false);
 
 document.getElementById('homeLangSwitch').style.display = 'flex';
 document.getElementById('topLangSwitch').style.display = 'none';
@@ -2759,6 +3521,12 @@ window.addEventListener('appinstalled', () => {
   if (installBtn) installBtn.style.display = 'none';
 });
 
+
+
+initProfileSystem().catch(err=>{
+  console.error('Viewer profile init failed',err);
+  alert('Impossibile inizializzare i profili locali del Viewer.');
+});
 
 if('serviceWorker' in navigator){
   window.addEventListener('load', () => {
