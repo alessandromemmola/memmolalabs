@@ -4,7 +4,7 @@ const ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './icons/viewer_192.png',
+  './icons/icon-192.png',
   './icons/viewer_2026.png',
   'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap',
   'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js',
