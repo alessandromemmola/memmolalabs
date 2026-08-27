@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<link rel="manifest" href="manifest.json?v=5">
+<link rel="manifest" href="manifest.json?v=7">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -924,6 +924,25 @@ body{
     linear-gradient(180deg,#fff,#F5F9FE);
 }
 .profile-gate.hidden{display:none}
+
+.profile-gate-lang{
+  position:absolute;
+  top:22px;
+  right:24px;
+  z-index:2;
+  display:flex;
+  gap:5px;
+  padding:5px;
+  border:1px solid #DCE5EF;
+  border-radius:999px;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 8px 26px rgba(35,59,86,.08);
+  backdrop-filter:blur(12px);
+}
+.profile-gate-lang .lang-btn{
+  position:static;
+}
+
 .profile-gate-inner{
   width:min(1050px,100%);
   text-align:center;
@@ -1738,22 +1757,26 @@ body.viewer-presentation-open #dropZone{display:none!important}
 </div>
 
 <div class="profile-gate" id="profileGate">
+  <div class="profile-gate-lang" aria-label="Language">
+    <button class="lang-btn" data-lang="it" type="button">IT</button>
+    <button class="lang-btn" data-lang="en" type="button">EN</button>
+  </div>
   <div class="profile-gate-inner">
     <div class="profile-brand">
       <img src="icons/memmolalabs.png" alt="Viewer">
       <div class="profile-brand-copy">
         <div class="profile-brand-title">Memmola Labs Viewer</div>
-        <div class="profile-brand-sub">Locale · Offline · Multi-profilo</div>
+        <div class="profile-brand-sub" data-i18n="gateBrandSub">Locale · Offline · Multi-profilo</div>
       </div>
     </div>
-    <div class="profile-title">Chi sta usando Viewer?</div>
-    <div class="profile-sub">Ogni profilo mantiene separati file e dati. Il PIN protegge l'accesso locale e i backup permettono di trasferire tutto su un altro computer.</div>
+    <div class="profile-title" data-i18n="gateTitle">Chi sta usando Viewer?</div>
+    <div class="profile-sub" data-i18n="gateSub">Ogni profilo mantiene separati file e dati. Il PIN protegge l'accesso locale e i backup permettono di trasferire tutto su un altro computer.</div>
     <div class="profile-list" id="profileList"></div>
     <div class="profile-actions">
-      <button class="ml-btn primary" id="createProfileBtn" type="button">+ Nuovo profilo</button>
-      <button class="ml-btn" id="importProfileBtn" type="button">Importa profilo</button>
-      <button class="ml-btn" id="restoreViewerBtn" type="button">Ripristina backup Viewer</button>
-      <button class="ml-btn" id="gateInfoBtn" type="button">ⓘ Come funziona</button>
+      <button class="ml-btn primary" id="createProfileBtn" type="button" data-i18n="gateNewProfile">+ Nuovo profilo</button>
+      <button class="ml-btn" id="importProfileBtn" type="button" data-i18n="gateImportProfile">Importa profilo</button>
+      <button class="ml-btn" id="restoreViewerBtn" type="button" data-i18n="gateRestoreBackup">Ripristina backup Viewer</button>
+      <button class="ml-btn" id="gateInfoBtn" type="button" data-i18n="gateHowItWorks">ⓘ Come funziona</button>
     </div>
   </div>
 </div>
@@ -1925,20 +1948,6 @@ body.viewer-presentation-open #dropZone{display:none!important}
       <h3>Protezione pratica, non un account cloud</h3>
       <p>Il Viewer è progettato per scoraggiare accessi casuali e proteggere i dati locali. Chi ha controllo completo del sistema operativo o del profilo browser può comunque intervenire sullo storage locale.</p>
     </div>
-
-    <div class="guide-section">
-    <div class="guide-kicker">07 · Licenza</div>
-    <h3>Licenza d'uso</h3>
-    <p>
-      Consulta le condizioni d'uso complete del Viewer.
-      <a href="https://memmolalabs.com/viewer/license.html"
-         target="_blank"
-         rel="noopener noreferrer">
-        Apri la licenza
-      </a>
-    </p>
-  </div>
-    
   </div>
 </div>
 
@@ -2197,7 +2206,7 @@ body.viewer-presentation-open #dropZone{display:none!important}
 
     <div class="dz-inner viewer-legacy-home" id="dzInner">
     <div class="dz-logo" style="display:flex;align-items:center;justify-content:center;gap:12px">
-  <img src="icons/viewer_2026.png"
+  <img src="icons/memmolalabs.png"
        alt="Viewer"
        style="width:56px;height:56px;border-radius:14px">
 
@@ -2910,6 +2919,13 @@ document.getElementById('viewerBackupInput').onchange=async e=>{
 
 const I18N = {
   it: {
+    gateBrandSub:'Locale · Offline · Multi-profilo',
+    gateTitle:'Chi sta usando Viewer?',
+    gateSub:"Ogni profilo mantiene separati file e dati. Il PIN protegge l'accesso locale e i backup permettono di trasferire tutto su un altro computer.",
+    gateNewProfile:'+ Nuovo profilo',
+    gateImportProfile:'Importa profilo',
+    gateRestoreBackup:'Ripristina backup Viewer',
+    gateHowItWorks:'ⓘ Come funziona',
     viewerSubtitle:'Visualizzatore valutazioni', dropTitle:'Trascina il file o carica demo',
     dropSub:'Trascina un file .immobit, .autobit o .scentweave per visualizzare<br>il contenuto in modalità presentazione professionale.',
     loadFile:'Carica file', demoImmo:'Demo ImmoBit', demoAuto:'Demo AutoBit', demoScent:'Demo ScentWeave', dropHint:'Supporta file esportati da ImmoBit, AutoBit e ScentWeave', installApp:'Installa come app',
@@ -2920,6 +2936,13 @@ const I18N = {
     addEvaluation:'Aggiungi valutazione', close:'Chiudi', photoHint:'ESC per chiudere · Frecce per navigare'
   },
   en: {
+    gateBrandSub:'Local · Offline · Multi-profile',
+    gateTitle:'Who is using Viewer?',
+    gateSub:'Each profile keeps its files and data separate. The PIN protects local access, and backups let you transfer everything to another computer.',
+    gateNewProfile:'+ New profile',
+    gateImportProfile:'Import profile',
+    gateRestoreBackup:'Restore Viewer backup',
+    gateHowItWorks:'ⓘ How it works',
     viewerSubtitle:'Evaluation viewer', dropTitle:'Drop a file or load a demo',
     dropSub:'Drop an .immobit, .autobit or .scentweave file to view<br>the content in professional presentation mode.',
     loadFile:'Load file', demoImmo:'ImmoBit demo', demoAuto:'AutoBit demo', demoScent:'ScentWeave demo', dropHint:'Supports files exported from ImmoBit, AutoBit and ScentWeave', installApp:'Install as app',
@@ -5058,7 +5081,7 @@ initProfileSystem().catch(err=>{
 
 if('serviceWorker' in navigator){
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js?v=6').catch(()=>{});
+    navigator.serviceWorker.register('./service-worker.js?v=7').catch(()=>{});
   });
 }
 </script>
