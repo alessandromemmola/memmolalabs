@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<link rel="manifest" href="manifest.json?v=7">
+<link rel="manifest" href="manifest.json?v=8">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -1196,6 +1196,31 @@ body{
 }
 .vhs-home-link:hover{color:#2F7BFF}
 
+.vhs-install-btn{
+  width:100%;
+  min-height:42px;
+  margin-bottom:8px;
+  border:1px solid #CFE0F4;
+  border-radius:10px;
+  background:linear-gradient(135deg,#2F7BFF,#55A2FF);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:10px;
+  padding:0 12px;
+  font:750 12px/1 inherit;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(47,123,255,.16);
+}
+.vhs-install-btn:hover{filter:brightness(1.03)}
+.vhs-install-btn span:first-child{
+  width:20px;
+  text-align:center;
+  font-size:16px;
+}
+
+
 .viewer-home-main{
   min-height:100vh;
   margin-left:238px;
@@ -1763,7 +1788,7 @@ body.viewer-presentation-open #dropZone{display:none!important}
   </div>
   <div class="profile-gate-inner">
     <div class="profile-brand">
-      <img src="icons/viewer_2026.png" alt="Viewer">
+      <img src="icons/memmolalabs.png" alt="Viewer">
       <div class="profile-brand-copy">
         <div class="profile-brand-title">Memmola Labs Viewer</div>
         <div class="profile-brand-sub" data-i18n="gateBrandSub">Locale · Offline · Multi-profilo</div>
@@ -1948,6 +1973,19 @@ body.viewer-presentation-open #dropZone{display:none!important}
       <h3>Protezione pratica, non un account cloud</h3>
       <p>Il Viewer è progettato per scoraggiare accessi casuali e proteggere i dati locali. Chi ha controllo completo del sistema operativo o del profilo browser può comunque intervenire sullo storage locale.</p>
     </div>
+    <div class="guide-section">
+      <div class="guide-kicker">07 · Licenza</div>
+      <h3>Licenza d'uso</h3>
+      <p>
+        Consulta le condizioni d'uso complete del Viewer.
+        <a href="https://memmolalabs.com/viewer/license.html"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="color:#2F7BFF;font-weight:750;text-decoration:none">
+          Apri la licenza
+        </a>
+      </p>
+    </div>
   </div>
 </div>
 
@@ -1964,7 +2002,7 @@ body.viewer-presentation-open #dropZone{display:none!important}
 <div id="dropZone">
   <aside class="viewer-home-sidebar" aria-label="Navigazione Viewer">
     <div class="vhs-brand">
-      <img src="icons/viewer_2026.png" alt="">
+      <img src="icons/memmolalabs.png" alt="">
       <span>Viewer</span>
     </div>
 
@@ -1982,6 +2020,10 @@ body.viewer-presentation-open #dropZone{display:none!important}
     </nav>
 
     <div class="vhs-bottom">
+      <button class="vhs-install-btn" id="installBtnDashboard" type="button" style="display:none">
+        <span>⇩</span>
+        <span data-i18n="installDesktop">Installa Viewer sul desktop</span>
+      </button>
       <button class="vhs-item" type="button" id="sidebarProfileBtn"><span>◉</span>Profilo</button>
       <a class="vhs-home-link" href="https://memmolalabs.com/">← Memmola Labs</a>
     </div>
@@ -2206,7 +2248,7 @@ body.viewer-presentation-open #dropZone{display:none!important}
 
     <div class="dz-inner viewer-legacy-home" id="dzInner">
     <div class="dz-logo" style="display:flex;align-items:center;justify-content:center;gap:12px">
-  <img src="icons/viewer_2026.png"
+  <img src="icons/memmolalabs.png"
        alt="Viewer"
        style="width:56px;height:56px;border-radius:14px">
 
@@ -2926,6 +2968,7 @@ const I18N = {
     gateImportProfile:'Importa profilo',
     gateRestoreBackup:'Ripristina backup Viewer',
     gateHowItWorks:'ⓘ Come funziona',
+    installDesktop:'Installa Viewer sul desktop',
     viewerSubtitle:'Visualizzatore valutazioni', dropTitle:'Trascina il file o carica demo',
     dropSub:'Trascina un file .immobit, .autobit o .scentweave per visualizzare<br>il contenuto in modalità presentazione professionale.',
     loadFile:'Carica file', demoImmo:'Demo ImmoBit', demoAuto:'Demo AutoBit', demoScent:'Demo ScentWeave', dropHint:'Supporta file esportati da ImmoBit, AutoBit e ScentWeave', installApp:'Installa come app',
@@ -2943,6 +2986,7 @@ const I18N = {
     gateImportProfile:'Import profile',
     gateRestoreBackup:'Restore Viewer backup',
     gateHowItWorks:'ⓘ How it works',
+    installDesktop:'Install Viewer on desktop',
     viewerSubtitle:'Evaluation viewer', dropTitle:'Drop a file or load a demo',
     dropSub:'Drop an .immobit, .autobit or .scentweave file to view<br>the content in professional presentation mode.',
     loadFile:'Load file', demoImmo:'ImmoBit demo', demoAuto:'AutoBit demo', demoScent:'ScentWeave demo', dropHint:'Supports files exported from ImmoBit, AutoBit and ScentWeave', installApp:'Install as app',
@@ -4776,27 +4820,38 @@ document.addEventListener('keydown', e => {
 
 let deferredInstallPrompt = null;
 const installBtn = document.getElementById('installBtn');
+const installBtnDashboard = document.getElementById('installBtnDashboard');
+
+function setInstallButtonsVisible(visible){
+  if(installBtn) installBtn.style.display = visible ? 'inline-block' : 'none';
+  if(installBtnDashboard) installBtnDashboard.style.display = visible ? 'flex' : 'none';
+}
+
+async function runInstallPrompt(event){
+  event?.stopPropagation?.();
+  if(!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  setInstallButtonsVisible(false);
+}
 
 window.addEventListener('beforeinstallprompt', (event) => {
   event.preventDefault();
   deferredInstallPrompt = event;
-  if (installBtn) installBtn.style.display = 'inline-block';
+  setInstallButtonsVisible(true);
 });
 
 if (installBtn) {
-  installBtn.addEventListener('click', async (event) => {
-    event.stopPropagation();
-    if (!deferredInstallPrompt) return;
-    deferredInstallPrompt.prompt();
-    await deferredInstallPrompt.userChoice;
-    deferredInstallPrompt = null;
-    installBtn.style.display = 'none';
-  });
+  installBtn.addEventListener('click', runInstallPrompt);
+}
+if (installBtnDashboard) {
+  installBtnDashboard.addEventListener('click', runInstallPrompt);
 }
 
 window.addEventListener('appinstalled', () => {
   deferredInstallPrompt = null;
-  if (installBtn) installBtn.style.display = 'none';
+  setInstallButtonsVisible(false);
 });
 
 
@@ -5081,7 +5136,7 @@ initProfileSystem().catch(err=>{
 
 if('serviceWorker' in navigator){
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js?v=7').catch(()=>{});
+    navigator.serviceWorker.register('./service-worker.js?v=8').catch(()=>{});
   });
 }
 </script>
