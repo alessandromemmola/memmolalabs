@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<link rel="manifest" href="manifest.json?v=8">
+<link rel="manifest" href="manifest.json?v=9">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -1788,7 +1788,7 @@ body.viewer-presentation-open #dropZone{display:none!important}
   </div>
   <div class="profile-gate-inner">
     <div class="profile-brand">
-      <img src="icons/memmolalabs.png" alt="Viewer">
+      <img src="icons/viewer_2026.png" alt="Viewer">
       <div class="profile-brand-copy">
         <div class="profile-brand-title">Memmola Labs Viewer</div>
         <div class="profile-brand-sub" data-i18n="gateBrandSub">Locale · Offline · Multi-profilo</div>
@@ -2002,7 +2002,7 @@ body.viewer-presentation-open #dropZone{display:none!important}
 <div id="dropZone">
   <aside class="viewer-home-sidebar" aria-label="Navigazione Viewer">
     <div class="vhs-brand">
-      <img src="icons/memmolalabs.png" alt="">
+      <img src="icons/viewer_2026.png" alt="">
       <span>Viewer</span>
     </div>
 
@@ -2020,7 +2020,7 @@ body.viewer-presentation-open #dropZone{display:none!important}
     </nav>
 
     <div class="vhs-bottom">
-      <button class="vhs-install-btn" id="installBtnDashboard" type="button" style="display:none">
+      <button class="vhs-install-btn" id="installBtnDashboard" type="button">
         <span>⇩</span>
         <span data-i18n="installDesktop">Installa Viewer sul desktop</span>
       </button>
@@ -2248,7 +2248,7 @@ body.viewer-presentation-open #dropZone{display:none!important}
 
     <div class="dz-inner viewer-legacy-home" id="dzInner">
     <div class="dz-logo" style="display:flex;align-items:center;justify-content:center;gap:12px">
-  <img src="icons/memmolalabs.png"
+  <img src="icons/viewer_2026.png"
        alt="Viewer"
        style="width:56px;height:56px;border-radius:14px">
 
@@ -4824,12 +4824,19 @@ const installBtnDashboard = document.getElementById('installBtnDashboard');
 
 function setInstallButtonsVisible(visible){
   if(installBtn) installBtn.style.display = visible ? 'inline-block' : 'none';
-  if(installBtnDashboard) installBtnDashboard.style.display = visible ? 'flex' : 'none';
+  if(installBtnDashboard) installBtnDashboard.style.display = 'flex';
 }
 
 async function runInstallPrompt(event){
   event?.stopPropagation?.();
-  if(!deferredInstallPrompt) return;
+  if(!deferredInstallPrompt){
+    alert(
+      currentLang === 'en'
+        ? 'The browser is not currently exposing the PWA installation prompt. Reload the page after the manifest update, or use the browser menu > Install app.'
+        : 'Il browser non sta ancora esponendo il prompt di installazione PWA. Ricarica la pagina dopo l’aggiornamento del manifest oppure usa il menu del browser > Installa app.'
+    );
+    return;
+  }
   deferredInstallPrompt.prompt();
   await deferredInstallPrompt.userChoice;
   deferredInstallPrompt = null;
@@ -5136,7 +5143,7 @@ initProfileSystem().catch(err=>{
 
 if('serviceWorker' in navigator){
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js?v=8').catch(()=>{});
+    navigator.serviceWorker.register('./service-worker.js?v=9').catch(()=>{});
   });
 }
 </script>
