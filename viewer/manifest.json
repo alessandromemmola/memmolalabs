@@ -2,28 +2,28 @@
   "id": "/viewer/index.html",
   "name": "Memmola Labs Viewer",
   "short_name": "ML Viewer",
-  "description": "Visualizzatore professionale per valutazioni ImmoBit e AutoBit",
+  "description": "Visualizzatore locale per AutoBit, ImmoBit e ScentWeave",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#0F0E0C",
-  "theme_color": "#C9A84C",
+  "background_color": "#ffffff",
+  "theme_color": "#2F7BFF",
   "orientation": "any",
 
   "icons": [
-  {
-    "src": "icons/icon-192.png",
-    "sizes": "192x192",
-    "type": "image/png",
-    "purpose": "any"
-  },
-  {
-    "src": "icons/viewer_2026.png",
-    "sizes": "512x512",
-    "type": "image/png",
-    "purpose": "any"
-  }
-],
+    {
+      "src": "icons/viewer_192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/viewer_2026.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
 
   "categories": ["productivity", "business"],
   "lang": "it"
