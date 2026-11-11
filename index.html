@@ -1,40 +1,33 @@
 <!DOCTYPE html>
-<html lang="it">
+
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Memmola Labs® — software studio di Alessandro Memmola. App, tool web e soluzioni desktop progettate per risolvere problemi reali." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://memmolalabs.com/" />
-  <title>Memmola Labs® — Software, app e strumenti digitali</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Memmola Labs® creates practical apps, web tools and desktop software to solve everyday problems, with privacy in mind." data-i18n-content="meta.description" name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://memmolalabs.com/" rel="canonical"/>
+<title data-i18n="meta.title">Memmola Labs® — Software, apps and digital tools</title>
+<link href="/favicon-32x32.png?v=2" rel="icon" sizes="32x32" type="image/png"/>
+<meta content="Memmola Labs® — Software designed to be useful" property="og:title"/>
+<meta content="Apps, web tools and desktop software built to simplify everyday tasks. Discover the Memmola Labs projects." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://memmolalabs.com/" property="og:url"/>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+<meta content="Memmola Labs" property="og:site_name"/><meta content="en_US" property="og:locale"/>
 
-  <meta property="og:title" content="Memmola Labs® — Software Studio" />
-  <meta property="og:description" content="App, tool web e software desktop progettati da Memmola Labs." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://memmolalabs.com/" />
 
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Memmola Labs">
-  <meta property="og:url" content="https://memmolalabs.com/">
-  <meta property="og:title" content="Memmola Labs — Software. Pensato per essere utile.">
-  <meta property="og:description" content="App, strumenti web e software desktop costruiti per semplificare il lavoro, le decisioni e le piccole cose di ogni giorno.">
-  <meta property="og:image" content="https://memmolalabs.com/images/social/social_card_2026.png">
 
-  <meta property="og:image:secure_url"
-      content="https://memmolalabs.com/images/social/social_card_2026.png">
-
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Memmola Labs — Software. Pensato per essere utile.">
-  <meta name="twitter:description" content="App, strumenti web e software desktop costruiti per semplificare il lavoro, le decisioni e le piccole cose di ogni giorno.">
-  <meta name="twitter:image" content="https://memmolalabs.com/images/social/social_card_2026.png">
-
-  <style>
+<meta content="https://memmolalabs.com/images/social/social_card_2026.png" property="og:image"/>
+<meta content="https://memmolalabs.com/images/social/social_card_2026.png" property="og:image:secure_url"/>
+<meta content="image/png" property="og:image:type"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Memmola Labs® — Software designed to be useful" name="twitter:title"/>
+<meta content="Apps, web tools and desktop software built to simplify everyday tasks. Discover the Memmola Labs projects." name="twitter:description"/>
+<meta content="https://memmolalabs.com/images/social/social_card_2026.png" name="twitter:image"/>
+<style>
     :root{
       --bg:#fff;
       --text:#0b1424;
@@ -1163,269 +1156,224 @@ nav{
     }
 }    
 
+
+
+/* Memmola Labs language selector — keep the existing site layout untouched. */
+.language-switch {
+  position: absolute;
+  right: clamp(14px, 2.8vw, 42px);
+  top: 50%; transform: translateY(-50%);
+  display: flex; align-items: center; gap: 2px;
+  padding: 3px; border: 1px solid #dbe3ef; border-radius: 999px;
+  background: rgba(255,255,255,.96);
+  box-shadow: 0 2px 12px rgba(20,40,80,.04);
+}
+.language-switch button {
+  appearance: none; border: 0; border-radius: 999px;
+  min-width: 36px; min-height: 30px; padding: 4px 9px;
+  background: transparent; color: #55657a;
+  font: 800 11px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  cursor: pointer; transition: background .15s ease,color .15s ease;
+}
+.language-switch button[aria-pressed="true"] {
+  background: #3578ff; color: white;
+}
+.language-switch button:focus-visible {outline: 2px solid #3578ff; outline-offset: 2px}
+@media(max-width:1050px) {
+  .nav-inner { padding-right: 94px; }
+}
+@media(max-width:400px) {
+  .language-switch { right: 12px; }
+  .language-switch button { min-width: 31px; padding-inline: 7px; }
+}
 </style>
 </head>
 <body>
-
-<div class="site-intro" id="siteIntro" aria-hidden="true">
-  <img src="/images/logo/logo.png" alt="" class="site-intro-logo">
-</div>  
-
-<nav>
-  <div class="nav-inner">
-    <a href="/" class="nav-logo" aria-label="Memmola Labs">
-      <img src="/images/logo/logo.png" alt="Memmola Labs" class="nav-logo-img">
-    </a>
-    <div class="nav-links">
-      <a href="#progetti">Prodotti</a>
-      <a href="#scopri">Scopri</a>
-      <a href="/origins/">Origins</a>
-      <a href="/viewer/">Viewer</a>
-      <a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a>
-    </div>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="hero-inner">
-    <div class="eyebrow">Software studio · Latina, Italia</div>
-    <h1>Software<span>Pensato per essere utile.</span></h1>
-    <p class="hero-copy">
-      App, strumenti web e software desktop costruiti per semplificare il lavoro,
-      le decisioni e le piccole cose di ogni giorno. Offline quando possibile,
-      privati per scelta, senza complicazioni.
-    </p>
-    <div class="platforms">
-      <span>▣ Windows</span><span>● Android</span><span>◎ Web</span><span>&lt;/&gt; Open Source</span>
-    </div>
-    <div class="hero-actions">
-      <a href="#progetti" class="btn-primary">Esplora i prodotti</a>
-    </div>
-  </div>
-</header>
-
-
-
-<section class="section-head" id="progetti">
-  <div class="section-label">Prodotti</div>
-  
-</section>
-
-<main class="products">
-  <div class="product-grid">
-
-    <article class="product-card wide" id="slangbit">
-      <a class="card-image-link" href="https://slangbit.com" target="_blank" rel="noopener noreferrer">
-        <img src="images/slangbit/slangbit_banner.png" alt="SlangBit per Windows" loading="eager">
-      </a>
-      <div class="card-actions">
-        <a class="primary" href="https://slangbit.com" target="_blank" rel="noopener noreferrer">Scopri SlangBit →</a>
-      </div>
-    </article>
-
-    <article class="product-card square" id="autobit" style="--card-bg:url('images/autobit/autobit.png')">
-      <a class="card-image-link" href="/autobit/">
-        <img src="images/autobit/autobit.png" alt="AutoBit" loading="lazy">
-      </a>
-      <div class="card-actions">
-        <a class="primary" href="/autobit/">Scopri AutoBit →</a>
-        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" rel="noopener noreferrer">Google Play</a>
-      </div>
-    </article>
-
-    <article class="product-card square" id="immobit" style="--card-bg:url('images/immobit/immobit.png')">
-      <a class="card-image-link" href="/immobit/">
-        <img src="images/immobit/immobit.png" alt="ImmoBit" loading="lazy">
-      </a>
-      <div class="card-actions">
-        <a class="primary" href="/immobit/">Scopri ImmoBit →</a>
-        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" rel="noopener noreferrer">Google Play</a>
-      </div>
-    </article>
-
-    <article class="product-card square" id="scentweave" style="--card-bg:url('images/scentweave/scentweave.png')">
-      <a class="card-image-link" href="/scentweave/">
-        <img src="images/scentweave/scentweave.png" alt="ScentWeave" loading="lazy">
-      </a>
-      <div class="card-actions">
-        <a class="primary" href="/scentweave/">Scopri ScentWeave →</a>
-        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.scentweave" target="_blank" rel="noopener noreferrer">Google Play</a>
-      </div>
-    </article>
-
-    <article class="product-card square" id="dottap" style="--card-bg:url('images/dottap/dottap.png')">
-      <a class="card-image-link" href="/dottap/">
-        <img src="images/dottap/dottap.png" alt="DotTap" loading="lazy">
-      </a>
-      <div class="card-actions">
-        <a class="primary" href="/dottap/">Scopri DotTap →</a>
-        <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.dottapgame" target="_blank" rel="noopener noreferrer">Google Play</a>
-      </div>
-    </article>
-
-    <article class="product-card viewer-wide" id="viewer">
-      <a class="card-image-link" href="/viewer/">
-        <img src="images/viewer/viewer_banner.png" alt="Memmola Labs Viewer" loading="lazy">
-      </a>
-      <div class="card-actions">
-        <a class="primary" href="/viewer/">Apri Viewer →</a>
-        <a href="/viewer/">Installa come App</a>
-      </div>
-    </article>
-
-  </div>
-</main>
-
-<section class="discover" id="scopri">
-  <div class="discover-head">
-    <div>
-      <div class="section-label">Strumenti · progetti · storie</div>
-      <h2>Continua a esplorare.</h2>
-    </div>
-    <p>
-      ReIndexMe, AskingStars, CivicAI e le storie Origins.
-      Scorri lateralmente oppure usa le frecce per passare da un progetto all'altro.
-    </p>
-  </div>
-
-  <div class="carousel-wrap">
-    <button class="carousel-btn prev" type="button" aria-label="Slide precedente">‹</button>
-
-    <div class="carousel" id="homeCarousel">
-      <a class="slide" href="https://reindexme.com" target="_blank" rel="noopener noreferrer">
-        <img src="images/reindexme/reindexme.png" alt="ReIndexMe" loading="lazy">
-        <div class="slide-caption"><span>ReIndexMe · Website & LinkedIn discovery</span></div>
-      </a>
-
-      <a class="slide" href="https://askingstars.com" target="_blank" rel="noopener noreferrer">
-        <img src="images/askingstars/askingstars.png" alt="AskingStars" loading="lazy">
-        <div class="slide-caption"><span>AskingStars · Oroscopo Q&A</span></div>
-      </a>
-
-      <a class="slide" href="/civicai/">
-        <img src="images/civicai/civicai.png" alt="CivicAI" loading="lazy">
-        <div class="slide-caption"><span>CivicAI · Open source · AI locale</span></div>
-      </a>
-
-      <a class="slide origins-slide" href="/origins/">
-        <img src="images/autobit/autobit_origins.png" alt="AutoBit Stories" loading="lazy">
-        <div class="slide-caption"><span>Origins · AutoBit Stories</span></div>
-      </a>
-
-      <a class="slide origins-slide" href="/origins/">
-        <img src="images/immobit/immobit_origins.png" alt="ImmoBit Stories" loading="lazy">
-        <div class="slide-caption"><span>Origins · ImmoBit Stories</span></div>
-      </a>
-    </div>
-
-    <button class="carousel-btn next" type="button" aria-label="Slide successiva">›</button>
-  </div>
-
-  <div class="carousel-dots" id="carouselDots" aria-label="Navigazione carosello">
-    <button class="active" type="button" aria-label="Vai a ReIndexMe"></button>
-    <button type="button" aria-label="Vai ad AskingStars"></button>
-    <button type="button" aria-label="Vai a CivicAI"></button>
-    <button type="button" aria-label="Vai ad AutoBit Stories"></button>
-    <button type="button" aria-label="Vai a ImmoBit Stories"></button>
-  </div>
-</section>
-
-<section class="studio-strip">
-  <div>
-    <div class="section-label">Memmola Labs</div>
-    <p>
-      Ogni progetto nasce da un problema concreto, viene sviluppato con attenzione alla privacy
-      e prova a restare semplice da usare. Se vuoi conoscere il lavoro dietro Memmola Labs,
-      trovi qui il progetto e chi lo costruisce.
-    </p>
-  </div>
-  <div class="studio-actions">
-    <a href="https://github.com/alessandromemmola" target="_blank" rel="noopener noreferrer" class="btn-outline">GitHub</a>
-    <a href="mailto:info@memmolalabs.com" class="btn-primary">Contatti</a>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-links">
-    <a href="https://slangbit.com" target="_blank">SlangBit</a>
-    <a href="/dottap/">DotTap</a>
-    <a href="/viewer/">Viewer</a>
-    <a href="/scentweave/">ScentWeave</a>
-    <a href="/immobit/">ImmoBit</a>
-    <a href="/autobit/">AutoBit</a>
-    <a href="/origins/">Origins</a>
-    <a href="/civicai/">CivicAI</a>
-    <a href="https://reindexme.com" target="_blank">ReIndexMe</a>
-    <a href="https://askingstars.com" target="_blank">AskingStars</a>
-    <a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a>
-    <a href="https://github.com/alessandromemmola" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a>
-    <a href="https://x.com/MemmolaLabs" target="_blank">X</a>
-    <a href="https://memmolalabs.com/licenza" target="_blank">Licenza</a>
-    <a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a>
-  </div>
-  <div class="footer-copy">
-    © 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br>
-    Nessun tracciamento personale o cookie di profilazione
-  </div>
-
-  <div class="footer-share">
-  <p class="footer-share-title">Condividi Memmola Labs</p>
-  <p class="footer-share-text">
-    Se pensi possa essere utile anche a qualcun altro.
-  </p>
-
-  <div class="footer-share-actions">
-
-    <a
-      href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fmemmolalabs.com%2F&text=Memmola%20Labs%20%E2%80%94%20Software.%20Pensato%20per%20essere%20utile."
-      target="_blank"
-      rel="noopener noreferrer"
-      class="share-button"
-      aria-label="Condividi Memmola Labs su X"
-    >
-      <img src="/images/social/logo_x.png" alt="">
-      <span>X</span>
-    </a>
-
-    <a
-      href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmemmolalabs.com%2F"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="share-button"
-      aria-label="Condividi Memmola Labs su Facebook"
-    >
-      <img src="/images/social/logo_facebook.png" alt="">
-      <span>Facebook</span>
-    </a>
-
-    <a
-      href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmemmolalabs.com%2F"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="share-button"
-      aria-label="Condividi Memmola Labs su LinkedIn"
-    >
-      <img src="/images/social/logo_linkedin.png" alt="">
-      <span>LinkedIn</span>
-    </a>
-
-    <button
-      type="button"
-      class="share-button"
-      id="copy-share-link"
-      aria-label="Copia il link di Memmola Labs"
-    >
-      <span class="share-link-icon">↗</span>
-      <span id="copy-share-text">Copia link</span>
-    </button>
-
-  </div>
+<div aria-hidden="true" class="site-intro" id="siteIntro">
+<img alt="" class="site-intro-logo" src="/images/logo/logo.png"/>
 </div>
-  
+<nav>
+<div class="nav-inner">
+<a aria-label="Memmola Labs" class="nav-logo" href="/">
+<img alt="Memmola Labs" class="nav-logo-img" src="/images/logo/logo.png"/>
+</a>
+<div class="nav-links">
+<a data-i18n="nav.products" href="#progetti">Products</a>
+<a data-i18n="nav.discover" href="#scopri">Discover</a>
+<a href="/origins/">Origins</a>
+<a href="/viewer/">Viewer</a>
+<a class="nav-cta" data-i18n="nav.contact" href="mailto:info@memmolalabs.com">Contact</a>
+</div>
+</div>
+<div aria-label="Language / Lingua" class="language-switch" role="group"><button aria-label="English" aria-pressed="true" data-set-lang="en" lang="en" type="button">EN</button><button aria-label="Italiano" aria-pressed="false" data-set-lang="it" lang="it" type="button">IT</button></div></nav>
+<header class="hero">
+<div class="hero-inner">
+<div class="eyebrow" data-i18n="hero.eyebrow">Independent software studio · Latina, Italy</div>
+<h1>Software<span data-i18n="hero.headline">Designed to be useful.</span></h1>
+<p class="hero-copy" data-i18n="hero.copy">Apps, web tools and desktop software built to simplify work, decisions and everyday tasks. Offline whenever possible, private by design and easy to use.</p>
+<div class="platforms">
+<span>▣ Windows</span><span>● Android</span><span>◎ Web</span><span>&lt;/&gt; Open Source</span>
+</div>
+<div class="hero-actions">
+<a class="btn-primary" data-i18n="hero.cta" href="#progetti">Explore the products</a>
+</div>
+</div>
+</header>
+<section class="section-head" id="progetti">
+<div class="section-label" data-i18n="section.products">Products</div>
+</section>
+<main class="products">
+<div class="product-grid">
+<article class="product-card wide" id="slangbit">
+<a class="card-image-link" href="https://slangbit.com" rel="noopener noreferrer" target="_blank">
+<img alt="SlangBit for Windows" data-i18n-alt="image.slangbit" loading="eager" src="images/slangbit/slangbit_banner.png"/>
+</a>
+<div class="card-actions">
+<a class="primary" data-i18n="product.slangbit" href="https://slangbit.com" rel="noopener noreferrer" target="_blank">Discover SlangBit →</a>
+</div>
+</article>
+<article class="product-card square" id="autobit" style="--card-bg:url('images/autobit/autobit.png')">
+<a class="card-image-link" href="/autobit/">
+<img alt="AutoBit" loading="lazy" src="images/autobit/autobit.png"/>
+</a>
+<div class="card-actions">
+<a class="primary" data-i18n="product.autobit" href="/autobit/">Discover AutoBit →</a>
+<a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" rel="noopener noreferrer" target="_blank">Google Play</a>
+</div>
+</article>
+<article class="product-card square" id="immobit" style="--card-bg:url('images/immobit/immobit.png')">
+<a class="card-image-link" href="/immobit/">
+<img alt="ImmoBit" loading="lazy" src="images/immobit/immobit.png"/>
+</a>
+<div class="card-actions">
+<a class="primary" data-i18n="product.immobit" href="/immobit/">Discover ImmoBit →</a>
+<a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" rel="noopener noreferrer" target="_blank">Google Play</a>
+</div>
+</article>
+<article class="product-card square" id="scentweave" style="--card-bg:url('images/scentweave/scentweave.png')">
+<a class="card-image-link" href="/scentweave/">
+<img alt="ScentWeave" loading="lazy" src="images/scentweave/scentweave.png"/>
+</a>
+<div class="card-actions">
+<a class="primary" data-i18n="product.scentweave" href="/scentweave/">Discover ScentWeave →</a>
+<a href="https://play.google.com/store/apps/details?id=com.memmolalabs.scentweave" rel="noopener noreferrer" target="_blank">Google Play</a>
+</div>
+</article>
+<article class="product-card square" id="dottap" style="--card-bg:url('images/dottap/dottap.png')">
+<a class="card-image-link" href="/dottap/">
+<img alt="DotTap" loading="lazy" src="images/dottap/dottap.png"/>
+</a>
+<div class="card-actions">
+<a class="primary" data-i18n="product.dottap" href="/dottap/">Discover DotTap →</a>
+<a href="https://play.google.com/store/apps/details?id=com.memmolalabs.dottapgame" rel="noopener noreferrer" target="_blank">Google Play</a>
+</div>
+</article>
+<article class="product-card viewer-wide" id="viewer">
+<a class="card-image-link" href="/viewer/">
+<img alt="Memmola Labs Viewer" loading="lazy" src="images/viewer/viewer_banner.png"/>
+</a>
+<div class="card-actions">
+<a class="primary" data-i18n="product.viewer" href="/viewer/">Open Viewer →</a>
+<a data-i18n="product.install" href="/viewer/">Install as an app</a>
+</div>
+</article>
+</div>
+</main>
+<section class="discover" id="scopri">
+<div class="discover-head">
+<div>
+<div class="section-label" data-i18n="discover.label">Tools · projects · stories</div>
+<h2 data-i18n="discover.title">Keep exploring.</h2>
+</div>
+<p data-i18n="discover.copy">ReIndexMe, AskingStars, CivicAI and Origins stories. Scroll sideways or use the arrows to explore the projects.</p>
+</div>
+<div class="carousel-wrap">
+<button aria-label="Previous slide" class="carousel-btn prev" data-i18n="carousel.prev" data-i18n-aria-label="carousel.prevLabel" type="button">‹</button>
+<div class="carousel" id="homeCarousel">
+<a class="slide" href="https://reindexme.com" rel="noopener noreferrer" target="_blank">
+<img alt="ReIndexMe" loading="lazy" src="images/reindexme/reindexme.png"/>
+<div class="slide-caption"><span>ReIndexMe · Website &amp; LinkedIn discovery</span></div>
+</a>
+<a class="slide" href="https://askingstars.com" rel="noopener noreferrer" target="_blank">
+<img alt="AskingStars" loading="lazy" src="images/askingstars/askingstars.png"/>
+<div class="slide-caption"><span data-i18n="discover.askingstars">AskingStars · Horoscope Q&amp;A</span></div>
+</a>
+<a class="slide" href="/civicai/">
+<img alt="CivicAI" loading="lazy" src="images/civicai/civicai.png"/>
+<div class="slide-caption"><span data-i18n="discover.civicai">CivicAI · Open source · Local AI</span></div>
+</a>
+<a class="slide origins-slide" href="/origins/">
+<img alt="AutoBit Stories" loading="lazy" src="images/autobit/autobit_origins.png"/>
+<div class="slide-caption"><span>Origins · AutoBit Stories</span></div>
+</a>
+<a class="slide origins-slide" href="/origins/">
+<img alt="ImmoBit Stories" loading="lazy" src="images/immobit/immobit_origins.png"/>
+<div class="slide-caption"><span>Origins · ImmoBit Stories</span></div>
+</a>
+</div>
+<button aria-label="Next slide" class="carousel-btn next" data-i18n="carousel.next" data-i18n-aria-label="carousel.nextLabel" type="button">›</button>
+</div>
+<div aria-label="Carousel navigation" class="carousel-dots" data-i18n-aria-label="carousel.dots" id="carouselDots">
+<button aria-label="Go to ReIndexMe" class="active" data-i18n-aria-label="carousel.dot1" type="button"></button>
+<button aria-label="Go to AskingStars" data-i18n-aria-label="carousel.dot2" type="button"></button>
+<button aria-label="Go to CivicAI" data-i18n-aria-label="carousel.dot3" type="button"></button>
+<button aria-label="Go to AutoBit Stories" data-i18n-aria-label="carousel.dot4" type="button"></button>
+<button aria-label="Go to ImmoBit Stories" data-i18n-aria-label="carousel.dot5" type="button"></button>
+</div>
+</section>
+<section class="studio-strip">
+<div>
+<div class="section-label">Memmola Labs</div>
+<p data-i18n="studio.copy">Every project starts with a real problem and is developed with care for privacy and ease of use. Learn more about Memmola Labs and the person building these tools.</p>
+</div>
+<div class="studio-actions">
+<a class="btn-outline" href="https://github.com/alessandromemmola" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="btn-primary" data-i18n="studio.contact" href="mailto:info@memmolalabs.com">Contact</a>
+</div>
+</section>
+<footer>
+<div class="footer-links">
+<a href="https://slangbit.com" target="_blank">SlangBit</a>
+<a href="/dottap/">DotTap</a>
+<a href="/viewer/">Viewer</a>
+<a href="/scentweave/">ScentWeave</a>
+<a href="/immobit/">ImmoBit</a>
+<a href="/autobit/">AutoBit</a>
+<a href="/origins/">Origins</a>
+<a href="/civicai/">CivicAI</a>
+<a href="https://reindexme.com" target="_blank">ReIndexMe</a>
+<a href="https://askingstars.com" target="_blank">AskingStars</a>
+<a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a>
+<a href="https://github.com/alessandromemmola" target="_blank">GitHub</a>
+<a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a>
+<a href="https://x.com/MemmolaLabs" target="_blank">X</a>
+<a data-i18n="footer.license" href="https://memmolalabs.com/licenza" target="_blank">License</a>
+<a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a>
+</div>
+<div class="footer-copy"><span data-i18n="footer.copyright">© 2026 Memmola Labs® · Alessandro Memmola · All rights reserved</span><br/><span data-i18n="footer.privacy">No personal tracking or profiling cookies</span></div>
+<div class="footer-share">
+<p class="footer-share-title" data-i18n="share.title">Share Memmola Labs</p>
+<p class="footer-share-text" data-i18n="share.subtitle">Know someone who might find these tools useful?</p>
+<div class="footer-share-actions">
+<a aria-label="Share Memmola Labs on X" class="share-button" data-i18n-aria-label="share.xLabel" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fmemmolalabs.com%2F&amp;text=Memmola%20Labs%20%E2%80%94%20Software.%20Pensato%20per%20essere%20utile." rel="noopener noreferrer" target="_blank">
+<img alt="" src="/images/social/logo_x.png"/>
+<span>X</span>
+</a>
+<a aria-label="Share Memmola Labs on Facebook" class="share-button" data-i18n-aria-label="share.fbLabel" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmemmolalabs.com%2F" rel="noopener noreferrer" target="_blank">
+<img alt="" src="/images/social/logo_facebook.png"/>
+<span>Facebook</span>
+</a>
+<a aria-label="Share Memmola Labs on LinkedIn" class="share-button" data-i18n-aria-label="share.inLabel" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmemmolalabs.com%2F" rel="noopener noreferrer" target="_blank">
+<img alt="" src="/images/social/logo_linkedin.png"/>
+<span>LinkedIn</span>
+</a>
+<button aria-label="Copy Memmola Labs link" class="share-button" data-i18n-aria-label="share.copyAria" id="copy-share-link" type="button">
+<span class="share-link-icon">↗</span>
+<span data-i18n="share.copy" id="copy-share-text">Copy link</span>
+</button>
+</div>
+</div>
 </footer>
-
-
 <script>
 (() => {
   const carousel = document.getElementById('homeCarousel');
@@ -1534,53 +1482,293 @@ nav{
   window.addEventListener('resize', () => goTo(activeIndex, 'auto'));
 })();
 </script>
-
 <script>
+(() => {
   const copyShareButton = document.getElementById('copy-share-link');
   const copyShareText = document.getElementById('copy-share-text');
+  let resetTimer;
+  if (!copyShareButton || !copyShareText) return;
 
-  if (copyShareButton) {
-    copyShareButton.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText('https://memmolalabs.com/');
-        copyShareText.textContent = 'Copiato';
-
-        setTimeout(() => {
-          copyShareText.textContent = 'Copia link';
-        }, 1800);
-      } catch (error) {
-        copyShareText.textContent = 'Errore';
-
-        setTimeout(() => {
-          copyShareText.textContent = 'Copia link';
-        }, 1800);
-      }
-    });
-  }
-</script>  
-
+  copyShareButton.addEventListener('click', async () => {
+    window.clearTimeout(resetTimer);
+    try {
+      await navigator.clipboard.writeText('https://memmolalabs.com/');
+      copyShareText.textContent = window.memmolaTranslate('share.copied');
+    } catch (error) {
+      // This may be unavailable in a local file preview or an insecure context.
+      copyShareText.textContent = window.memmolaTranslate('share.error');
+    }
+    resetTimer = window.setTimeout(() => {
+      copyShareText.textContent = window.memmolaTranslate('share.copy');
+    }, 1800);
+  });
+})();
+</script>
 <script>
 (function () {
   const intro = document.getElementById('siteIntro');
-
   if (!intro) return;
-
-  if (sessionStorage.getItem('memmolaIntroSeen')) {
+  let previouslySeen = false;
+  try {
+    previouslySeen = sessionStorage.getItem('memmolaIntroSeen') === '1';
+    if (!previouslySeen) sessionStorage.setItem('memmolaIntroSeen', '1');
+  } catch (_) {
+    // Some local previews and privacy modes do not provide storage access.
+  }
+  if (previouslySeen) {
     intro.remove();
     return;
   }
-
-  sessionStorage.setItem('memmolaIntroSeen', '1');
-
   setTimeout(() => {
     intro.classList.add('is-leaving');
-
-    setTimeout(() => {
-      intro.remove();
-    }, 700);
+    setTimeout(() => intro.remove(), 700);
   }, 1600);
 })();
-</script>  
+</script>
+<script id="memmola-i18n">
+(() => {
+  'use strict';
+  const translations = {
+  "meta.title": {
+    "en": "Memmola Labs® — Software, apps and digital tools",
+    "it": "Memmola Labs® — Software, app e strumenti digitali"
+  },
+  "meta.description": {
+    "en": "Memmola Labs® creates practical apps, web tools and desktop software to solve everyday problems, with privacy in mind.",
+    "it": "Memmola Labs® — software studio di Alessandro Memmola. App, tool web e soluzioni desktop progettate per risolvere problemi reali."
+  },
+  "nav.products": {
+    "en": "Products",
+    "it": "Prodotti"
+  },
+  "nav.discover": {
+    "en": "Discover",
+    "it": "Scopri"
+  },
+  "nav.contact": {
+    "en": "Contact",
+    "it": "Contatti"
+  },
+  "hero.eyebrow": {
+    "en": "Independent software studio · Latina, Italy",
+    "it": "Software studio · Latina, Italia"
+  },
+  "hero.headline": {
+    "en": "Designed to be useful.",
+    "it": "Pensato per essere utile."
+  },
+  "hero.copy": {
+    "en": "Apps, web tools and desktop software built to simplify work, decisions and everyday tasks. Offline whenever possible, private by design and easy to use.",
+    "it": "App, strumenti web e software desktop costruiti per semplificare il lavoro, le decisioni e le piccole cose di ogni giorno. Offline quando possibile, privati per scelta, senza complicazioni."
+  },
+  "hero.cta": {
+    "en": "Explore the products",
+    "it": "Esplora i prodotti"
+  },
+  "section.products": {
+    "en": "Products",
+    "it": "Prodotti"
+  },
+  "product.slangbit": {
+    "en": "Discover SlangBit →",
+    "it": "Scopri SlangBit →"
+  },
+  "product.autobit": {
+    "en": "Discover AutoBit →",
+    "it": "Scopri AutoBit →"
+  },
+  "product.immobit": {
+    "en": "Discover ImmoBit →",
+    "it": "Scopri ImmoBit →"
+  },
+  "product.scentweave": {
+    "en": "Discover ScentWeave →",
+    "it": "Scopri ScentWeave →"
+  },
+  "product.dottap": {
+    "en": "Discover DotTap →",
+    "it": "Scopri DotTap →"
+  },
+  "product.viewer": {
+    "en": "Open Viewer →",
+    "it": "Apri Viewer →"
+  },
+  "product.install": {
+    "en": "Install as an app",
+    "it": "Installa come App"
+  },
+  "image.slangbit": {
+    "en": "SlangBit for Windows",
+    "it": "SlangBit per Windows"
+  },
+  "discover.label": {
+    "en": "Tools · projects · stories",
+    "it": "Strumenti · progetti · storie"
+  },
+  "discover.title": {
+    "en": "Keep exploring.",
+    "it": "Continua a esplorare."
+  },
+  "discover.copy": {
+    "en": "ReIndexMe, AskingStars, CivicAI and Origins stories. Scroll sideways or use the arrows to explore the projects.",
+    "it": "ReIndexMe, AskingStars, CivicAI e le storie Origins. Scorri lateralmente oppure usa le frecce per passare da un progetto all'altro."
+  },
+  "discover.askingstars": {
+    "en": "AskingStars · Horoscope Q&A",
+    "it": "AskingStars · Oroscopo Q&A"
+  },
+  "discover.civicai": {
+    "en": "CivicAI · Open source · Local AI",
+    "it": "CivicAI · Open source · AI locale"
+  },
+  "carousel.prev": {
+    "en": "‹",
+    "it": "‹"
+  },
+  "carousel.next": {
+    "en": "›",
+    "it": "›"
+  },
+  "carousel.prevLabel": {
+    "en": "Previous slide",
+    "it": "Slide precedente"
+  },
+  "carousel.nextLabel": {
+    "en": "Next slide",
+    "it": "Slide successiva"
+  },
+  "carousel.dot1": {
+    "en": "Go to ReIndexMe",
+    "it": "Vai a ReIndexMe"
+  },
+  "carousel.dot2": {
+    "en": "Go to AskingStars",
+    "it": "Vai ad AskingStars"
+  },
+  "carousel.dot3": {
+    "en": "Go to CivicAI",
+    "it": "Vai a CivicAI"
+  },
+  "carousel.dot4": {
+    "en": "Go to AutoBit Stories",
+    "it": "Vai ad AutoBit Stories"
+  },
+  "carousel.dot5": {
+    "en": "Go to ImmoBit Stories",
+    "it": "Vai a ImmoBit Stories"
+  },
+  "carousel.dots": {
+    "en": "Carousel navigation",
+    "it": "Navigazione carosello"
+  },
+  "studio.copy": {
+    "en": "Every project starts with a real problem and is developed with care for privacy and ease of use. Learn more about Memmola Labs and the person building these tools.",
+    "it": "Ogni progetto nasce da un problema concreto, viene sviluppato con attenzione alla privacy e prova a restare semplice da usare. Se vuoi conoscere il lavoro dietro Memmola Labs, trovi qui il progetto e chi lo costruisce."
+  },
+  "studio.contact": {
+    "en": "Contact",
+    "it": "Contatti"
+  },
+  "footer.license": {
+    "en": "License",
+    "it": "Licenza"
+  },
+  "footer.copyright": {
+    "en": "© 2026 Memmola Labs® · Alessandro Memmola · All rights reserved",
+    "it": "© 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati"
+  },
+  "footer.privacy": {
+    "en": "No personal tracking or profiling cookies",
+    "it": "Nessun tracciamento personale o cookie di profilazione"
+  },
+  "share.title": {
+    "en": "Share Memmola Labs",
+    "it": "Condividi Memmola Labs"
+  },
+  "share.subtitle": {
+    "en": "Know someone who might find these tools useful?",
+    "it": "Se pensi possa essere utile anche a qualcun altro."
+  },
+  "share.xLabel": {
+    "en": "Share Memmola Labs on X",
+    "it": "Condividi Memmola Labs su X"
+  },
+  "share.fbLabel": {
+    "en": "Share Memmola Labs on Facebook",
+    "it": "Condividi Memmola Labs su Facebook"
+  },
+  "share.inLabel": {
+    "en": "Share Memmola Labs on LinkedIn",
+    "it": "Condividi Memmola Labs su LinkedIn"
+  },
+  "share.copyAria": {
+    "en": "Copy Memmola Labs link",
+    "it": "Copia il link di Memmola Labs"
+  },
+  "share.copy": {
+    "en": "Copy link",
+    "it": "Copia link"
+  },
+  "share.copied": {
+    "en": "Copied!",
+    "it": "Copiato!"
+  },
+  "share.error": {
+    "en": "Copy failed",
+    "it": "Errore"
+  }
+};
+  const url = 'https://memmolalabs.com/';
+  const storageKey = 'memmolaLabsLanguage';
+  let selected = 'en';
 
-</body>
+  try {
+    const saved = localStorage.getItem(storageKey);
+    selected = saved === 'en' || saved === 'it'
+      ? saved
+      : ((navigator.language || '').toLowerCase().startsWith('it') ? 'it' : 'en');
+  } catch (_) {
+    selected = (navigator.language || '').toLowerCase().startsWith('it') ? 'it' : 'en';
+  }
+
+  function t(key) {
+    const entry = translations[key];
+    return entry ? (entry[selected] || entry.en) : key;
+  }
+  window.memmolaTranslate = t;
+
+  function setLanguage(lang, save = false) {
+    if (lang !== 'en' && lang !== 'it') return;
+    selected = lang;
+    document.documentElement.lang = lang;
+    document.documentElement.setAttribute('data-language',lang);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      el.textContent = t(el.getAttribute('data-i18n'));
+    });
+    ['alt', 'aria-label', 'content'].forEach(attr => {
+      document.querySelectorAll('[data-i18n-' + attr + ']').forEach(el => {
+        el.setAttribute(attr, t(el.getAttribute('data-i18n-' + attr)));
+      });
+    });
+    document.querySelectorAll('.language-switch [data-set-lang]').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.setLang === lang));
+    });
+    const x = document.querySelector('.footer-share-actions a[href*="intent/"]');
+    if (x) {
+      const shareText = lang === 'it'
+        ? 'Memmola Labs — Software. Pensato per essere utile.'
+        : 'Memmola Labs — Software designed to be useful.';
+      x.href = 'https://x.com/intent/post?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(shareText);
+    }
+    if (save) {
+      try { localStorage.setItem(storageKey,lang); } catch (_) { /* Private mode */ }
+    }
+  }
+
+  document.querySelectorAll('.language-switch [data-set-lang]').forEach(button => {
+    button.addEventListener('click', () => setLanguage(button.dataset.setLang,true));
+  });
+  setLanguage(selected);
+})();
+</script></body>
 </html>
