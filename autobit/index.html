@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AutoBit — Storie, episodi e contenuti ufficiali della serie dedicata alla valutazione veicoli by Memmola Labs." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://memmolalabs.com/autobit/" />
-  <title>AutoBit — Storie automotive by Memmola Labs</title>
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="AutoBit — Storie automotive by Memmola Labs" />
-  <meta property="og:description" content="La pagina ufficiale AutoBit: episodi, sceneggiature, PDF e contenuti della serie con Luca Romano." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://memmolalabs.com/autobit/" />
-  <meta property="og:image" content="https://memmolalabs.com/autobit/banner_autobit.png" />
-
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Check used cars with AutoBit: guided checklist, 0–100 scoring, comparisons and PDF reports. Explore AutoBit Stories in English and Italian." data-i18n-content="meta.description" name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://memmolalabs.com/autobit/" rel="canonical"/>
+<title data-i18n="meta.title">AutoBit — Used car checklist, vehicle evaluations &amp; stories</title>
+<!-- Open Graph -->
+<meta content="AutoBit — Used car evaluations and stories" data-i18n-content="meta.og:title" property="og:title"/>
+<meta content="AutoBit helps you inspect and compare used cars. Explore the official AutoBit Stories episodes, videos and downloadable reports." data-i18n-content="meta.og:description" property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://memmolalabs.com/autobit/" property="og:url"/>
+<meta content="https://memmolalabs.com/images/autobit/autobit_eng.png" property="og:image"/>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
 :root{--bg:#fff;--surface:#f7f9fc;--line:#dfe6ee;--text:#111827;--muted:#667085;--blue:#2f6fff;--red:#ef3b33;--dark:#07111b}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:#fff;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;overflow-x:hidden}a{color:inherit}img{display:block;max-width:100%}
 nav{position:sticky;top:0;z-index:100;height:64px;padding:0 3.5vw;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.94);border-bottom:1px solid rgba(17,24,39,.08);backdrop-filter:blur(18px)}.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}.nav-logo-mark{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,#2f6fff,#59ccff);color:#fff;font-weight:900}.nav-logo-text{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}.nav-logo-text span{color:var(--blue)}.nav-links{display:flex;gap:24px;align-items:center}.nav-links a{text-decoration:none;text-transform:uppercase;font-size:10px;font-weight:700;letter-spacing:.08em;color:#263244}.nav-links a:hover{color:var(--blue)}.nav-cta{padding:7px 13px;border:1px solid #ccd5e0;border-radius:999px}
@@ -31,267 +28,698 @@ nav{position:sticky;top:0;z-index:100;height:64px;padding:0 3.5vw;display:flex;a
 footer{border-top:1px solid #e5eaf0;padding:42px 4vw;text-align:center;color:#7b8796;font-size:10px;line-height:1.9}.footer-logo{font-size:1rem;font-weight:800;color:#1d2735;margin-bottom:12px}.footer-logo span{color:var(--blue)}.footer-links{display:flex;gap:17px;flex-wrap:wrap;justify-content:center;margin:12px 0}.footer-links a{text-decoration:none}.footer-links a:hover{color:var(--blue)}.footer-trademark{margin-top:12px;color:#a0a8b4}
 @media(max-width:980px){.nav-links{display:none}.page-hero{grid-template-columns:1fr;padding-top:46px}.hero-copy{text-align:center;padding-left:0}.hero-sub{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-visual{min-height:420px}.intro-grid,.profile-inner,.app-section{grid-template-columns:1fr}.episodes-grid{grid-template-columns:1fr}}
 @media(max-width:650px){nav{padding:0 18px}.page-hero{padding:38px 18px 18px;min-height:auto}h1{font-size:4.3rem}.hero-visual{min-height:300px}.hero-visual img{width:115%;max-width:none}.product-intro,.episodes-section{padding:64px 18px}.stories-hero{min-height:58vh}.stories-copy{padding:38px 22px}.profile-strip{padding:0 22px 54px}.episode-card{padding:22px}.app-cta{padding:0 18px;margin-bottom:60px}.app-section{padding:28px}}
-</style></head><body>
+
+/* Bilingual EN/IT selector – follows the main Memmola Labs site. */
+.language-switch{display:flex;gap:3px;align-items:center;padding:3px;border:1px solid #dbe3ef;border-radius:999px;background:#fff;flex:0 0 auto;margin-left:16px}
+.language-switch button{border:0;border-radius:999px;background:transparent;color:#55657a;font:800 11px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-width:34px;min-height:30px;padding:5px 8px;cursor:pointer}
+.language-switch button[aria-pressed="true"]{background:#2f6fff;color:#fff}
+.language-switch button:focus-visible{outline:2px solid #2f6fff;outline-offset:2px}
+.store-availability{font-size:.77rem;margin-top:11px;color:#748195}
+@media(max-width:980px){nav{gap:10px}.language-switch{margin-left:auto}}
+</style><meta content="en_US" data-i18n-content="meta.og_locale" property="og:locale"/></head><body>
 <nav>
-<a href="/" class="nav-logo"><div class="nav-logo-mark">M</div><span class="nav-logo-text">Memmola<span>Labs</span>®</span></a>
-<div class="nav-links"><a href="/">Home</a><a href="#prodotto">AutoBit</a><a href="#stories">Stories</a><a href="#episodi">Episodi</a><a href="/viewer/">Viewer</a><a href="/immobit/">ImmoBit</a><a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a></div>
-</nav>
+<a class="nav-logo" href="/" rel="noopener noreferrer" target="_blank"><div class="nav-logo-mark">M</div><span class="nav-logo-text">Memmola<span>Labs</span>®</span></a>
+<div class="nav-links"><a href="/" rel="noopener noreferrer" target="_blank">Home</a><a href="#prodotto">AutoBit</a><a href="#stories">Stories</a><a data-i18n="nav.episodes" href="#episodi">Episodes</a><a href="/viewer/" rel="noopener noreferrer" target="_blank">Viewer</a><a href="/immobit/" rel="noopener noreferrer" target="_blank">ImmoBit</a><a class="nav-cta" data-i18n="nav.contact" href="mailto:info@memmolalabs.com">Contact</a></div>
+<div aria-label="Language / Lingua" class="language-switch" role="group"><button aria-label="English" aria-pressed="true" data-lang="en" lang="en" type="button">EN</button><button aria-label="Italiano" aria-pressed="false" data-lang="it" lang="it" type="button">IT</button></div></nav>
 <header class="page-hero">
-<div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> AutoBit · Android</div><h1>Controlla<br>prima di <span>decidere.</span></h1><p class="hero-sub">Checklist guidate, punteggio 0–100, confronti e report per osservare un'auto usata con più metodo prima dell'acquisto.</p><div class="hero-actions"><a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" class="btn-primary">Scarica su Google Play</a><a href="https://memmolalabs.com/viewer" target="_blank" class="btn-outline">Apri il Viewer</a><a href="#stories" class="btn-outline">AutoBit Stories ↓</a></div></div>
-<div class="hero-visual"><div class="hero-glow"></div><img src="/images/autobit/autobit.png" alt="AutoBit su smartphone"></div>
+<div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> AutoBit · Android</div><h1 data-i18n-html="hero.title">Check before you <span>decide.</span></h1><p class="hero-sub" data-i18n="hero.summary">A guided checklist, 0–100 scoring, vehicle comparisons and PDF reports to help you inspect a used car before you buy.</p><div class="hero-actions"><a class="btn-primary" data-i18n="hero.cta.1" href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" rel="noopener noreferrer" target="_blank">Get it on Google Play</a><a class="btn-outline" data-i18n="hero.cta.2" href="https://memmolalabs.com/viewer" rel="noopener noreferrer" target="_blank">Open Viewer</a><a class="btn-outline" data-i18n="hero.cta.3" href="#stories">AutoBit Stories ↓</a></div></div>
+<div class="hero-visual"><div class="hero-glow"></div><img alt="AutoBit used car evaluation app preview" data-i18n-alt="image.hero.alt" data-image-lang="true" data-src-en="/images/autobit/autobit_eng.png" data-src-it="/images/autobit/autobit.png" decoding="async" loading="eager" src="/images/autobit/autobit_eng.png"/></div>
 </header>
 <main>
-<section class="product-intro" id="prodotto"><div class="section-label"> Il prodotto</div><h2 class="section-title">Un controllo guidato, dall'inizio alla scelta.</h2><p class="section-sub">AutoBit organizza ciò che normalmente si controlla in modo frammentario: condizioni del veicolo, documentazione, aspetti tecnici, fotografie, punteggi e confronto fra più auto.</p>
-<div class="intro-grid"><div class="glass-card"><h3>Cosa puoi fare con AutoBit</h3><p>Una procedura semplice per raccogliere informazioni e trasformarle in una valutazione leggibile.</p><ul class="feature-list"><li>Oltre 80 controlli guidati per non dimenticare gli aspetti importanti.</li><li>Punteggio complessivo da 0 a 100 e risultati per categoria.</li><li>Confronto diretto fra più veicoli salvati.</li><li>Report PDF professionali e archivio delle valutazioni.</li><li>Uso locale, senza account e senza caricamento dei dati.</li></ul></div><div class="product-note"><strong>Prima i dati.<br>Poi la decisione.</strong><p>AutoBit non sostituisce un professionista: ti aiuta a raccogliere e organizzare gli elementi che meritano attenzione prima di scegliere.</p></div></div></section>
-<section class="stories-hero" id="stories"><img src="/images/autobit/autobit_origins.png" alt="AutoBit Stories con Luca Romano"><div class="stories-copy"><div class="section-label"> AutoBit Stories</div><h2>AUTO<span>BIT</span><br>STORIES</h2><p>Le scelte sbagliate iniziano spesso da un dettaglio ignorato. Luca Romano osserva, analizza e racconta casi automotive attraverso episodi brevi e documenti di approfondimento.</p></div></section>
-<section class="profile-strip"><div class="profile-inner"><div><div class="section-label">Luca Romano</div><div class="profile-name">Vehicle analyst.<br>Story character.</div><div class="profile-role">AutoBit Stories</div></div><p class="profile-text">Luca osserva dettagli, condizioni e segnali spesso ignorati. Ogni episodio prende una situazione concreta e la trasforma in una storia breve, accompagnata quando disponibile da Shorts, Inspection Report e Creation Notes in italiano e inglese.</p></div></section>
-<section class="episodes-section" id="episodi"><div class="section-label"> Archivio</div><h2 class="section-title">Episodi AutoBit Stories</h2><p class="section-sub">Tutti gli episodi e i materiali già pubblicati restano accessibili: video, report di ispezione e note di creazione.</p><div class="episodes-grid"><article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 01</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>Autobit Stories EP 01 Anche le Auto parlano</h3>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>Un’auto usata può sembrare perfetta. Ma ogni dettaglio racconta una storia diversa. Luca inizia la sua prima analisi con Autobit.</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://youtube.com/shorts/pFXfr231QY4" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/AutoBit_FX_327_KF_1779807448816.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/oesb0IoYm5I" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/AutoBit_FX_327_KF_1779807709103.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-1-Special-Come nasce-Autobit.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Episode-1-Special-How-Autobit-Was-Born.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<section class="product-intro" id="prodotto"><div class="section-label" data-i18n="intro.label">The app</div><h2 class="section-title" data-i18n="intro.title">A guided inspection, from first checks to final decision.</h2><p class="section-sub" data-i18n="intro.sub">AutoBit brings together the details often checked separately: vehicle condition, documents, technical information, photos, category scores and side-by-side comparisons.</p>
+<div class="intro-grid"><div class="glass-card"><h3 data-i18n="intro.card.title">What you can do with AutoBit</h3><p data-i18n="intro.card.intro">A simple process for collecting information and turning it into an easy-to-read assessment.</p><ul class="feature-list"><li data-i18n="intro.feature.1">More than 80 guided checks to help you cover important details.</li><li data-i18n="intro.feature.2">Overall 0–100 score with results for individual categories.</li><li data-i18n="intro.feature.3">Side-by-side comparison of multiple saved vehicles.</li><li data-i18n="intro.feature.4">Professional PDF reports and an evaluation archive.</li><li data-i18n="intro.feature.5">Local use, without an account or uploading your information.</li></ul></div><div class="product-note"><strong data-i18n-html="intro.note.heading">First the facts.<br/>Then the decision.</strong><p data-i18n="intro.note.body">AutoBit does not replace a professional inspection. It helps you gather and organize the information worth reviewing before you make a decision.</p></div></div></section>
+<section class="stories-hero" id="stories"><img alt="AutoBit Stories featuring Luca Romano" data-i18n-alt="image.stories.alt" src="/images/autobit/autobit_origins.png"/><div class="stories-copy"><div class="section-label"> AutoBit Stories</div><h2>AUTO<span>BIT</span><br/>STORIES</h2><p data-i18n="stories.sub">Bad decisions often begin with a detail that goes unnoticed. Through short episodes and supporting documents, Luca Romano explores the clues hidden in everyday automotive situations.</p></div></section>
+<section class="profile-strip"><div class="profile-inner"><div><div class="section-label">Luca Romano</div><div class="profile-name">Vehicle analyst.<br/>Story character.</div><div class="profile-role">AutoBit Stories</div></div><p class="profile-text" data-i18n="stories.profile">Luca notices details, conditions and warning signs that people often overlook. Each episode turns a realistic situation into a short story, with Shorts, inspection reports and creation notes available in Italian and English where published.</p></div></section>
+<section class="episodes-section" id="episodi"><div class="section-label" data-i18n="episodes.label">Archive</div><h2 class="section-title" data-i18n="episodes.title">AutoBit Stories episodes</h2><p class="section-sub" data-i18n="episodes.subtitle">Browse the published episodes and materials: videos, inspection reports and behind-the-scenes creation notes.</p><div class="episodes-grid"><article class="episode-card">
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.01.number">Episode 01</span>
+<span class="chip" data-i18n="episode.01.status">Available</span>
+</div>
+<h3 data-i18n="episode.01.title">AutoBit Stories EP 01 — Even Cars Have Stories</h3>
+<div class="script-box">
+<strong data-i18n="episode.01.scriptLabel">Story summary</strong>
+<p data-i18n="episode.01.script">A used car can look perfect. But every detail tells a different story. Luca begins his first AutoBit inspection.</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.youtube.it" href="https://youtube.com/shorts/pFXfr231QY4" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.report.it" href="Inspection Report Ita/AutoBit_FX_327_KF_1779807448816.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.youtube.en" href="https://youtube.com/shorts/oesb0IoYm5I" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.report.en" href="Inspection Report Eng/AutoBit_FX_327_KF_1779807709103.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.it" href="Creation Notes Ita/Episodio-1-Special-Come nasce-Autobit.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.en" href="Creation Notes Eng/Episode-1-Special-How-Autobit-Was-Born.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 02</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>Autobit Stories EP 02 Troppo conveniente</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>Un prezzo troppo basso. Un annuncio apparentemente perfetto. E un dettaglio che nessuno dovrebbe ignorare. In questo episodio di Autobit Stories, Luca aiuta un cliente a verificare quella che sembra un'occasione imperdibile. Ma dietro un annuncio molto convincente si nasconde una realtà ben diversa.</p>  
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://youtube.com/shorts/38R-qT3wIbw" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/AutoBit_AA_000_ZZZ_1779977989839.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/CDa7BxooCoA" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/AutoBit_AA_000_ZZZ_1779978339637.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-2-troppo-conveniente.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Episodio-2-AutoBit- Too Convenient.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.02.number">Episode 02</span>
+<span class="chip" data-i18n="episode.02.status">Available</span>
+</div>
+<h3 data-i18n="episode.02.title">AutoBit Stories EP 02 — Too Good to Be True</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.02.scriptLabel">Story summary</strong>
+<p data-i18n="episode.02.script">An unusually low price. An apparently perfect listing. And one detail no buyer should overlook. In this episode, Luca helps a customer investigate what appears to be an unbeatable deal — until a very different reality emerges.</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.youtube.it" href="https://youtube.com/shorts/38R-qT3wIbw" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.report.it" href="Inspection Report Ita/AutoBit_AA_000_ZZZ_1779977989839.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.youtube.en" href="https://youtube.com/shorts/CDa7BxooCoA" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.report.en" href="Inspection Report Eng/AutoBit_AA_000_ZZZ_1779978339637.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.it" href="Creation Notes Ita/Episodio-2-troppo-conveniente.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.en" href="Creation Notes Eng/Episodio-2-AutoBit- Too Convenient.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 03</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>Il viaggio giusto</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>Un'associazione che aiuta persone in difficoltà ha bisogno di un veicolo affidabile per svolgere le proprie attività.</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://youtube.com/shorts/VDhgsYEd770" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/AutoBit_FP_274KCC_1780059312973.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/4eAA6eUSRNU" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/AutoBit_FP_274KCC_1780059476886.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-3-il-viaggio-giusto.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Episodio-3-AutoBit -The Right Journey.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.03.number">Episode 03</span>
+<span class="chip" data-i18n="episode.03.status">Available</span>
+</div>
+<h3 data-i18n="episode.03.title">The Right Journey</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.03.scriptLabel">Story summary</strong>
+<p data-i18n="episode.03.script">A nonprofit supporting people in difficult circumstances needs a reliable vehicle for its everyday work.</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.youtube.it" href="https://youtube.com/shorts/VDhgsYEd770" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.report.it" href="Inspection Report Ita/AutoBit_FP_274KCC_1780059312973.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.youtube.en" href="https://youtube.com/shorts/4eAA6eUSRNU" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.report.en" href="Inspection Report Eng/AutoBit_FP_274KCC_1780059476886.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.it" href="Creation Notes Ita/Episodio-3-il-viaggio-giusto.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.en" href="Creation Notes Eng/Episodio-3-AutoBit -The Right Journey.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 04</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>Mai più</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>A volte basta un singolo evento per cambiare il nostro modo di vedere le cose.</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://youtube.com/shorts/imKncd0vMcg" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/AutoBit_DD_732KRR_1780059980625.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/McnJXt2gKU0" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/AutoBit_DD_732KRR_1780060099849.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-4-mai-più.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Autobit Stories - EP 04 - Never Again.vproj.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.04.number">Episode 04</span>
+<span class="chip" data-i18n="episode.04.status">Available</span>
+</div>
+<h3 data-i18n="episode.04.title">Never Again</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.04.scriptLabel">Story summary</strong>
+<p data-i18n="episode.04.script">Sometimes a single event is enough to change the way we see things.</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.youtube.it" href="https://youtube.com/shorts/imKncd0vMcg" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.report.it" href="Inspection Report Ita/AutoBit_DD_732KRR_1780059980625.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.youtube.en" href="https://youtube.com/shorts/McnJXt2gKU0" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.report.en" href="Inspection Report Eng/AutoBit_DD_732KRR_1780060099849.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.it" href="Creation Notes Ita/Episodio-4-mai-più.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.en" href="Creation Notes Eng/Autobit Stories - EP 04 - Never Again.vproj.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 05</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>Dietro l'annuncio</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>L'annuncio sembra perfetto.
-             Foto curate, prezzo interessante e un'auto che attira subito l'attenzione.
-             Ma perché la targa è coperta?</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://youtube.com/shorts/oVC53Vcb7m4" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/AutoBit__1780076089715.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/0xeZaDStVe8" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/AutoBit__1780076355788.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-5-dietro-l'annuncio.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Episode 5 - Behind the announcement.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.05.number">Episode 05</span>
+<span class="chip" data-i18n="episode.05.status">Available</span>
+</div>
+<h3 data-i18n="episode.05.title">Behind the Listing</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.05.scriptLabel">Story summary</strong>
+<p data-i18n="episode.05.script">The listing looks perfect: polished photos, an appealing price and a car that catches your eye. But why is the license plate hidden?</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.youtube.it" href="https://youtube.com/shorts/oVC53Vcb7m4" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.report.it" href="Inspection Report Ita/AutoBit__1780076089715.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.youtube.en" href="https://youtube.com/shorts/0xeZaDStVe8" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.report.en" href="Inspection Report Eng/AutoBit__1780076355788.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.it" href="Creation Notes Ita/Episodio-5-dietro-l'annuncio.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.en" href="Creation Notes Eng/Episode 5 - Behind the announcement.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 06</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>Ferma troppo a lungo</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>L'auto sembra in ottime condizioni.
-             Pochi chilometri, carrozzeria impeccabile e un proprietario che la utilizza raramente.</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://youtube.com/shorts/j4Ipu7BLIQ0" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/AutoBit_WOLKSVAGEN_1782830382290.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/5LcGUzOoYW8" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/AutoBit_WOLKSVAGEN_1782830624098.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-6-ferma-troppo-a-lungo.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Stop too long.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.06.number">Episode 06</span>
+<span class="chip" data-i18n="episode.06.status">Available</span>
+</div>
+<h3 data-i18n="episode.06.title">Parked for Too Long</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.06.scriptLabel">Story summary</strong>
+<p data-i18n="episode.06.script">The car appears to be in excellent condition: low mileage, spotless bodywork and an owner who rarely drives it.</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.youtube.it" href="https://youtube.com/shorts/j4Ipu7BLIQ0" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.report.it" href="Inspection Report Ita/AutoBit_WOLKSVAGEN_1782830382290.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.youtube.en" href="https://youtube.com/shorts/5LcGUzOoYW8" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.report.en" href="Inspection Report Eng/AutoBit_WOLKSVAGEN_1782830624098.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.it" href="Creation Notes Ita/Episodio-6-ferma-troppo-a-lungo.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.en" href="Creation Notes Eng/Stop too long.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 07</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>Prima della scelta</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>Comprare un'auto non significa scegliere in fretta.
-             Significa raccogliere informazioni, osservare i dettagli e capire cosa si sta acquistando davvero.</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://youtube.com/shorts/lgVnZoGeIgU" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/AutoBit_AB_000_ABC_1783528873906.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/SXr5FOWIiwo" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/AutoBit_AB_000_ABC_1783529045241.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-7-prima-della-scelta.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Episode 7 - Before choosing.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.07.number">Episode 07</span>
+<span class="chip" data-i18n="episode.07.status">Available</span>
+</div>
+<h3 data-i18n="episode.07.title">Before You Choose</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.07.scriptLabel">Story summary</strong>
+<p data-i18n="episode.07.script">Buying a car is not about deciding as fast as possible. It is about gathering information, noticing details and understanding what you are really purchasing.</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.youtube.it" href="https://youtube.com/shorts/lgVnZoGeIgU" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.report.it" href="Inspection Report Ita/AutoBit_AB_000_ABC_1783528873906.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.youtube.en" href="https://youtube.com/shorts/SXr5FOWIiwo" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.report.en" href="Inspection Report Eng/AutoBit_AB_000_ABC_1783529045241.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.it" href="Creation Notes Ita/Episodio-7-prima-della-scelta.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.en" href="Creation Notes Eng/Episode 7 - Before choosing.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 08</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>La telefonata</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>Una telefonata del nonno porta Luca a un'asta di auto d'epoca.
-             Tra le vetture esposte ce n'è una molto speciale: l'auto che il nonno guidava da ragazzo.</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://youtube.com/shorts/G8CKyQA2dZQ" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/AutoBit_ASTA_1784999849937.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/CX3S0zqnT2U" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/AutoBit_ASTA_1785000029086.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-8-la-telefonata.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Episode 8 - The phone call.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.08.number">Episode 08</span>
+<span class="chip" data-i18n="episode.08.status">Available</span>
+</div>
+<h3 data-i18n="episode.08.title">The Phone Call</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.08.scriptLabel">Story summary</strong>
+<p data-i18n="episode.08.script">A phone call from Luca’s grandfather leads him to a classic-car auction. Among the cars on display is a special one: the car his grandfather drove when he was young.</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.youtube.it" href="https://youtube.com/shorts/G8CKyQA2dZQ" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.report.it" href="Inspection Report Ita/AutoBit_ASTA_1784999849937.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.youtube.en" href="https://youtube.com/shorts/CX3S0zqnT2U" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.report.en" href="Inspection Report Eng/AutoBit_ASTA_1785000029086.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.it" href="Creation Notes Ita/Episodio-8-la-telefonata.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.notes.en" href="Creation Notes Eng/Episode 8 - The phone call.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 09</span>
-          <span class="chip">In arrivo</span>
-        </div>
-        <h3>Titolo della puntata</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>In arrivo</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="#" class="btn-soft" target="_blank" rel="noopener noreferrer" aria-disabled="true">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Inspection Report Ita</a>
-          <a href="#" class="btn-soft" target="_blank" rel="noopener noreferrer" aria-disabled="true">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.09.number">Episode 09</span>
+<span class="chip" data-i18n="episode.09.status">Coming soon</span>
+</div>
+<h3 data-i18n="episode.09.title">Episode title</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.09.scriptLabel">Story preview</strong>
+<p data-i18n="episode.09.script">Coming soon</p>
+</div>
+<div class="episode-actions">
+<a aria-disabled="true" class="btn-soft" data-i18n="episode.link.youtube.it" href="#" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.report.it" href="Inspection Report Ita/.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a aria-disabled="true" class="btn-soft" data-i18n="episode.link.youtube.en" href="#" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.report.en" href="Inspection Report Eng/.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.notes.it" href="Creation Notes Ita/.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.notes.en" href="Creation Notes Eng/.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 10</span>
-          <span class="chip">In arrivo</span>
-        </div>
-        <h3>Titolo della puntata</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>In arrivo</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="#" class="btn-soft" target="_blank" rel="noopener noreferrer" aria-disabled="true">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Inspection Report Ita</a>
-          <a href="#" class="btn-soft" target="_blank" rel="noopener noreferrer" aria-disabled="true">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.10.number">Episode 10</span>
+<span class="chip" data-i18n="episode.10.status">Coming soon</span>
+</div>
+<h3 data-i18n="episode.10.title">Episode title</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.10.scriptLabel">Story preview</strong>
+<p data-i18n="episode.10.script">Coming soon</p>
+</div>
+<div class="episode-actions">
+<a aria-disabled="true" class="btn-soft" data-i18n="episode.link.youtube.it" href="#" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.report.it" href="Inspection Report Ita/.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a aria-disabled="true" class="btn-soft" data-i18n="episode.link.youtube.en" href="#" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.report.en" href="Inspection Report Eng/.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.notes.it" href="Creation Notes Ita/.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.notes.en" href="Creation Notes Eng/.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 11</span>
-          <span class="chip">In arrivo</span>
-        </div>
-        <h3>Titolo della puntata</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>In arrivo</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="#" class="btn-soft" target="_blank" rel="noopener noreferrer" aria-disabled="true">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Inspection Report Ita</a>
-          <a href="#" class="btn-soft" target="_blank" rel="noopener noreferrer" aria-disabled="true">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Eng</a>
-        </div>
-      </article></div></section>
-<section class="app-cta" id="app"><div class="app-section"><div><div class="section-label"> App ufficiale</div><h2>Le storie mostrano i dettagli.<br>AutoBit ti aiuta a controllarli.</h2><p>Porta la stessa logica di osservazione dentro una valutazione guidata, salvabile, confrontabile ed esportabile.</p></div><div class="hero-actions"><a href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" target="_blank" class="store-link">Google Play →</a><a href="https://memmolalabs.com/viewer" target="_blank" class="btn-outline">Viewer Free</a></div></div></section>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.11.number">Episode 11</span>
+<span class="chip" data-i18n="episode.11.status">Coming soon</span>
+</div>
+<h3 data-i18n="episode.11.title">Episode title</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.11.scriptLabel">Story preview</strong>
+<p data-i18n="episode.11.script">Coming soon</p>
+</div>
+<div class="episode-actions">
+<a aria-disabled="true" class="btn-soft" data-i18n="episode.link.youtube.it" href="#" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.report.it" href="Inspection Report Ita/.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a aria-disabled="true" class="btn-soft" data-i18n="episode.link.youtube.en" href="#" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.report.en" href="Inspection Report Eng/.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.notes.it" href="Creation Notes Ita/.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.notes.en" href="Creation Notes Eng/.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article></div></section>
+<section class="app-cta" id="app"><div class="app-section"><div><div class="section-label" data-i18n="app.label">Official app</div><h2 data-i18n-html="app.heading">The stories reveal the details.<br/>AutoBit helps you inspect them.</h2><p data-i18n="app.copy">Bring the same attention to detail into a guided vehicle assessment you can save, compare and export.</p><p class="store-availability" data-i18n="app.availability">Availability on Google Play varies by country.</p></div><div class="hero-actions"><a class="store-link" data-i18n="app.play" href="https://play.google.com/store/apps/details?id=com.memmolalabs.autobit" rel="noopener noreferrer" target="_blank">Google Play →</a><a class="btn-outline" data-i18n="app.viewer" href="https://memmolalabs.com/viewer" rel="noopener noreferrer" target="_blank">Open Viewer</a></div></div></section>
 </main>
-<footer><div class="footer-logo">Memmola<span>Labs®</span></div><div class="footer-links"><a href="/">Home</a><a href="/immobit/">ImmoBit</a><a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a><a href="https://github.com/alessandromemmola" target="_blank">GitHub</a><a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a><a href="https://x.com/MemmolaLabs" target="_blank">X</a><a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a></div><div>© 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br>Nessun tracciamento personale o cookie di profilazione</div><div class="footer-trademark">Memmola Labs® è un marchio registrato di Alessandro Memmola</div></footer>
+<footer><div class="footer-logo">Memmola<span>Labs®</span></div><div class="footer-links"><a href="/" rel="noopener noreferrer" target="_blank">Home</a><a href="/immobit/" rel="noopener noreferrer" target="_blank">ImmoBit</a><a href="https://alessandromemmola.com" rel="noopener noreferrer" target="_blank">Alessandro Memmola</a><a href="https://github.com/alessandromemmola" rel="noopener noreferrer" target="_blank">GitHub</a><a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" rel="noopener noreferrer" target="_blank">LinkedIn</a><a href="https://x.com/MemmolaLabs" rel="noopener noreferrer" target="_blank">X</a><a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a></div><div data-i18n-html="footer.legal">© 2026 Memmola Labs® · Alessandro Memmola · All rights reserved<br/>No personal tracking or profiling cookies</div><div class="footer-trademark" data-i18n="footer.trademark">Memmola Labs® is a registered trademark of Alessandro Memmola</div></footer>
+
+<script id="autobit-i18n">
+(() => {
+  'use strict';
+  const catalog = {
+  "meta.title": {
+    "en": "AutoBit — Used car checklist, vehicle evaluations & stories",
+    "it": "AutoBit — Storie automotive by Memmola Labs"
+  },
+  "meta.description": {
+    "en": "Check used cars with AutoBit: guided checklist, 0–100 scoring, comparisons and PDF reports. Explore AutoBit Stories in English and Italian.",
+    "it": "AutoBit — Storie, episodi e contenuti ufficiali della serie dedicata alla valutazione veicoli by Memmola Labs."
+  },
+  "meta.og:title": {
+    "en": "AutoBit — Used car evaluations and stories",
+    "it": "AutoBit — Storie automotive by Memmola Labs"
+  },
+  "meta.og:description": {
+    "en": "AutoBit helps you inspect and compare used cars. Explore the official AutoBit Stories episodes, videos and downloadable reports.",
+    "it": "La pagina ufficiale AutoBit: episodi, sceneggiature, PDF e contenuti della serie con Luca Romano."
+  },
+  "meta.og_locale": {
+    "en": "en_US",
+    "it": "it_IT"
+  },
+  "nav.contact": {
+    "en": "Contact",
+    "it": "Contatti"
+  },
+  "nav.episodes": {
+    "en": "Episodes",
+    "it": "Episodi"
+  },
+  "hero.title": {
+    "en": "Check before you <span>decide.</span>",
+    "it": "Controlla<br/>prima di <span>decidere.</span>"
+  },
+  "hero.summary": {
+    "en": "A guided checklist, 0–100 scoring, vehicle comparisons and PDF reports to help you inspect a used car before you buy.",
+    "it": "Checklist guidate, punteggio 0–100, confronti e report per osservare un'auto usata con più metodo prima dell'acquisto."
+  },
+  "hero.cta.1": {
+    "en": "Get it on Google Play",
+    "it": "Scarica su Google Play"
+  },
+  "hero.cta.2": {
+    "en": "Open Viewer",
+    "it": "Apri il Viewer"
+  },
+  "hero.cta.3": {
+    "en": "AutoBit Stories ↓",
+    "it": "AutoBit Stories ↓"
+  },
+  "image.hero.alt": {
+    "en": "AutoBit used car evaluation app preview",
+    "it": "AutoBit su smartphone"
+  },
+  "intro.label": {
+    "en": "The app",
+    "it": " Il prodotto"
+  },
+  "intro.title": {
+    "en": "A guided inspection, from first checks to final decision.",
+    "it": "Un controllo guidato, dall'inizio alla scelta."
+  },
+  "intro.sub": {
+    "en": "AutoBit brings together the details often checked separately: vehicle condition, documents, technical information, photos, category scores and side-by-side comparisons.",
+    "it": "AutoBit organizza ciò che normalmente si controlla in modo frammentario: condizioni del veicolo, documentazione, aspetti tecnici, fotografie, punteggi e confronto fra più auto."
+  },
+  "intro.card.title": {
+    "en": "What you can do with AutoBit",
+    "it": "Cosa puoi fare con AutoBit"
+  },
+  "intro.card.intro": {
+    "en": "A simple process for collecting information and turning it into an easy-to-read assessment.",
+    "it": "Una procedura semplice per raccogliere informazioni e trasformarle in una valutazione leggibile."
+  },
+  "intro.feature.1": {
+    "en": "More than 80 guided checks to help you cover important details.",
+    "it": "Oltre 80 controlli guidati per non dimenticare gli aspetti importanti."
+  },
+  "intro.feature.2": {
+    "en": "Overall 0–100 score with results for individual categories.",
+    "it": "Punteggio complessivo da 0 a 100 e risultati per categoria."
+  },
+  "intro.feature.3": {
+    "en": "Side-by-side comparison of multiple saved vehicles.",
+    "it": "Confronto diretto fra più veicoli salvati."
+  },
+  "intro.feature.4": {
+    "en": "Professional PDF reports and an evaluation archive.",
+    "it": "Report PDF professionali e archivio delle valutazioni."
+  },
+  "intro.feature.5": {
+    "en": "Local use, without an account or uploading your information.",
+    "it": "Uso locale, senza account e senza caricamento dei dati."
+  },
+  "intro.note.heading": {
+    "en": "First the facts.<br>Then the decision.",
+    "it": "Prima i dati.<br/>Poi la decisione."
+  },
+  "intro.note.body": {
+    "en": "AutoBit does not replace a professional inspection. It helps you gather and organize the information worth reviewing before you make a decision.",
+    "it": "AutoBit non sostituisce un professionista: ti aiuta a raccogliere e organizzare gli elementi che meritano attenzione prima di scegliere."
+  },
+  "stories.sub": {
+    "en": "Bad decisions often begin with a detail that goes unnoticed. Through short episodes and supporting documents, Luca Romano explores the clues hidden in everyday automotive situations.",
+    "it": "Le scelte sbagliate iniziano spesso da un dettaglio ignorato. Luca Romano osserva, analizza e racconta casi automotive attraverso episodi brevi e documenti di approfondimento."
+  },
+  "image.stories.alt": {
+    "en": "AutoBit Stories featuring Luca Romano",
+    "it": "AutoBit Stories con Luca Romano"
+  },
+  "stories.profile": {
+    "en": "Luca notices details, conditions and warning signs that people often overlook. Each episode turns a realistic situation into a short story, with Shorts, inspection reports and creation notes available in Italian and English where published.",
+    "it": "Luca osserva dettagli, condizioni e segnali spesso ignorati. Ogni episodio prende una situazione concreta e la trasforma in una storia breve, accompagnata quando disponibile da Shorts, Inspection Report e Creation Notes in italiano e inglese."
+  },
+  "episodes.label": {
+    "en": "Archive",
+    "it": " Archivio"
+  },
+  "episodes.title": {
+    "en": "AutoBit Stories episodes",
+    "it": "Episodi AutoBit Stories"
+  },
+  "episodes.subtitle": {
+    "en": "Browse the published episodes and materials: videos, inspection reports and behind-the-scenes creation notes.",
+    "it": "Tutti gli episodi e i materiali già pubblicati restano accessibili: video, report di ispezione e note di creazione."
+  },
+  "episode.01.number": {
+    "en": "Episode 01",
+    "it": "Episodio 01"
+  },
+  "episode.01.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.01.title": {
+    "en": "AutoBit Stories EP 01 — Even Cars Have Stories",
+    "it": "Autobit Stories EP 01 Anche le Auto parlano"
+  },
+  "episode.01.scriptLabel": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.01.script": {
+    "en": "A used car can look perfect. But every detail tells a different story. Luca begins his first AutoBit inspection.",
+    "it": "Un’auto usata può sembrare perfetta. Ma ogni dettaglio racconta una storia diversa. Luca inizia la sua prima analisi con Autobit."
+  },
+  "episode.link.youtube.it": {
+    "en": "YouTube Shorts (IT)",
+    "it": "YouTube Shorts Ita"
+  },
+  "episode.link.report.it": {
+    "en": "Inspection report (IT)",
+    "it": "Inspection Report Ita"
+  },
+  "episode.link.youtube.en": {
+    "en": "YouTube Shorts (EN)",
+    "it": "YouTube Shorts Eng"
+  },
+  "episode.link.report.en": {
+    "en": "Inspection report (EN)",
+    "it": "Inspection Report Eng"
+  },
+  "episode.link.notes.it": {
+    "en": "Creation notes (IT)",
+    "it": "Creation Notes Ita"
+  },
+  "episode.link.notes.en": {
+    "en": "Creation notes (EN)",
+    "it": "Creation Notes Eng"
+  },
+  "episode.02.number": {
+    "en": "Episode 02",
+    "it": "Episodio 02"
+  },
+  "episode.02.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.02.title": {
+    "en": "AutoBit Stories EP 02 — Too Good to Be True",
+    "it": "Autobit Stories EP 02 Troppo conveniente"
+  },
+  "episode.02.scriptLabel": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.02.script": {
+    "en": "An unusually low price. An apparently perfect listing. And one detail no buyer should overlook. In this episode, Luca helps a customer investigate what appears to be an unbeatable deal — until a very different reality emerges.",
+    "it": "Un prezzo troppo basso. Un annuncio apparentemente perfetto. E un dettaglio che nessuno dovrebbe ignorare. In questo episodio di Autobit Stories, Luca aiuta un cliente a verificare quella che sembra un'occasione imperdibile. Ma dietro un annuncio molto convincente si nasconde una realtà ben diversa."
+  },
+  "episode.03.number": {
+    "en": "Episode 03",
+    "it": "Episodio 03"
+  },
+  "episode.03.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.03.title": {
+    "en": "The Right Journey",
+    "it": "Il viaggio giusto"
+  },
+  "episode.03.scriptLabel": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.03.script": {
+    "en": "A nonprofit supporting people in difficult circumstances needs a reliable vehicle for its everyday work.",
+    "it": "Un'associazione che aiuta persone in difficoltà ha bisogno di un veicolo affidabile per svolgere le proprie attività."
+  },
+  "episode.04.number": {
+    "en": "Episode 04",
+    "it": "Episodio 04"
+  },
+  "episode.04.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.04.title": {
+    "en": "Never Again",
+    "it": "Mai più"
+  },
+  "episode.04.scriptLabel": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.04.script": {
+    "en": "Sometimes a single event is enough to change the way we see things.",
+    "it": "A volte basta un singolo evento per cambiare il nostro modo di vedere le cose."
+  },
+  "episode.05.number": {
+    "en": "Episode 05",
+    "it": "Episodio 05"
+  },
+  "episode.05.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.05.title": {
+    "en": "Behind the Listing",
+    "it": "Dietro l'annuncio"
+  },
+  "episode.05.scriptLabel": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.05.script": {
+    "en": "The listing looks perfect: polished photos, an appealing price and a car that catches your eye. But why is the license plate hidden?",
+    "it": "L'annuncio sembra perfetto.\n             Foto curate, prezzo interessante e un'auto che attira subito l'attenzione.\n             Ma perché la targa è coperta?"
+  },
+  "episode.06.number": {
+    "en": "Episode 06",
+    "it": "Episodio 06"
+  },
+  "episode.06.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.06.title": {
+    "en": "Parked for Too Long",
+    "it": "Ferma troppo a lungo"
+  },
+  "episode.06.scriptLabel": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.06.script": {
+    "en": "The car appears to be in excellent condition: low mileage, spotless bodywork and an owner who rarely drives it.",
+    "it": "L'auto sembra in ottime condizioni.\n             Pochi chilometri, carrozzeria impeccabile e un proprietario che la utilizza raramente."
+  },
+  "episode.07.number": {
+    "en": "Episode 07",
+    "it": "Episodio 07"
+  },
+  "episode.07.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.07.title": {
+    "en": "Before You Choose",
+    "it": "Prima della scelta"
+  },
+  "episode.07.scriptLabel": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.07.script": {
+    "en": "Buying a car is not about deciding as fast as possible. It is about gathering information, noticing details and understanding what you are really purchasing.",
+    "it": "Comprare un'auto non significa scegliere in fretta.\n             Significa raccogliere informazioni, osservare i dettagli e capire cosa si sta acquistando davvero."
+  },
+  "episode.08.number": {
+    "en": "Episode 08",
+    "it": "Episodio 08"
+  },
+  "episode.08.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.08.title": {
+    "en": "The Phone Call",
+    "it": "La telefonata"
+  },
+  "episode.08.scriptLabel": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.08.script": {
+    "en": "A phone call from Luca’s grandfather leads him to a classic-car auction. Among the cars on display is a special one: the car his grandfather drove when he was young.",
+    "it": "Una telefonata del nonno porta Luca a un'asta di auto d'epoca.\n             Tra le vetture esposte ce n'è una molto speciale: l'auto che il nonno guidava da ragazzo."
+  },
+  "episode.09.number": {
+    "en": "Episode 09",
+    "it": "Episodio 09"
+  },
+  "episode.09.status": {
+    "en": "Coming soon",
+    "it": "In arrivo"
+  },
+  "episode.09.title": {
+    "en": "Episode title",
+    "it": "Titolo della puntata"
+  },
+  "episode.09.scriptLabel": {
+    "en": "Story preview",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.09.script": {
+    "en": "Coming soon",
+    "it": "In arrivo"
+  },
+  "episode.10.number": {
+    "en": "Episode 10",
+    "it": "Episodio 10"
+  },
+  "episode.10.status": {
+    "en": "Coming soon",
+    "it": "In arrivo"
+  },
+  "episode.10.title": {
+    "en": "Episode title",
+    "it": "Titolo della puntata"
+  },
+  "episode.10.scriptLabel": {
+    "en": "Story preview",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.10.script": {
+    "en": "Coming soon",
+    "it": "In arrivo"
+  },
+  "episode.11.number": {
+    "en": "Episode 11",
+    "it": "Episodio 11"
+  },
+  "episode.11.status": {
+    "en": "Coming soon",
+    "it": "In arrivo"
+  },
+  "episode.11.title": {
+    "en": "Episode title",
+    "it": "Titolo della puntata"
+  },
+  "episode.11.scriptLabel": {
+    "en": "Story preview",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.11.script": {
+    "en": "Coming soon",
+    "it": "In arrivo"
+  },
+  "app.label": {
+    "en": "Official app",
+    "it": " App ufficiale"
+  },
+  "app.heading": {
+    "en": "The stories reveal the details.<br>AutoBit helps you inspect them.",
+    "it": "Le storie mostrano i dettagli.<br/>AutoBit ti aiuta a controllarli."
+  },
+  "app.copy": {
+    "en": "Bring the same attention to detail into a guided vehicle assessment you can save, compare and export.",
+    "it": "Porta la stessa logica di osservazione dentro una valutazione guidata, salvabile, confrontabile ed esportabile."
+  },
+  "app.play": {
+    "en": "Google Play →",
+    "it": "Google Play →"
+  },
+  "app.viewer": {
+    "en": "Open Viewer",
+    "it": "Viewer Free"
+  },
+  "app.availability": {
+    "en": "Availability on Google Play varies by country.",
+    "it": "La disponibilità su Google Play dipende dal Paese del tuo account."
+  },
+  "footer.legal": {
+    "en": "© 2026 Memmola Labs® · Alessandro Memmola · All rights reserved<br>No personal tracking or profiling cookies",
+    "it": "© 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br/>Nessun tracciamento personale o cookie di profilazione"
+  },
+  "footer.trademark": {
+    "en": "Memmola Labs® is a registered trademark of Alessandro Memmola",
+    "it": "Memmola Labs® è un marchio registrato di Alessandro Memmola"
+  }
+};
+  const storageKey = 'memmolaLabsLanguage';
+  const buttons = document.querySelectorAll('.language-switch [data-lang]');
+  let lang = 'en';
+  try {
+    const saved = localStorage.getItem(storageKey);
+    lang = (saved === 'it' || saved === 'en')
+      ? saved
+      : ((navigator.language || '').toLowerCase().startsWith('it') ? 'it' : 'en');
+  } catch (_) {
+    lang = (navigator.language || '').toLowerCase().startsWith('it') ? 'it' : 'en';
+  }
+  function translate(key, requested) {
+    const entry = catalog[key];
+    return entry ? (entry[requested] ?? entry.en) : '';
+  }
+  function apply(next, save) {
+    if (next !== 'en' && next !== 'it') return;
+    lang = next;
+    document.documentElement.lang = next;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      el.textContent = translate(el.dataset.i18n, next);
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      el.innerHTML = translate(el.dataset.i18nHtml, next);
+    });
+    document.querySelectorAll('[data-i18n-content]').forEach(el => {
+      el.setAttribute('content', translate(el.dataset.i18nContent, next));
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+      el.setAttribute('alt', translate(el.dataset.i18nAlt, next));
+    });
+    document.querySelectorAll('[data-image-lang]').forEach(img => {
+      const chosen = next === 'it' ? img.dataset.srcIt : img.dataset.srcEn;
+      if (img.getAttribute('src') !== chosen) img.setAttribute('src', chosen);
+    });
+    buttons.forEach(btn => btn.setAttribute('aria-pressed', String(btn.dataset.lang === next)));
+    if (save) {
+      try { localStorage.setItem(storageKey, next); } catch (_) { /* Private browsing. */ }
+    }
+  }
+  buttons.forEach(btn => btn.addEventListener('click', () => apply(btn.dataset.lang, true)));
+  apply(lang, false);
+})();
+</script>
 </body></html>
