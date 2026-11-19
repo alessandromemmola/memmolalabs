@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-<html lang="it">
+
+<html data-language="en" lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="DotTap Game — gioco arcade veloce di Memmola Labs per allenare riflessi, precisione e velocità. Modalità Classic, Precision, Rush e Survival." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://memmolalabs.com/dottap/" />
-  <title>DotTap Game — Arcade Reflex Game by Memmola Labs</title>
-
-  <meta property="og:title" content="DotTap Game — Arcade Reflex Game" />
-  <meta property="og:description" content="Tocca i punti, migliora riflessi e precisione, supera i tuoi record personali." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://memmolalabs.com/dottap/" />
-  <meta property="og:image" content="https://memmolalabs.com/dottap/images/banner.png" />
-
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="DotTap Game by Memmola Labs &mdash; a fast-paced arcade game to test reaction time, precision and speed. Classic, Precision, Rush and Survival modes." data-i18n-content="meta.description" name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://memmolalabs.com/dottap/" rel="canonical"/>
+<title>DotTap Game &mdash; Arcade Reflex Game by Memmola Labs</title>
+<meta content="DotTap Game &mdash; Arcade Reflex Game" property="og:title"/>
+<meta content="Tap the dots, sharpen your reflexes and precision, and beat your personal best." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://memmolalabs.com/dottap/" property="og:url"/>
+<meta content="https://memmolalabs.com/images/dottap/dottap_eng.png" property="og:image"/>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
 :root{
   --bg:#ffffff;
   --paper:#fbfcfe;
@@ -297,177 +295,392 @@ footer{
   .app-cta{padding:0 18px;margin-bottom:60px}
   .app-section{padding:30px}
 }
-</style></head>
+
+
+/* DotTap — global Memmola Labs EN/IT selector and language-aware hero */
+.language-switch{display:inline-flex;flex-shrink:0;align-items:center;gap:3px;padding:4px;border:1px solid #d9e3f1;border-radius:999px;background:#fff}
+.language-switch button{appearance:none;cursor:pointer;min-width:36px;min-height:30px;border:0;border-radius:999px;background:transparent;color:#667085;font:800 11px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.04em;padding:6px 10px}
+.language-switch button[aria-pressed="true"]{background:linear-gradient(120deg,var(--blue),var(--pink));color:#fff}
+.language-switch button:hover:not([aria-pressed="true"]){background:#f0f6ff}
+.language-switch button:focus-visible,.hero-image-link:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.hero-image-link{display:flex;align-items:center;justify-content:center;width:100%;text-decoration:none}
+.hero-image-link img{display:block;width:100%;height:auto}
+.badge-en-only{display:inline-flex;align-items:center;justify-content:center;width:min(210px,100%);min-height:62px;background:#101113;color:#fff;font-size:15px;font-weight:700;padding:14px 18px;border-radius:10px;text-align:center}
+html[data-language="en"] .badge-it-only{display:none}
+html[data-language="en"] .badge-en-only{display:inline-flex}
+html[data-language="it"] .badge-it-only{display:block}
+html[data-language="it"] .badge-en-only{display:none}
+@media(max-width:1050px){.language-switch{margin-left:auto}}
+@media(max-width:650px){nav{gap:10px}.nav-logo-text{font-size:12px}.language-switch button{min-width:33px;padding:5px 9px}.page-hero h1{font-size:clamp(2.8rem,11vw,3.65rem);line-height:.98;letter-spacing:-.055em}.hero-visual img{width:100%;max-width:100%}}
+</style><meta content="en_US" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/></head>
 <body>
-
 <nav>
-  <a href="/" class="nav-logo">
-    <div class="nav-logo-mark">M</div>
-    <span class="nav-logo-text">Memmola<span>Labs</span>®</span>
-  </a>
-  <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="#gioco">DotTap</a>
-    <a href="#modalita">Modalità</a>
-    <a href="#screens">Screenshot</a>
-    <a href="#privacy">Privacy</a>
-    <a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a>
-  </div>
-</nav>
-
+<a class="nav-logo" href="/" rel="noopener noreferrer" target="_blank">
+<div class="nav-logo-mark">M</div>
+<span class="nav-logo-text">Memmola<span>Labs</span>&reg;</span>
+</a>
+<div class="nav-links">
+<a href="/" rel="noopener noreferrer" target="_blank">Home</a>
+<a href="#gioco">DotTap</a>
+<a data-i18n="nav.modes" href="#modalita">Game modes</a>
+<a href="#screens">Screenshot</a>
+<a href="#privacy">Privacy</a>
+<a class="nav-cta" data-i18n="nav.contact" href="mailto:info@memmolalabs.com">Contact</a>
+</div>
+<div aria-label="Language / Lingua" class="language-switch" role="group">
+<button aria-label="English" aria-pressed="true" data-set-lang="en" lang="en" type="button">EN</button>
+<button aria-label="Italiano" aria-pressed="false" data-set-lang="it" lang="it" type="button">IT</button>
+</div></nav>
 <header class="page-hero">
-  <div class="hero-copy">
-    <div class="eyebrow"><span class="eyebrow-dot"></span> Arcade · Reflex · Speed</div>
-    <h1>Quanto sono veloci<br>i tuoi <span>riflessi?</span></h1>
-    <p class="hero-sub">Tocca, reagisci, migliora. DotTap è un arcade rapido costruito intorno a precisione, velocità e sfide immediate, da solo o con gli amici.</p>
-    <div class="hero-actions">
-      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.dottapgame" target="_blank" class="btn-primary">Gioca gratis su Google Play</a>
-      <a href="#modalita" class="btn-outline">Scopri le modalità ↓</a>
-    </div>
-  </div>
-
-  <div class="hero-visual">
-    <div class="hero-burst"></div>
-    <img src="/images/dottap/dottap.png" alt="DotTap Game con mano che tocca lo schermo">
-  </div>
+<div class="hero-copy">
+<div class="eyebrow"><span class="eyebrow-dot"></span> Arcade &middot; Reflex &middot; Speed</div>
+<h1 data-i18n-html="hero.title">How fast are<br/>your <span>reflexes?</span></h1>
+<p class="hero-sub" data-i18n="hero.subtitle">Tap, react, improve. DotTap is a fast-paced arcade game built around precision, speed and instant challenges &mdash; on your own or with friends.</p>
+<div class="hero-actions">
+<a class="btn-primary" data-i18n="hero.play" href="https://play.google.com/store/apps/details?id=com.memmolalabs.dottapgame" rel="noopener noreferrer" target="_blank">Play for free on Google Play</a>
+<a class="btn-outline" data-i18n="hero.modes" href="#modalita">Explore the game modes &darr;</a>
+</div>
+</div>
+<div class="hero-visual">
+<div class="hero-burst"></div>
+<a aria-label="DotTap Game on Google Play" class="hero-image-link" href="https://play.google.com/store/apps/details?id=com.memmolalabs.dottapgame" rel="noopener noreferrer" target="_blank"><img alt="DotTap Game &mdash; fast-paced touchscreen arcade action" data-i18n-alt="hero.image.alt" data-image-en="/images/dottap/dottap_eng.png" data-image-it="/images/dottap/dottap.png" src="/images/dottap/dottap_eng.png"/></a>
+</div>
 </header>
-
 <main>
-  <section class="section" id="gioco">
-    <div class="section-label"> DotTap Game</div>
-    <h2 class="section-title">Una regola semplice.<br>Un ritmo sempre più difficile.</h2>
-    <p class="section-sub">DotTap elimina tutto ciò che non serve: appare un punto, tu reagisci. Il risultato dipende da quanto velocemente e precisamente riesci a farlo.</p>
-
-    <div class="intro-grid">
-      <div class="glass-card">
-        <h3>Gameplay immediato</h3>
-        <p>Partite rapide da iniziare in pochi secondi, costruite per mettere alla prova concentrazione, coordinazione e velocità.</p>
-        <ul class="feature-list">
-          <li>Controlli semplici: basta un tocco.</li>
-          <li>Record personali da battere partita dopo partita.</li>
-          <li>Sessioni brevi, adatte anche a pochi minuti liberi.</li>
-          <li>Fino a quattro profili per sfidarsi sullo stesso dispositivo.</li>
-        </ul>
-      </div>
-
-      <div class="glass-card">
-        <h3>Gratis. Senza abbonamento.</h3>
-        <p>Classic e Precision sono disponibili subito. Rush e Survival possono essere sbloccate come modalità Premium con acquisto una tantum.</p>
-        <ul class="feature-list">
-          <li>Italiano e inglese.</li>
-          <li>Nessuna registrazione necessaria.</li>
-          <li>Nessun dato utente raccolto.</li>
-          <li>Modalità Premium senza abbonamento ricorrente.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <div class="modes-wrap">
-    <section class="section" id="modalita">
-      <div class="section-label"> Modalità</div>
-      <h2 class="section-title">Quattro modi di giocare.<br>Quattro tipi di pressione.</h2>
-      <p class="section-sub">Il gesto rimane semplice, ma cambia ciò che devi controllare: ritmo, precisione, velocità o resistenza.</p>
-
-      <div class="modes-grid">
-        <article class="mode-card">
-          <span class="mode-badge">Classic</span>
-          <h3>Classic</h3>
-          <p>La modalità ideale per migliorare progressivamente il tuo record personale e prendere confidenza con il ritmo del gioco.</p>
-        </article>
-        <article class="mode-card">
-          <span class="mode-badge">Precision</span>
-          <h3>Precision</h3>
-          <p>Ogni tocco conta. Mantieni la massima precisione e dimostra le tue abilità evitando errori sotto pressione.</p>
-        </article>
-        <article class="mode-card">
-          <span class="mode-badge premium">Premium · Rush</span>
-          <h3>Rush</h3>
-          <p>Velocità aumentata e sfida più intensa per chi vuole spingere i propri riflessi sempre più vicino al limite.</p>
-        </article>
-        <article class="mode-card">
-          <span class="mode-badge premium">Premium · Survival</span>
-          <h3>Survival</h3>
-          <p>Resisti il più a lungo possibile mantenendo lucidità, precisione e ritmo mentre la pressione continua a crescere.</p>
-        </article>
-      </div>
-    </section>
-  </div>
-
-  <div class="screens-feature" id="screens">
-    <section class="section">
-      <div class="section-label"> Screenshot</div>
-      <h2 class="section-title">Il gioco, senza filtri.</h2>
-      <p class="section-sub">Modalità, gameplay e schermate reali dello store in una galleria orizzontale pensata anche per lo swipe su smartphone.</p>
-      <div class="screens-grid">
-      <figure class="screen-card"><img src="images/1.png" alt="DotTap Game screenshot 1" loading="lazy"><figcaption class="screen-caption">Screenshot 01</figcaption></figure>
-      <figure class="screen-card"><img src="images/2.png" alt="DotTap Game screenshot 2" loading="lazy"><figcaption class="screen-caption">Screenshot 02</figcaption></figure>
-      <figure class="screen-card"><img src="images/3.png" alt="DotTap Game screenshot 3" loading="lazy"><figcaption class="screen-caption">Screenshot 03</figcaption></figure>
-      <figure class="screen-card"><img src="images/4.png" alt="DotTap Game screenshot 4" loading="lazy"><figcaption class="screen-caption">Screenshot 04</figcaption></figure>
-      <figure class="screen-card"><img src="images/5.png" alt="DotTap Game screenshot 5" loading="lazy"><figcaption class="screen-caption">Screenshot 05</figcaption></figure>
-      <figure class="screen-card"><img src="images/6.png" alt="DotTap Game screenshot 6" loading="lazy"><figcaption class="screen-caption">Screenshot 06</figcaption></figure>
-      <figure class="screen-card"><img src="images/7.png" alt="DotTap Game screenshot 7" loading="lazy"><figcaption class="screen-caption">Screenshot 07</figcaption></figure>
-    </div>
-  </section>
-  </div>
-
-  <section class="section privacy-band" id="privacy">
-    <div class="section-label"> Privacy</div>
-    <h2 class="section-title">Gioca. Punto.</h2>
-    <p class="section-sub">DotTap è pensato per essere immediato anche nella privacy: in base alle dichiarazioni dello store, non raccoglie e non condivide dati utente.</p>
-
-    <div class="privacy-grid">
-      <article class="privacy-card">
-        <h3>Nessun dato raccolto</h3>
-        <p>Non è necessario creare un account e il gioco non raccoglie dati personali dell'utente.</p>
-      </article>
-      <article class="privacy-card">
-        <h3>Privacy Policy</h3>
-        <p>La pagina privacy ufficiale rimane consultabile nel repository Memmola Labs.</p>
-        <div class="app-actions" style="margin-top:20px">
-          <a href="https://github.com/alessandromemmola/memmolalabs/blob/main/privacy-dottap.html" target="_blank" class="btn-outline">Leggi la Privacy Policy →</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="app-cta" id="download">
-    <div class="app-section">
-      <div>
-        <div class="section-label"> Google Play</div>
-        <h2>Un tocco sembra facile.<br>Finché non devi essere veloce.</h2>
-        <p>Scarica DotTap, prova le modalità gratuite e sfida i tuoi record o quelli dei tuoi amici.</p>
-      </div>
-      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.dottapgame" target="_blank" aria-label="Scarica DotTap Game su Google Play">
-        <img src="/image/play_ita.png" alt="Disponibile su Google Play" class="store-badge">
-      </a>
-    </div>
-  </section>
+<section class="section" id="gioco">
+<div class="section-label"> DotTap Game</div>
+<h2 class="section-title" data-i18n-html="intro.title">One simple rule.<br/>A faster challenge every time.</h2>
+<p class="section-sub" data-i18n="intro.subtitle">DotTap strips gameplay down to its essentials: a dot appears, and you react. Your result depends on how quickly and accurately you can tap.</p>
+<div class="intro-grid">
+<div class="glass-card">
+<h3 data-i18n="intro.fast.title">Instant gameplay</h3>
+<p data-i18n="intro.fast.description">Quick games you can start in seconds, designed to test your focus, coordination and reaction speed.</p>
+<ul class="feature-list">
+<li data-i18n="intro.fast.li1">Simple controls: just tap.</li>
+<li data-i18n="intro.fast.li2">Personal bests to beat, game after game.</li>
+<li data-i18n="intro.fast.li3">Short sessions, even when you only have a few minutes.</li>
+<li data-i18n="intro.fast.li4">Up to four profiles to compete on the same device.</li>
+</ul>
+</div>
+<div class="glass-card">
+<h3 data-i18n="intro.free.title">Free to play. No subscription.</h3>
+<p data-i18n="intro.free.description">Classic and Precision are available right away. Rush and Survival can be unlocked as Premium modes with a one-time purchase.</p>
+<ul class="feature-list">
+<li data-i18n="intro.free.li1">Available in English and Italian.</li>
+<li data-i18n="intro.free.li2">No registration required.</li>
+<li data-i18n="intro.free.li3">No user data collected, as stated in the store listing.</li>
+<li data-i18n="intro.free.li4">Premium game modes without recurring subscriptions.</li>
+</ul>
+</div>
+</div>
+</section>
+<div class="modes-wrap">
+<section class="section" id="modalita">
+<div class="section-label" data-i18n="modes.label">Game modes</div>
+<h2 class="section-title" data-i18n-html="modes.title">Four ways to play.<br/>Four different challenges.</h2>
+<p class="section-sub" data-i18n="modes.subtitle">The action stays simple, but the challenge changes: rhythm, accuracy, speed or endurance.</p>
+<div class="modes-grid">
+<article class="mode-card">
+<span class="mode-badge">Classic</span>
+<h3>Classic</h3>
+<p data-i18n="modes.desc.1">The perfect starting point to improve your personal best and get a feel for the game&rsquo;s rhythm.</p>
+</article>
+<article class="mode-card">
+<span class="mode-badge">Precision</span>
+<h3>Precision</h3>
+<p data-i18n="modes.desc.2">Every tap counts. Stay accurate and avoid mistakes even as the pressure rises.</p>
+</article>
+<article class="mode-card">
+<span class="mode-badge premium">Premium &middot; Rush</span>
+<h3>Rush</h3>
+<p data-i18n="modes.desc.3">Faster action and a more intense challenge for players who want to push their reaction speed.</p>
+</article>
+<article class="mode-card">
+<span class="mode-badge premium">Premium &middot; Survival</span>
+<h3>Survival</h3>
+<p data-i18n="modes.desc.4">Keep going as long as you can. Stay focused, precise and consistent while the pressure builds.</p>
+</article>
+</div>
+</section>
+</div>
+<div class="screens-feature" id="screens">
+<section class="section">
+<div class="section-label"> Screenshot</div>
+<h2 class="section-title" data-i18n="screens.title">The game, as it really plays.</h2>
+<p class="section-sub" data-i18n="screens.subtitle">Real gameplay, modes and store screenshots in a horizontal gallery. Swipe through on mobile.</p>
+<div class="screens-grid">
+<figure class="screen-card"><img alt="DotTap Game screenshot 1" loading="lazy" src="images/1.png"/><figcaption class="screen-caption">Screenshot 01</figcaption></figure>
+<figure class="screen-card"><img alt="DotTap Game screenshot 2" loading="lazy" src="images/2.png"/><figcaption class="screen-caption">Screenshot 02</figcaption></figure>
+<figure class="screen-card"><img alt="DotTap Game screenshot 3" loading="lazy" src="images/3.png"/><figcaption class="screen-caption">Screenshot 03</figcaption></figure>
+<figure class="screen-card"><img alt="DotTap Game screenshot 4" loading="lazy" src="images/4.png"/><figcaption class="screen-caption">Screenshot 04</figcaption></figure>
+<figure class="screen-card"><img alt="DotTap Game screenshot 5" loading="lazy" src="images/5.png"/><figcaption class="screen-caption">Screenshot 05</figcaption></figure>
+<figure class="screen-card"><img alt="DotTap Game screenshot 6" loading="lazy" src="images/6.png"/><figcaption class="screen-caption">Screenshot 06</figcaption></figure>
+<figure class="screen-card"><img alt="DotTap Game screenshot 7" loading="lazy" src="images/7.png"/><figcaption class="screen-caption">Screenshot 07</figcaption></figure>
+</div>
+</section>
+</div>
+<section class="section privacy-band" id="privacy">
+<div class="section-label"> Privacy</div>
+<h2 class="section-title" data-i18n="privacy.title">Just play. That&rsquo;s it.</h2>
+<p class="section-sub" data-i18n="privacy.subtitle">DotTap keeps things simple when it comes to privacy, too: according to its store disclosures, it does not collect or share user data.</p>
+<div class="privacy-grid">
+<article class="privacy-card">
+<h3 data-i18n="privacy.card1.title">No user data collected</h3>
+<p data-i18n="privacy.card1.desc">You do not need an account, and the game does not collect personal user data, according to its store disclosures.</p>
+</article>
+<article class="privacy-card">
+<h3>Privacy Policy</h3>
+<p data-i18n="privacy.card2.desc">The official privacy policy is available in the Memmola Labs repository.</p>
+<div class="app-actions" style="margin-top:20px">
+<a class="btn-outline" data-i18n="privacy.card2.link" href="https://github.com/alessandromemmola/memmolalabs/blob/main/privacy-dottap.html" rel="noopener noreferrer" target="_blank">Read the Privacy Policy &rarr;</a>
+</div>
+</article>
+</div>
+</section>
+<section class="app-cta" id="download">
+<div class="app-section">
+<div>
+<div class="section-label"> Google Play</div>
+<h2 data-i18n-html="cta.title">One tap sounds easy.<br/>Until speed really matters.</h2>
+<p data-i18n="cta.desc">Get DotTap, try the free modes, and challenge your own best scores or those of your friends.</p>
+</div>
+<a aria-label="Get DotTap Game on Google Play" data-i18n-aria-label="cta.store.aria" href="https://play.google.com/store/apps/details?id=com.memmolalabs.dottapgame" rel="noopener noreferrer" target="_blank">
+<img alt="Available on Google Play" class="store-badge badge-it-only" data-i18n-alt="cta.store.img.alt" src="/image/play_ita.png"/>
+<span class="badge-en-only">Get it on Google Play</span></a>
+</div>
+</section>
 </main>
-
 <footer>
-  <div class="footer-logo">Memmola<span>Labs®</span></div>
-
-  <div class="footer-links">
-    <a href="/">Home</a>
-    <a href="/immobit/">ImmoBit</a>
-    <a href="/autobit/">AutoBit</a>
-    <a href="/origins/">Origins</a>
-    <a href="https://slangbit.com" target="_blank">SlangBit</a>
-    <a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a>
-    <a href="https://github.com/alessandromemmola" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a>
-    <a href="https://x.com/MemmolaLabs" target="_blank">X</a>
-    <a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a>
-  </div>
-
-  <div>
-    © 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br>
-    Nessun tracciamento personale o cookie di profilazione
-  </div>
-
-  <div class="footer-trademark">Memmola Labs® è un marchio registrato di Alessandro Memmola</div>
+<div class="footer-logo">Memmola<span>Labs&reg;</span></div>
+<div class="footer-links">
+<a href="/" rel="noopener noreferrer" target="_blank">Home</a>
+<a href="/immobit/" rel="noopener noreferrer" target="_blank">ImmoBit</a>
+<a href="/autobit/" rel="noopener noreferrer" target="_blank">AutoBit</a>
+<a href="/origins/" rel="noopener noreferrer" target="_blank">Origins</a>
+<a href="https://slangbit.com" rel="noopener noreferrer" target="_blank">SlangBit</a>
+<a href="https://alessandromemmola.com" rel="noopener noreferrer" target="_blank">Alessandro Memmola</a>
+<a href="https://github.com/alessandromemmola" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+<a href="https://x.com/MemmolaLabs" rel="noopener noreferrer" target="_blank">X</a>
+<a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a>
+</div>
+<div data-i18n-html="footer.legal">&copy; 2026 Memmola Labs&reg; &middot; Alessandro Memmola &middot; All rights reserved<br/>No personal tracking or profiling cookies</div>
+<div class="footer-trademark" data-i18n="footer.trademark">Memmola Labs&reg; is a registered trademark of Alessandro Memmola</div>
 </footer>
-
-</body>
+<script>
+(() => {
+  'use strict';
+  const catalog = {
+  "nav.modes": {
+    "en": "Game modes",
+    "it": "Modalità"
+  },
+  "nav.contact": {
+    "en": "Contact",
+    "it": "Contatti"
+  },
+  "hero.title": {
+    "en": "How fast are<br>your <span>reflexes?</span>",
+    "it": "Quanto sono veloci<br/>i tuoi <span>riflessi?</span>"
+  },
+  "hero.subtitle": {
+    "en": "Tap, react, improve. DotTap is a fast-paced arcade game built around precision, speed and instant challenges — on your own or with friends.",
+    "it": "Tocca, reagisci, migliora. DotTap è un arcade rapido costruito intorno a precisione, velocità e sfide immediate, da solo o con gli amici."
+  },
+  "hero.play": {
+    "en": "Play for free on Google Play",
+    "it": "Gioca gratis su Google Play"
+  },
+  "hero.modes": {
+    "en": "Explore the game modes ↓",
+    "it": "Scopri le modalità ↓"
+  },
+  "hero.image.alt": {
+    "it": "DotTap Game con mano che tocca lo schermo",
+    "en": "DotTap Game — fast-paced touchscreen arcade action"
+  },
+  "intro.title": {
+    "en": "One simple rule.<br>A faster challenge every time.",
+    "it": "Una regola semplice.<br/>Un ritmo sempre più difficile."
+  },
+  "intro.subtitle": {
+    "en": "DotTap strips gameplay down to its essentials: a dot appears, and you react. Your result depends on how quickly and accurately you can tap.",
+    "it": "DotTap elimina tutto ciò che non serve: appare un punto, tu reagisci. Il risultato dipende da quanto velocemente e precisamente riesci a farlo."
+  },
+  "intro.fast.title": {
+    "en": "Instant gameplay",
+    "it": "Gameplay immediato"
+  },
+  "intro.fast.description": {
+    "en": "Quick games you can start in seconds, designed to test your focus, coordination and reaction speed.",
+    "it": "Partite rapide da iniziare in pochi secondi, costruite per mettere alla prova concentrazione, coordinazione e velocità."
+  },
+  "intro.fast.li1": {
+    "en": "Simple controls: just tap.",
+    "it": "Controlli semplici: basta un tocco."
+  },
+  "intro.fast.li2": {
+    "en": "Personal bests to beat, game after game.",
+    "it": "Record personali da battere partita dopo partita."
+  },
+  "intro.fast.li3": {
+    "en": "Short sessions, even when you only have a few minutes.",
+    "it": "Sessioni brevi, adatte anche a pochi minuti liberi."
+  },
+  "intro.fast.li4": {
+    "en": "Up to four profiles to compete on the same device.",
+    "it": "Fino a quattro profili per sfidarsi sullo stesso dispositivo."
+  },
+  "intro.free.title": {
+    "en": "Free to play. No subscription.",
+    "it": "Gratis. Senza abbonamento."
+  },
+  "intro.free.description": {
+    "en": "Classic and Precision are available right away. Rush and Survival can be unlocked as Premium modes with a one-time purchase.",
+    "it": "Classic e Precision sono disponibili subito. Rush e Survival possono essere sbloccate come modalità Premium con acquisto una tantum."
+  },
+  "intro.free.li1": {
+    "en": "Available in English and Italian.",
+    "it": "Italiano e inglese."
+  },
+  "intro.free.li2": {
+    "en": "No registration required.",
+    "it": "Nessuna registrazione necessaria."
+  },
+  "intro.free.li3": {
+    "en": "No user data collected, as stated in the store listing.",
+    "it": "Nessun dato utente raccolto."
+  },
+  "intro.free.li4": {
+    "en": "Premium game modes without recurring subscriptions.",
+    "it": "Modalità Premium senza abbonamento ricorrente."
+  },
+  "modes.label": {
+    "en": "Game modes",
+    "it": "Modalità"
+  },
+  "modes.title": {
+    "en": "Four ways to play.<br>Four different challenges.",
+    "it": "Quattro modi di giocare.<br/>Quattro tipi di pressione."
+  },
+  "modes.subtitle": {
+    "en": "The action stays simple, but the challenge changes: rhythm, accuracy, speed or endurance.",
+    "it": "Il gesto rimane semplice, ma cambia ciò che devi controllare: ritmo, precisione, velocità o resistenza."
+  },
+  "modes.desc.1": {
+    "en": "The perfect starting point to improve your personal best and get a feel for the game’s rhythm.",
+    "it": "La modalità ideale per migliorare progressivamente il tuo record personale e prendere confidenza con il ritmo del gioco."
+  },
+  "modes.desc.2": {
+    "en": "Every tap counts. Stay accurate and avoid mistakes even as the pressure rises.",
+    "it": "Ogni tocco conta. Mantieni la massima precisione e dimostra le tue abilità evitando errori sotto pressione."
+  },
+  "modes.desc.3": {
+    "en": "Faster action and a more intense challenge for players who want to push their reaction speed.",
+    "it": "Velocità aumentata e sfida più intensa per chi vuole spingere i propri riflessi sempre più vicino al limite."
+  },
+  "modes.desc.4": {
+    "en": "Keep going as long as you can. Stay focused, precise and consistent while the pressure builds.",
+    "it": "Resisti il più a lungo possibile mantenendo lucidità, precisione e ritmo mentre la pressione continua a crescere."
+  },
+  "screens.title": {
+    "en": "The game, as it really plays.",
+    "it": "Il gioco, senza filtri."
+  },
+  "screens.subtitle": {
+    "en": "Real gameplay, modes and store screenshots in a horizontal gallery. Swipe through on mobile.",
+    "it": "Modalità, gameplay e schermate reali dello store in una galleria orizzontale pensata anche per lo swipe su smartphone."
+  },
+  "privacy.title": {
+    "en": "Just play. That’s it.",
+    "it": "Gioca. Punto."
+  },
+  "privacy.subtitle": {
+    "en": "DotTap keeps things simple when it comes to privacy, too: according to its store disclosures, it does not collect or share user data.",
+    "it": "DotTap è pensato per essere immediato anche nella privacy: in base alle dichiarazioni dello store, non raccoglie e non condivide dati utente."
+  },
+  "privacy.card1.title": {
+    "en": "No user data collected",
+    "it": "Nessun dato raccolto"
+  },
+  "privacy.card1.desc": {
+    "en": "You do not need an account, and the game does not collect personal user data, according to its store disclosures.",
+    "it": "Non è necessario creare un account e il gioco non raccoglie dati personali dell'utente."
+  },
+  "privacy.card2.desc": {
+    "en": "The official privacy policy is available in the Memmola Labs repository.",
+    "it": "La pagina privacy ufficiale rimane consultabile nel repository Memmola Labs."
+  },
+  "privacy.card2.link": {
+    "en": "Read the Privacy Policy →",
+    "it": "Leggi la Privacy Policy →"
+  },
+  "cta.title": {
+    "en": "One tap sounds easy.<br>Until speed really matters.",
+    "it": "Un tocco sembra facile.<br/>Finché non devi essere veloce."
+  },
+  "cta.desc": {
+    "en": "Get DotTap, try the free modes, and challenge your own best scores or those of your friends.",
+    "it": "Scarica DotTap, prova le modalità gratuite e sfida i tuoi record o quelli dei tuoi amici."
+  },
+  "cta.store.aria": {
+    "it": "Scarica DotTap Game su Google Play",
+    "en": "Get DotTap Game on Google Play"
+  },
+  "cta.store.img.alt": {
+    "en": "Available on Google Play",
+    "it": "Disponibile su Google Play"
+  },
+  "footer.legal": {
+    "en": "© 2026 Memmola Labs® · Alessandro Memmola · All rights reserved<br>No personal tracking or profiling cookies",
+    "it": "© 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br/>\n    Nessun tracciamento personale o cookie di profilazione"
+  },
+  "footer.trademark": {
+    "en": "Memmola Labs® is a registered trademark of Alessandro Memmola",
+    "it": "Memmola Labs® è un marchio registrato di Alessandro Memmola"
+  },
+  "meta.description": {
+    "it": "DotTap Game — gioco arcade veloce di Memmola Labs per allenare riflessi, precisione e velocità. Modalità Classic, Precision, Rush e Survival.",
+    "en": "DotTap Game by Memmola Labs — a fast-paced arcade game to test reaction time, precision and speed. Classic, Precision, Rush and Survival modes."
+  }
+};
+  const storageKey = 'memmolaLabsLanguage';
+  const languageButtons = Array.from(document.querySelectorAll('.language-switch [data-set-lang]'));
+  const title = 'DotTap Game — Arcade Reflex Game by Memmola Labs';
+  function getInitialLanguage() {
+    let saved = null;
+    try { saved = localStorage.getItem(storageKey); } catch (_) { /* storage may be disabled */ }
+    if (saved === 'en' || saved === 'it') return saved;
+    return (navigator.language || '').toLowerCase().startsWith('it') ? 'it' : 'en';
+  }
+  function t(key, lang) {
+    const pair = catalog[key];
+    return pair ? (pair[lang] ?? pair.en) : '';
+  }
+  function setLanguage(lang, persist = false) {
+    if (lang !== 'en' && lang !== 'it') return;
+    document.documentElement.lang = lang;
+    document.documentElement.dataset.language = lang;
+    document.title = title;
+    document.querySelectorAll('[data-i18n]').forEach(el => {el.textContent = t(el.dataset.i18n,lang);});
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {el.innerHTML = t(el.dataset.i18nHtml,lang);});
+    document.querySelectorAll('[data-i18n-content]').forEach(el => {el.setAttribute('content',t(el.dataset.i18nContent,lang));});
+    document.querySelectorAll('[data-i18n-alt]').forEach(el => {el.setAttribute('alt',t(el.dataset.i18nAlt,lang));});
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {el.setAttribute('aria-label',t(el.dataset.i18nAriaLabel,lang));});
+    document.querySelectorAll('img[data-image-it][data-image-en]').forEach(img => {
+      const source = img.getAttribute(lang === 'it' ? 'data-image-it' : 'data-image-en');
+      if (source && img.getAttribute('src') !== source) img.setAttribute('src',source);
+    });
+    languageButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.setLang === lang)));
+    if (persist) {
+      try {localStorage.setItem(storageKey,lang);} catch (_) { /* storage disabled */ }
+    }
+  }
+  languageButtons.forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.setLang,true)));
+  window.addEventListener('storage',event => {
+    if (event.key === storageKey && (event.newValue === 'it' || event.newValue === 'en')) setLanguage(event.newValue,false);
+  });
+  setLanguage(getInitialLanguage(),false);
+})();
+</script></body>
 </html>
