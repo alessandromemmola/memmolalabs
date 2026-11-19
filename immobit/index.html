@@ -1,23 +1,21 @@
 <!DOCTYPE html>
-<html lang="it">
+
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ImmoBit — Storie, episodi e contenuti ufficiali della serie dedicata alla valutazione immobiliare italiana by Memmola Labs." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://memmolalabs.com/immobit/" />
-  <title>ImmoBit — Storie immobiliari by Memmola Labs</title>
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="ImmoBit — Storie immobiliari by Memmola Labs" />
-  <meta property="og:description" content="La pagina ufficiale ImmoBit: episodi, sceneggiature, PDF e contenuti della serie con Elena Moretti." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://memmolalabs.com/immobit/" />
-  <meta property="og:image" content="https://memmolalabs.com/immobit/banner_immobit.png" />
-
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ImmoBit helps you inspect and compare properties with guided checklists, scores and professional PDF reports. Explore the ImmoBit Stories episodes." data-i18n-content="meta.description" name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://memmolalabs.com/immobit/" rel="canonical"/>
+<title data-i18n="meta.title">ImmoBit — Property evaluations and ImmoBit Stories</title>
+<!-- Open Graph -->
+<meta content="ImmoBit — Property evaluations and stories by Memmola Labs" data-i18n-content="meta.ogtitle" property="og:title"/>
+<meta content="The official ImmoBit page: guided property inspections, stories with Elena Moretti, episodes, PDFs and behind-the-scenes material." data-i18n-content="meta.ogdescription" property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://memmolalabs.com/immobit/" property="og:url"/>
+<meta content="https://memmolalabs.com/images/immobit/immobit_eng.png" property="og:image"/>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
 :root{--bg:#fff;--surface:#f8f7f2;--line:#e7e2d6;--text:#161616;--muted:#6f6a61;--gold:#c99b2e;--gold2:#a87813;--dark:#0b0b0b}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:#fff;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;overflow-x:hidden}a{color:inherit}img{display:block;max-width:100%}
 nav{position:sticky;top:0;z-index:100;height:64px;padding:0 3.5vw;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.94);border-bottom:1px solid rgba(17,24,39,.08);backdrop-filter:blur(18px)}.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}.nav-logo-mark{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,#c99b2e,#f1d47a);color:#111;font-weight:900}.nav-logo-text{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}.nav-logo-text span{color:var(--gold2)}.nav-links{display:flex;gap:24px;align-items:center}.nav-links a{text-decoration:none;text-transform:uppercase;font-size:10px;font-weight:700;letter-spacing:.08em;color:#2f2d29}.nav-links a:hover{color:var(--gold2)}.nav-cta{padding:7px 13px;border:1px solid #d9d3c8;border-radius:999px}
@@ -31,318 +29,720 @@ nav{position:sticky;top:0;z-index:100;height:64px;padding:0 3.5vw;display:flex;a
 footer{border-top:1px solid #ece7df;padding:42px 4vw;text-align:center;color:#827b70;font-size:10px;line-height:1.9}.footer-logo{font-size:1rem;font-weight:800;color:#211f1b;margin-bottom:12px}.footer-logo span{color:var(--gold2)}.footer-links{display:flex;gap:17px;flex-wrap:wrap;justify-content:center;margin:12px 0}.footer-links a{text-decoration:none}.footer-links a:hover{color:var(--gold2)}.footer-trademark{margin-top:12px;color:#aaa298}
 @media(max-width:980px){.nav-links{display:none}.page-hero{grid-template-columns:1fr;padding-top:46px}.hero-copy{text-align:center;padding-left:0}.hero-sub{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-visual{min-height:420px}.intro-grid,.profile-inner,.app-section{grid-template-columns:1fr}.episodes-grid{grid-template-columns:1fr}}
 @media(max-width:650px){nav{padding:0 18px}.page-hero{padding:38px 18px 18px;min-height:auto}h1{font-size:4.3rem}.hero-visual{min-height:300px}.hero-visual img{width:115%;max-width:none}.product-intro,.episodes-section{padding:64px 18px}.stories-hero{min-height:58vh}.stories-copy{padding:38px 22px}.profile-strip{padding:0 22px 54px}.episode-card{padding:22px}.app-cta{padding:0 18px;margin-bottom:60px}.app-section{padding:28px}}
+
+/* Language selector shared with the Memmola Labs homepage. */
+.language-switch{display:flex;gap:3px;align-items:center;padding:3px;border:1px solid #e5d8b5;border-radius:999px;background:#fff;flex:0 0 auto;margin-left:16px}
+.language-switch button{border:0;border-radius:999px;background:transparent;color:#6f6350;font:800 11px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-width:34px;min-height:30px;padding:5px 8px;cursor:pointer}
+.language-switch button[aria-pressed="true"]{background:#c99b2e;color:#111}
+.language-switch button:focus-visible{outline:2px solid #a87813;outline-offset:2px}
+.hero-image-link{display:block;width:100%;max-width:1000px;text-decoration:none;overflow:hidden}
+@media(max-width:980px){nav{gap:10px}.language-switch{margin-left:auto}}
 </style></head><body>
 <nav>
-<a href="/" class="nav-logo"><div class="nav-logo-mark">M</div><span class="nav-logo-text">Memmola<span>Labs</span>®</span></a>
-<div class="nav-links"><a href="/">Home</a><a href="#prodotto">ImmoBit</a><a href="#stories">Stories</a><a href="#episodi">Episodi</a><a href="/viewer/">Viewer</a><a href="/autobit/">AutoBit</a><a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a></div>
-</nav>
-
+<a class="nav-logo" href="/" rel="noopener noreferrer" target="_blank"><div class="nav-logo-mark">M</div><span class="nav-logo-text">Memmola<span>Labs</span>®</span></a>
+<div class="nav-links"><a href="/" rel="noopener noreferrer" target="_blank">Home</a><a href="#prodotto">ImmoBit</a><a data-i18n="nav.stories" href="#stories">Stories</a><a data-i18n="nav.episodes" href="#episodi">Episodes</a><a href="/viewer/" rel="noopener noreferrer" target="_blank">Viewer</a><a href="/autobit/" rel="noopener noreferrer" target="_blank">AutoBit</a><a class="nav-cta" data-i18n="nav.contact" href="mailto:info@memmolalabs.com">Contact</a></div>
+<div aria-label="Language / Lingua" class="language-switch" role="group"><button aria-label="English" aria-pressed="true" data-lang="en" lang="en" type="button">EN</button><button aria-label="Italiano" aria-pressed="false" data-lang="it" lang="it" type="button">IT</button></div></nav>
 <header class="page-hero">
 <div class="hero-copy">
 <div class="eyebrow"><span class="eyebrow-dot"></span> ImmoBit · Android</div>
-<h1>Osserva meglio.<br>Prima di <span>scegliere.</span></h1>
-<p class="hero-sub">Controlli guidati, punteggio 0–100, costi, comfort e confronto per valutare un immobile con più metodo prima dell'acquisto o dell'affitto.</p>
-<div class="hero-actions"><a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" class="btn-primary">Scarica su Google Play</a><a href="https://memmolalabs.com/viewer" target="_blank" class="btn-outline">Apri il Viewer</a><a href="#stories" class="btn-outline">ImmoBit Stories ↓</a></div>
+<h1 data-i18n-html="hero.title">Look closer.<br/>Before you <span>decide.</span></h1>
+<p class="hero-sub" data-i18n="hero.subtitle">Guided checks, 0–100 scoring, costs, comfort and side-by-side comparisons to help you evaluate a property before buying or renting.</p>
+<div class="hero-actions"><a class="btn-primary" data-i18n="hero.play" href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" rel="noopener noreferrer" target="_blank">Get it on Google Play</a><a class="btn-outline" data-i18n="hero.viewer" href="https://memmolalabs.com/viewer" rel="noopener noreferrer" target="_blank">Open Viewer</a><a class="btn-outline" href="#stories">ImmoBit Stories ↓</a></div>
 </div>
-<div class="hero-visual"><div class="hero-glow"></div><img src="/images/immobit/immobit.png" alt="ImmoBit su smartphone"></div>
+<div class="hero-visual"><div class="hero-glow"></div><a aria-label="ImmoBit on Google Play" class="hero-image-link" href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" rel="noopener noreferrer" target="_blank"><img alt="ImmoBit property evaluation app preview" data-i18n-alt="hero.image.alt" data-image-lang="hero" data-src-en="/images/immobit/immobit_eng.png" data-src-it="/images/immobit/immobit.png" src="/images/immobit/immobit_eng.png"/></a></div>
 </header>
-
 <main>
 <section class="product-intro" id="prodotto">
-<div class="section-label"> Il prodotto</div>
-<h2 class="section-title">Una valutazione ordinata, prima della decisione.</h2>
-<p class="section-sub">ImmoBit raccoglie in un unico percorso controlli, condizioni dell'immobile, costi, comfort, fotografie, punteggi e confronto fra più proprietà.</p>
+<div class="section-label" data-i18n="intro.label">The app</div>
+<h2 class="section-title" data-i18n="intro.heading">A structured evaluation before you decide.</h2>
+<p class="section-sub" data-i18n="intro.subtitle">ImmoBit brings property checks, condition, costs, comfort, photos, scores and comparisons together in one guided workflow.</p>
 <div class="intro-grid">
-<div class="glass-card"><h3>Cosa puoi fare con ImmoBit</h3><p>Un metodo guidato per trasformare una visita immobiliare in una valutazione più leggibile e confrontabile.</p><ul class="feature-list"><li>Oltre 60 controlli guidati per analizzare l'immobile.</li><li>Punteggio complessivo da 0 a 100 e risultati per categoria.</li><li>Confronto diretto fra più immobili salvati.</li><li>Report PDF professionali, fotografie, note e archivio.</li><li>Uso locale, senza account e senza caricamento dei dati.</li></ul></div>
-<div class="product-note"><strong>Prima osserva.<br>Poi confronta.</strong><p>ImmoBit non sostituisce un tecnico o un professionista: ti aiuta a raccogliere e organizzare gli elementi che meritano attenzione prima di scegliere.</p></div>
+<div class="glass-card"><h3 data-i18n="intro.features.title">What you can do with ImmoBit</h3><p data-i18n="intro.features.text">A guided approach that turns a property viewing into an assessment you can understand and compare.</p><ul class="feature-list"><li data-i18n="intro.feature.1">More than 60 guided checks to assess a property.</li><li data-i18n="intro.feature.2">Overall score from 0 to 100, plus category-level results.</li><li data-i18n="intro.feature.3">Side-by-side comparisons of multiple saved properties.</li><li data-i18n="intro.feature.4">Professional PDF reports, photos, notes and evaluation history.</li><li data-i18n="intro.feature.5">Local use, with no account or data uploads.</li></ul></div>
+<div class="product-note"><strong data-i18n-html="intro.note.title">Observe first.<br/>Then compare.</strong><p data-i18n="intro.note.text">ImmoBit does not replace a qualified inspector or professional. It helps you collect and organize the details worth checking before making a decision.</p></div>
 </div>
 </section>
-
 <section class="stories-hero" id="stories">
-<img src="/images/immobit/immobit_origins.png" alt="ImmoBit Stories con Elena Moretti">
-<div class="stories-copy"><div class="section-label"> ImmoBit Stories</div><h2>IMMO<span>BIT</span><br>STORIES</h2><p>Una casa può sembrare perfetta. Spesso sono i dettagli a raccontare il resto. Elena Moretti osserva, analizza e trasforma casi immobiliari in episodi brevi e documenti di approfondimento.</p></div>
+<img alt="ImmoBit Stories featuring Elena Moretti" data-i18n-alt="stories.image.alt" src="/images/immobit/immobit_origins.png"/>
+<div class="stories-copy"><div class="section-label"> ImmoBit Stories</div><h2>IMMO<span>BIT</span><br/>STORIES</h2><p data-i18n="stories.desc">A home can look perfect. Often, the details tell a different story. Elena Moretti observes, investigates and turns real estate scenarios into short episodes and supporting documents.</p></div>
 </section>
-
 <section class="profile-strip">
 <div class="profile-inner">
-<div><div class="section-label">Elena Moretti</div><div class="profile-name">Property analyst.<br>Story character.</div><div class="profile-role">ImmoBit Stories</div></div>
-<p class="profile-text">Elena osserva dettagli, contesto e segnali spesso ignorati. Ogni episodio parte da una situazione concreta e la trasforma in una storia breve, accompagnata quando disponibile da Shorts, Inspection Report e Creation Notes in italiano e inglese.</p>
+<div><div class="section-label">Elena Moretti</div><div class="profile-name">Property analyst.<br/>Story character.</div><div class="profile-role">ImmoBit Stories</div></div>
+<p class="profile-text" data-i18n="profile.desc">Elena notices details, context and warning signs that others often overlook. Each episode starts from an everyday situation and becomes a short story, accompanied where available by Shorts, inspection reports and creation notes in English and Italian.</p>
 </div>
 </section>
-
 <section class="episodes-section" id="episodi">
-<div class="section-label"> Archivio</div>
-<h2 class="section-title">Episodi ImmoBit Stories</h2>
-<p class="section-sub">Tutti gli episodi e i materiali già pubblicati restano accessibili: video, report di ispezione e note di creazione.</p>
+<div class="section-label" data-i18n="episodes.label">Archive</div>
+<h2 class="section-title" data-i18n="episodes.heading">ImmoBit Stories episodes</h2>
+<p class="section-sub" data-i18n="episodes.desc">Browse every published episode and its supporting materials: videos, property inspection reports and creation notes.</p>
 <div class="episodes-grid"><article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 01</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>Immobit Stories - EP 01 - L'appartamento perfetto</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>Un appartamento interessante. Un prezzo convincente. Ma i dettagli raccontano sempre la verità. Elena inizia la sua prima analisi con Immobit.</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://youtube.com/shorts/dfe0LT3jDUo" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/ImmoBit_Via_Padova_n_12__Roma_1779866773012.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/72kpBbbt9Ug" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/ImmoBit_Via_Padova_n_12__Roma_1779866438939.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-1-Speciale-Come-nasce-Immobit-l-appartamento-perfetto.pdf" class="btn-outline"target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Episode-1-Special-How-Immobit-Was-Born-the-Perfect-Apartment.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.01.number">Episode 01</span>
+<span class="chip" data-i18n="episode.01.status">Available</span>
+</div>
+<h3 data-i18n="episode.01.title">The Perfect Apartment</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.01.label">Story summary</strong>
+<p data-i18n="episode.01.summary">An appealing apartment. A convincing price. But the details always tell the truth. Elena begins her first property assessment using ImmoBit.</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.1" href="https://youtube.com/shorts/dfe0LT3jDUo" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.2" href="Inspection Report Ita/ImmoBit_Via_Padova_n_12__Roma_1779866773012.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.3" href="https://youtube.com/shorts/72kpBbbt9Ug" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.4" href="Inspection Report Eng/ImmoBit_Via_Padova_n_12__Roma_1779866438939.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.5" href="Creation Notes Ita/Episodio-1-Speciale-Come-nasce-Immobit-l-appartamento-perfetto.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.6" href="Creation Notes Eng/Episode-1-Special-How-Immobit-Was-Born-the-Perfect-Apartment.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 02</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>Il rumore dietro al muro</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>Una casa accogliente.
-             Un prezzo interessante.
-             Un piccolo rumore che sembra insignificante.
-             Ma Elena ha imparato che i dettagli più piccoli spesso nascondono le verità più importanti.
-             In questo episodio di Immobit Stories, una semplice visita immobiliare si trasforma in un'indagine che porterà alla scoperta di un problema nascosto dietro una parete apparentemente perfetta.</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://youtube.com/shorts/OqGrr8bWXiY" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/ImmoBit_Via_Vaio_23__Roma_1779963871663.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/kfT-LeWOqhE" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/ImmoBit_Via_Vaio_23__Roma_1779963506765.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-2-Il-rumore-dietro-al-muro.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Episode-2-The-noise-behind-the-wall.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.02.number">Episode 02</span>
+<span class="chip" data-i18n="episode.02.status">Available</span>
+</div>
+<h3 data-i18n="episode.02.title">The Noise Behind the Wall</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.02.label">Story summary</strong>
+<p data-i18n="episode.02.summary">A welcoming home. An attractive price. A faint noise that seems insignificant. But Elena knows the smallest details can conceal the most important truths. In this episode, an ordinary viewing turns into an investigation of a hidden problem behind a seemingly flawless wall.</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.1" href="https://youtube.com/shorts/OqGrr8bWXiY" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.2" href="Inspection Report Ita/ImmoBit_Via_Vaio_23__Roma_1779963871663.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.3" href="https://youtube.com/shorts/kfT-LeWOqhE" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.4" href="Inspection Report Eng/ImmoBit_Via_Vaio_23__Roma_1779963506765.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.5" href="Creation Notes Ita/Episodio-2-Il-rumore-dietro-al-muro.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.6" href="Creation Notes Eng/Episode-2-The-noise-behind-the-wall.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 03</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>La casa troppo perfetta</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>Un appartamento appena ristrutturato. Pulito, ordinato, impeccabile. Tutto sembra perfetto, forse troppo perfetto.</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://www.youtube.com/shorts/b3aEO7u-c8c" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/ImmoBit_Via_Orfi_23__Roma_1780057610023.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/NeRE5fykv5M" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/ImmoBit_Via_Orfi_23__Roma_1780057897589.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-3-La-casa-troppo-perfetta.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Episode-3-The-too-perfect- house.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.03.number">Episode 03</span>
+<span class="chip" data-i18n="episode.03.status">Available</span>
+</div>
+<h3 data-i18n="episode.03.title">The House That Was Too Perfect</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.03.label">Story summary</strong>
+<p data-i18n="episode.03.summary">A newly renovated apartment. Clean, orderly, spotless. Everything looks perfect — perhaps a little too perfect.</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.1" href="https://www.youtube.com/shorts/b3aEO7u-c8c" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.2" href="Inspection Report Ita/ImmoBit_Via_Orfi_23__Roma_1780057610023.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.3" href="https://youtube.com/shorts/NeRE5fykv5M" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.4" href="Inspection Report Eng/ImmoBit_Via_Orfi_23__Roma_1780057897589.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.5" href="Creation Notes Ita/Episodio-3-La-casa-troppo-perfetta.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.6" href="Creation Notes Eng/Episode-3-The-too-perfect- house.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 04</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>La prima volta che Elena ha ignorato un segnale</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>Prima di aiutare gli altri, Elena ha commesso lo stesso errore che oggi cerca di evitare.
-             Da studentessa universitaria affitta il suo primo appartamento.</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://youtube.com/shorts/UoeJ8T-nZCE" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/ImmoBit_Via_Pio_23__Roma_1780058463986.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/CN43BWk2ip4" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/ImmoBit_Via_Pio_23__Roma_1780058696983.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-4-La- prima-volta-che-Elena-ha-ignorato-un-segnale.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Episode-4-The first-time-Elena-ignored-a-signal.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.04.number">Episode 04</span>
+<span class="chip" data-i18n="episode.04.status">Available</span>
+</div>
+<h3 data-i18n="episode.04.title">The First Time Elena Ignored a Warning Sign</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.04.label">Story summary</strong>
+<p data-i18n="episode.04.summary">Before she started helping others, Elena made the same mistake she now tries to prevent. As a university student, she rents her first apartment.</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.1" href="https://youtube.com/shorts/UoeJ8T-nZCE" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.2" href="Inspection Report Ita/ImmoBit_Via_Pio_23__Roma_1780058463986.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.3" href="https://youtube.com/shorts/CN43BWk2ip4" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.4" href="Inspection Report Eng/ImmoBit_Via_Pio_23__Roma_1780058696983.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.5" href="Creation Notes Ita/Episodio-4-La- prima-volta-che-Elena-ha-ignorato-un-segnale.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.6" href="Creation Notes Eng/Episode-4-The first-time-Elena-ignored-a-signal.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 05</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>L'offerta scade stasera</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>L'offerta scade oggi."
-             "Ci sono già altri interessati."
-             "Dovete decidere subito."
-             Una giovane coppia si trova sotto pressione durante la visita di un appartamento apparentemente perfetto.</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://youtube.com/shorts/Bo4Tej1HrSY" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/ImmoBit_Via_Morandi_12__Roma_1780407809418.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/dDijaqBFJ_Q" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/ImmoBit_Via_Morandi_12__Roma_1780408035488.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-5-l-offerta-scade-stasera.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Episode-5-The-offer-expires-tonight.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.05.number">Episode 05</span>
+<span class="chip" data-i18n="episode.05.status">Available</span>
+</div>
+<h3 data-i18n="episode.05.title">The Offer Expires Tonight</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.05.label">Story summary</strong>
+<p data-i18n="episode.05.summary">“The offer expires today.” “There are already other interested buyers.” “You need to decide now.” A young couple feels the pressure during a viewing of an apparently perfect apartment.</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.1" href="https://youtube.com/shorts/Bo4Tej1HrSY" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.2" href="Inspection Report Ita/ImmoBit_Via_Morandi_12__Roma_1780407809418.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.3" href="https://youtube.com/shorts/dDijaqBFJ_Q" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.4" href="Inspection Report Eng/ImmoBit_Via_Morandi_12__Roma_1780408035488.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.5" href="Creation Notes Ita/Episodio-5-l-offerta-scade-stasera.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.6" href="Creation Notes Eng/Episode-5-The-offer-expires-tonight.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 06</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>Troppo perfetta</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>Una ragazza trova finalmente la casa dei suoi sogni.
-             Prezzo giusto.
-             Quartiere ideale.
-             Fotografie incredibili.
-             Sembra perfetta.</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://youtube.com/shorts/fZWBw3SOG0s" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/ImmoBit_Porta_Romana_34__Milano_1780408784493.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/kDOPIXIGC74" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/ImmoBit_Porta_Romana_34__Milano_1780409351202.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-6-troppo-perfetta.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Episode-6-Too-perfect.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.06.number">Episode 06</span>
+<span class="chip" data-i18n="episode.06.status">Available</span>
+</div>
+<h3 data-i18n="episode.06.title">Too Perfect</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.06.label">Story summary</strong>
+<p data-i18n="episode.06.summary">A young woman finally finds her dream home. The right price. The ideal neighborhood. Stunning photos. It seems perfect.</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.1" href="https://youtube.com/shorts/fZWBw3SOG0s" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.2" href="Inspection Report Ita/ImmoBit_Porta_Romana_34__Milano_1780408784493.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.3" href="https://youtube.com/shorts/kDOPIXIGC74" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.4" href="Inspection Report Eng/ImmoBit_Porta_Romana_34__Milano_1780409351202.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.5" href="Creation Notes Ita/Episodio-6-troppo-perfetta.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.6" href="Creation Notes Eng/Episode-6-Too-perfect.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 07</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>L'annuncio sparito</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>Una settimana fa aveva trovato il posto perfetto. Oggi quell'annuncio non esiste più. Nessuna traccia online. Nessun riferimento. Nessuna agenzia. Solo un ricordo.</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://youtube.com/shorts/ADA3fVZKDec" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/ImmoBit_Via_Gardenia_14__Roma_1780410104853.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/0d8p3S4VD_E" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/ImmoBit_Via_Gardenia_14__Roma_1780410687762.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-7-l-annuncio-sparito.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Episode-7-The-disappeared-Listing.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.07.number">Episode 07</span>
+<span class="chip" data-i18n="episode.07.status">Available</span>
+</div>
+<h3 data-i18n="episode.07.title">The Disappeared Listing</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.07.label">Story summary</strong>
+<p data-i18n="episode.07.summary">A week ago, she found the perfect place. Today the listing is gone. No trace online. No reference. No agency. Only a memory.</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.1" href="https://youtube.com/shorts/ADA3fVZKDec" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.2" href="Inspection Report Ita/ImmoBit_Via_Gardenia_14__Roma_1780410104853.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.3" href="https://youtube.com/shorts/0d8p3S4VD_E" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.4" href="Inspection Report Eng/ImmoBit_Via_Gardenia_14__Roma_1780410687762.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.5" href="Creation Notes Ita/Episodio-7-l-annuncio-sparito.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.6" href="Creation Notes Eng/Episode-7-The-disappeared-Listing.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 08</span>
-          <span class="chip">Online</span>
-        </div>
-        <h3>Il locale Perfetto</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>Un giovane imprenditore è pronto a investire tutti i suoi risparmi.
-                Ha trovato il locale ideale</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="https://youtube.com/shorts/Kypw18Ub53A" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/ImmoBit_Locale_su_strada_1784654287596.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Ita</a>
-          <a href="https://youtube.com/shorts/utSu9voUg5A" class="btn-soft" target="_blank" rel="noopener noreferrer">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/ImmoBit_Local_on_street_1784654455074.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/Episodio-8-il-locale-perfetto.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/Episode-8-The perfect-place.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.08.number">Episode 08</span>
+<span class="chip" data-i18n="episode.08.status">Available</span>
+</div>
+<h3 data-i18n="episode.08.title">The Perfect Business Space</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.08.label">Story summary</strong>
+<p data-i18n="episode.08.summary">A young entrepreneur is ready to invest all his savings. He has found the ideal commercial space.</p>
+</div>
+<div class="episode-actions">
+<a class="btn-soft" data-i18n="episode.link.1" href="https://youtube.com/shorts/Kypw18Ub53A" rel="noopener noreferrer" target="_blank">YouTube Shorts (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.2" href="Inspection Report Ita/ImmoBit_Locale_su_strada_1784654287596.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a class="btn-soft" data-i18n="episode.link.3" href="https://youtube.com/shorts/utSu9voUg5A" rel="noopener noreferrer" target="_blank">YouTube Shorts (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.4" href="Inspection Report Eng/ImmoBit_Local_on_street_1784654455074.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a class="btn-outline" data-i18n="episode.link.5" href="Creation Notes Ita/Episodio-8-il-locale-perfetto.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a class="btn-outline" data-i18n="episode.link.6" href="Creation Notes Eng/Episode-8-The perfect-place.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 09</span>
-          <span class="chip">In arrivo</span>
-        </div>
-        <h3>Titolo della puntata</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>In arrivo</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="#" class="btn-soft" target="_blank" rel="noopener noreferrer" aria-disabled="true">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Inspection Report Ita</a>
-          <a href="#" class="btn-soft" target="_blank" rel="noopener noreferrer" aria-disabled="true">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.09.number">Episode 09</span>
+<span class="chip" data-i18n="episode.09.status">Coming soon</span>
+</div>
+<h3 data-i18n="episode.09.title">Episode title</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.09.label">Story preview</strong>
+<p data-i18n="episode.09.summary">Coming soon</p>
+</div>
+<div class="episode-actions">
+<a aria-disabled="true" class="btn-soft" data-i18n="episode.link.1" href="#" rel="noopener noreferrer">YouTube Shorts (IT)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.2" href="Inspection Report Ita/.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a aria-disabled="true" class="btn-soft" data-i18n="episode.link.3" href="#" rel="noopener noreferrer">YouTube Shorts (EN)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.4" href="Inspection Report Eng/.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.5" href="Creation Notes Ita/.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.6" href="Creation Notes Eng/.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 10</span>
-          <span class="chip">In arrivo</span>
-        </div>
-        <h3>Titolo della puntata</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>In arrivo</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="#" class="btn-soft" target="_blank" rel="noopener noreferrer" aria-disabled="true">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Inspection Report Ita</a>
-          <a href="#" class="btn-soft" target="_blank" rel="noopener noreferrer" aria-disabled="true">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Eng</a>
-        </div>
-      </article>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.10.number">Episode 10</span>
+<span class="chip" data-i18n="episode.10.status">Coming soon</span>
+</div>
+<h3 data-i18n="episode.10.title">Episode title</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.10.label">Story preview</strong>
+<p data-i18n="episode.10.summary">Coming soon</p>
+</div>
+<div class="episode-actions">
+<a aria-disabled="true" class="btn-soft" data-i18n="episode.link.1" href="#" rel="noopener noreferrer">YouTube Shorts (IT)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.2" href="Inspection Report Ita/.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a aria-disabled="true" class="btn-soft" data-i18n="episode.link.3" href="#" rel="noopener noreferrer">YouTube Shorts (EN)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.4" href="Inspection Report Eng/.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.5" href="Creation Notes Ita/.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.6" href="Creation Notes Eng/.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article>
 <article class="episode-card">
-        <div class="episode-meta">
-          <span class="chip">Episodio 11</span>
-          <span class="chip">In arrivo</span>
-        </div>
-        <h3>Titolo della puntata</h3>
-        <p></p>
-
-        <div class="script-box">
-          <strong>Sceneggiatura breve</strong>
-          <p>In arrivo</p>
-        </div>
-
-        <div class="episode-actions">
-          <a href="#" class="btn-soft" target="_blank" rel="noopener noreferrer" aria-disabled="true">YouTube Shorts Ita</a>
-          <a href="Inspection Report Ita/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Inspection Report Ita</a>
-          <a href="#" class="btn-soft" target="_blank" rel="noopener noreferrer" aria-disabled="true">YouTube Shorts Eng</a>
-          <a href="Inspection Report Eng/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Inspection Report Eng</a>
-          <a href="Creation Notes Ita/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Ita</a>
-          <a href="Creation Notes Eng/.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" aria-disabled="true">Creation Notes Eng</a>
-        </div>
-      </article></div>
+<div class="episode-meta">
+<span class="chip" data-i18n="episode.11.number">Episode 11</span>
+<span class="chip" data-i18n="episode.11.status">Coming soon</span>
+</div>
+<h3 data-i18n="episode.11.title">Episode title</h3>
+<p></p>
+<div class="script-box">
+<strong data-i18n="episode.11.label">Story preview</strong>
+<p data-i18n="episode.11.summary">Coming soon</p>
+</div>
+<div class="episode-actions">
+<a aria-disabled="true" class="btn-soft" data-i18n="episode.link.1" href="#" rel="noopener noreferrer">YouTube Shorts (IT)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.2" href="Inspection Report Ita/.pdf" rel="noopener noreferrer" target="_blank">Inspection report (IT)</a>
+<a aria-disabled="true" class="btn-soft" data-i18n="episode.link.3" href="#" rel="noopener noreferrer">YouTube Shorts (EN)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.4" href="Inspection Report Eng/.pdf" rel="noopener noreferrer" target="_blank">Inspection report (EN)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.5" href="Creation Notes Ita/.pdf" rel="noopener noreferrer" target="_blank">Creation notes (IT)</a>
+<a aria-disabled="true" class="btn-outline" data-i18n="episode.link.6" href="Creation Notes Eng/.pdf" rel="noopener noreferrer" target="_blank">Creation notes (EN)</a>
+</div>
+</article></div>
 </section>
-
 <section class="app-cta" id="app">
 <div class="app-section">
-<div><div class="section-label"> App ufficiale</div><h2>Le storie mostrano i segnali.<br>ImmoBit ti aiuta a valutarli.</h2><p>Porta la stessa logica di osservazione dentro una valutazione guidata, salvabile, confrontabile ed esportabile.</p></div>
-<div class="hero-actions"><a href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" target="_blank" class="store-link">Google Play →</a><a href="https://memmolalabs.com/viewer" target="_blank" class="btn-outline">Viewer Free</a></div>
+<div><div class="section-label" data-i18n="app.label">Official app</div><h2 data-i18n-html="app.heading">The stories reveal the warning signs.<br/>ImmoBit helps you assess them.</h2><p data-i18n="app.desc">Bring that same attention to detail into a guided property evaluation you can save, compare and export.</p></div>
+<div class="hero-actions"><a class="store-link" href="https://play.google.com/store/apps/details?id=com.memmolalabs.immobit" rel="noopener noreferrer" target="_blank">Google Play →</a><a class="btn-outline" data-i18n="app.viewer" href="https://memmolalabs.com/viewer" rel="noopener noreferrer" target="_blank">Open Viewer</a></div>
 </div>
 </section>
 </main>
-
 <footer>
 <div class="footer-logo">Memmola<span>Labs®</span></div>
-<div class="footer-links"><a href="/">Home</a><a href="/autobit/">AutoBit</a><a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a><a href="https://github.com/alessandromemmola" target="_blank">GitHub</a><a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a><a href="https://x.com/MemmolaLabs" target="_blank">X</a><a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a></div>
-<div>© 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br>Nessun tracciamento personale o cookie di profilazione</div>
-<div class="footer-trademark">Memmola Labs® è un marchio registrato di Alessandro Memmola</div>
+<div class="footer-links"><a href="/" rel="noopener noreferrer" target="_blank">Home</a><a href="/autobit/" rel="noopener noreferrer" target="_blank">AutoBit</a><a href="https://alessandromemmola.com" rel="noopener noreferrer" target="_blank">Alessandro Memmola</a><a href="https://github.com/alessandromemmola" rel="noopener noreferrer" target="_blank">GitHub</a><a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" rel="noopener noreferrer" target="_blank">LinkedIn</a><a href="https://x.com/MemmolaLabs" rel="noopener noreferrer" target="_blank">X</a><a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a></div>
+<div data-i18n-html="footer.legal">© 2026 Memmola Labs® · Alessandro Memmola · All rights reserved<br/>No personal tracking or profiling cookies</div>
+<div class="footer-trademark" data-i18n="footer.trademark">Memmola Labs® is a registered trademark of Alessandro Memmola</div>
 </footer>
-</body></html>
+<script>
+(() => {
+  'use strict';
+  const catalog = {
+  "meta.description": {
+    "en": "ImmoBit helps you inspect and compare properties with guided checklists, scores and professional PDF reports. Explore the ImmoBit Stories episodes.",
+    "it": "ImmoBit — Storie, episodi e contenuti ufficiali della serie dedicata alla valutazione immobiliare italiana by Memmola Labs."
+  },
+  "meta.title": {
+    "en": "ImmoBit — Property evaluations and ImmoBit Stories",
+    "it": "ImmoBit — Storie immobiliari by Memmola Labs"
+  },
+  "meta.ogtitle": {
+    "en": "ImmoBit — Property evaluations and stories by Memmola Labs",
+    "it": "ImmoBit — Storie immobiliari by Memmola Labs"
+  },
+  "meta.ogdescription": {
+    "en": "The official ImmoBit page: guided property inspections, stories with Elena Moretti, episodes, PDFs and behind-the-scenes material.",
+    "it": "La pagina ufficiale ImmoBit: episodi, sceneggiature, PDF e contenuti della serie con Elena Moretti."
+  },
+  "nav.stories": {
+    "en": "Stories",
+    "it": "Stories"
+  },
+  "nav.episodes": {
+    "en": "Episodes",
+    "it": "Episodi"
+  },
+  "nav.contact": {
+    "en": "Contact",
+    "it": "Contatti"
+  },
+  "hero.title": {
+    "en": "Look closer.<br/>Before you <span>decide.<\/span>",
+    "it": "Osserva meglio.<br/>Prima di <span>scegliere.<\/span>"
+  },
+  "hero.subtitle": {
+    "en": "Guided checks, 0–100 scoring, costs, comfort and side-by-side comparisons to help you evaluate a property before buying or renting.",
+    "it": "Controlli guidati, punteggio 0–100, costi, comfort e confronto per valutare un immobile con più metodo prima dell'acquisto o dell'affitto."
+  },
+  "hero.play": {
+    "en": "Get it on Google Play",
+    "it": "Scarica su Google Play"
+  },
+  "hero.viewer": {
+    "en": "Open Viewer",
+    "it": "Apri il Viewer"
+  },
+  "hero.image.alt": {
+    "en": "ImmoBit property evaluation app preview",
+    "it": "ImmoBit su smartphone"
+  },
+  "intro.label": {
+    "en": "The app",
+    "it": "Il prodotto"
+  },
+  "intro.heading": {
+    "en": "A structured evaluation before you decide.",
+    "it": "Una valutazione ordinata, prima della decisione."
+  },
+  "intro.subtitle": {
+    "en": "ImmoBit brings property checks, condition, costs, comfort, photos, scores and comparisons together in one guided workflow.",
+    "it": "ImmoBit raccoglie in un unico percorso controlli, condizioni dell'immobile, costi, comfort, fotografie, punteggi e confronto fra più proprietà."
+  },
+  "intro.features.title": {
+    "en": "What you can do with ImmoBit",
+    "it": "Cosa puoi fare con ImmoBit"
+  },
+  "intro.features.text": {
+    "en": "A guided approach that turns a property viewing into an assessment you can understand and compare.",
+    "it": "Un metodo guidato per trasformare una visita immobiliare in una valutazione più leggibile e confrontabile."
+  },
+  "intro.feature.1": {
+    "en": "More than 60 guided checks to assess a property.",
+    "it": "Oltre 60 controlli guidati per analizzare l'immobile."
+  },
+  "intro.feature.2": {
+    "en": "Overall score from 0 to 100, plus category-level results.",
+    "it": "Punteggio complessivo da 0 a 100 e risultati per categoria."
+  },
+  "intro.feature.3": {
+    "en": "Side-by-side comparisons of multiple saved properties.",
+    "it": "Confronto diretto fra più immobili salvati."
+  },
+  "intro.feature.4": {
+    "en": "Professional PDF reports, photos, notes and evaluation history.",
+    "it": "Report PDF professionali, fotografie, note e archivio."
+  },
+  "intro.feature.5": {
+    "en": "Local use, with no account or data uploads.",
+    "it": "Uso locale, senza account e senza caricamento dei dati."
+  },
+  "intro.note.title": {
+    "en": "Observe first.<br/>Then compare.",
+    "it": "Prima osserva.<br/>Poi confronta."
+  },
+  "intro.note.text": {
+    "en": "ImmoBit does not replace a qualified inspector or professional. It helps you collect and organize the details worth checking before making a decision.",
+    "it": "ImmoBit non sostituisce un tecnico o un professionista: ti aiuta a raccogliere e organizzare gli elementi che meritano attenzione prima di scegliere."
+  },
+  "stories.image.alt": {
+    "en": "ImmoBit Stories featuring Elena Moretti",
+    "it": "ImmoBit Stories con Elena Moretti"
+  },
+  "stories.desc": {
+    "en": "A home can look perfect. Often, the details tell a different story. Elena Moretti observes, investigates and turns real estate scenarios into short episodes and supporting documents.",
+    "it": "Una casa può sembrare perfetta. Spesso sono i dettagli a raccontare il resto. Elena Moretti osserva, analizza e trasforma casi immobiliari in episodi brevi e documenti di approfondimento."
+  },
+  "profile.desc": {
+    "en": "Elena notices details, context and warning signs that others often overlook. Each episode starts from an everyday situation and becomes a short story, accompanied where available by Shorts, inspection reports and creation notes in English and Italian.",
+    "it": "Elena osserva dettagli, contesto e segnali spesso ignorati. Ogni episodio parte da una situazione concreta e la trasforma in una storia breve, accompagnata quando disponibile da Shorts, Inspection Report e Creation Notes in italiano e inglese."
+  },
+  "episodes.label": {
+    "en": "Archive",
+    "it": "Archivio"
+  },
+  "episodes.heading": {
+    "en": "ImmoBit Stories episodes",
+    "it": "Episodi ImmoBit Stories"
+  },
+  "episodes.desc": {
+    "en": "Browse every published episode and its supporting materials: videos, property inspection reports and creation notes.",
+    "it": "Tutti gli episodi e i materiali già pubblicati restano accessibili: video, report di ispezione e note di creazione."
+  },
+  "episode.01.number": {
+    "en": "Episode 01",
+    "it": "Episodio 01"
+  },
+  "episode.01.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.01.title": {
+    "en": "The Perfect Apartment",
+    "it": "Immobit Stories - EP 01 - L'appartamento perfetto"
+  },
+  "episode.01.label": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.01.summary": {
+    "en": "An appealing apartment. A convincing price. But the details always tell the truth. Elena begins her first property assessment using ImmoBit.",
+    "it": "Un appartamento interessante. Un prezzo convincente. Ma i dettagli raccontano sempre la verità. Elena inizia la sua prima analisi con Immobit."
+  },
+  "episode.link.1": {
+    "en": "YouTube Shorts (IT)",
+    "it": "YouTube Shorts Ita"
+  },
+  "episode.link.2": {
+    "en": "Inspection report (IT)",
+    "it": "Inspection Report Ita"
+  },
+  "episode.link.3": {
+    "en": "YouTube Shorts (EN)",
+    "it": "YouTube Shorts Eng"
+  },
+  "episode.link.4": {
+    "en": "Inspection report (EN)",
+    "it": "Inspection Report Eng"
+  },
+  "episode.link.5": {
+    "en": "Creation notes (IT)",
+    "it": "Creation Notes Ita"
+  },
+  "episode.link.6": {
+    "en": "Creation notes (EN)",
+    "it": "Creation Notes Eng"
+  },
+  "episode.02.number": {
+    "en": "Episode 02",
+    "it": "Episodio 02"
+  },
+  "episode.02.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.02.title": {
+    "en": "The Noise Behind the Wall",
+    "it": "Il rumore dietro al muro"
+  },
+  "episode.02.label": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.02.summary": {
+    "en": "A welcoming home. An attractive price. A faint noise that seems insignificant. But Elena knows the smallest details can conceal the most important truths. In this episode, an ordinary viewing turns into an investigation of a hidden problem behind a seemingly flawless wall.",
+    "it": "Una casa accogliente.\n             Un prezzo interessante.\n             Un piccolo rumore che sembra insignificante.\n             Ma Elena ha imparato che i dettagli più piccoli spesso nascondono le verità più importanti.\n             In questo episodio di Immobit Stories, una semplice visita immobiliare si trasforma in un'indagine che porterà alla scoperta di un problema nascosto dietro una parete apparentemente perfetta."
+  },
+  "episode.03.number": {
+    "en": "Episode 03",
+    "it": "Episodio 03"
+  },
+  "episode.03.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.03.title": {
+    "en": "The House That Was Too Perfect",
+    "it": "La casa troppo perfetta"
+  },
+  "episode.03.label": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.03.summary": {
+    "en": "A newly renovated apartment. Clean, orderly, spotless. Everything looks perfect — perhaps a little too perfect.",
+    "it": "Un appartamento appena ristrutturato. Pulito, ordinato, impeccabile. Tutto sembra perfetto, forse troppo perfetto."
+  },
+  "episode.04.number": {
+    "en": "Episode 04",
+    "it": "Episodio 04"
+  },
+  "episode.04.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.04.title": {
+    "en": "The First Time Elena Ignored a Warning Sign",
+    "it": "La prima volta che Elena ha ignorato un segnale"
+  },
+  "episode.04.label": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.04.summary": {
+    "en": "Before she started helping others, Elena made the same mistake she now tries to prevent. As a university student, she rents her first apartment.",
+    "it": "Prima di aiutare gli altri, Elena ha commesso lo stesso errore che oggi cerca di evitare.\n             Da studentessa universitaria affitta il suo primo appartamento."
+  },
+  "episode.05.number": {
+    "en": "Episode 05",
+    "it": "Episodio 05"
+  },
+  "episode.05.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.05.title": {
+    "en": "The Offer Expires Tonight",
+    "it": "L'offerta scade stasera"
+  },
+  "episode.05.label": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.05.summary": {
+    "en": "“The offer expires today.” “There are already other interested buyers.” “You need to decide now.” A young couple feels the pressure during a viewing of an apparently perfect apartment.",
+    "it": "L'offerta scade oggi.\"\n             \"Ci sono già altri interessati.\"\n             \"Dovete decidere subito.\"\n             Una giovane coppia si trova sotto pressione durante la visita di un appartamento apparentemente perfetto."
+  },
+  "episode.06.number": {
+    "en": "Episode 06",
+    "it": "Episodio 06"
+  },
+  "episode.06.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.06.title": {
+    "en": "Too Perfect",
+    "it": "Troppo perfetta"
+  },
+  "episode.06.label": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.06.summary": {
+    "en": "A young woman finally finds her dream home. The right price. The ideal neighborhood. Stunning photos. It seems perfect.",
+    "it": "Una ragazza trova finalmente la casa dei suoi sogni.\n             Prezzo giusto.\n             Quartiere ideale.\n             Fotografie incredibili.\n             Sembra perfetta."
+  },
+  "episode.07.number": {
+    "en": "Episode 07",
+    "it": "Episodio 07"
+  },
+  "episode.07.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.07.title": {
+    "en": "The Disappeared Listing",
+    "it": "L'annuncio sparito"
+  },
+  "episode.07.label": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.07.summary": {
+    "en": "A week ago, she found the perfect place. Today the listing is gone. No trace online. No reference. No agency. Only a memory.",
+    "it": "Una settimana fa aveva trovato il posto perfetto. Oggi quell'annuncio non esiste più. Nessuna traccia online. Nessun riferimento. Nessuna agenzia. Solo un ricordo."
+  },
+  "episode.08.number": {
+    "en": "Episode 08",
+    "it": "Episodio 08"
+  },
+  "episode.08.status": {
+    "en": "Available",
+    "it": "Online"
+  },
+  "episode.08.title": {
+    "en": "The Perfect Business Space",
+    "it": "Il locale Perfetto"
+  },
+  "episode.08.label": {
+    "en": "Story summary",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.08.summary": {
+    "en": "A young entrepreneur is ready to invest all his savings. He has found the ideal commercial space.",
+    "it": "Un giovane imprenditore è pronto a investire tutti i suoi risparmi.\n                Ha trovato il locale ideale"
+  },
+  "episode.09.number": {
+    "en": "Episode 09",
+    "it": "Episodio 09"
+  },
+  "episode.09.status": {
+    "en": "Coming soon",
+    "it": "In arrivo"
+  },
+  "episode.09.title": {
+    "en": "Episode title",
+    "it": "Titolo della puntata"
+  },
+  "episode.09.label": {
+    "en": "Story preview",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.09.summary": {
+    "en": "Coming soon",
+    "it": "In arrivo"
+  },
+  "episode.10.number": {
+    "en": "Episode 10",
+    "it": "Episodio 10"
+  },
+  "episode.10.status": {
+    "en": "Coming soon",
+    "it": "In arrivo"
+  },
+  "episode.10.title": {
+    "en": "Episode title",
+    "it": "Titolo della puntata"
+  },
+  "episode.10.label": {
+    "en": "Story preview",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.10.summary": {
+    "en": "Coming soon",
+    "it": "In arrivo"
+  },
+  "episode.11.number": {
+    "en": "Episode 11",
+    "it": "Episodio 11"
+  },
+  "episode.11.status": {
+    "en": "Coming soon",
+    "it": "In arrivo"
+  },
+  "episode.11.title": {
+    "en": "Episode title",
+    "it": "Titolo della puntata"
+  },
+  "episode.11.label": {
+    "en": "Story preview",
+    "it": "Sceneggiatura breve"
+  },
+  "episode.11.summary": {
+    "en": "Coming soon",
+    "it": "In arrivo"
+  },
+  "app.label": {
+    "en": "Official app",
+    "it": "App ufficiale"
+  },
+  "app.heading": {
+    "en": "The stories reveal the warning signs.<br/>ImmoBit helps you assess them.",
+    "it": "Le storie mostrano i segnali.<br/>ImmoBit ti aiuta a valutarli."
+  },
+  "app.desc": {
+    "en": "Bring that same attention to detail into a guided property evaluation you can save, compare and export.",
+    "it": "Porta la stessa logica di osservazione dentro una valutazione guidata, salvabile, confrontabile ed esportabile."
+  },
+  "app.viewer": {
+    "en": "Open Viewer",
+    "it": "Apri il Viewer"
+  },
+  "footer.legal": {
+    "en": "© 2026 Memmola Labs® · Alessandro Memmola · All rights reserved<br/>No personal tracking or profiling cookies",
+    "it": "© 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br/>Nessun tracciamento personale o cookie di profilazione"
+  },
+  "footer.trademark": {
+    "en": "Memmola Labs® is a registered trademark of Alessandro Memmola",
+    "it": "Memmola Labs® è un marchio registrato di Alessandro Memmola"
+  }
+};
+  const storageKey = 'memmolaLabsLanguage';
+  const buttons = document.querySelectorAll('.language-switch [data-lang]');
+  let lang = 'en';
+  try {
+    const saved = localStorage.getItem(storageKey);
+    lang = (saved === 'it' || saved === 'en')
+      ? saved
+      : ((navigator.language || '').toLowerCase().startsWith('it') ? 'it' : 'en');
+  } catch (_) {
+    lang = (navigator.language || '').toLowerCase().startsWith('it') ? 'it' : 'en';
+  }
+  function translated(key, requested) {
+    const pair = catalog[key];
+    return pair ? (pair[requested] ?? pair.en) : '';
+  }
+  function apply(next, save) {
+    if (next !== 'en' && next !== 'it') return;
+    lang = next;
+    document.documentElement.lang = next;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      el.textContent = translated(el.dataset.i18n, next);
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      el.innerHTML = translated(el.dataset.i18nHtml, next);
+    });
+    document.querySelectorAll('[data-i18n-content]').forEach(el => {
+      el.setAttribute('content', translated(el.dataset.i18nContent, next));
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+      el.setAttribute('alt', translated(el.dataset.i18nAlt, next));
+    });
+    document.querySelectorAll('[data-image-lang]').forEach(img => {
+      const chosen = next === 'it' ? img.dataset.srcIt : img.dataset.srcEn;
+      if (img.getAttribute('src') !== chosen) img.setAttribute('src', chosen);
+    });
+    buttons.forEach(btn => btn.setAttribute('aria-pressed', String(btn.dataset.lang === next)));
+    if (save) {
+      try { localStorage.setItem(storageKey, next); } catch (_) { /* Storage may be unavailable. */ }
+    }
+  }
+  buttons.forEach(btn => btn.addEventListener('click', () => apply(btn.dataset.lang, true)));
+  apply(lang, false);
+})();
+</script></body></html>
