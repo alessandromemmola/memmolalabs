@@ -1,24 +1,20 @@
 <!DOCTYPE html>
-<html lang="it">
+
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <meta name="description" content="ScentWeave: Memory Canvas — app Memmola Labs per creare una tela personale di profumi, ricordi, foto ed esperienze." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://memmolalabs.com/scentweave/" />
-
-  <title>ScentWeave — Memory Canvas by Memmola Labs</title>
-
-  <meta property="og:title" content="ScentWeave — Memory Canvas" />
-  <meta property="og:description" content="Collega profumi, ricordi, foto ed esperienze personali in una mappa visiva della tua memoria." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://memmolalabs.com/scentweave/" />
-  <meta property="og:image" content="https://memmolalabs.com/scentweave/images/banner.png" />
-
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ScentWeave — a personal memory canvas. Connect scents, photographs, places and emotions in an interactive, offline archive." data-i18n-content="meta.description" name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://memmolalabs.com/scentweave/" rel="canonical"/>
+<title>ScentWeave — Memory Canvas by Memmola Labs</title>
+<meta content="ScentWeave — Memory Canvas by Memmola Labs" property="og:title"/>
+<meta content="A scent can take you back. Connect memories, photos and emotions on your personal ScentWeave canvas." data-i18n-content="meta.ogdescription" property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://memmolalabs.com/scentweave/" property="og:url"/>
+<meta content="https://memmolalabs.com/images/scentweave/scentweave_eng.png" property="og:image"/>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
 :root{
   --bg:#ffffff;
   --paper:#fcfbff;
@@ -295,238 +291,550 @@ footer{
   .app-cta{padding:0 18px;margin-bottom:60px}
   .app-section{padding:30px}
 }
-</style></head>
+
+
+/* ScentWeave international navigation and language-aware storefront */
+nav{gap:16px}
+.language-switch{display:inline-flex;flex-shrink:0;align-items:center;gap:3px;padding:4px;border:1px solid #e3dcef;border-radius:999px;background:#fff}
+.language-switch button{appearance:none;cursor:pointer;min-width:36px;min-height:30px;border:0;border-radius:999px;background:transparent;color:#706979;font:800 11px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.04em;padding:6px 10px}
+.language-switch button[aria-pressed="true"]{background:linear-gradient(120deg,#9a63e8,#ef78b7);color:#fff}
+.language-switch button:hover:not([aria-pressed="true"]){background:#faf6ff}
+.language-switch button:focus-visible,.hero-image-link:focus-visible{outline:2px solid #9a63e8;outline-offset:3px}
+.hero-image-link{display:block;max-width:1050px;width:100%;text-decoration:none;position:relative}
+.hero-image-link img{width:100%;height:auto}
+.badge-en-only{display:inline-flex;align-items:center;justify-content:center;min-height:62px;min-width:210px;padding:12px 19px;border-radius:9px;background:#111;color:#fff;font-weight:700;font-size:14px;letter-spacing:.01em;box-shadow:0 8px 22px rgba(0,0,0,.12)}
+.badge-it-only{display:none}
+html[data-language="it"] .badge-it-only{display:block}
+html[data-language="it"] .badge-en-only{display:none}
+@media(max-width:1050px){.language-switch{margin-left:auto}}
+@media(max-width:650px){nav{gap:10px}.nav-logo-text{font-size:12px}.language-switch button{min-width:33px;padding:5px 9px}.page-hero h1{font-size:clamp(2.8rem,11vw,3.5rem);line-height:.98;letter-spacing:-.055em;overflow-wrap:normal}.hero-image-link{max-width:100%}}
+</style><meta content="en_US" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/></head>
 <body>
-
 <nav>
-  <a href="/" class="nav-logo">
-    <div class="nav-logo-mark">M</div>
-    <span class="nav-logo-text">Memmola<span>Labs</span>®</span>
-  </a>
-  <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="#scentweave">ScentWeave</a>
-    <a href="#funzionalita">Funzionalità</a>
-    <a href="#versioni">Versioni</a>
-    <a href="#screens">Screenshot</a>
-    <a href="#privacy">Privacy</a>
-    <a href="mailto:info@memmolalabs.com" class="nav-cta">Contatti</a>
-  </div>
-</nav>
-
+<a class="nav-logo" href="/" rel="noopener noreferrer" target="_blank">
+<div class="nav-logo-mark">M</div>
+<span class="nav-logo-text">Memmola<span>Labs</span>®</span>
+</a>
+<div class="nav-links">
+<a href="/" rel="noopener noreferrer" target="_blank">Home</a>
+<a href="#scentweave">ScentWeave</a>
+<a data-i18n="nav.features" href="#funzionalita">Features</a>
+<a data-i18n="nav.versions" href="#versioni">Versions</a>
+<a href="#screens">Screenshot</a>
+<a href="#privacy">Privacy</a>
+<a class="nav-cta" data-i18n="nav.contact" href="mailto:contact@memmolalabs.com">Contact</a>
+</div>
+<div aria-label="Language / Lingua" class="language-switch" role="group"><button aria-label="English" aria-pressed="true" data-set-lang="en" lang="en" type="button">EN</button><button aria-label="Italiano" aria-pressed="false" data-set-lang="it" lang="it" type="button">IT</button></div></nav>
 <header class="page-hero">
-  <div class="hero-copy">
-    <div class="eyebrow"><span class="eyebrow-dot"></span> Memory Canvas · Scent · Life Archive</div>
-    <h1>Un profumo.<br>Un ricordo.<br><span>Una connessione.</span></h1>
-    <p class="hero-sub">ScentWeave trasforma profumi, fotografie, luoghi ed emozioni in una tela personale della memoria. Ogni esperienza può diventare un nodo da ritrovare nel tempo.</p>
-    <div class="hero-actions">
-      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.scentweave" target="_blank" class="btn-primary">Scarica su Google Play</a>
-      <a href="#funzionalita" class="btn-outline">Scopri ScentWeave ↓</a>
-    </div>
-  </div>
-
-  <div class="hero-visual">
-    <div class="scent-cloud"></div>
-    <img src="/images/scentweave/scentweave.png" alt="ScentWeave avvolto da una nuvola astratta di profumi">
-  </div>
+<div class="hero-copy">
+<div class="eyebrow" data-i18n="hero.eyebrow"><span class="eyebrow-dot"></span>Memory Canvas · Scents · Life Archive</div>
+<h1 data-i18n-html="hero.title">One scent.<br/>One memory.<br/><span>One connection.</span></h1>
+<p class="hero-sub" data-i18n="hero.description">ScentWeave turns scents, photographs, places and emotions into a personal memory canvas. Each experience can become a node you revisit over time.</p>
+<div class="hero-actions">
+<a class="btn-primary" data-i18n="hero.download" href="https://play.google.com/store/apps/details?id=com.memmolalabs.scentweave" rel="noopener noreferrer" target="_blank">Get it on Google Play</a>
+<a class="btn-outline" data-i18n="hero.discover" href="#funzionalita">Discover ScentWeave ↓</a>
+</div>
+</div>
+<div class="hero-visual">
+<div class="scent-cloud"></div>
+<a aria-label="ScentWeave on Google Play" class="hero-image-link" href="https://play.google.com/store/apps/details?id=com.memmolalabs.scentweave" rel="noopener noreferrer" target="_blank"><img alt="ScentWeave — memory canvas with scent-inspired connections and photos" data-i18n-alt="hero.image.alt" data-image-en="/images/scentweave/scentweave_eng.png" data-image-it="/images/scentweave/scentweave.png" src="/images/scentweave/scentweave_eng.png"/></a>
+</div>
 </header>
-
 <main>
-  <section class="section" id="scentweave">
-    <div class="section-label"> ScentWeave</div>
-    <h2 class="section-title">La memoria non è una lista.<br>È una rete.</h2>
-    <p class="section-sub">Un odore può riportare alla mente un luogo, una persona o un giorno preciso. ScentWeave nasce per raccogliere queste connessioni e renderle visibili.</p>
-
-    <div class="intro-grid">
-      <div class="glass-card">
-        <h3>Ogni profumo diventa un nodo</h3>
-        <p>Costruisci una tela personale di esperienze, collegando fra loro ricordi che condividono luoghi, persone, sensazioni o fragranze.</p>
-        <ul class="feature-list">
-          <li>Crea e organizza ricordi olfattivi.</li>
-          <li>Collega esperienze con connessioni visive.</li>
-          <li>Aggiungi note e riflessioni personali.</li>
-          <li>Allega fotografie ai tuoi ricordi.</li>
-        </ul>
-      </div>
-
-      <div class="glass-card">
-        <h3>Un archivio che cresce con te</h3>
-        <p>Ritrova nel tempo connessioni tra profumi, luoghi, persone ed emozioni e costruisci una cronologia personale diversa da un diario tradizionale.</p>
-        <ul class="feature-list">
-          <li>Tela visiva dei ricordi.</li>
-          <li>Cronologia personale.</li>
-          <li>Esperienza gratuita per iniziare.</li>
-          <li>Esportazione e Viewer nella versione Pro.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <div class="features-wrap">
-    <section class="section" id="funzionalita">
-      <div class="section-label"> Funzionalità</div>
-      <h2 class="section-title">Costruisci il ricordo.<br>Poi lascialo intrecciare.</h2>
-      <p class="section-sub">ScentWeave non ordina semplicemente elementi: permette di vedere come esperienze diverse finiscono per appartenere alla stessa storia.</p>
-
-      <div class="plans-grid">
-        <article class="plan-card">
-          <span class="plan-badge">Memory nodes</span>
-          <h3>Nodi di memoria</h3>
-          <p>Ogni nodo può rappresentare un profumo, un momento, una persona, un luogo o un'esperienza che vuoi conservare.</p>
-        </article>
-        <article class="plan-card">
-          <span class="plan-badge">Visual links</span>
-          <h3>Connessioni visive</h3>
-          <p>Collega i nodi e osserva come ricordi lontani nel tempo possono condividere la stessa sensazione.</p>
-        </article>
-        <article class="plan-card">
-          <span class="plan-badge">Photos & notes</span>
-          <h3>Foto e riflessioni</h3>
-          <p>Aggiungi immagini, note personali e dettagli che rendono ogni ricordo più riconoscibile e vivo.</p>
-        </article>
-        <article class="plan-card">
-          <span class="plan-badge">Viewer compatible</span>
-          <h3>Portalo sul desktop</h3>
-          <p>Con Pro puoi esportare pacchetti .scentweave e aprirli nel Memmola Labs Viewer.</p>
-        </article>
-      </div>
-    </section>
-  </div>
-
-  <section class="section" id="versioni">
-    <div class="section-label"> Versioni</div>
-    <h2 class="section-title">Inizia gratuitamente.<br>Espandi quando vuoi.</h2>
-    <p class="section-sub">La versione gratuita permette di costruire la prima tela. Pro elimina i limiti principali e aggiunge esportazione, più fotografie e assenza di pubblicità.</p>
-
-    <div class="version-grid">
-      <article class="version-card">
-        <span class="plan-badge">Free</span>
-        <h3>Versione gratuita</h3>
-        <p>Per iniziare a capire se ScentWeave appartiene al tuo modo di ricordare.</p>
-        <ul class="feature-list">
-          <li>Fino a 15 nodi di memoria.</li>
-          <li>1 foto per ricordo.</li>
-          <li>Annunci a premio per ottenere nodi aggiuntivi.</li>
-        </ul>
-      </article>
-
-      <article class="version-card pro-card">
-        <span class="plan-badge pro">Pro</span>
-        <h3>Versione Pro</h3>
-        <p>Per costruire nel tempo un archivio più ampio, personale e completo.</p>
-        <ul class="feature-list">
-          <li>Nodi di memoria illimitati.</li>
-          <li>Fino a 5 foto per ricordo.</li>
-          <li>Nessuna pubblicità.</li>
-          <li>Esporta pacchetti .scentweave.</li>
-          <li>Compatibile con Memmola Labs Viewer.</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <div class="screens-feature" id="screens">
-    <section class="section">
-      <div class="section-label"> Screenshot</div>
-      <h2 class="section-title">La tua tela prende forma.</h2>
-      <p class="section-sub">Nodi, connessioni, fotografie e timeline reali dell'app in una galleria orizzontale pensata anche per lo swipe su smartphone.</p>
-      <div class="screens-grid">
-      <figure class="screen-card">
-        <img src="images/1.png" alt="ScentWeave screenshot 1" loading="lazy">
-        <figcaption class="screen-caption">Screenshot 01</figcaption>
-      </figure>
-
-      <figure class="screen-card">
-        <img src="images/2.png" alt="ScentWeave screenshot 2" loading="lazy">
-        <figcaption class="screen-caption">Screenshot 02</figcaption>
-      </figure>
-
-      <figure class="screen-card">
-        <img src="images/3.png" alt="ScentWeave screenshot 3" loading="lazy">
-        <figcaption class="screen-caption">Screenshot 03</figcaption>
-      </figure>
-
-      <figure class="screen-card">
-        <img src="images/4.png" alt="ScentWeave screenshot 4" loading="lazy">
-        <figcaption class="screen-caption">Screenshot 04</figcaption>
-      </figure>
-
-      <figure class="screen-card">
-        <img src="images/5.png" alt="ScentWeave screenshot 5" loading="lazy">
-        <figcaption class="screen-caption">Screenshot 05</figcaption>
-      </figure>
-
-      <figure class="screen-card">
-        <img src="images/6.png" alt="ScentWeave screenshot 6" loading="lazy">
-        <figcaption class="screen-caption">Screenshot 06</figcaption>
-      </figure>
-
-      <figure class="screen-card">
-        <img src="images/7.png" alt="ScentWeave screenshot 7" loading="lazy">
-        <figcaption class="screen-caption">Screenshot 07</figcaption>
-      </figure>
-    </div>
-  </section>
-  </div>
-
-  <section class="section" id="privacy">
-    <div class="section-label"> Privacy</div>
-    <h2 class="section-title">I ricordi restano tuoi.</h2>
-    <p class="section-sub">ScentWeave non richiede un account e i ricordi personali rimangono sul dispositivo invece di essere inviati a un archivio cloud Memmola Labs.</p>
-
-    <div class="privacy-grid">
-      <article class="privacy-card">
-        <h3>Nessun dato raccolto</h3>
-        <p>In base alle dichiarazioni dello sviluppatore, ScentWeave non raccoglie dati utente.</p>
-      </article>
-      <article class="privacy-card">
-        <h3>Nessun dato condiviso</h3>
-        <p>In base alle dichiarazioni dello sviluppatore, ScentWeave non condivide dati utente con terze parti.</p>
-        <div class="app-actions" style="margin-top:20px">
-          <a href="https://memmolalabs.com/privacy-scentweave.html" target="_blank" class="btn-outline">Privacy Policy →</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="app-cta" id="download">
-    <div class="app-section">
-      <div>
-        <div class="section-label"> Google Play</div>
-        <h2>Alcuni ricordi iniziano<br>da qualcosa che non puoi vedere.</h2>
-        <p>Scarica ScentWeave e crea la tua prima tela personale di profumi, immagini, luoghi ed emozioni.</p>
-      </div>
-      <a href="https://play.google.com/store/apps/details?id=com.memmolalabs.scentweave" target="_blank" aria-label="Scarica ScentWeave su Google Play">
-        <img src="/image/play_ita.png" alt="Disponibile su Google Play" class="store-badge">
-      </a>
-    </div>
-  </section>
+<section class="section" id="scentweave">
+<div class="section-label"> ScentWeave</div>
+<h2 class="section-title" data-i18n-html="intro.title">Memory isn’t a list.<br/>It’s a network.</h2>
+<p class="section-sub" data-i18n="intro.lede">A familiar scent can bring back a place, a person or a particular day. ScentWeave helps you capture those connections and make them visible.</p>
+<div class="intro-grid">
+<div class="glass-card">
+<h3 data-i18n="intro.card1.title">Every scent becomes a node</h3>
+<p data-i18n="intro.card1.text">Build a personal canvas of experiences, connecting memories that share places, people, feelings or fragrances.</p>
+<ul class="feature-list">
+<li data-i18n="intro.card1.item.1">Create and organize scent memories.</li>
+<li data-i18n="intro.card1.item.2">Connect experiences through visual links.</li>
+<li data-i18n="intro.card1.item.3">Add personal notes and reflections.</li>
+<li data-i18n="intro.card1.item.4">Attach photos to your memories.</li>
+</ul>
+</div>
+<div class="glass-card">
+<h3 data-i18n="intro.card2.title">An archive that grows with you</h3>
+<p data-i18n="intro.card2.text">Revisit connections between scents, places, people and emotions, building a personal record that goes beyond a traditional diary.</p>
+<ul class="feature-list">
+<li data-i18n="intro.card2.item.1">Visual memory canvas.</li>
+<li data-i18n="intro.card2.item.2">Personal timeline.</li>
+<li data-i18n="intro.card2.item.3">Free to get started.</li>
+<li data-i18n="intro.card2.item.4">Export and desktop Viewer with Pro.</li>
+</ul>
+</div>
+</div>
+</section>
+<div class="features-wrap">
+<section class="section" id="funzionalita">
+<div class="section-label" data-i18n="features.label">Features</div>
+<h2 class="section-title" data-i18n-html="features.title">Build a memory.<br/>Then weave it together.</h2>
+<p class="section-sub" data-i18n="features.lede">ScentWeave does more than organize items. It helps you see how different experiences can become part of the same story.</p>
+<div class="plans-grid">
+<article class="plan-card">
+<span class="plan-badge">Memory nodes</span>
+<h3 data-i18n="features.card.title.1">Memory nodes</h3>
+<p data-i18n="features.card.text.1">Each node can represent a scent, a moment, a person, a place or an experience you want to preserve.</p>
+</article>
+<article class="plan-card">
+<span class="plan-badge">Visual links</span>
+<h3 data-i18n="features.card.title.2">Visual connections</h3>
+<p data-i18n="features.card.text.2">Connect nodes and discover how distant memories can share the same feeling.</p>
+</article>
+<article class="plan-card">
+<span class="plan-badge">Photos &amp; notes</span>
+<h3 data-i18n="features.card.title.3">Photos and reflections</h3>
+<p data-i18n="features.card.text.3">Add pictures, personal notes and details that make each memory more vivid.</p>
+</article>
+<article class="plan-card">
+<span class="plan-badge">Viewer compatible</span>
+<h3 data-i18n="features.card.title.4">Take it to your desktop</h3>
+<p data-i18n="features.card.text.4">With Pro, export .scentweave files and open them in Memmola Labs Viewer.</p>
+</article>
+</div>
+</section>
+</div>
+<section class="section" id="versioni">
+<div class="section-label" data-i18n="versions.label">Versions</div>
+<h2 class="section-title" data-i18n-html="versions.title">Start for free.<br/>Expand when you’re ready.</h2>
+<p class="section-sub" data-i18n="versions.lede">The free version lets you build your first canvas. A one-time Pro unlock expands your space, adds more photos, customization and export options.</p>
+<div class="version-grid">
+<article class="version-card">
+<span class="plan-badge">Free</span>
+<h3 data-i18n="versions.free.title">Free version</h3>
+<p data-i18n="versions.free.lede">A simple way to discover whether ScentWeave fits the way you remember.</p>
+<ul class="feature-list"><li data-i18n="versions.free.item.1">10 starting memory nodes.</li><li data-i18n="versions.free.item.2">1 photo per memory.</li><li data-i18n="versions.free.item.3">Up to 3 saved fragrances.</li><li data-i18n="versions.free.item.4">Up to 3 saved canvases.</li><li data-i18n="versions.free.item.5">Optional rewarded ads for extra nodes.</li></ul>
+</article>
+<article class="version-card pro-card">
+<span class="plan-badge pro">Pro</span>
+<h3 data-i18n="versions.pro.title">Pro version</h3>
+<p data-i18n="versions.pro.lede">For a more spacious and personal archive that can grow with your memories.</p>
+<ul class="feature-list"><li data-i18n="versions.pro.item.1">Unlimited memory nodes.</li><li data-i18n="versions.pro.item.2">More photos per memory.</li><li data-i18n="versions.pro.item.3">Unlimited saved fragrances.</li><li data-i18n="versions.pro.item.4">Unlimited saved canvases.</li><li data-i18n="versions.pro.item.5">Custom color palette.</li><li data-i18n="versions.pro.item.6">Export .scentweave files.</li><li data-i18n="versions.pro.item.7">Open exported files in Memmola Labs Viewer.</li><li data-i18n="versions.pro.item.8">No mandatory ads.</li></ul>
+</article>
+</div>
+</section>
+<div class="screens-feature" id="screens">
+<section class="section">
+<div class="section-label"> Screenshot</div>
+<h2 class="section-title" data-i18n="screens.title">Your canvas comes to life.</h2>
+<p class="section-sub" data-i18n="screens.lede">Explore real app screens with nodes, connections, photos and memories in a gallery you can swipe through on your phone.</p>
+<div class="screens-grid">
+<figure class="screen-card">
+<img alt="ScentWeave screenshot 1" loading="lazy" src="images/1.png"/>
+<figcaption class="screen-caption">Screenshot 01</figcaption>
+</figure>
+<figure class="screen-card">
+<img alt="ScentWeave screenshot 2" loading="lazy" src="images/2.png"/>
+<figcaption class="screen-caption">Screenshot 02</figcaption>
+</figure>
+<figure class="screen-card">
+<img alt="ScentWeave screenshot 3" loading="lazy" src="images/3.png"/>
+<figcaption class="screen-caption">Screenshot 03</figcaption>
+</figure>
+<figure class="screen-card">
+<img alt="ScentWeave screenshot 4" loading="lazy" src="images/4.png"/>
+<figcaption class="screen-caption">Screenshot 04</figcaption>
+</figure>
+<figure class="screen-card">
+<img alt="ScentWeave screenshot 5" loading="lazy" src="images/5.png"/>
+<figcaption class="screen-caption">Screenshot 05</figcaption>
+</figure>
+<figure class="screen-card">
+<img alt="ScentWeave screenshot 6" loading="lazy" src="images/6.png"/>
+<figcaption class="screen-caption">Screenshot 06</figcaption>
+</figure>
+<figure class="screen-card">
+<img alt="ScentWeave screenshot 7" loading="lazy" src="images/7.png"/>
+<figcaption class="screen-caption">Screenshot 07</figcaption>
+</figure>
+</div>
+</section>
+</div>
+<section class="section" id="privacy">
+<div class="section-label"> Privacy</div>
+<h2 class="section-title" data-i18n="privacy.title">Your memories stay yours.</h2>
+<p class="section-sub" data-i18n="privacy.lede">ScentWeave requires no account. Your personal memories stay on your device rather than being uploaded to a Memmola Labs cloud archive.</p>
+<div class="privacy-grid">
+<article class="privacy-card">
+<h3 data-i18n="privacy.card1.title">Memories stored locally</h3>
+<p data-i18n="privacy.card1.text">Scent memories, photos and notes are kept on your device, under your control.</p>
+</article>
+<article class="privacy-card">
+<h3 data-i18n="privacy.card2.title">No account required</h3>
+<p data-i18n="privacy.card2.text">Explore your memories without registration. Read the privacy policy for details about the app and optional rewarded ads.</p>
+<div class="app-actions" style="margin-top:20px">
+<a class="btn-outline" href="https://memmolalabs.com/privacy-scentweave.html" rel="noopener noreferrer" target="_blank">Privacy Policy →</a>
+</div>
+</article>
+</div>
+</section>
+<section class="app-cta" id="download">
+<div class="app-section">
+<div>
+<div class="section-label"> Google Play</div>
+<h2 data-i18n-html="cta.title">Some memories begin<br/>with something you cannot see.</h2>
+<p data-i18n="cta.description">Get ScentWeave and start your personal canvas of scents, photos, places and emotions.</p>
+</div>
+<a aria-label="Get ScentWeave on Google Play" data-i18n-aria-label="cta.store.label" href="https://play.google.com/store/apps/details?id=com.memmolalabs.scentweave" rel="noopener noreferrer" target="_blank">
+<img alt="Disponibile su Google Play" class="store-badge badge-it-only" src="/image/play_ita.png"/>
+<span class="badge-en-only">Get it on Google Play</span></a>
+</div>
+</section>
 </main>
-
 <footer>
-  <div class="footer-logo">Memmola<span>Labs®</span></div>
-
-  <div class="footer-links">
-    <a href="/">Home</a>
-    <a href="/dottap/">DotTap</a>
-    <a href="/immobit/">ImmoBit</a>
-    <a href="/autobit/">AutoBit</a>
-    <a href="/origins/">Origins</a>
-    <a href="https://slangbit.com" target="_blank">SlangBit</a>
-    <a href="https://alessandromemmola.com" target="_blank">Alessandro Memmola</a>
-    <a href="https://github.com/alessandromemmola" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" target="_blank">LinkedIn</a>
-    <a href="https://x.com/MemmolaLabs" target="_blank">X</a>
-    <a href="mailto:info@memmolalabs.com">info@memmolalabs.com</a>
-  </div>
-
-  <div>
-    © 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br>
-    Nessun tracciamento personale o cookie di profilazione
-  </div>
-
-  <div class="footer-trademark">Memmola Labs® è un marchio registrato di Alessandro Memmola</div>
+<div class="footer-logo">Memmola<span>Labs®</span></div>
+<div class="footer-links">
+<a href="/" rel="noopener noreferrer" target="_blank">Home</a>
+<a href="/dottap/" rel="noopener noreferrer" target="_blank">DotTap</a>
+<a href="/immobit/" rel="noopener noreferrer" target="_blank">ImmoBit</a>
+<a href="/autobit/" rel="noopener noreferrer" target="_blank">AutoBit</a>
+<a href="/origins/" rel="noopener noreferrer" target="_blank">Origins</a>
+<a href="https://slangbit.com" rel="noopener noreferrer" target="_blank">SlangBit</a>
+<a href="https://alessandromemmola.com" rel="noopener noreferrer" target="_blank">Alessandro Memmola</a>
+<a href="https://github.com/alessandromemmola" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a href="https://www.linkedin.com/in/alessandro-memmola-233868372/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+<a href="https://x.com/MemmolaLabs" rel="noopener noreferrer" target="_blank">X</a>
+<a href="mailto:contact@memmolalabs.com">contact@memmolalabs.com</a>
+</div>
+<div data-i18n-html="footer.legal">© 2026 Memmola Labs® · Alessandro Memmola · All rights reserved<br/>No personal tracking or profiling cookies</div>
+<div class="footer-trademark" data-i18n="footer.trademark">Memmola Labs® is a registered trademark of Alessandro Memmola</div>
 </footer>
-
-</body>
+<script>
+(() => {
+  'use strict';
+  const catalog = {
+  "meta.description": {
+    "en": "ScentWeave — a personal memory canvas. Connect scents, photographs, places and emotions in an interactive, offline archive.",
+    "it": "ScentWeave: Memory Canvas — app Memmola Labs per creare una tela personale di profumi, ricordi, foto ed esperienze."
+  },
+  "meta.ogdescription": {
+    "en": "A scent can take you back. Connect memories, photos and emotions on your personal ScentWeave canvas.",
+    "it": "Collega profumi, ricordi, foto ed esperienze personali in una mappa visiva della tua memoria."
+  },
+  "meta.title": {
+    "en": "ScentWeave — Memory Canvas by Memmola Labs",
+    "it": "ScentWeave — Tela dei ricordi | Memmola Labs"
+  },
+  "nav.features": {
+    "en": "Features",
+    "it": "Funzionalità"
+  },
+  "nav.versions": {
+    "en": "Versions",
+    "it": "Versioni"
+  },
+  "nav.contact": {
+    "en": "Contact",
+    "it": "Contatti"
+  },
+  "hero.eyebrow": {
+    "en": "Memory Canvas · Scents · Life Archive",
+    "it": "Tela dei ricordi · Profumi · Archivio personale"
+  },
+  "hero.title": {
+    "en": "One scent.<br>One memory.<br><span>One connection.</span>",
+    "it": "Un profumo.<br/>Un ricordo.<br/><span>Una connessione.</span>"
+  },
+  "hero.description": {
+    "en": "ScentWeave turns scents, photographs, places and emotions into a personal memory canvas. Each experience can become a node you revisit over time.",
+    "it": "ScentWeave trasforma profumi, fotografie, luoghi ed emozioni in una tela personale della memoria. Ogni esperienza può diventare un nodo da ritrovare nel tempo."
+  },
+  "hero.download": {
+    "en": "Get it on Google Play",
+    "it": "Scarica su Google Play"
+  },
+  "hero.discover": {
+    "en": "Discover ScentWeave ↓",
+    "it": "Scopri ScentWeave ↓"
+  },
+  "intro.title": {
+    "en": "Memory isn’t a list.<br>It’s a network.",
+    "it": "La memoria non è una lista.<br/>È una rete."
+  },
+  "intro.lede": {
+    "en": "A familiar scent can bring back a place, a person or a particular day. ScentWeave helps you capture those connections and make them visible.",
+    "it": "Un odore può riportare alla mente un luogo, una persona o un giorno preciso. ScentWeave nasce per raccogliere queste connessioni e renderle visibili."
+  },
+  "intro.card1.title": {
+    "en": "Every scent becomes a node",
+    "it": "Ogni profumo diventa un nodo"
+  },
+  "intro.card1.text": {
+    "en": "Build a personal canvas of experiences, connecting memories that share places, people, feelings or fragrances.",
+    "it": "Costruisci una tela personale di esperienze, collegando fra loro ricordi che condividono luoghi, persone, sensazioni o fragranze."
+  },
+  "intro.card1.item.1": {
+    "en": "Create and organize scent memories.",
+    "it": "Crea e organizza ricordi olfattivi."
+  },
+  "intro.card1.item.2": {
+    "en": "Connect experiences through visual links.",
+    "it": "Collega esperienze con connessioni visive."
+  },
+  "intro.card1.item.3": {
+    "en": "Add personal notes and reflections.",
+    "it": "Aggiungi note e riflessioni personali."
+  },
+  "intro.card1.item.4": {
+    "en": "Attach photos to your memories.",
+    "it": "Allega fotografie ai tuoi ricordi."
+  },
+  "intro.card2.title": {
+    "en": "An archive that grows with you",
+    "it": "Un archivio che cresce con te"
+  },
+  "intro.card2.text": {
+    "en": "Revisit connections between scents, places, people and emotions, building a personal record that goes beyond a traditional diary.",
+    "it": "Ritrova nel tempo connessioni tra profumi, luoghi, persone ed emozioni e costruisci una cronologia personale diversa da un diario tradizionale."
+  },
+  "intro.card2.item.1": {
+    "en": "Visual memory canvas.",
+    "it": "Tela visiva dei ricordi."
+  },
+  "intro.card2.item.2": {
+    "en": "Personal timeline.",
+    "it": "Cronologia personale."
+  },
+  "intro.card2.item.3": {
+    "en": "Free to get started.",
+    "it": "Esperienza gratuita per iniziare."
+  },
+  "intro.card2.item.4": {
+    "en": "Export and desktop Viewer with Pro.",
+    "it": "Esportazione e Viewer nella versione Pro."
+  },
+  "features.label": {
+    "en": "Features",
+    "it": "Funzionalità"
+  },
+  "features.title": {
+    "en": "Build a memory.<br>Then weave it together.",
+    "it": "Costruisci il ricordo.<br/>Poi lascialo intrecciare."
+  },
+  "features.lede": {
+    "en": "ScentWeave does more than organize items. It helps you see how different experiences can become part of the same story.",
+    "it": "ScentWeave non ordina semplicemente elementi: permette di vedere come esperienze diverse finiscono per appartenere alla stessa storia."
+  },
+  "features.card.title.1": {
+    "en": "Memory nodes",
+    "it": "Nodi di memoria"
+  },
+  "features.card.title.2": {
+    "en": "Visual connections",
+    "it": "Connessioni visive"
+  },
+  "features.card.title.3": {
+    "en": "Photos and reflections",
+    "it": "Foto e riflessioni"
+  },
+  "features.card.title.4": {
+    "en": "Take it to your desktop",
+    "it": "Portalo sul desktop"
+  },
+  "features.card.text.1": {
+    "en": "Each node can represent a scent, a moment, a person, a place or an experience you want to preserve.",
+    "it": "Ogni nodo può rappresentare un profumo, un momento, una persona, un luogo o un'esperienza che vuoi conservare."
+  },
+  "features.card.text.2": {
+    "en": "Connect nodes and discover how distant memories can share the same feeling.",
+    "it": "Collega i nodi e osserva come ricordi lontani nel tempo possono condividere la stessa sensazione."
+  },
+  "features.card.text.3": {
+    "en": "Add pictures, personal notes and details that make each memory more vivid.",
+    "it": "Aggiungi immagini, note personali e dettagli che rendono ogni ricordo più riconoscibile e vivo."
+  },
+  "features.card.text.4": {
+    "en": "With Pro, export .scentweave files and open them in Memmola Labs Viewer.",
+    "it": "Con Pro puoi esportare pacchetti .scentweave e aprirli nel Memmola Labs Viewer."
+  },
+  "versions.label": {
+    "en": "Versions",
+    "it": "Versioni"
+  },
+  "versions.title": {
+    "en": "Start for free.<br>Expand when you’re ready.",
+    "it": "Inizia gratuitamente.<br/>Espandi quando vuoi."
+  },
+  "versions.lede": {
+    "en": "The free version lets you build your first canvas. A one-time Pro unlock expands your space, adds more photos, customization and export options.",
+    "it": "La versione gratuita ti permette di creare la tua prima tela. Pro si sblocca con un acquisto una tantum e aggiunge più spazio, fotografie, personalizzazione ed esportazione."
+  },
+  "versions.free.title": {
+    "en": "Free version",
+    "it": "Versione gratuita"
+  },
+  "versions.free.lede": {
+    "en": "A simple way to discover whether ScentWeave fits the way you remember.",
+    "it": "Per iniziare a capire se ScentWeave appartiene al tuo modo di ricordare."
+  },
+  "versions.free.item.1": {
+    "en": "10 starting memory nodes.",
+    "it": "10 nodi di memoria iniziali."
+  },
+  "versions.free.item.2": {
+    "en": "1 photo per memory.",
+    "it": "1 foto per ricordo."
+  },
+  "versions.free.item.3": {
+    "en": "Up to 3 saved fragrances.",
+    "it": "Fino a 3 fragranze salvate."
+  },
+  "versions.free.item.4": {
+    "en": "Up to 3 saved canvases.",
+    "it": "Fino a 3 tele salvate."
+  },
+  "versions.free.item.5": {
+    "en": "Optional rewarded ads for extra nodes.",
+    "it": "Annunci premio facoltativi per ottenere nodi extra."
+  },
+  "versions.pro.title": {
+    "en": "Pro version",
+    "it": "Versione Pro"
+  },
+  "versions.pro.lede": {
+    "en": "For a more spacious and personal archive that can grow with your memories.",
+    "it": "Per costruire nel tempo un archivio più ampio, personale e completo."
+  },
+  "versions.pro.item.1": {
+    "en": "Unlimited memory nodes.",
+    "it": "Nodi di memoria illimitati."
+  },
+  "versions.pro.item.2": {
+    "en": "More photos per memory.",
+    "it": "Più foto per ogni ricordo."
+  },
+  "versions.pro.item.3": {
+    "en": "Unlimited saved fragrances.",
+    "it": "Fragranze salvate illimitate."
+  },
+  "versions.pro.item.4": {
+    "en": "Unlimited saved canvases.",
+    "it": "Tele salvate illimitate."
+  },
+  "versions.pro.item.5": {
+    "en": "Custom color palette.",
+    "it": "Palette colori personalizzata."
+  },
+  "versions.pro.item.6": {
+    "en": "Export .scentweave files.",
+    "it": "Esporta file .scentweave."
+  },
+  "versions.pro.item.7": {
+    "en": "Open exported files in Memmola Labs Viewer.",
+    "it": "Apri i file nel Memmola Labs Viewer."
+  },
+  "versions.pro.item.8": {
+    "en": "No mandatory ads.",
+    "it": "Nessun annuncio obbligatorio."
+  },
+  "screens.title": {
+    "en": "Your canvas comes to life.",
+    "it": "La tua tela prende forma."
+  },
+  "screens.lede": {
+    "en": "Explore real app screens with nodes, connections, photos and memories in a gallery you can swipe through on your phone.",
+    "it": "Nodi, connessioni, fotografie e timeline reali dell'app in una galleria orizzontale pensata anche per lo swipe su smartphone."
+  },
+  "privacy.title": {
+    "en": "Your memories stay yours.",
+    "it": "I ricordi restano tuoi."
+  },
+  "privacy.lede": {
+    "en": "ScentWeave requires no account. Your personal memories stay on your device rather than being uploaded to a Memmola Labs cloud archive.",
+    "it": "ScentWeave non richiede un account e i ricordi personali rimangono sul dispositivo invece di essere inviati a un archivio cloud Memmola Labs."
+  },
+  "privacy.card1.title": {
+    "en": "Memories stored locally",
+    "it": "Ricordi conservati in locale"
+  },
+  "privacy.card1.text": {
+    "en": "Scent memories, photos and notes are kept on your device, under your control.",
+    "it": "Profumi, fotografie e note dei tuoi ricordi restano sul dispositivo, sotto il tuo controllo."
+  },
+  "privacy.card2.title": {
+    "en": "No account required",
+    "it": "Nessun account richiesto"
+  },
+  "privacy.card2.text": {
+    "en": "Explore your memories without registration. Read the privacy policy for details about the app and optional rewarded ads.",
+    "it": "Esplora i tuoi ricordi senza registrarti. Consulta l’informativa privacy per i dettagli sull’app e sugli annunci premio facoltativi."
+  },
+  "cta.title": {
+    "en": "Some memories begin<br>with something you cannot see.",
+    "it": "Alcuni ricordi iniziano<br/>da qualcosa che non puoi vedere."
+  },
+  "cta.description": {
+    "en": "Get ScentWeave and start your personal canvas of scents, photos, places and emotions.",
+    "it": "Scarica ScentWeave e crea la tua prima tela personale di profumi, immagini, luoghi ed emozioni."
+  },
+  "footer.legal": {
+    "en": "© 2026 Memmola Labs® · Alessandro Memmola · All rights reserved<br>No personal tracking or profiling cookies",
+    "it": "© 2026 Memmola Labs® · Alessandro Memmola · Tutti i diritti riservati<br/>\n    Nessun tracciamento personale o cookie di profilazione"
+  },
+  "footer.trademark": {
+    "en": "Memmola Labs® is a registered trademark of Alessandro Memmola",
+    "it": "Memmola Labs® è un marchio registrato di Alessandro Memmola"
+  },
+  "hero.image.alt": {
+    "en": "ScentWeave — memory canvas with scent-inspired connections and photos",
+    "it": "ScentWeave — tela di ricordi, profumi e connessioni"
+  },
+  "cta.store.label": {
+    "en": "Get ScentWeave on Google Play",
+    "it": "Scarica ScentWeave su Google Play"
+  }
+};
+  const storageKey = 'memmolaLabsLanguage';
+  const languageButtons = Array.from(document.querySelectorAll('.language-switch [data-set-lang]'));
+  function getInitialLanguage() {
+    let saved = null;
+    try { saved = localStorage.getItem(storageKey); } catch (_) { /* e.g. private mode */ }
+    if (saved === 'en' || saved === 'it') return saved;
+    return (navigator.language || '').toLowerCase().startsWith('it') ? 'it' : 'en';
+  }
+  function t(key, lang) {
+    const values = catalog[key];
+    return values ? (values[lang] ?? values.en) : '';
+  }
+  function setLanguage(lang, persist = false) {
+    if (lang !== 'en' && lang !== 'it') return;
+    document.documentElement.lang = lang;
+    document.documentElement.dataset.language = lang;
+    document.title = t('meta.title',lang);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      el.textContent = t(el.dataset.i18n,lang);
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      el.innerHTML = t(el.dataset.i18nHtml,lang);
+    });
+    document.querySelectorAll('[data-i18n-content]').forEach(el => {
+      el.setAttribute('content',t(el.dataset.i18nContent,lang));
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+      el.setAttribute('alt',t(el.dataset.i18nAlt,lang));
+    });
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+      el.setAttribute('aria-label',t(el.dataset.i18nAriaLabel,lang));
+    });
+    document.querySelectorAll('img[data-image-it][data-image-en]').forEach(img => {
+      const source = img.getAttribute(lang === 'it' ? 'data-image-it' : 'data-image-en');
+      if (source && img.getAttribute('src') !== source) img.setAttribute('src',source);
+    });
+    languageButtons.forEach(button => button.setAttribute('aria-pressed',String(button.dataset.setLang === lang)));
+    if (persist) {
+      try { localStorage.setItem(storageKey,lang); } catch (_) { /* storage unavailable */ }
+    }
+  }
+  languageButtons.forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.setLang,true)));
+  window.addEventListener('storage',event => {
+    if (event.key === storageKey && (event.newValue === 'en' || event.newValue === 'it')) {
+      setLanguage(event.newValue,false);
+    }
+  });
+  setLanguage(getInitialLanguage(),false);
+})();
+</script></body>
 </html>
